@@ -1,53 +1,52 @@
 extends Node
 
-var green_orb = Actif.new('green_orb', ActifCategory.DURABILITY,
+var green_orb = Item.new('green_orb', ItemCategory.DURABILITY,
 	"Emet une vague de dêgats quand des dêgats sont recus")
-var blue_orb = Actif.new('blue_orb',
-			ActifCategory.DURABILITY, "Invoque un drône tireur")
-var red_orb = Actif.new('red_orb',
-			ActifCategory.DURABILITY, "Occtroie une charge rapide effectuant des degats")
-var orange_orb = Actif.new('orange_orb', ActifCategory.DURABILITY, "JSP ENCORE")
+var blue_orb = Item.new('blue_orb',
+			ItemCategory.DURABILITY, "Invoque un drône tireur")
+var red_orb = Item.new('red_orb',
+			ItemCategory.DURABILITY, "Occtroie une charge rapide effectuant des degats")
+var orange_orb = Item.new('orange_orb', ItemCategory.DURABILITY, "JSP ENCORE")
 
-var allActifs = [green_orb, blue_orb, red_orb, orange_orb]
+var allItems = [green_orb, blue_orb, red_orb, orange_orb]
 
-class Actif:
+class Item:
 	var name: String
-	var category: ActifCategory
+	var category: ItemCategory
 	var desc: String
 
-	func _init(name: String, category: ActifCategory, 
+	func _init(name: String, category: ItemCategory, 
 				desc: String) -> void:
 		self.name = name
 		self.category = category
 		self.desc = desc
 
-enum ActifCategory {
+enum ItemCategory {
 	DAMAGE,
 	FIGHT,
 	DURABILITY,
 }
 
-func get_Actif(name):
-	var Actif = get(name)
-	if Actif is Actif:
-		return Actif
+func get_item(name):
+	var item = get(name)
+	if item is Item:
+		return Item
 	else:
 		return null
 
 func get_list_by_category(category: String):
-	return allActifs.filter(func(obj):
-		return obj.category == ActifCategory.get(category.to_upper())
+	return allItems.filter(func(obj):
+		return obj.category == ItemCategory.get(category.to_upper())
 	).map(func(obj):
 		return obj.name
 	)
 	
-func duplicate_Actif(Actif):
-	var new_Actif = Actif.new(
-		Actif.name, Actif.category, Actif.damage,
-		Actif.health, Actif.armor, Actif.desc
+func duplicate_item(item):
+	var new_item = Item.new(
+		item.name, item.category, item.damage,
+		item.health, item.armor, item.desc
 	) 
-	
-	return new_Actif
+	new_item
 	
 
 
