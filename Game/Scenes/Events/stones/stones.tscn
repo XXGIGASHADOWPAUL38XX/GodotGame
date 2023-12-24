@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://mw5tpsccfsbn"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Events/stones/stones.gd" id="1_rrg8l"]
+[ext_resource type="Texture2D" uid="uid://ci0ek1vyncvtv" path="res://Game/Ressources/Heros/tank_m/spell_2.png" id="2_daop2"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/stones/stone.gd" id="2_mava0"]
+[ext_resource type="Texture2D" uid="uid://dj4seucin4i5k" path="res://Game/Ressources/Main_Effects/Stones/pre_fall.png" id="4_8p2bj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7v12i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skeo6"]
+atlas = ExtResource("2_daop2")
+region = Rect2(0, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61bwa"]
+atlas = ExtResource("2_daop2")
+region = Rect2(490, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b67ih"]
+atlas = ExtResource("2_daop2")
+region = Rect2(980, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwj5r"]
+atlas = ExtResource("2_daop2")
+region = Rect2(1470, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwxi"]
+atlas = ExtResource("2_daop2")
+region = Rect2(1960, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paa3s"]
+atlas = ExtResource("2_daop2")
+region = Rect2(2450, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7wy8"]
+atlas = ExtResource("2_daop2")
+region = Rect2(2940, 0, 490, 2143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpq0m"]
+atlas = ExtResource("4_8p2bj")
+region = Rect2(0, 0, 125, 121)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vev1a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skeo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61bwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b67ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwj5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paa3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7wy8")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpq0m")
+}],
+"loop": true,
+"name": &"pre_fall",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_adk70"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="stones" type="Node2D"]
+script = ExtResource("1_rrg8l")
+
+[node name="stone" type="CharacterBody2D" parent="."]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("2_mava0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stone"]
+shape = SubResource("CircleShape2D_7v12i")
+
+[node name="anim_stone" type="AnimatedSprite2D" parent="stone"]
+sprite_frames = SubResource("SpriteFrames_vev1a")
+animation = &"pre_fall"
+
+[node name="MSYNC" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_adk70")

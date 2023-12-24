@@ -1,0 +1,89 @@
+[gd_scene load_steps=11 format=3 uid="uid://dowmciaq4ki7u"]
+
+[ext_resource type="Texture2D" uid="uid://c1ys274w0ndid" path="res://Game/Ressources/GameState/end_screen.png" id="1_doqw4"]
+[ext_resource type="Script" path="res://Game/Scenes/End_Screen/end_screen.gd" id="1_v2j6m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0jeg"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(3, 3, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt2dq"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(1993, 3, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr02f"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(3, 917, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86234"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(1993, 917, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk5ed"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(3, 1831, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xhkp"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(1993, 1831, 1990, 914)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpbr3"]
+atlas = ExtResource("1_doqw4")
+region = Rect2(3, 2745, 1990, 914)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0t05j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0jeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt2dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr02f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86234")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk5ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xhkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpbr3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="end_screen" type="Node2D"]
+visible = false
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_v2j6m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_0t05j")
+frame = 6
+frame_progress = 0.930764
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -50.0
+offset_right = 125.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1

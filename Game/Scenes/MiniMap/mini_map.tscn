@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://4gpd332yynyw"]
+
+[ext_resource type="Script" path="res://Game/Scenes/MiniMap/mini_map.gd" id="1_thfh6"]
+[ext_resource type="Texture2D" uid="uid://ck7ckrc66oey5" path="res://Game/Ressources/Background/minimap.png" id="2_thltm"]
+
+[node name="mini_map" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1200.0
+offset_right = -1200.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+script = ExtResource("1_thfh6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(180, 102)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_bottom = 102.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("2_thltm")
+expand_mode = 1
+
+[node name="Allies" type="Control" parent="TextureRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heros" type="ColorRect" parent="TextureRect/Allies"]
+layout_mode = 2
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 1, 0.372549, 1)
+
+[node name="Heros2" type="ColorRect" parent="TextureRect/Allies"]
+layout_mode = 2
+color = Color(0, 1, 0.372549, 1)
+
+[node name="Ennemies" type="Control" parent="TextureRect"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ennemy" type="ColorRect" parent="TextureRect/Ennemies"]
+layout_mode = 2
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="Ennemy2" type="ColorRect" parent="TextureRect/Ennemies"]
+layout_mode = 2
+color = Color(1, 0, 0, 1)

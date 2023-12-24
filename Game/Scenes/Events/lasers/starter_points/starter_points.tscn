@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl40mu02ko54d"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Events/lasers/starter_points/starter_points.gd" id="1_w777t"]
+[ext_resource type="Texture2D" uid="uid://c7gh2nmvmqyye" path="res://Game/Ressources/Main_Effects/lasers/starter_point.png" id="2_s16ho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwn12"]
+atlas = ExtResource("2_s16ho")
+region = Rect2(0, 0, 616, 538)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7v1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwn12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kpfq"]
+radius = 285.714
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8bfoy"]
+properties/0/path = NodePath("starter_point:visible")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="starter_points" type="Node2D"]
+script = ExtResource("1_w777t")
+
+[node name="starter_point" type="CharacterBody2D" parent="."]
+visible = false
+scale = Vector2(0.07, 0.07)
+
+[node name="anim_starter_point" type="AnimatedSprite2D" parent="starter_point"]
+sprite_frames = SubResource("SpriteFrames_x7v1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="starter_point"]
+shape = SubResource("CircleShape2D_7kpfq")
+
+[node name="MSYNC" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_8bfoy")

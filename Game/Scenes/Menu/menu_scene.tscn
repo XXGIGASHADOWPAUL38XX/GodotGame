@@ -1,0 +1,211 @@
+[gd_scene load_steps=18 format=3 uid="uid://cvw2hrgl1bkux"]
+
+[ext_resource type="Theme" uid="uid://c0bn8dcgtia2h" path="res://Game/Themes/Themes/theme.tres" id="1_10hiu"]
+[ext_resource type="Texture2D" uid="uid://bej53x6o8lwg3" path="res://Game/Ressources/attente.png" id="2_d3d41"]
+[ext_resource type="Texture2D" uid="uid://l32u41wkcta3" path="res://Game/Ressources/queue.png" id="3_s4kg3"]
+[ext_resource type="Texture2D" uid="uid://wxinrepubin8" path="res://Game/Ressources/Queue/players_logo_loading.png" id="4_s4xts"]
+[ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="5_rhj3p"]
+
+[sub_resource type="GDScript" id="GDScript_5pvo6"]
+script/source = "extends Node
+
+var modulation = 0
+var players_needed_for_match: int = 4
+
+func _ready():
+	hide_queue()
+
+func _process(delta):
+	if Server.get_connected_clients().size() == players_needed_for_match:
+		match_up()
+
+	if ($Queue.visible):
+		$Queue/QueueAnimation.rotate(delta)
+		$QueuePlayers/QueuePAnimation.frame = Server.get_connected_clients().size()
+		modulate($QueuePlayers/QueuePAnimation)
+
+func _on_play_1v1_pressed():
+	players_needed_for_match = 2
+	play()
+
+func _on_play_2v2_pressed():
+	players_needed_for_match = 4
+	play()
+	
+func play():
+	ServiceScenes.CONFIG_NB_PLAYERS_GAME = players_needed_for_match
+	await Server.createClient()
+	show_queue()
+	
+func hide_queue():
+	$TextureRect.hide()
+	$Queue.hide()
+	$QueuePlayers.hide()
+
+func show_queue():
+	$TextureRect.show()
+	$Queue.show()
+	$QueuePlayers.show()
+
+func match_up():
+	get_tree().change_scene_to_file(\"res://Game/Scenes/Selection/selection_scene.tscn\")
+
+func modulate(obj):
+	if obj.self_modulate.a <= 0.5:
+		modulation = 0.01
+	elif obj.self_modulate.a == 1:
+		modulation = -0.01
+
+	obj.self_modulate.a += modulation
+
+
+
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew45d"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 0, 519, 526)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvc3l"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 526, 519, 526)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5jo0"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 1052, 519, 526)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqqyu"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 0, 1128, 531)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rd1m"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 531, 1128, 531)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7kot"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 1062, 1128, 531)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_276y5"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 1593, 1128, 531)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df1m2"]
+atlas = ExtResource("4_s4xts")
+region = Rect2(0, 2124, 1128, 531)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ik80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew45d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvc3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5jo0")
+}],
+"loop": false,
+"name": &"1v1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqqyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rd1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7kot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_276y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df1m2")
+}],
+"loop": false,
+"name": &"2v2",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo3i7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0lhi"]
+
+[node name="Main" type="Node"]
+script = SubResource("GDScript_5pvo6")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.439216)
+show_behind_parent = true
+z_index = -1
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_rhj3p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 65)
+offset_left = 37.0
+offset_top = 33.0
+offset_right = 187.0
+offset_bottom = 83.0
+theme_override_constants/separation = 20
+
+[node name="Play_1v1" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 65)
+layout_mode = 2
+theme = ExtResource("1_10hiu")
+text = "PLAY (1V1)"
+
+[node name="Play_2v2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 65)
+layout_mode = 2
+theme = ExtResource("1_10hiu")
+text = "PLAY (2V2)"
+
+[node name="Champions" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 65)
+layout_mode = 2
+theme = ExtResource("1_10hiu")
+text = "CHAMPIONS"
+
+[node name="Settings" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 65)
+layout_mode = 2
+theme = ExtResource("1_10hiu")
+text = "SETTINGS"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 510.0
+offset_top = 292.0
+offset_right = 640.0
+offset_bottom = 362.0
+texture = ExtResource("2_d3d41")
+expand_mode = 1
+
+[node name="QueuePlayers" type="CharacterBody2D" parent="."]
+position = Vector2(580, 460)
+
+[node name="QueuePAnimation" type="AnimatedSprite2D" parent="QueuePlayers"]
+scale = Vector2(0.093449, 0.093156)
+sprite_frames = SubResource("SpriteFrames_1ik80")
+animation = &"2v2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QueuePlayers"]
+shape = SubResource("CircleShape2D_bo3i7")
+
+[node name="Queue" type="CharacterBody2D" parent="."]
+
+[node name="QueueAnimation" type="Sprite2D" parent="Queue"]
+position = Vector2(575, 327.5)
+scale = Vector2(0.140753, 0.133278)
+texture = ExtResource("3_s4kg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Queue"]
+shape = SubResource("CircleShape2D_l0lhi")
+
+[connection signal="pressed" from="HBoxContainer/Play_1v1" to="." method="_on_play_1v1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Play_2v2" to="." method="_on_play_2v2_pressed"]

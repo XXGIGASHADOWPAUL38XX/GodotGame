@@ -1,0 +1,196 @@
+[gd_scene load_steps=28 format=3 uid="uid://dxlqqsgeeqtvw"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shared_effects.gd" id="1_voula"]
+[ext_resource type="Texture2D" uid="uid://durcpol4yms1y" path="res://Game/Ressources/Background/Gems/health_gem.png" id="3_438dn"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/Health_gem.gd" id="5_srjfy"]
+[ext_resource type="Texture2D" uid="uid://bulk53fl5muxq" path="res://Game/Ressources/Background/Gems/orb_gem.png" id="6_04pjl"]
+[ext_resource type="PackedScene" uid="uid://wosyot0o6c3g" path="res://Game/Scenes/Shared_Effects/boss_crystal.tscn" id="7_0id08"]
+[ext_resource type="Texture2D" uid="uid://cjnfl6rx8oqhi" path="res://Game/Ressources/Background/heal.png" id="8_ewtmv"]
+[ext_resource type="PackedScene" uid="uid://cfw5p6p2o8k4n" path="res://Game/Scenes/Teleportation/teleportation.tscn" id="8_f3a37"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/orb_gem.gd" id="8_plmok"]
+[ext_resource type="PackedScene" uid="uid://bqyci8g30rwl" path="res://Game/Scenes/Shared_Effects/monster_gem/monster_gem.tscn" id="9_nnwcy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_crtrt"]
+properties/0/path = NodePath("health_gem/health_gem:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("health_gem/health_gem:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("health_gem/health_gem:modulate")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("orb_gem/orb_gem:visible")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("orb_gem/orb_gem:position")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("orb_gem/orb_gem:modulate")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("health_gem/health_gem/health_gem_anim:animation")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("health_gem/health_gem/health_gem_anim:frame")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("orb_gem/orb_gem/orb_gem_anim:frame")
+properties/8/spawn = true
+properties/8/sync = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76mgc"]
+atlas = ExtResource("3_438dn")
+region = Rect2(0, 0, 646, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tprg3"]
+atlas = ExtResource("3_438dn")
+region = Rect2(646, 0, 646, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh40j"]
+atlas = ExtResource("3_438dn")
+region = Rect2(1292, 0, 646, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrmi0"]
+atlas = ExtResource("3_438dn")
+region = Rect2(1938, 0, 646, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prjb8"]
+atlas = ExtResource("8_ewtmv")
+region = Rect2(5, 5, 1064, 1130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jp3m"]
+atlas = ExtResource("8_ewtmv")
+region = Rect2(1069, 5, 1064, 1130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjohm"]
+atlas = ExtResource("8_ewtmv")
+region = Rect2(2133, 5, 1064, 1130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql1rg"]
+atlas = ExtResource("8_ewtmv")
+region = Rect2(3197, 5, 1064, 1130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvrxr"]
+atlas = ExtResource("8_ewtmv")
+region = Rect2(4261, 5, 1064, 1130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fmr5r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76mgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tprg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh40j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrmi0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prjb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jp3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjohm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql1rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvrxr")
+}],
+"loop": false,
+"name": &"heal",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xg5k"]
+radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o0l8"]
+atlas = ExtResource("6_04pjl")
+region = Rect2(0, 0, 651, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of4gx"]
+atlas = ExtResource("6_04pjl")
+region = Rect2(651, 0, 651, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ystr"]
+atlas = ExtResource("6_04pjl")
+region = Rect2(1302, 0, 651, 585)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tyln"]
+atlas = ExtResource("6_04pjl")
+region = Rect2(1953, 0, 651, 585)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v53uq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o0l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_of4gx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ystr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tyln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5de2"]
+
+[node name="shared_effects" type="Node2D"]
+script = ExtResource("1_voula")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_crtrt")
+
+[node name="health_gem" type="Node" parent="."]
+
+[node name="health_gem" type="CharacterBody2D" parent="health_gem"]
+position = Vector2(-150, -150)
+script = ExtResource("5_srjfy")
+
+[node name="health_gem_anim" type="AnimatedSprite2D" parent="health_gem/health_gem"]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_fmr5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="health_gem/health_gem"]
+shape = SubResource("CircleShape2D_0xg5k")
+
+[node name="orb_gem" type="Node" parent="."]
+
+[node name="orb_gem" type="CharacterBody2D" parent="orb_gem"]
+visible = false
+position = Vector2(-150, -150)
+scale = Vector2(0.08, 0.08)
+script = ExtResource("8_plmok")
+
+[node name="orb_gem_anim" type="AnimatedSprite2D" parent="orb_gem/orb_gem"]
+sprite_frames = SubResource("SpriteFrames_v53uq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="orb_gem/orb_gem"]
+shape = SubResource("CircleShape2D_k5de2")
+
+[node name="boss_crystal" parent="." instance=ExtResource("7_0id08")]
+
+[node name="teleportation" parent="." instance=ExtResource("8_f3a37")]
+
+[node name="monster_gem" parent="." instance=ExtResource("9_nnwcy")]

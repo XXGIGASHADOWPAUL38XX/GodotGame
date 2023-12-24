@@ -1,0 +1,324 @@
+[gd_scene load_steps=44 format=3 uid="uid://c3co6236ljth3"]
+
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_1.gd" id="1_sskcw"]
+[ext_resource type="Texture2D" uid="uid://dkplk3ivdu4n" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_1.png" id="2_ybhle"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_2.gd" id="3_ndysl"]
+[ext_resource type="Texture2D" uid="uid://cwyw61b4djf3i" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_2.png" id="3_py38e"]
+[ext_resource type="Texture2D" uid="uid://bxvlwsvmy28lg" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_4_a.png" id="4_k2qws"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_4.gd" id="5_en0gn"]
+[ext_resource type="Texture2D" uid="uid://cmoyd7tt1hofn" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_4_e.png" id="5_rywn2"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/mark_stun.gd" id="6_4o8rw"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/special_healer_f.gd" id="8_m5eoj"]
+[ext_resource type="Texture2D" uid="uid://ktdh2862xios" path="res://Game/Ressources/Heros/healer_f/special_healer.png" id="9_sfi01"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ab7vm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c1du"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(2885, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7c3h"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(0, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t437u"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(577, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osvrh"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(1154, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odlr0"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(1731, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjj26"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(2308, 0, 577, 407)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uan0"]
+atlas = ExtResource("2_ybhle")
+region = Rect2(2885, 0, 577, 407)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3irr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c1du")
+}],
+"loop": true,
+"name": &"aoe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7c3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t437u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osvrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odlr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjj26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uan0")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wylsp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvkym"]
+atlas = ExtResource("3_py38e")
+region = Rect2(0, 0, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3087a"]
+atlas = ExtResource("3_py38e")
+region = Rect2(882, 0, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou6hv"]
+atlas = ExtResource("3_py38e")
+region = Rect2(1764, 0, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27iqt"]
+atlas = ExtResource("3_py38e")
+region = Rect2(2646, 0, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5vky"]
+atlas = ExtResource("3_py38e")
+region = Rect2(0, 882, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbv2o"]
+atlas = ExtResource("3_py38e")
+region = Rect2(882, 882, 882, 882)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oupd"]
+atlas = ExtResource("3_py38e")
+region = Rect2(1764, 882, 882, 882)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37kd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvkym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3087a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou6hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27iqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5vky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbv2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oupd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5elm7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tp36"]
+atlas = ExtResource("4_k2qws")
+region = Rect2(0, 0, 980, 973)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0y11"]
+atlas = ExtResource("5_rywn2")
+region = Rect2(0, 0, 981, 973)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84n3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tp36")
+}],
+"loop": true,
+"name": &"ally",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0y11")
+}],
+"loop": true,
+"name": &"ennemy",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bac1h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm0f5"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(0, 0, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw53o"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(714, 0, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odb48"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(1428, 0, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcpgb"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(2142, 0, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5n5c"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(2856, 0, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yviw"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(0, 713, 714, 713)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7h48n"]
+atlas = ExtResource("9_sfi01")
+region = Rect2(714, 713, 714, 713)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qy4n1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm0f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw53o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odb48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcpgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5n5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yviw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7h48n")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cvrw"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qrf4g"]
+properties/0/path = NodePath("spells_healer_f_1:visible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("spells_healer_f_1:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("spells_healer_f_1:modulate")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("spells_healer_f_1:scale")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("spells_healer_f_2:visible")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("spells_healer_f_2:position")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("spells_healer_f_2:modulate")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("spells_healer_f_4:visible")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("spells_healer_f_4:position")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("spells_healer_f_4:modulate")
+properties/9/spawn = true
+properties/9/sync = true
+properties/10/path = NodePath("spells_healer_f_1/spells_healer_f_1_anim:frame")
+properties/10/spawn = true
+properties/10/sync = true
+properties/11/path = NodePath("spells_healer_f_2/spells_healer_f_2_anim:frame")
+properties/11/spawn = true
+properties/11/sync = true
+properties/12/path = NodePath("spells_healer_f_4/spells_healer_f_4_anim:animation")
+properties/12/spawn = true
+properties/12/sync = true
+
+[node name="spells_healer_f" type="Node"]
+
+[node name="spells_healer_f_1" type="Area2D" parent="."]
+visible = false
+script = ExtResource("1_sskcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_1"]
+shape = SubResource("CircleShape2D_ab7vm")
+
+[node name="spells_healer_f_1_anim" type="AnimatedSprite2D" parent="spells_healer_f_1"]
+sprite_frames = SubResource("SpriteFrames_i3irr")
+animation = &"aoe"
+
+[node name="spells_healer_f_2" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_ndysl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_2"]
+shape = SubResource("CircleShape2D_wylsp")
+
+[node name="spells_healer_f_2_anim" type="AnimatedSprite2D" parent="spells_healer_f_2"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_37kd4")
+frame = 6
+frame_progress = 1.0
+
+[node name="spells_healer_f_4" type="Area2D" parent="."]
+visible = false
+script = ExtResource("5_en0gn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_4"]
+shape = SubResource("CircleShape2D_5elm7")
+
+[node name="spells_healer_f_4_anim" type="AnimatedSprite2D" parent="spells_healer_f_4"]
+scale = Vector2(0.06, 0.06)
+sprite_frames = SubResource("SpriteFrames_84n3x")
+animation = &"ennemy"
+
+[node name="special_healer_f" type="Area2D" parent="."]
+visible = false
+script = ExtResource("8_m5eoj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="special_healer_f"]
+shape = SubResource("CircleShape2D_bac1h")
+
+[node name="special_healer_f_anim" type="AnimatedSprite2D" parent="special_healer_f"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_qy4n1")
+
+[node name="animations" type="Node" parent="."]
+
+[node name="mark_stun" type="AnimatedSprite2D" parent="animations"]
+sprite_frames = SubResource("SpriteFrames_1cvrw")
+script = ExtResource("6_4o8rw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qrf4g")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://dw7kluig5n4og"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Orbs_active/red_orb_active.gd" id="1_aikgt"]
+[ext_resource type="Texture2D" uid="uid://nwy57f04yc4" path="res://Game/Ressources/Orbs/red_orb/special.png" id="1_owitf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yv7w"]
+atlas = ExtResource("1_owitf")
+region = Rect2(0, 0, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y1eb"]
+atlas = ExtResource("1_owitf")
+region = Rect2(1357, 0, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qml7n"]
+atlas = ExtResource("1_owitf")
+region = Rect2(2714, 0, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn80g"]
+atlas = ExtResource("1_owitf")
+region = Rect2(0, 608, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqtld"]
+atlas = ExtResource("1_owitf")
+region = Rect2(1357, 608, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7diot"]
+atlas = ExtResource("1_owitf")
+region = Rect2(2714, 608, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxo7p"]
+atlas = ExtResource("1_owitf")
+region = Rect2(0, 1216, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vguuu"]
+atlas = ExtResource("1_owitf")
+region = Rect2(1357, 1216, 1357, 608)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhyxq"]
+atlas = ExtResource("1_owitf")
+region = Rect2(2714, 1216, 1357, 608)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1dir4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yv7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4y1eb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qml7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn80g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqtld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7diot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxo7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vguuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhyxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwrur"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6l8ty"]
+properties/0/path = NodePath("red_orb_active:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("red_orb_active:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("red_orb_active/animation_dash:frame")
+properties/2/spawn = true
+properties/2/sync = true
+
+[node name="red_orb_active" type="Node2D"]
+
+[node name="red_orb_active" type="Area2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_aikgt")
+
+[node name="animation_dash" type="AnimatedSprite2D" parent="red_orb_active"]
+sprite_frames = SubResource("SpriteFrames_1dir4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_orb_active"]
+shape = SubResource("CircleShape2D_iwrur")
+disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6l8ty")

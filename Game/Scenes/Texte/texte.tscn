@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0of8jyqcwuhn"]
+
+[ext_resource type="Script" path="res://Game/Services/service_text.gd" id="1_7ynhd"]
+
+[node name="texte" type="Node2D"]
+script = ExtResource("1_7ynhd")

@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dciblwpbk5gyl"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Orbs_active/green_orb_active.gd" id="1_4u12i"]
+[ext_resource type="Texture2D" uid="uid://bl6m0onb2g1dw" path="res://Game/Ressources/Orbs/green_orb/actif.png" id="2_m5ujo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6y5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehnph"]
+atlas = ExtResource("2_m5ujo")
+region = Rect2(0, 0, 1371, 1359)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svgtt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehnph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a6nuh"]
+properties/0/path = NodePath("CharacterBody2D:visible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("CharacterBody2D:modulate")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("CharacterBody2D:position")
+properties/2/spawn = true
+properties/2/sync = true
+
+[node name="green_orb_active" type="Node2D"]
+
+[node name="green_orb_active" type="Area2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_4u12i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="green_orb_active"]
+shape = SubResource("CircleShape2D_y6y5v")
+disabled = true
+
+[node name="green_orb" type="AnimatedSprite2D" parent="green_orb_active"]
+sprite_frames = SubResource("SpriteFrames_svgtt")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a6nuh")

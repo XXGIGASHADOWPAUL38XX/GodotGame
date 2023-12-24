@@ -1,0 +1,263 @@
+[gd_scene load_steps=33 format=3 uid="uid://dj6cg4y1n2q8h"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem.gd" id="1_iipq7"]
+[ext_resource type="Texture2D" uid="uid://v6ins432o35e" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/Character_sheet.png" id="2_yip8k"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_4c3l2"]
+[ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="4_phfmg"]
+[ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_4kiom"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/attack_golem.gd" id="5_beh7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtglk"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(0, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6k6o"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(100, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4knl"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(200, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nqpf"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(300, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vw1e"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(400, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgggp"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(500, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbl8u"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(600, 400, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apqn0"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js7jy"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xc6f8"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssmqc"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ewic"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(0, 800, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64pci"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(100, 800, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff3uh"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(200, 800, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px7xw"]
+atlas = ExtResource("2_yip8k")
+region = Rect2(300, 800, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mtwo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtglk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6k6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4knl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nqpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vw1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgggp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbl8u")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apqn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js7jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xc6f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssmqc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ewic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64pci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff3uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px7xw")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgf00"]
+size = Vector2(90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7a83"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(0, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4sy3"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(244, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy237"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(488, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc8ab"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(732, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvobm"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(976, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6rrq"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(1220, 0, 244, 338)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntkkk"]
+atlas = ExtResource("5_4kiom")
+region = Rect2(1464, 0, 244, 338)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83h8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7a83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4sy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy237")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc8ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvobm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6rrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntkkk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_th1uy"]
+properties/0/path = NodePath("boss_golem:visible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("boss_golem:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("boss_golem:modulate")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("boss_golem:scale")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("boss_golem/boss_golem_anim:animation")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("boss_golem/boss_golem_anim:frame")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("boss_golem/attack_golem/anim_attack_golem:animation")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("boss_golem/attack_golem/anim_attack_golem:frame")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("boss_golem/attack_golem:visible")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("boss_golem/health_bar:value")
+properties/9/spawn = true
+properties/9/sync = true
+
+[node name="boss_golem" type="Node2D"]
+
+[node name="boss_golem" type="CharacterBody2D" parent="."]
+script = ExtResource("1_iipq7")
+
+[node name="boss_golem_anim" type="AnimatedSprite2D" parent="boss_golem"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0mtwo")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss_golem"]
+shape = SubResource("RectangleShape2D_pgf00")
+
+[node name="health_bar" type="ProgressBar" parent="boss_golem"]
+top_level = true
+offset_left = -74.0
+offset_top = -14.0
+offset_right = 78.0
+offset_bottom = 13.0
+theme = ExtResource("3_4c3l2")
+value = 100.0
+script = ExtResource("4_phfmg")
+
+[node name="attack_golem" type="CharacterBody2D" parent="boss_golem"]
+position = Vector2(90, 0)
+scale = Vector2(3, 3)
+script = ExtResource("5_beh7g")
+
+[node name="anim_attack_golem" type="AnimatedSprite2D" parent="boss_golem/attack_golem"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_83h8c")
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boss_golem/attack_golem"]
+polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0, 20.5, 16, 6, 34.5, -30, 45.5)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_th1uy")

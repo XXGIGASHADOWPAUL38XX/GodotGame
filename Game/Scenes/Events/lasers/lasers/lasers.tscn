@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://d21mh16erv181"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Events/lasers/lasers/lasers.gd" id="1_jvpkk"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/lasers/lasers/laser.gd" id="2_ulycm"]
+[ext_resource type="Texture2D" uid="uid://brt4j50xfvmso" path="res://Game/Ressources/Main_Effects/lasers/laser.png" id="3_2vw4y"]
+[ext_resource type="Texture2D" uid="uid://bjj5ft7v68c4k" path="res://Game/Ressources/Main_Effects/lasers/pre_laser.png" id="4_r4jy0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bppd"]
+atlas = ExtResource("3_2vw4y")
+region = Rect2(0, 0, 2166, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k380d"]
+atlas = ExtResource("3_2vw4y")
+region = Rect2(0, 257, 2166, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af0f8"]
+atlas = ExtResource("3_2vw4y")
+region = Rect2(0, 514, 2166, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5ryu"]
+atlas = ExtResource("3_2vw4y")
+region = Rect2(0, 771, 2166, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk3em"]
+atlas = ExtResource("3_2vw4y")
+region = Rect2(0, 1028, 2166, 257)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xj8q"]
+atlas = ExtResource("4_r4jy0")
+region = Rect2(0, 0, 2117, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vk1b8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bppd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k380d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af0f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5ryu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk3em")
+}],
+"loop": false,
+"name": &"laser",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xj8q")
+}],
+"loop": true,
+"name": &"pre_laser",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iu45q"]
+radius = 17.5
+height = 420.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k5ucr"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="lasers" type="Node2D"]
+script = ExtResource("1_jvpkk")
+
+[node name="laser" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -200)
+scale = Vector2(1, 0.5)
+script = ExtResource("2_ulycm")
+
+[node name="anim_laser" type="AnimatedSprite2D" parent="laser"]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_vk1b8")
+animation = &"laser"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="laser"]
+position = Vector2(0.5, 0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iu45q")
+
+[node name="MSYNC" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_k5ucr")

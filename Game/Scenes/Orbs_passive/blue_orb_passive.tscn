@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://bljavwt5xbx4v"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Orbs_passive/blue_orb_passive.gd" id="1_gb7uo"]
+[ext_resource type="Texture2D" uid="uid://7hx7q6puo7ek" path="res://Game/Ressources/Orbs/blue_orb/blue_orb_passive.png" id="2_67yj3"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs_passive/missile.gd" id="3_f15ux"]
+[ext_resource type="Texture2D" uid="uid://can20k3b0c5sh" path="res://Game/Ressources/Orbs/blue_orb/blue_orb_missile.png" id="4_ippq6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibybc"]
+atlas = ExtResource("2_67yj3")
+region = Rect2(0, 0, 381, 310)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ibu6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibybc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r2b5p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ok36"]
+atlas = ExtResource("4_ippq6")
+region = Rect2(0, 0, 488, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uys51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ok36")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2aln2"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ch6ki"]
+properties/0/path = NodePath("blue_orb_passive:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("blue_orb_passive:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("blue_orb_p_missile:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("blue_orb_p_missile:rotation")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("blue_orb_p_missile:visible")
+properties/4/spawn = true
+properties/4/sync = true
+
+[node name="blue_orb_passive" type="Node"]
+
+[node name="blue_orb_passive" type="CharacterBody2D" parent="."]
+script = ExtResource("1_gb7uo")
+
+[node name="blue_orb_passive" type="AnimatedSprite2D" parent="blue_orb_passive"]
+scale = Vector2(0.06, 0.064)
+sprite_frames = SubResource("SpriteFrames_3ibu6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_orb_passive"]
+shape = SubResource("CircleShape2D_r2b5p")
+
+[node name="blue_orb_p_missile" type="Area2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.533)
+script = ExtResource("3_f15ux")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="blue_orb_p_missile"]
+scale = Vector2(0.2, 0.3)
+sprite_frames = SubResource("SpriteFrames_uys51")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_orb_p_missile"]
+shape = SubResource("CircleShape2D_2aln2")
+disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ch6ki")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://b412sn3oqobpr"]
+
+[ext_resource type="Texture2D" uid="uid://ctrban653k805" path="res://Game/Ressources/Animations/healed.png" id="1_t6a7j"]
+[ext_resource type="Script" path="res://Game/Scenes/Animations/animation_healed.gd" id="2_ds53n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phdl7"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(0, 0, 690, 891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqs6b"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(690, 0, 690, 891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae6dg"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(1380, 0, 690, 891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlqfe"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(2070, 0, 690, 891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv4em"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(2760, 0, 690, 891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j44h6"]
+atlas = ExtResource("1_t6a7j")
+region = Rect2(3450, 0, 690, 891)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5ns5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phdl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqs6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae6dg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlqfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv4em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j44h6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gme2f"]
+properties/0/path = NodePath("AnimatedSprite2D:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("AnimatedSprite2D:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("AnimatedSprite2D:frame")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("AnimatedSprite2D:modulate")
+properties/3/spawn = true
+properties/3/sync = true
+
+[node name="animation_healed" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_h5ns5")
+frame = 5
+frame_progress = 1.0
+script = ExtResource("2_ds53n")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_gme2f")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bscol1a1aqjny"]
+
+[ext_resource type="Texture2D" uid="uid://1kihjtdrr1dl" path="res://Game/Ressources/Animations/hitted.png" id="1_at4ms"]
+[ext_resource type="Script" path="res://Game/Scenes/Animations/animation_hitted.gd" id="2_p81j3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mh7e"]
+atlas = ExtResource("1_at4ms")
+region = Rect2(0, 0, 802, 805)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rnn1"]
+atlas = ExtResource("1_at4ms")
+region = Rect2(802, 0, 802, 805)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thlwo"]
+atlas = ExtResource("1_at4ms")
+region = Rect2(1604, 0, 802, 805)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw64p"]
+atlas = ExtResource("1_at4ms")
+region = Rect2(2406, 0, 802, 805)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35sls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mh7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rnn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thlwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw64p")
+}],
+"loop": false,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fotqe"]
+properties/0/path = NodePath("animation_hitted:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("animation_hitted:modulate")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("animation_hitted:frame")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("animation_hitted:visible")
+properties/3/spawn = true
+properties/3/sync = true
+
+[node name="animation_hitted" type="Node2D"]
+
+[node name="animation_hitted" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.47451)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_35sls")
+script = ExtResource("2_p81j3")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fotqe")

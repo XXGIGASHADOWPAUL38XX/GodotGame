@@ -1,0 +1,167 @@
+[gd_scene load_steps=9 format=3 uid="uid://mkqh0ub6lvcs"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Stats_Heros/stats_heros.gd" id="1_s5hnq"]
+[ext_resource type="Texture2D" uid="uid://teiodepika4a" path="res://Game/Ressources/Heros/icons/mage_f.png" id="1_x7c64"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_citl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lj0b1"]
+bg_color = Color(0.0470588, 0.0470588, 0.0470588, 1)
+
+[sub_resource type="Gradient" id="Gradient_y2vyh"]
+colors = PackedColorArray(0.791967, 0.52562, 0.166102, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dhntb"]
+gradient = SubResource("Gradient_y2vyh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_67ea2"]
+texture = SubResource("GradientTexture2D_dhntb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63e1q"]
+bg_color = Color(0, 0, 0, 0.380392)
+
+[node name="stats_heros" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_s5hnq")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lj0b1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="HUD" type="VBoxContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Panel/HBoxContainer/HUD"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/HUD/Header"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture = ExtResource("1_x7c64")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/HUD/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/HBoxContainer/HUD/Header/MarginContainer"]
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme = ExtResource("3_citl0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/HUD"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/HUD/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TPB" type="ProgressBar" parent="Panel/HBoxContainer/HUD/HBoxContainer/MarginContainer"]
+z_index = 5
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_styles/background = SubResource("StyleBoxTexture_67ea2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_63e1q")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer/HUD/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TPB" type="ProgressBar" parent="Panel/HBoxContainer/HUD/HBoxContainer/MarginContainer2"]
+z_index = 5
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_67ea2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_63e1q")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/HBoxContainer/HUD/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TPB" type="ProgressBar" parent="Panel/HBoxContainer/HUD/HBoxContainer/MarginContainer3"]
+z_index = 5
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_67ea2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_63e1q")
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/HBoxContainer/HUD/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="TPB" type="ProgressBar" parent="Panel/HBoxContainer/HUD/HBoxContainer/MarginContainer4"]
+z_index = 5
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_67ea2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_63e1q")
+
+[node name="Stats_Items" type="HBoxContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Items" type="GridContainer" parent="Panel/HBoxContainer/Stats_Items"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/Stats_Items/Items"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Panel1" type="Panel" parent="Panel/HBoxContainer/Stats_Items/Items/MarginContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="Panel/HBoxContainer/Stats_Items/Items/MarginContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="Panel/HBoxContainer/Stats_Items/Items/MarginContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2

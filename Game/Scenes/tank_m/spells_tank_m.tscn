@@ -1,0 +1,405 @@
+[gd_scene load_steps=51 format=3 uid="uid://bdlmf4ux4n4pm"]
+
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_1.gd" id="1_v41x7"]
+[ext_resource type="Texture2D" uid="uid://bnmyx8si41vxd" path="res://Game/Ressources/Heros/tank_m/spell_1.png" id="2_gt2pn"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_2.gd" id="3_svxqv"]
+[ext_resource type="Texture2D" uid="uid://bi3byo27c1pbq" path="res://Game/Ressources/Heros/tank_m/spell_3.png" id="4_kmjpx"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_3.gd" id="5_g1y33"]
+[ext_resource type="Texture2D" uid="uid://ci0ek1vyncvtv" path="res://Game/Ressources/Heros/tank_m/spell_2.png" id="6_x8u38"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_4.gd" id="7_dpcfe"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_explode_tank_m_3.gd" id="7_pbsbc"]
+[ext_resource type="Texture2D" uid="uid://1tww4s807xl0" path="res://Game/Ressources/Heros/tank_m/spell_4.png" id="8_ext40"]
+[ext_resource type="Texture2D" uid="uid://daxq5id4kocqb" path="res://Game/Ressources/Heros/tank_m/contact.png" id="8_vpfal"]
+[ext_resource type="Texture2D" uid="uid://cp6rmn0h1qs76" path="res://Game/Ressources/Heros/tank_m/charge_ult.png" id="9_hjlx8"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/spell4_charge.gd" id="9_t35db"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/special_tank_m.gd" id="13_t75lh"]
+[ext_resource type="Texture2D" uid="uid://oe1cqtur2dnj" path="res://Game/Ressources/Heros/tank_m/special_charge.png" id="14_klvca"]
+[ext_resource type="Texture2D" uid="uid://edcref8u2bdm" path="res://Game/Ressources/Heros/tank_m/special_shield.png" id="15_ei068"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txiln"]
+size = Vector2(84, 156)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fdfj"]
+atlas = ExtResource("2_gt2pn")
+region = Rect2(0, 0, 432, 1124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8gqge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fdfj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fgk12"]
+radius = 66.3702
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv7k6"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(0, 0, 1189, 1171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njmpx"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(1189, 0, 1189, 1171)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmtox"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(2378, 0, 1189, 1171)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqm0v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv7k6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njmpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmtox")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbanv"]
+radius = 24.0832
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdktd"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(0, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4vad"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(490, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br12r"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(980, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7xow"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(1470, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvh0g"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(1960, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arlkx"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(2450, 73, 490, 2070)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0e7w"]
+atlas = ExtResource("6_x8u38")
+region = Rect2(2940, 73, 490, 2070)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gko83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdktd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4vad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br12r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7xow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvh0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arlkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0e7w")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvr37"]
+radius = 67.0522
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o20jo"]
+atlas = ExtResource("8_vpfal")
+region = Rect2(0, 0, 1358, 1348)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wo1nf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o20jo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x168k"]
+size = Vector2(45, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr8du"]
+atlas = ExtResource("8_ext40")
+region = Rect2(0, 0, 360, 1124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vx1j7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr8du")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdp8b"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 0, 2223, 690)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cobtv"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 690, 2223, 690)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao8ft"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 1380, 2223, 690)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8spe"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 2070, 2223, 690)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqdho"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 2760, 2223, 690)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5esr6"]
+atlas = ExtResource("9_hjlx8")
+region = Rect2(0, 3450, 2223, 690)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_srt8a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdp8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cobtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ao8ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8spe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqdho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5esr6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxwp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phhi8"]
+atlas = ExtResource("14_klvca")
+region = Rect2(0, 0, 689, 1583)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61uem"]
+atlas = ExtResource("15_ei068")
+region = Rect2(0, 0, 1240, 1323)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjxe7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phhi8")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61uem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oekkq"]
+properties/0/path = NodePath("spells_tank_m_1:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("spells_tank_m_1:visible")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("spells_tank_m_2:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("spells_tank_m_2:visible")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("spells_tank_m_2/anim_tank_m_2:frame")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("rock_tank_m_3:position")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("rock_tank_m_3:visible")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("rock_tank_m_3/anim_tank_m_3:frame")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("spells_exp_tank_m_3:position")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("spells_exp_tank_m_3:visible")
+properties/9/spawn = true
+properties/9/sync = true
+properties/10/path = NodePath("spells_exp_tank_m_3:scale")
+properties/10/spawn = true
+properties/10/sync = true
+properties/11/path = NodePath("spells_exp_tank_m_3:modulate")
+properties/11/spawn = true
+properties/11/sync = true
+properties/12/path = NodePath("spells_exp_tank_m_3/anim_exp_tank_m_3:frame")
+properties/12/spawn = true
+properties/12/sync = true
+properties/13/path = NodePath("spells_tank_m_4:position")
+properties/13/spawn = true
+properties/13/sync = true
+properties/14/path = NodePath("spells_tank_m_4:visible")
+properties/14/spawn = true
+properties/14/sync = true
+properties/15/path = NodePath("animations/spell4_charge:frame")
+properties/15/spawn = true
+properties/15/sync = true
+properties/16/path = NodePath("animations/spell4_charge:position")
+properties/16/spawn = true
+properties/16/sync = true
+properties/17/path = NodePath("animations/spell4_charge:visible")
+properties/17/spawn = true
+properties/17/sync = true
+properties/18/path = NodePath("spells_tank_m_1:rotation")
+properties/18/spawn = true
+properties/18/sync = true
+properties/19/path = NodePath("spells_tank_m_4:rotation")
+properties/19/spawn = true
+properties/19/sync = true
+properties/20/path = NodePath("special_tank_m:modulate")
+properties/20/spawn = true
+properties/20/sync = true
+properties/21/path = NodePath("special_tank_m:visible")
+properties/21/spawn = true
+properties/21/sync = true
+properties/22/path = NodePath("special_tank_m:position")
+properties/22/spawn = true
+properties/22/sync = true
+properties/23/path = NodePath("special_tank_m/special_tank_m_anim:animation")
+properties/23/spawn = true
+properties/23/sync = true
+properties/24/path = NodePath("special_tank_m/special_tank_m_anim:frame")
+properties/24/spawn = true
+properties/24/sync = true
+
+[node name="spells_tank_m" type="Node"]
+
+[node name="spells_tank_m_1" type="Area2D" parent="."]
+visible = false
+script = ExtResource("1_v41x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_tank_m_1"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_txiln")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="anim_tank_m_1" type="AnimatedSprite2D" parent="spells_tank_m_1"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_8gqge")
+
+[node name="spells_tank_m_2" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_svxqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_tank_m_2"]
+shape = SubResource("CircleShape2D_fgk12")
+
+[node name="anim_tank_m_2" type="AnimatedSprite2D" parent="spells_tank_m_2"]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_qqm0v")
+
+[node name="rock_tank_m_3" type="CharacterBody2D" parent="."]
+visible = false
+script = ExtResource("5_g1y33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rock_tank_m_3"]
+shape = SubResource("CircleShape2D_sbanv")
+
+[node name="anim_tank_m_3" type="AnimatedSprite2D" parent="rock_tank_m_3"]
+position = Vector2(-1, -3)
+scale = Vector2(0.18, 0.18)
+sprite_frames = SubResource("SpriteFrames_gko83")
+
+[node name="spells_exp_tank_m_3" type="Area2D" parent="."]
+visible = false
+script = ExtResource("7_pbsbc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_exp_tank_m_3"]
+shape = SubResource("CircleShape2D_qvr37")
+
+[node name="anim_exp_tank_m_3" type="AnimatedSprite2D" parent="spells_exp_tank_m_3"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wo1nf")
+
+[node name="spells_tank_m_4" type="Area2D" parent="."]
+visible = false
+script = ExtResource("7_dpcfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_tank_m_4"]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_x168k")
+
+[node name="anim_tank_m_4" type="AnimatedSprite2D" parent="spells_tank_m_4"]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_vx1j7")
+
+[node name="animations" type="Node" parent="."]
+
+[node name="spell4_charge" type="AnimatedSprite2D" parent="animations"]
+visible = false
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_srt8a")
+script = ExtResource("9_t35db")
+
+[node name="special_tank_m" type="Area2D" parent="."]
+visible = false
+script = ExtResource("13_t75lh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="special_tank_m"]
+shape = SubResource("CircleShape2D_yxwp8")
+
+[node name="special_tank_m_anim" type="AnimatedSprite2D" parent="special_tank_m"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_xjxe7")
+animation = &"dash"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oekkq")
+
+[connection signal="key_released" from="spells_tank_m_2" to="spells_tank_m_2" method="_on_key_released"]

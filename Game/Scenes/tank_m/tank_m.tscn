@@ -1,0 +1,196 @@
+[gd_scene load_steps=22 format=3 uid="uid://8iu2t8oq1tyj"]
+
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/tank_m.gd" id="1_ruf22"]
+[ext_resource type="PackedScene" uid="uid://bdlmf4ux4n4pm" path="res://Game/Scenes/tank_m/spells_tank_m.tscn" id="3_1bhe6"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="4_4t7sr"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="5_q8rvg"]
+[ext_resource type="Texture2D" uid="uid://c07ljnwklkls3" path="res://ressource/rpgsprites1/townfolk1_m.png" id="6_bccso"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dayrp"]
+size = Vector2(20, 31)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60a2r"]
+bg_color = Color(1, 0.827451, 0.568627, 1)
+skew = Vector2(0.2, 0)
+corner_radius_top_left = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slucv"]
+atlas = ExtResource("6_bccso")
+region = Rect2(0, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml3hk"]
+atlas = ExtResource("6_bccso")
+region = Rect2(32, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh0gq"]
+atlas = ExtResource("6_bccso")
+region = Rect2(64, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnu4b"]
+atlas = ExtResource("6_bccso")
+region = Rect2(0, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3186g"]
+atlas = ExtResource("6_bccso")
+region = Rect2(32, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmqhp"]
+atlas = ExtResource("6_bccso")
+region = Rect2(64, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qam3o"]
+atlas = ExtResource("6_bccso")
+region = Rect2(0, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj2a5"]
+atlas = ExtResource("6_bccso")
+region = Rect2(32, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kock"]
+atlas = ExtResource("6_bccso")
+region = Rect2(64, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kistm"]
+atlas = ExtResource("6_bccso")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqwlv"]
+atlas = ExtResource("6_bccso")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55eh4"]
+atlas = ExtResource("6_bccso")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4it8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slucv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml3hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh0gq")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnu4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3186g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmqhp")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qam3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj2a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kock")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kistm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqwlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55eh4")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vx54y"]
+properties/0/path = NodePath("tank_m:visible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("tank_m/AnimatedSprite2D:frame")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("tank_m:position")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("tank_m/health_bar:value")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("tank_m/health_bar:max_value")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("tank_m/shield:size")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("tank_m:modulate")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("tank_m/health_bar:position")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("tank_m/shield:position")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("tank_m/AnimatedSprite2D:animation")
+properties/9/spawn = true
+properties/9/sync = true
+
+[node name="tank_m" type="Node2D"]
+
+[node name="tank_m" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ruf22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tank_m"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_dayrp")
+
+[node name="spells_tank_m" parent="tank_m" instance=ExtResource("3_1bhe6")]
+
+[node name="health_bar" type="ProgressBar" parent="tank_m"]
+top_level = true
+offset_right = 75.0
+offset_bottom = 10.0
+theme = ExtResource("4_4t7sr")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
+max_value = 150.0
+value = 150.0
+show_percentage = false
+
+[node name="shield" type="ProgressBar" parent="tank_m"]
+visible = false
+offset_left = 76.0
+offset_top = -14.0
+offset_right = 80.0
+offset_bottom = -4.0
+theme = ExtResource("4_4t7sr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_60a2r")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+script = ExtResource("5_q8rvg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="tank_m"]
+sprite_frames = SubResource("SpriteFrames_4it8n")
+animation = &"walk_down"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vx54y")

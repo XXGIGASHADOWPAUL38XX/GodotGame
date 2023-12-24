@@ -1,0 +1,208 @@
+[gd_scene load_steps=15 format=3 uid="uid://cfw5p6p2o8k4n"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Teleportation/teleportation.gd" id="1_6ilpn"]
+[ext_resource type="Script" path="res://Game/Scenes/Obstacles/teleporter.gd" id="2_qvioo"]
+[ext_resource type="Texture2D" uid="uid://j7fw3peoa25m" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/001.png" id="3_vqqqp"]
+[ext_resource type="Texture2D" uid="uid://dpet11jqevwbw" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/002.png" id="4_tofgv"]
+[ext_resource type="Texture2D" uid="uid://lh8ejyolbwp0" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/003.png" id="5_lduai"]
+[ext_resource type="Texture2D" uid="uid://dt4kn4atxjp6k" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/004.png" id="6_3kton"]
+[ext_resource type="Texture2D" uid="uid://dn5swntb0w6qw" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/006.png" id="7_8krok"]
+[ext_resource type="Texture2D" uid="uid://c4pkhqwunwomb" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/007.png" id="8_wncie"]
+[ext_resource type="Texture2D" uid="uid://bp4ncqa8dfiww" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/008.png" id="9_tcdev"]
+[ext_resource type="Texture2D" uid="uid://dcije6mtgqtqt" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/009.png" id="10_kom0i"]
+[ext_resource type="Texture2D" uid="uid://butpip554qmex" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Portal/010.png" id="11_qtosx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n8fdg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vqqqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tofgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lduai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3kton")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8krok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wncie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tcdev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kom0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_qtosx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vqqqp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8jnlq"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_varf0"]
+properties/0/path = NodePath("teleporter/teleporter/teleporter_anim:frame")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("teleporter/teleporter2/teleporter_anim:frame")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("teleporter2/teleporter/teleporter_anim:frame")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("teleporter2/teleporter2/teleporter_anim:frame")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("teleporter3/teleporter/teleporter_anim:frame")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("teleporter3/teleporter2/teleporter_anim:frame")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("teleporter4/teleporter/teleporter_anim:frame")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("teleporter4/teleporter2/teleporter_anim:frame")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("teleporter/teleporter:modulate")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("teleporter/teleporter2:modulate")
+properties/9/spawn = true
+properties/9/sync = true
+properties/10/path = NodePath("teleporter2/teleporter:modulate")
+properties/10/spawn = true
+properties/10/sync = true
+properties/11/path = NodePath("teleporter2/teleporter2:modulate")
+properties/11/spawn = true
+properties/11/sync = true
+properties/12/path = NodePath("teleporter3/teleporter:modulate")
+properties/12/spawn = true
+properties/12/sync = true
+properties/13/path = NodePath("teleporter3/teleporter2:modulate")
+properties/13/spawn = true
+properties/13/sync = true
+properties/14/path = NodePath("teleporter4/teleporter:modulate")
+properties/14/spawn = true
+properties/14/sync = true
+properties/15/path = NodePath("teleporter4/teleporter2:modulate")
+properties/15/spawn = true
+properties/15/sync = true
+
+[node name="teleportation" type="Node"]
+script = ExtResource("1_6ilpn")
+
+[node name="teleporter" type="Node" parent="."]
+script = ExtResource("2_qvioo")
+
+[node name="teleporter" type="Area2D" parent="teleporter"]
+position = Vector2(195, 333)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter/teleporter"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter/teleporter"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter2" type="Area2D" parent="teleporter"]
+position = Vector2(700, 493)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter/teleporter2"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter/teleporter2"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter2" type="Node" parent="."]
+script = ExtResource("2_qvioo")
+
+[node name="teleporter" type="Area2D" parent="teleporter2"]
+position = Vector2(1909, 208)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter2/teleporter"]
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter2/teleporter"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter2" type="Area2D" parent="teleporter2"]
+position = Vector2(1806, 610)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter2/teleporter2"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter2/teleporter2"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter3" type="Node" parent="."]
+script = ExtResource("2_qvioo")
+
+[node name="teleporter" type="Area2D" parent="teleporter3"]
+position = Vector2(463, 997)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter3/teleporter"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter3/teleporter"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter2" type="Area2D" parent="teleporter3"]
+position = Vector2(1017, 874)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter3/teleporter2"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter3/teleporter2"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter4" type="Node" parent="."]
+script = ExtResource("2_qvioo")
+
+[node name="teleporter" type="Area2D" parent="teleporter4"]
+position = Vector2(2147, 1190)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter4/teleporter"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter4/teleporter"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="teleporter2" type="Area2D" parent="teleporter4"]
+position = Vector2(1753, 878)
+
+[node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter4/teleporter2"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_n8fdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter4/teleporter2"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_8jnlq")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_varf0")

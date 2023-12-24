@@ -1,0 +1,281 @@
+[gd_scene load_steps=13 format=3 uid="uid://cv6i1ewoegpm0"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Items/items.gd" id="1_l8xfo"]
+[ext_resource type="PackedScene" uid="uid://cxm4wlo8erofd" path="res://Game/Scenes/Items/ItemList/Shockwave.tscn" id="2_ml1ol"]
+[ext_resource type="Script" path="res://Game/Scenes/Items/HBoxContainer.gd" id="3_eienc"]
+[ext_resource type="Theme" uid="uid://cya286hi2pqfq" path="res://Game/Themes/Themes/theme_items.tres" id="3_enfao"]
+[ext_resource type="Texture2D" uid="uid://c4b173pl4s018" path="res://Game/Ressources/Main_Effects/Gems/Odd Gem 265.png" id="4_h1wwb"]
+[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Main_Effects/Gems - Copie/health_gem.png" id="5_bg8it"]
+[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Main_Effects/Gems - Copie/armor_gem.png" id="6_31x7x"]
+[ext_resource type="Texture2D" uid="uid://b6oado23skq37" path="res://Game/Ressources/Main_Effects/Gems - Copie/speed_gem.png" id="7_ohh76"]
+[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Main_Effects/Gems - Copie/attack_gem.png" id="8_0i1jj"]
+[ext_resource type="PackedScene" uid="uid://c1fd2buup7fuj" path="res://Game/Scenes/Items/ItemList/Drone.tscn" id="9_d1x7c"]
+[ext_resource type="PackedScene" uid="uid://uyerc8q0eu0w" path="res://Game/Scenes/Items/ItemList/Earthquake.tscn" id="10_eq45g"]
+[ext_resource type="PackedScene" uid="uid://c28ftqavo5eb" path="res://Game/Scenes/Items/ItemList/Slice.tscn" id="11_suaja"]
+
+[node name="items" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_l8xfo")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -293.5
+offset_right = 425.0
+offset_bottom = 293.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(850, 450)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Menu" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer/Menu"]
+custom_minimum_size = Vector2(850, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Menu/Panel"]
+layout_mode = 2
+text = "SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("3_eienc")
+
+[node name="Damage" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "DAMAGE"
+
+[node name="Fight" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "FIGHT"
+
+[node name="Durability" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "DURABILITY"
+
+[node name="Orbs" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Actifs" type="MarginContainer" parent="PanelContainer/VBoxContainer/Orbs"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/Orbs/Actifs"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 50
+
+[node name="general_orb_panel" type="Panel" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_enfao")
+
+[node name="general_orb" type="TextureRect" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("4_h1wwb")
+expand_mode = 1
+
+[node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_enfao")
+
+[node name="health_gem" type="TextureButton" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("5_bg8it")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Panel2" type="Panel" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_enfao")
+
+[node name="armor_gem" type="TextureButton" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("6_31x7x")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel2"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Panel3" type="Panel" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_enfao")
+
+[node name="speed_gem" type="TextureButton" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("7_ohh76")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel3"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Panel4" type="Panel" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_enfao")
+
+[node name="attack_gem" type="TextureButton" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("8_0i1jj")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/Panel4"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="Items" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shockwave" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("2_ml1ol")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Drone" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("9_d1x7c")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Earthquake" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("10_eq45g")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Slice" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("11_suaja")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/PanelContainer/Margin"]
+layout_mode = 2
+text = "Damage : 10
+Health : 10"

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfeqpkr6ywhfj"]
+
+[ext_resource type="PackedScene" uid="uid://d21mh16erv181" path="res://Game/Scenes/Events/lasers/lasers/lasers.tscn" id="1_njvyu"]
+[ext_resource type="PackedScene" uid="uid://dl40mu02ko54d" path="res://Game/Scenes/Events/lasers/starter_points/starter_points.tscn" id="2_7prle"]
+
+[node name="lasers" type="Node2D"]
+
+[node name="lasers" parent="." instance=ExtResource("1_njvyu")]
+
+[node name="starter_points" parent="." instance=ExtResource("2_7prle")]

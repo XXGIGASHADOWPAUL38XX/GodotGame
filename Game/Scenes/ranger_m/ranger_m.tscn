@@ -1,0 +1,189 @@
+[gd_scene load_steps=22 format=3 uid="uid://bcmenkfg20a6a"]
+
+[ext_resource type="Script" path="res://Game/Scenes/ranger_m/ranger_m.gd" id="1_q6wg0"]
+[ext_resource type="Texture2D" uid="uid://kgepdx0arv71" path="res://ressource/rpgsprites1/ranger_m.png" id="2_2fh3v"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="4_o4ur7"]
+[ext_resource type="Script" path="res://Game/Scenes/ranger_m/shield.gd" id="6_iyp80"]
+[ext_resource type="PackedScene" uid="uid://b2qkqfms18jkm" path="res://Game/Scenes/ranger_m/spells_ranger_m.tscn" id="6_t2n6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5brpn"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(0, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e78k"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(32, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk6gh"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(64, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edpqg"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(0, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkutf"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(32, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2rvq"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(64, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyvtm"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(0, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1vt8"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(32, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk4pw"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(64, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6fky"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbfqs"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qfnb"]
+atlas = ExtResource("2_2fh3v")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x0yen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5brpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e78k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk6gh")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edpqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkutf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2rvq")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyvtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1vt8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk4pw")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6fky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbfqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qfnb")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab1if"]
+size = Vector2(20, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fha27"]
+bg_color = Color(1, 0.827451, 0.568627, 1)
+skew = Vector2(0.2, 0)
+corner_radius_top_left = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a6nq1"]
+properties/0/path = NodePath("ranger_m:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("ranger_m:modulate")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("ranger_m/health_bar:value")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("ranger_m/health_bar:max_value")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("ranger_m/health_bar:position")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("ranger_m/shield:visible")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("ranger_m/shield:position")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath("ranger_m/shield:size")
+properties/7/spawn = true
+properties/7/sync = true
+properties/8/path = NodePath("ranger_m/AnimatedSprite2D:modulate")
+properties/8/spawn = true
+properties/8/sync = true
+properties/9/path = NodePath("ranger_m/AnimatedSprite2D:frame")
+properties/9/spawn = true
+properties/9/sync = true
+
+[node name="ranger_m" type="Node2D"]
+
+[node name="ranger_m" type="CharacterBody2D" parent="."]
+script = ExtResource("1_q6wg0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ranger_m"]
+sprite_frames = SubResource("SpriteFrames_x0yen")
+animation = &"walk_up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ranger_m"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ab1if")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="spells_ranger_m" parent="ranger_m" instance=ExtResource("6_t2n6e")]
+
+[node name="health_bar" type="ProgressBar" parent="ranger_m"]
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = -25.0
+theme = ExtResource("4_o4ur7")
+show_percentage = false
+
+[node name="shield" type="ProgressBar" parent="ranger_m"]
+offset_right = 4.0
+offset_bottom = 10.0
+theme = ExtResource("4_o4ur7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fha27")
+show_percentage = false
+script = ExtResource("6_iyp80")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a6nq1")

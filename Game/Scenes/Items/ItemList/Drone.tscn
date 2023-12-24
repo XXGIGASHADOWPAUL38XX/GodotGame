@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1fd2buup7fuj"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Items/ItemList/Drone.gd" id="1_8anna"]
+[ext_resource type="Theme" uid="uid://cya286hi2pqfq" path="res://Game/Themes/Themes/theme_items.tres" id="1_gkxyt"]
+[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Main_Effects/Gems - Copie/attack_gem.png" id="2_nrff7"]
+[ext_resource type="Texture2D" uid="uid://b6oado23skq37" path="res://Game/Ressources/Main_Effects/Gems - Copie/speed_gem.png" id="3_qs4pu"]
+[ext_resource type="Texture2D" uid="uid://fof00ks0n6so" path="res://Game/Ressources/Main_Effects/Gems - Copie/drone_gem.png" id="4_2jkdu"]
+
+[node name="Drone" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8anna")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="Panel" type="Panel" parent="GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gkxyt")
+
+[node name="attack_gem" type="TextureRect" parent="GridContainer/Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("2_nrff7")
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gkxyt")
+
+[node name="attack_gem" type="TextureRect" parent="GridContainer/Panel2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("2_nrff7")
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="GridContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gkxyt")
+
+[node name="speed_gem" type="TextureRect" parent="GridContainer/Panel3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("3_qs4pu")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 0
+
+[node name="Panel5" type="Panel" parent="GridContainer/MarginContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("1_gkxyt")
+
+[node name="drone_gem" type="TextureButton" parent="GridContainer/MarginContainer/Panel5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("4_2jkdu")
+ignore_texture_size = true
+stretch_mode = 0

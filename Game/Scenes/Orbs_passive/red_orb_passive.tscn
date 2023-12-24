@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl05yw5l5drbb"]
+
+[ext_resource type="Texture2D" uid="uid://be28l2raofswm" path="res://Game/Ressources/Orbs/red_orb/passive.png" id="1_18dnh"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs_passive/red_orb_passive.gd" id="2_vs55v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugqig"]
+atlas = ExtResource("1_18dnh")
+region = Rect2(0, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaqkm"]
+atlas = ExtResource("1_18dnh")
+region = Rect2(1210, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p0b4"]
+atlas = ExtResource("1_18dnh")
+region = Rect2(2420, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic2tv"]
+atlas = ExtResource("1_18dnh")
+region = Rect2(3630, 0, 1210, 1081)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5nxib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugqig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaqkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p0b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic2tv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cvgvc"]
+properties/0/path = NodePath("red_orb_passive:visible")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("red_orb_passive:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("red_orb_passive:modulate")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("red_orb_passive:frame")
+properties/3/spawn = true
+properties/3/sync = true
+
+[node name="red_orb_passive" type="Node2D"]
+
+[node name="red_orb_passive" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+sprite_frames = SubResource("SpriteFrames_5nxib")
+script = ExtResource("2_vs55v")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cvgvc")
