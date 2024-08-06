@@ -7,8 +7,6 @@ var duplication_phldrs
 var ready_to_load_spell: bool = false
 var spells_dependencies_ready: bool = false
 
-var custom_resource_loader = preload('res://Game/Special/CustomResourceLoader.gd').new()
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	duplication_phldrs = get_duplication_phldrs()
@@ -19,7 +17,7 @@ func _ready():
 		ready_to_load_spell = true
 	
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
-	await await_resource_loaded(func(): return self.ready_to_load_spell)
+	await CustomResourceLoader.await_resource_loaded(func(): return self.ready_to_load_spell)
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
 
 	all_actives = get_all_actives()
@@ -51,8 +49,3 @@ func duplication_node_performed():
 	if (duplication_phldrs.all(func(d) : return d.duplication_performed)):
 		ready_to_load_spell = true
 
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while !c.call():
-		await self.get_tree().create_timer(retry_timeout).timeout
-		
-	return true

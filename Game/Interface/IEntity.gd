@@ -50,12 +50,6 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(anim_path + ":modulate")
 	multip_sync.replication_config.add_property(anim_path + ":frame")
 
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while !c.call():
-		await self.get_tree().create_timer(retry_timeout).timeout
-		
-	return true
-
 
 
 

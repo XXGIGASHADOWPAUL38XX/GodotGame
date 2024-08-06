@@ -20,7 +20,7 @@ func _ready():
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	if spells_placeholder != null:
-		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		await CustomResourceLoader.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	
 	
@@ -33,7 +33,7 @@ func _ready():
 	if !ignore_multiconf_debug:
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 		
-	await await_resource_loaded(func(): return champion != null)
+	await CustomResourceLoader.await_resource_loaded(func(): return champion != null)
 	
 	self.process_mode = Node.PROCESS_MODE_PAUSABLE
 

@@ -20,7 +20,7 @@ var coltdown_spell: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		await await_resource_loaded(func(): return ServiceScenes.championNode != null)
+		await CustomResourceLoader.await_resource_loaded(func(): return ServiceScenes.championNode != null)
 		
 		champion = ServiceScenes.championNode
 		sorted_slots = spell3_elements.keys()

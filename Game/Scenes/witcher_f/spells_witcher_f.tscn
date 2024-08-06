@@ -229,6 +229,7 @@ replication_config = SubResource("SceneReplicationConfig_fb3ue")
 script = ExtResource("9_np2cp")
 
 [node name="zone" type="Area2D" parent="ctrlr_spell_2"]
+visible = false
 scale = Vector2(0.07, 0.07)
 script = ExtResource("10_njiym")
 

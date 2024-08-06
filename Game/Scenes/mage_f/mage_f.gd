@@ -20,7 +20,7 @@ func _process(delta):
 
 func update_orb_kind(orb_kind_update):
 	if orb == null:
-		await await_resource_loaded(func(): return orb != null)
+		await CustomResourceLoader.await_resource_loaded(func(): return orb != null)
 	
 	orb_kind = orb_kind_update
 	orb.animation.animation = MageOrb.OrbKind.keys()[orb_kind]
