@@ -1,0 +1,138 @@
+[gd_scene load_steps=22 format=3 uid="uid://dtqlhxwa25ddi"]
+
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_gold/ctrlr_mage_f_2_gold.gd" id="1_cvqwv"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_gold/ctrlr_mage_f_4_gold.gd" id="4_6q7rn"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_2_gold.gd" id="6_jjcpj"]
+[ext_resource type="Texture2D" uid="uid://dxpwlc71sn6mq" path="res://Game/Ressources/Heros/mage_f/spell2_1_mage.png" id="7_3lwp0"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_4_gold.gd" id="8_m1ukk"]
+[ext_resource type="Texture2D" uid="uid://cipbr84mvryob" path="res://Game/Ressources/Heros/mage_f/spell4_1_mage.png" id="9_7a5fl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m71et"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wroj"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(0, 0, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06124"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(793, 0, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqxb3"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(1586, 0, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d75id"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(2379, 0, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6k8s"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(0, 816, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ed3k"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(793, 816, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgy52"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(1586, 816, 793, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcpab"]
+atlas = ExtResource("7_3lwp0")
+region = Rect2(2379, 816, 793, 816)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2vcy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wroj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06124")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqxb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d75id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6k8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ed3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgy52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcpab")
+}],
+"loop": false,
+"name": &"spell2_explode",
+"speed": 25.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ua1ux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fj03u"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h5r2"]
+atlas = ExtResource("9_7a5fl")
+region = Rect2(0, 0, 595, 596)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymibw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h5r2")
+}],
+"loop": true,
+"name": &"spell1",
+"speed": 30.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dsboj"]
+
+[node name="spells_mage_f_gold" type="Node2D"]
+
+[node name="ctrlr_mage_f_2_gold" type="Node2D" parent="."]
+script = ExtResource("1_cvqwv")
+
+[node name="spell_mage_f_2_gold" type="Area2D" parent="ctrlr_mage_f_2_gold"]
+visible = false
+script = ExtResource("6_jjcpj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_2_gold/spell_mage_f_2_gold"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_m71et")
+
+[node name="Spells_mage_explode" type="AnimatedSprite2D" parent="ctrlr_mage_f_2_gold/spell_mage_f_2_gold"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_m2vcy")
+animation = &"spell2_explode"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_2_gold"]
+replication_config = SubResource("SceneReplicationConfig_ua1ux")
+
+[node name="ctrlr_mage_f_4_gold" type="Node2D" parent="."]
+script = ExtResource("4_6q7rn")
+
+[node name="spell_mage_f_4_gold" type="Area2D" parent="ctrlr_mage_f_4_gold"]
+visible = false
+scale = Vector2(0.08, 0.08)
+script = ExtResource("8_m1ukk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_4_gold/spell_mage_f_4_gold"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_fj03u")
+
+[node name="Spells_mage_ult" type="AnimatedSprite2D" parent="ctrlr_mage_f_4_gold/spell_mage_f_4_gold"]
+position = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_ymibw")
+animation = &"spell1"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_4_gold"]
+replication_config = SubResource("SceneReplicationConfig_dsboj")

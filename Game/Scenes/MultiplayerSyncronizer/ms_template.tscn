@@ -1,0 +1,311 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddujdv05ivtxa"]
+
+[ext_resource type="Script" path="res://Game/Scenes/MultiplayerSyncronizer/ms_template.gd" id="1_mi7sd"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h1ce5"]
+properties/0/path = NodePath(".:process_mode")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="ms_template" type="Node"]
+script = ExtResource("1_mi7sd")
+
+[node name="spells_mage_f_1_3" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_mage_f_2" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_mage_f_4" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_warrior_m_1" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_warrior_m_2" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_warrior_m_3" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="spells_warrior_m_4" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="attack_mg" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="attack_golem" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="attack_crystal" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="red_spirit" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="green_spirit" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="special_mage_f" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="special_warrior_m" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="health_gem" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="explosion" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined17" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined18" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined19" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined20" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined21" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined22" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined23" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined24" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined25" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined26" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined27" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined28" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined29" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined30" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined31" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined32" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined33" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined34" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined35" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined36" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined37" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined38" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined39" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined40" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined41" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined42" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined43" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined44" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined45" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined46" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined47" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined48" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined49" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined50" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined51" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined52" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined53" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined54" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined55" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined56" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined57" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined58" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined59" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined60" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined61" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined62" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined63" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined64" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined65" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined66" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined67" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined68" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined69" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined70" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined71" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined72" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined73" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined74" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined75" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined76" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined77" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined78" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined79" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined80" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined81" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined82" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined83" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined84" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined85" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined86" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined87" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined88" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined89" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined90" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined91" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined92" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined93" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined94" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined95" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined96" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined97" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined98" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined99" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")
+
+[node name="undefined100" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_h1ce5")

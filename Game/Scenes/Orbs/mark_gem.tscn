@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://cl05yw5l5drbb"]
+
+[ext_resource type="Texture2D" uid="uid://be28l2raofswm" path="res://Game/Ressources/Orbs/red_orb/passive.png" id="1_5bt0k"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/mark_gem.gd" id="2_cmxku"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugqig"]
+atlas = ExtResource("1_5bt0k")
+region = Rect2(0, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaqkm"]
+atlas = ExtResource("1_5bt0k")
+region = Rect2(1210, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p0b4"]
+atlas = ExtResource("1_5bt0k")
+region = Rect2(2420, 0, 1210, 1081)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic2tv"]
+atlas = ExtResource("1_5bt0k")
+region = Rect2(3630, 0, 1210, 1081)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5nxib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugqig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaqkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p0b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic2tv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43mpc"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cvgvc"]
+properties/0/path = NodePath("Area2D:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Area2D:visible")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Area2D/red_orb_passive:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="red_orb_passive" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("2_cmxku")
+
+[node name="red_orb_passive" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.07, 0.07)
+sprite_frames = SubResource("SpriteFrames_5nxib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_43mpc")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_cvgvc")

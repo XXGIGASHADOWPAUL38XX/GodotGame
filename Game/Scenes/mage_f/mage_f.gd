@@ -26,4 +26,9 @@ func update_orb_kind(orb_kind_update):
 	orb.animation.animation = MageOrb.OrbKind.keys()[orb_kind]
 	orb.animation.frame = orb.animation.sprite_frames.get_frame_count(orb.animation.animation) - 1
 	
-	
+func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
+	while !c.call():
+		await self.get_tree().create_timer(retry_timeout).timeout
+		
+	return true
+

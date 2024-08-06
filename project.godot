@@ -34,7 +34,6 @@ ServiceOrbs="*res://Game/Services/service_orbs.gd"
 UpdateMode="*res://Game/Classes/UpdateMode.gd"
 ServiceEvents="*res://Game/Services/service_events.gd"
 MageOrb="*res://Game/Scenes/mage_f/orb_kind.gd"
-CustomResourceLoader="*res://Game/Special/CustomResourceLoader.gd"
 
 [debug]
 

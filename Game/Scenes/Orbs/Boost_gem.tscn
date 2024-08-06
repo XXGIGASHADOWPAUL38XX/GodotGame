@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsdfme3rfjiye"]
+
+[ext_resource type="Texture2D" uid="uid://dyl4fdo0ktnv1" path="res://Game/Ressources/Orbs/orange_orb/special.png" id="1_djrjd"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/boost_gem.gd" id="2_qcamf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4b2u"]
+atlas = ExtResource("1_djrjd")
+region = Rect2(0, 0, 555, 555)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5yde"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4b2u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n5pbq"]
+properties/0/path = NodePath("orange_orb_passive:frame")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("orange_orb_passive:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("orange_orb_passive:visible")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("orange_orb_passive:modulate")
+properties/3/spawn = true
+properties/3/sync = true
+
+[node name="orange_orb_passive" type="Node2D"]
+metadata/test = [NodePath(""), null, null]
+
+[node name="orange_orb_passive" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_q5yde")
+script = ExtResource("2_qcamf")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_n5pbq")

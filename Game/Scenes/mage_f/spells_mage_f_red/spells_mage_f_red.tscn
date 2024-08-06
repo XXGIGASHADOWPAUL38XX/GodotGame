@@ -1,0 +1,189 @@
+[gd_scene load_steps=29 format=3 uid="uid://c7pgrycrx8w4w"]
+
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_red/ctrlr_mage_f_2_red.gd" id="1_x8hl0"]
+[ext_resource type="Texture2D" uid="uid://d0vk5nqbr0pq1" path="res://Game/Ressources/Heros/mage_f/spell2_3_mage.png" id="4_0esoe"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_red/ctrlr_mage_f_4_red.gd" id="4_jkkl4"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_2_red.gd" id="6_5v84m"]
+[ext_resource type="Texture2D" uid="uid://dpsidrdmmwap" path="res://Game/Ressources/Heros/mage_f/spell4_3_mage.png" id="6_ai4sl"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_4_red.gd" id="8_nrlu1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpiuj"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40osg"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(40, 50, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjuef"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(836, 50, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7tc0"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(1632, 50, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq0in"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(40, 840, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjvr0"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(2428, 50, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k4w2"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(836, 840, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tesax"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(1632, 840, 796, 790)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc6qg"]
+atlas = ExtResource("4_0esoe")
+region = Rect2(2428, 840, 796, 790)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ora47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40osg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjuef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7tc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq0in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjvr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k4w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tesax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc6qg")
+}],
+"loop": false,
+"name": &"spell2_explode",
+"speed": 25.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1ucvf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvhmj"]
+radius = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu3kj"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(0, 0, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkae8"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(792, 0, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufjqk"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(1584, 0, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bgoe"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(2376, 0, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crr3y"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(0, 787, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elhc8"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(792, 787, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee416"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(1584, 787, 792, 787)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1uq2"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(2376, 787, 792, 787)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hor1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu3kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkae8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufjqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bgoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crr3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elhc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee416")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1uq2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jcm45"]
+
+[node name="spells_mage_f_red" type="Node2D"]
+
+[node name="ctrlr_mage_f_2_red" type="Node2D" parent="."]
+script = ExtResource("1_x8hl0")
+
+[node name="spell_mage_f_2_red" type="Area2D" parent="ctrlr_mage_f_2_red"]
+visible = false
+script = ExtResource("6_5v84m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_2_red/spell_mage_f_2_red"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_wpiuj")
+
+[node name="Spells_mage_explode" type="AnimatedSprite2D" parent="ctrlr_mage_f_2_red/spell_mage_f_2_red"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_ora47")
+animation = &"spell2_explode"
+frame = 7
+frame_progress = 1.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_2_red"]
+replication_config = SubResource("SceneReplicationConfig_1ucvf")
+
+[node name="ctrlr_mage_f_4_red" type="Node2D" parent="."]
+script = ExtResource("4_jkkl4")
+
+[node name="spell_mage_f_4_red" type="Area2D" parent="ctrlr_mage_f_4_red"]
+scale = Vector2(0.15, 0.15)
+script = ExtResource("8_nrlu1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_4_red/spell_mage_f_4_red"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_mvhmj")
+
+[node name="Spells_mage_ult" type="AnimatedSprite2D" parent="ctrlr_mage_f_4_red/spell_mage_f_4_red"]
+position = Vector2(-1, -1)
+sprite_frames = SubResource("SpriteFrames_hor1e")
+frame = 7
+frame_progress = 0.710828
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_4_red"]
+replication_config = SubResource("SceneReplicationConfig_jcm45")
