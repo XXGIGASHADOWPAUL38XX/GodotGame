@@ -1,17 +1,11 @@
 extends Node
 
 func all_remotes(node, f, args:Array):
-	for i in range(args.size()):
-		if args[i] is Node2D:
-			args[i] = args[i].get_path()
-
+	args = convert_args_to_nodepaths(args)
 	rpc('f_rpc', f, node.get_path(), args)
 	
 func remote_only(id, node, f, args:Array):
-	for i in range(args.size()):
-		if args[i] is Node2D:
-			args[i] = args[i].get_path()
-
+	args = convert_args_to_nodepaths(args)
 	rpc_id(id, 'f_rpc', f, node.get_path(), args)
 	
 func any(node, f, args:Array):
@@ -20,10 +14,7 @@ func any(node, f, args:Array):
 
 @rpc("any_peer")
 func f_rpc(f, path, args):
-	for i in range(args.size()):
-		if (args[i] is NodePath):
-			args[i] = get_node(args[i] as String)
-	
+	args = convert_args_to_nodes(args)
 	var node = get_node(path as String)
 	
 	node.callv(f, args)
@@ -43,7 +34,29 @@ func send_to_id(id, node, f, args):
 func send_to_ally(node, f, args):
 	remote_only(ServiceScenes.ally.id, node, f, args)
 		
-func send_to_ennemies(id, node, f, args):
-	remote_only(ServiceScenes.ennemy1.id, node, f, args)
-	remote_only(ServiceScenes.ennemy2.id, node, f, args)
+func send_to_ennemies(node, f, args):
+	for ennemy in ServiceScenes.ennemiesNode:
+		remote_only(ennemy.get_multiplayer_authority(), node, f, args)
 	
+func convert_args_to_nodepaths(args):
+	for i in range(args.size()):
+		if args[i] is Node2D:
+			args[i] = args[i].get_path()
+		elif args[i] is Array:
+			args[i] = convert_args_to_nodepaths(args[i].duplicate())
+	return args
+	
+func convert_args_to_nodes(args):
+	for i in range(args.size()):
+		if (args[i] is NodePath):
+			args[i] = get_node(args[i] as String)
+		elif args[i] is Array:
+			args[i] = convert_args_to_nodes(args[i])
+			
+	return args
+
+func set_any(node, atr_string, value):
+	any(self, 'set_n', [node, atr_string, value])
+	
+func set_n(node, atr_string, value):
+	node.set(atr_string, value)

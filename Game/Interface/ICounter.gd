@@ -1,4 +1,7 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+class_name ICounter
+
+extends IDamagingSpell
+
 var func_on_spell_entered: Array[Callable]
 
 var spell_hitted
@@ -11,14 +14,12 @@ func _ready():
 		CONF_DETECT_WITH_SP = ServiceScenes.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
 		CONF_DETECT_WITH_SP = CONF_DETECT_WITH_SP.reduce(func(a, b): return a + b)
 	
-	self.visibility_changed.connect(
-		func(): self.get_node("CollisionShape2D").disabled = !self.visible
-	)
-	
 	self.area_entered.connect(func(obj): 
-		if CONF_DETECT_WITH_SP.find(obj) != -1:
+		if CONF_DETECT_WITH_SP.find(obj) != -1 && obj.visible:
 			spell_entered(obj)
 	)
+	
+	await super._ready()
 
 func spell_entered(spell): #FAIRE LES DEGATS
 	spell_hitted = spell
@@ -39,4 +40,4 @@ func get_all_ennemies_spells(node):
 
 func collision():
 	if self.visible && ennemies_in.find(player_hitted) != -1 && HAS_DMG_EFFECT:
-		send_damage()
+		send_spell()

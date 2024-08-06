@@ -121,37 +121,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vx54y"]
-properties/0/path = NodePath("tank_m:visible")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("tank_m/AnimatedSprite2D:frame")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("tank_m:position")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("tank_m/health_bar:value")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("tank_m/health_bar:max_value")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("tank_m/shield:size")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("tank_m:modulate")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("tank_m/health_bar:position")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("tank_m/shield:position")
-properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("tank_m/AnimatedSprite2D:animation")
-properties/9/spawn = true
-properties/9/sync = true
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pih2a"]
 
 [node name="tank_m" type="Node2D"]
 
@@ -193,4 +163,4 @@ sprite_frames = SubResource("SpriteFrames_4it8n")
 animation = &"walk_down"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_vx54y")
+replication_config = SubResource("SceneReplicationConfig_pih2a")

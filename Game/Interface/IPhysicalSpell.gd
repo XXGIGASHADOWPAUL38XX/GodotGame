@@ -1,7 +1,8 @@
 extends CharacterBody2D
-var service_time = preload("res://Game/Services/service_time.gd").new()
-var collision_script = preload('res://Game/Services/ServiceCollision/collision.gd').new()
 
+class_name IPhysicalSpell
+
+var service_time = preload("res://Game/Services/service_time.gd").new()
 var func_on_hit: Array[Callable] = []
 
 var player_hitted
@@ -13,6 +14,7 @@ var CONF_DETECT_WITH
 
 func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
+	self.visibility_changed.connect(func(): get_node('CollisionShape2D').disabled = !self.visible)
 
 func on_hit(ennemy): #FAIRE LES DEGATS
 	player_hitted = ennemy

@@ -1,11 +1,17 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingCollision
 
 var animation
 
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		super._ready()
+		
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 6.0
+		damage_ratio = 0.0
+		# ------------------------------------ #
+		
+		await super._ready()
 		self.hide()
 		animation = $anim_attack_crystal
 		

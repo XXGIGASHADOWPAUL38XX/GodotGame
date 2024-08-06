@@ -1,4 +1,8 @@
-extends "res://Game/Interface/IEntity.gd"
+extends IEntity
+
+class_name ICharacter
+
+var animation: AnimatedSprite2D
 
 # STATS ------------
 var damage_base
@@ -16,14 +20,18 @@ var armor_bonus_ratio = 1
 var health_bonus_ratio = 1
 var speed_bonus_ratio = 1
 
-var damage_final
-var armor_final
-var health_final
-var speed_final
+@export var damage_final: float
+@export var armor_final: float
+@export var health_final: float
+@export var speed_final: float
 
-var state_movement = State.StateMovement.NULL
-var state_damage = State.StateDamage.NULL
+@export var state_movement: State.StateMovement = State.StateMovement.NULL
+@export var state_damage: State.StateDamage = State.StateDamage.NULL
+@export var state_shielded: State.StateShielded = State.StateShielded.NULL
+
 var health_bar
+var shield
+var class_spell = CSpell.new()
 
 func set_attribute(key, value, time=null):
 	var old_value = self.get(key)
@@ -34,13 +42,13 @@ func set_attribute(key, value, time=null):
 		self.set(key, old_value)
 		
 func take_damage():
-	if state_damage == State.StateDamage.IMMUNE:
-		return
-	var sp = collision_script.get_spell(last_spell_hitting.name)
-	if last_spell_hitting.name.begins_with('spell'):
-		self.health_bar.value -= sp.damage + (sp.damage_ratio * last_ennemy_hitting.damage_final) * (1 - (armor_final / 100))
-	else:
-		self.health_bar.value -= sp.damage * (1 - (armor_final / 100))
+	var output_damage = last_spell_hitting.output_damage.call(self)
+		
+	if state_shielded == State.StateShielded.SHIELDED:
+		output_damage = shield.remaining_damage(output_damage)
+		
+	self.health_bar.value -= output_damage
+	
 	ServiceAnimations.set_animation(self, 'animation_hitted')
 
 	for i in range(2):
@@ -51,10 +59,26 @@ func take_damage():
 
 func _ready():
 	health_bar = $health_bar
+	func_hitted = [Callable(self, 'take_damage')]
+	
 	if is_multiplayer_authority():
-		func_hitted = [Callable(self, 'take_damage')]
-		Servrpc.any(ServiceStats, 'set_attributes', [self])
+		ServiceStats.set_attributes(self)
 		self.new_round()
 
+		await super._ready()
+		
 func new_round():
 	health_bar.value = health_bar.max_value
+	
+func set_multiplayer_properties():
+	super.set_multiplayer_properties()
+	var hlth_bar_path = self.name + "/health_bar"
+	
+	multip_sync.replication_config.add_property(self.name + ":damage_final")
+	multip_sync.replication_config.add_property(self.name + ":health_final")
+	multip_sync.replication_config.add_property(self.name + ":armor_final")
+	multip_sync.replication_config.add_property(self.name + ":speed_final")
+
+	multip_sync.replication_config.add_property(hlth_bar_path + ":position")
+	multip_sync.replication_config.add_property(hlth_bar_path + ":value")
+	multip_sync.replication_config.add_property(hlth_bar_path + ":max_value")

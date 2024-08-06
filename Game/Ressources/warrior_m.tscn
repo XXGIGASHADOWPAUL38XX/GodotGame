@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvulyy357shgc"]
+[gd_scene load_steps=17 format=3 uid="uid://1mlwrfuvk4np"]
 
 [ext_resource type="Script" path="res://Game/warrior_m.gd" id="1_3jeqy"]
 [ext_resource type="Texture2D" uid="uid://csrv5wg2rrt5i" path="res://ressource/rpgsprites1/warrior_m.png" id="2_xolwn"]

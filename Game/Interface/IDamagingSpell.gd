@@ -1,17 +1,20 @@
-extends "res://Game/Interface/ISpell.gd"
+extends IDamagingCollision
 
+class_name IDamagingSpell
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	self.func_on_entity_entered.append(Callable(self, 'collision'))
-	super._ready()
+	await super._ready()
 
-func collision():
-	if self.visible && ennemies_in.find(player_hitted) != -1:
-		send_damage()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
 
-func send_damage():
-	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), player_hitted, 'hitted', [self]) # heros hitted BY ennemy spell
-
-	var sp = collision_script.get_spell(self.name)
-	spells_retrigger[player_hitted] = service_time.init_timer(self, sp.retrigger)
-	spells_retrigger[player_hitted].start()
-	spells_retrigger[player_hitted].timeout.connect(collision)
+func send_spell():
+	if champion != null:
+		champion.hit()
+		
+	super.send_spell()
+	
+func output_damage_f(champion_hitted):
+	return damage_base + (damage_ratio * champion.damage_final) * (1 - (champion_hitted.armor_final / 100))

@@ -1,4 +1,4 @@
-extends "res://Game/Interface/ISpell.gd"
+extends "res://Game/Interface/ICollision.gd"
 
 const MARGIN_SPAWN_X = 600
 const MARGIN_SPAWN_Y = 400
@@ -13,12 +13,11 @@ var modulate_bool: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	func_on_entity_entered.append([Callable(self, 'spirit_entered')])
+	func_on_entity_entered.append(Callable(self, 'spirit_entered'))
 	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
-	super._ready()
-	animation = $yellow_spirit_anim
 	if is_multiplayer_authority():
+		animation = $yellow_spirit_anim
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -28,6 +27,8 @@ func _ready():
 		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
+		
+		await super._ready()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,8 +49,8 @@ func spawn():
 	self.rotation = 0.0
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, get_window().size.x - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, get_window().size.y - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
 	
 	self.position = base_position_spawn
 	self.show()

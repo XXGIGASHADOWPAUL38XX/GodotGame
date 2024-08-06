@@ -45,6 +45,5 @@ func hide_announcer():
 	emit_signal('anncounce_timeout')
 	for i in range(10):
 		$Panel.modulate.a -= 0.1
-		await get_tree().create_timer(0).timeout
 		
 	self.hide()

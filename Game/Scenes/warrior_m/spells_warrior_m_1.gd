@@ -1,51 +1,18 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
-
-var speed = 20.0
-var champion
-var throw_direction = Vector2.RIGHT
-var cd_spell1 = 4.0
-var spell1: AnimatedSprite2D
-var coltdown_spell1: Timer
-var HUD
+extends IControllerSpell
 
 func _ready():
-	if is_multiplayer_authority():
-		super._ready()
-		self.hide()
-		champion = ServiceScenes.championNode
-		spell1 = $Spells_warrior_anim_1
-		coltdown_spell1 = service_time.init_timer(self, cd_spell1)
-
-func _process(_delta):
-	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_A) && coltdown_spell1.time_left == 0:
-			coltdown_spell1.start()
-			spell1_charge()
-
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell1, 1)
+	key = KEY_A
+	coltdown_time = 4
+	await super._ready()
 			
-func spell1_charge():
-	self.position = champion.position + ServiceSpell.set_in_front(champion, 10)
-	self.show()
-	champion.state_movement = State.StateMovement.IMMOBILE
-	self.rotation = (get_global_mouse_position() - self.position).angle()
-
-	await get_tree().create_timer(0.25).timeout
-	spell1.play("spell1_charge")
-
-	for i in range(20):
-		champion.position = champion.position + ServiceSpell.set_in_front(champion, 5)
-		self.position = champion.position + ServiceSpell.set_in_front(champion, 10)
-		await get_tree().create_timer(0).timeout
-
-	spell1.stop()
-	champion.state_movement = State.StateMovement.NULL
-
-	self.hide()
-
-
-
-
+func active():
+	coltdown.start()
+	var angle = (get_global_mouse_position() - $spells_warrior_m_1_1.champion.position).angle()
+	
+	$spells_warrior_m_1_1.active(angle)
+	await get_tree().create_timer(0.5).timeout
+	
+	$spells_warrior_m_1_2.active(angle)
+	await get_tree().create_timer(0.5).timeout
+	
+	$spells_warrior_m_1_3.active(angle)

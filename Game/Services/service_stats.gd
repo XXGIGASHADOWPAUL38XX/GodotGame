@@ -25,18 +25,25 @@ func set_attributes(heros):
 
 	heros.get_node('health_bar').max_value = stats.health
 	
-func update_stats_local(heros, stat: String, value):
-	heros.set(stat, value)
+func update_stats_local(heros, stat: String, value, update_mode=UpdateMode.UpdateMode.REPLACE):
+	if update_mode == UpdateMode.UpdateMode.ADD:
+		heros.set(stat, heros.get(stat) + value)
+	else:
+		heros.set(stat, value)
+		
 	update_stats_final(heros)
 	
 	var general_stat = stat.split('_')[0]
 	ServiceText.display_text_local(general_stat, colors[general_stat], logos[general_stat])
 
 func update_stats_final(heros):
-	heros.set('damage_final', (heros.get('damage_base') + heros.get('damage_bonus_flat')) * heros.get('damage_bonus_ratio'))
-	heros.set('armor_final', (heros.get('armor_base') + heros.get('armor_bonus_flat')) * heros.get('armor_bonus_ratio'))
-	heros.set('health_final', (heros.get('health_base') + heros.get('health_bonus_flat')) * heros.get('health_bonus_ratio'))
-	heros.set('speed_final', (heros.get('speed_base') + heros.get('speed_bonus_flat')) * heros.get('speed_bonus_ratio'))
+	heros.damage_final = (heros.damage_base + heros.damage_bonus_flat) * heros.damage_bonus_ratio
+	heros.armor_final = (heros.armor_base + heros.armor_bonus_flat) * heros.armor_bonus_ratio
+	heros.health_final = (heros.health_base + heros.health_bonus_flat) * heros.health_bonus_ratio
+	heros.speed_final = (heros.speed_base + heros.speed_bonus_flat) * heros.speed_bonus_ratio
+	
+	if ServiceScenes.HUD != null:
+		ServiceScenes.HUD.get_stats()
 
 func update_stats_from_item(heros, item):
 	for property in item.get_property_list():

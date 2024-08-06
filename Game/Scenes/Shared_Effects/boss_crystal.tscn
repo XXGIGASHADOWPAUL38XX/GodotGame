@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://wosyot0o6c3g"]
+[gd_scene load_steps=32 format=3 uid="uid://wosyot0o6c3g"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_crystal.gd" id="1_rfwrm"]
 [ext_resource type="Texture2D" uid="uid://drk3bc8oxtshk" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Crystal Knight/Crystal Knight.png" id="2_r7c8y"]
@@ -182,43 +182,12 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_br0w7"]
-properties/0/path = NodePath("boss_crystal:visible")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_isunt"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fco3k"]
+properties/0/path = NodePath(".:process_mode")
 properties/0/spawn = true
 properties/0/sync = true
-properties/1/path = NodePath("boss_crystal:position")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("boss_crystal/anim_boos_crystal:animation")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("boss_crystal/anim_boos_crystal:frame")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("boss_crystal/attack_crystal:position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("boss_crystal/attack_crystal:visible")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("boss_crystal:modulate")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("boss_crystal/attack_crystal/anim_attack_crystal:frame")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("boss_crystal/attack_crystal/anim_attack_crystal:animation")
-properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("boss_crystal:scale")
-properties/9/spawn = true
-properties/9/sync = true
-properties/10/path = NodePath("boss_crystal/health_bar:value")
-properties/10/spawn = true
-properties/10/sync = true
-properties/11/path = NodePath("boss_crystal/health_bar:max_value")
-properties/11/spawn = true
-properties/11/sync = true
 
 [node name="boss_crystal" type="Node2D"]
 
@@ -241,17 +210,23 @@ value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="attack_crystal" type="Area2D" parent="boss_crystal"]
+[node name="spells" type="Node" parent="boss_crystal"]
+
+[node name="attack_crystal" type="Area2D" parent="boss_crystal/spells"]
 position = Vector2(90, 0)
 scale = Vector2(3, 3)
 script = ExtResource("4_racyk")
 
-[node name="anim_attack_crystal" type="AnimatedSprite2D" parent="boss_crystal/attack_crystal"]
+[node name="anim_attack_crystal" type="AnimatedSprite2D" parent="boss_crystal/spells/attack_crystal"]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_12cwg")
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boss_crystal/attack_crystal"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boss_crystal/spells/attack_crystal"]
 polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0, 20.5, 16, 6, 34.5, -30, 45.5)
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="boss_crystal/spells"]
+root_path = NodePath("../attack_crystal")
+replication_config = SubResource("SceneReplicationConfig_isunt")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_br0w7")
+replication_config = SubResource("SceneReplicationConfig_fco3k")

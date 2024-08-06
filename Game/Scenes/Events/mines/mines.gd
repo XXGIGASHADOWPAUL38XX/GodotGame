@@ -2,7 +2,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.set_multiplayer_authority(Server.get_first_player_connected_id())
 	if is_multiplayer_authority():
 		#POUR QUE LA SCENE SOIT INSTANCIEE POUR TOUS LES JOUEURS (ATTENTE RPC)
 		await get_tree().create_timer(0.05).timeout 
@@ -29,7 +28,7 @@ func add_multiplayer_properties(duplicated_node: Node2D):
 		func(obj): return obj.name.begins_with('anim')
 	)[0]
 	
-	var MULTIPSYNC = $MSYNC
+	var MULTIPSYNC = $MutliplayerSynchronizer
 	
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":position")
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":scale")

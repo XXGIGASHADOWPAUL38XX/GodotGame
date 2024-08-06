@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IMob.gd"
+extends IMob
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,7 +8,7 @@ func _ready():
 		animation = $anim_boos_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		self.position = Vector2(get_window().size.x, get_window().size.y)
-		super._ready()
+		await super._ready()
 
 func attack_back():
 	super.attack_back()

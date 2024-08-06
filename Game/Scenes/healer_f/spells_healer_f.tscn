@@ -1,17 +1,27 @@
-[gd_scene load_steps=44 format=3 uid="uid://c3co6236ljth3"]
+[gd_scene load_steps=54 format=3 uid="uid://c3co6236ljth3"]
 
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_1.gd" id="1_67fow"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f.gd" id="1_75utu"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_1.gd" id="1_sskcw"]
 [ext_resource type="Texture2D" uid="uid://dkplk3ivdu4n" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_1.png" id="2_ybhle"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_2.gd" id="3_ndysl"]
 [ext_resource type="Texture2D" uid="uid://cwyw61b4djf3i" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_2.png" id="3_py38e"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_2.gd" id="4_ba2ns"]
 [ext_resource type="Texture2D" uid="uid://bxvlwsvmy28lg" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_4_a.png" id="4_k2qws"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_1_2.gd" id="5_43rjg"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f_4.gd" id="5_en0gn"]
 [ext_resource type="Texture2D" uid="uid://cmoyd7tt1hofn" path="res://Game/Ressources/Heros/healer_f/spells_healer_f_4_e.png" id="5_rywn2"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/mark_stun.gd" id="6_4o8rw"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_3.gd" id="7_wabr3"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_4.gd" id="8_8anf5"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/special_healer_f.gd" id="8_m5eoj"]
+[ext_resource type="Script" path="res://Game/Scenes/healer_f/dp_healer_f_4.gd" id="9_inyhr"]
 [ext_resource type="Texture2D" uid="uid://ktdh2862xios" path="res://Game/Ressources/Heros/healer_f/special_healer.png" id="9_sfi01"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cvrw"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ab7vm"]
+radius = 18.0278
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4c1du"]
 atlas = ExtResource("2_ybhle")
@@ -75,6 +85,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ixr7r"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wylsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tvkym"]
@@ -134,6 +146,8 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4701i"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5elm7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5tp36"]
@@ -162,6 +176,8 @@ animations = [{
 "name": &"ennemy",
 "speed": 5.0
 }]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jrmrc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bac1h"]
 
@@ -222,86 +238,130 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1cvrw"]
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qrf4g"]
-properties/0/path = NodePath("spells_healer_f_1:visible")
+properties/0/path = NodePath("spells_healer_f_2:visible")
 properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("spells_healer_f_1:position")
+properties/0/replication_mode = 1
+properties/1/path = NodePath("spells_healer_f_2:position")
 properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("spells_healer_f_1:modulate")
+properties/1/replication_mode = 1
+properties/2/path = NodePath("spells_healer_f_2:modulate")
 properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("spells_healer_f_1:scale")
+properties/2/replication_mode = 1
+properties/3/path = NodePath("spells_healer_f_4:visible")
 properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("spells_healer_f_2:visible")
+properties/3/replication_mode = 1
+properties/4/path = NodePath("spells_healer_f_4:position")
 properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("spells_healer_f_2:position")
+properties/4/replication_mode = 1
+properties/5/path = NodePath("spells_healer_f_4:modulate")
 properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("spells_healer_f_2:modulate")
+properties/5/replication_mode = 1
+properties/6/path = NodePath("spells_healer_f_1/spells_healer_f_1_anim:frame")
 properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("spells_healer_f_4:visible")
+properties/6/replication_mode = 1
+properties/7/path = NodePath("spells_healer_f_2/spells_healer_f_2_anim:frame")
 properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("spells_healer_f_4:position")
+properties/7/replication_mode = 1
+properties/8/path = NodePath("spells_healer_f_4/spells_healer_f_4_anim:animation")
 properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("spells_healer_f_4:modulate")
+properties/8/replication_mode = 1
+properties/9/path = NodePath("spells_healer_f_1/spells_healer_f_1_anim:animation")
 properties/9/spawn = true
-properties/9/sync = true
-properties/10/path = NodePath("spells_healer_f_1/spells_healer_f_1_anim:frame")
+properties/9/replication_mode = 1
+properties/10/path = NodePath("spells_healer_f_1:visible")
 properties/10/spawn = true
-properties/10/sync = true
-properties/11/path = NodePath("spells_healer_f_2/spells_healer_f_2_anim:frame")
+properties/10/replication_mode = 1
+properties/11/path = NodePath("spells_healer_f_1:position")
 properties/11/spawn = true
-properties/11/sync = true
-properties/12/path = NodePath("spells_healer_f_4/spells_healer_f_4_anim:animation")
+properties/11/replication_mode = 1
+properties/12/path = NodePath("spells_healer_f_1:modulate")
 properties/12/spawn = true
-properties/12/sync = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("spells_healer_f_1:rotation")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+properties/14/path = NodePath("spells_healer_f_1:scale")
+properties/14/spawn = true
+properties/14/replication_mode = 1
 
-[node name="spells_healer_f" type="Node"]
+[node name="spells_healer_f_phldr" type="Node"]
+script = ExtResource("1_75utu")
 
-[node name="spells_healer_f_1" type="Area2D" parent="."]
+[node name="ctrlr_healer_f_1" type="Node2D" parent="."]
+script = ExtResource("1_67fow")
+
+[node name="mark_stun" type="AnimatedSprite2D" parent="ctrlr_healer_f_1"]
+sprite_frames = SubResource("SpriteFrames_1cvrw")
+script = ExtResource("6_4o8rw")
+
+[node name="spells_healer_f_1_1" type="Area2D" parent="ctrlr_healer_f_1"]
 visible = false
 script = ExtResource("1_sskcw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_1"]
 shape = SubResource("CircleShape2D_ab7vm")
 
-[node name="spells_healer_f_1_anim" type="AnimatedSprite2D" parent="spells_healer_f_1"]
+[node name="anim_healer_f_1" type="AnimatedSprite2D" parent="ctrlr_healer_f_1/spells_healer_f_1_1"]
 sprite_frames = SubResource("SpriteFrames_i3irr")
 animation = &"aoe"
 
-[node name="spells_healer_f_2" type="Area2D" parent="."]
+[node name="spells_healer_f_1_2" type="Area2D" parent="ctrlr_healer_f_1"]
+visible = false
+script = ExtResource("5_43rjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_2"]
+shape = SubResource("CircleShape2D_ab7vm")
+
+[node name="anim_healer_f_1" type="AnimatedSprite2D" parent="ctrlr_healer_f_1/spells_healer_f_1_2"]
+sprite_frames = SubResource("SpriteFrames_i3irr")
+animation = &"aoe"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_healer_f_1"]
+replication_config = SubResource("SceneReplicationConfig_ixr7r")
+
+[node name="ctrlr_healer_f_2" type="Node2D" parent="."]
+script = ExtResource("4_ba2ns")
+
+[node name="spells_healer_f_2" type="Area2D" parent="ctrlr_healer_f_2"]
 visible = false
 script = ExtResource("3_ndysl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_2/spells_healer_f_2"]
 shape = SubResource("CircleShape2D_wylsp")
 
-[node name="spells_healer_f_2_anim" type="AnimatedSprite2D" parent="spells_healer_f_2"]
+[node name="anim_healer_f_2" type="AnimatedSprite2D" parent="ctrlr_healer_f_2/spells_healer_f_2"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_37kd4")
 frame = 6
 frame_progress = 1.0
 
-[node name="spells_healer_f_4" type="Area2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_healer_f_2"]
+replication_config = SubResource("SceneReplicationConfig_4701i")
+
+[node name="ctrlr_healer_f_3" type="Node2D" parent="."]
+script = ExtResource("7_wabr3")
+
+[node name="ctrlr_healer_f_4" type="Node2D" parent="."]
+script = ExtResource("8_8anf5")
+
+[node name="dp_healer_f_4" type="Node2D" parent="ctrlr_healer_f_4"]
+script = ExtResource("9_inyhr")
+
+[node name="heal_f_4" type="Area2D" parent="ctrlr_healer_f_4/dp_healer_f_4"]
 visible = false
 script = ExtResource("5_en0gn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spells_healer_f_4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_4/dp_healer_f_4/heal_f_4"]
 shape = SubResource("CircleShape2D_5elm7")
 
-[node name="spells_healer_f_4_anim" type="AnimatedSprite2D" parent="spells_healer_f_4"]
+[node name="anim_healer_f_4" type="AnimatedSprite2D" parent="ctrlr_healer_f_4/dp_healer_f_4/heal_f_4"]
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_84n3x")
 animation = &"ennemy"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_healer_f_4/dp_healer_f_4"]
+replication_config = SubResource("SceneReplicationConfig_jrmrc")
 
 [node name="special_healer_f" type="Area2D" parent="."]
 visible = false
@@ -315,10 +375,6 @@ scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_qy4n1")
 
 [node name="animations" type="Node" parent="."]
-
-[node name="mark_stun" type="AnimatedSprite2D" parent="animations"]
-sprite_frames = SubResource("SpriteFrames_1cvrw")
-script = ExtResource("6_4o8rw")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_qrf4g")

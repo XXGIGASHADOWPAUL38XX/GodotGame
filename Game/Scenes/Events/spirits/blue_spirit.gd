@@ -1,4 +1,4 @@
-extends "res://Game/Interface/ISpell.gd"
+extends "res://Game/Interface/ICollision.gd"
 
 const MARGIN_SPAWN_X = 300
 const MARGIN_SPAWN_Y = 200
@@ -14,9 +14,9 @@ var modulate_bool: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-	super._ready()
-	animation = $blue_spirit_anim
+	
 	if is_multiplayer_authority():
+		animation = $blue_spirit_anim
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -26,6 +26,9 @@ func _ready():
 		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
+		
+		await super._ready()
+		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -46,8 +49,8 @@ func spawn():
 	self.rotation = 0.0
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, get_window().size.x - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, get_window().size.y - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
 	
 	self.position = base_position_spawn
 	self.show()
@@ -79,7 +82,13 @@ func activate():
 	await die_animation()
 	
 func entity_entered(player):
-	Servrpc.any(ServiceStats, 'update_stats_local', [player, 'speed_bonus_ratio', player.speed_bonus_ratio + 0.3])
+	super.entity_entered(player)
+	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
+		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
+	)
 	
 func entity_exited(player):
-	Servrpc.any(ServiceStats, 'update_stats_local', [player, 'speed_bonus_ratio', player.speed_bonus_ratio - 0.3])
+	super.entity_exited(player)
+	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
+		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
+	)

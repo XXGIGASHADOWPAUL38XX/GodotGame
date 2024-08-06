@@ -11,3 +11,8 @@ enum StateDamage {
 	NULL,
 	IMMUNE,
 }
+
+enum StateShielded {
+	NULL,
+	SHIELDED,
+}

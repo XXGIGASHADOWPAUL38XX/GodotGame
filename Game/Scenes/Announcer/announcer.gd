@@ -19,11 +19,10 @@ func set_announce(announce, logo_left, logo_right, champion=null): #RELATIVE = R
 	position_announce()
 	
 	$HBoxContainer/Label.text = announce
-	var champion_is_ally = ServiceScenes.players.filter(func(player): return player.name == champion)
 	
-	if champion_is_ally.size() == 0:
+	if !(champion in ServiceScenes.players):
 		$HBoxContainer/Label.add_theme_color_override('font_color', Color.WHITE)
-	elif champion_is_ally[0].is_ally:
+	elif ServiceScenes.is_on_same_team(ServiceScenes.champion, champion):
 		$HBoxContainer/Label.add_theme_color_override('font_color', Color.BLUE)
 	else:
 		$HBoxContainer/Label.add_theme_color_override('font_color', Color.RED)

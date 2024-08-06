@@ -122,36 +122,6 @@ skew = Vector2(0.2, 0)
 corner_radius_top_left = 2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a6nq1"]
-properties/0/path = NodePath("ranger_m:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("ranger_m:modulate")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("ranger_m/health_bar:value")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("ranger_m/health_bar:max_value")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("ranger_m/health_bar:position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("ranger_m/shield:visible")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("ranger_m/shield:position")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("ranger_m/shield:size")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("ranger_m/AnimatedSprite2D:modulate")
-properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("ranger_m/AnimatedSprite2D:frame")
-properties/9/spawn = true
-properties/9/sync = true
 
 [node name="ranger_m" type="Node2D"]
 
@@ -169,14 +139,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="spells_ranger_m" parent="ranger_m" instance=ExtResource("6_t2n6e")]
 
-[node name="health_bar" type="ProgressBar" parent="ranger_m"]
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 40.0
-offset_bottom = -25.0
-theme = ExtResource("4_o4ur7")
-show_percentage = false
-
 [node name="shield" type="ProgressBar" parent="ranger_m"]
 offset_right = 4.0
 offset_bottom = 10.0
@@ -184,6 +146,14 @@ theme = ExtResource("4_o4ur7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fha27")
 show_percentage = false
 script = ExtResource("6_iyp80")
+
+[node name="health_bar" type="ProgressBar" parent="ranger_m"]
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 40.0
+offset_bottom = -25.0
+theme = ExtResource("4_o4ur7")
+show_percentage = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_a6nq1")

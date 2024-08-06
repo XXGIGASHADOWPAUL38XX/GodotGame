@@ -1,9 +1,18 @@
-extends CharacterBody2D
+extends IDamagingCollision
 
 var animation
 
 func _ready():
 	if is_multiplayer_authority():
+		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 6.0
+		damage_ratio = 0.0
+		# ------------------------------------ #
+		
+		await super._ready()
+		
 		self.hide()
 		animation = $anim_attack_golem
 		animation.animation_finished.connect(

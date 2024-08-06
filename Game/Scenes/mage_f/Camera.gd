@@ -26,7 +26,7 @@ func _process(delta):
 		self.offset.y += difference_y / 60
 		
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton && true == false:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			self.zoom += Vector2(0.05, 0.05) 
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:

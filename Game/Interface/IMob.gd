@@ -1,8 +1,9 @@
-extends "res://Game/Interface/ICharacter.gd"
+extends ICharacter
+
+class_name IMob
 
 var service_health = preload("res://Game/Services/service_health.gd").new()
 
-var animation: AnimatedSprite2D
 var collision_shape
 
 var attack
@@ -11,9 +12,9 @@ var attack_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
 	if is_multiplayer_authority():
-		ServiceScenes.allEnnemiesNode.append(self) #!!CHECK
+		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
+		
 		self.func_hitted.append(Callable(self, 'attack_back'))
 		attack_timer = service_time.init_timer(self, cd_attack)
 		animation.play("default")
@@ -27,6 +28,7 @@ func _ready():
 				attack_timer.start()
 		)
 		
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,7 +46,7 @@ func send_damage_to_authority(heros_dealing_dmg):
 
 func die(heros_dealing_dmg):
 	self.func_hitted.remove_at(self.func_hitted.find(Callable(self, 'attack_back')))
-	Servrpc.send_to_id(heros_dealing_dmg.get_multiplayer_authority(), heros_dealing_dmg, 'bonus', [])
+	Servrpc.send_to_id(heros_dealing_dmg.get_multiplayer_authority(), self, 'bonus', [])
 	
 	animation.play('die')
 	animation.animation_finished.connect(func():

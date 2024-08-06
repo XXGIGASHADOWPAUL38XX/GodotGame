@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingCollision
 
 var random_laser: Timer = Timer.new()
 
@@ -12,7 +12,11 @@ var base_size_x
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		super._ready()
+		
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 8.0
+		damage_ratio = 0.0
+		# ------------------------------------ #
 		
 		cshape = $CollisionShape2D
 		animation = $anim_laser
@@ -23,8 +27,10 @@ func _ready():
 		base_size_x = cshape.shape.height
 		
 		starter_points_scene = get_parent().get_parent().get_node('starter_points')
+		await super._ready()
 		
 		launch_timer()
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -53,6 +59,10 @@ func launch_laser():
 	await get_tree().create_timer(0.5).timeout
 	
 	animation.animation == 'laser'
+	
+	if get_tree() == null:
+		return
+		
 	await get_tree().create_timer(0.5).timeout
 	self.hide()
 	

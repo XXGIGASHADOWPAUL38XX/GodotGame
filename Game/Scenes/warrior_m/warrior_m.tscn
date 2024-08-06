@@ -116,39 +116,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eb5"]
 size = Vector2(20, 32)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qa1y4"]
-properties/0/path = NodePath("warrior_m:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("warrior_m/AnimatedSprite2D:modulate")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("warrior_m/health_bar:value")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("warrior_m/health_bar:max_value")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("warrior_m/health_bar:position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("warrior_m/shield:visible")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("warrior_m/shield:position")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("warrior_m/shield:size")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("warrior_m/AnimatedSprite2D:frame")
-properties/8/spawn = true
-properties/8/sync = true
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afrhq"]
 bg_color = Color(1, 0.827451, 0.568627, 1)
 skew = Vector2(0.2, 0)
 corner_radius_top_left = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rv4cw"]
 
 [node name="warrior_m" type="Node2D"]
 
@@ -166,10 +139,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="spells_warrior_m" parent="warrior_m" instance=ExtResource("3_lhuqc")]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="warrior_m"]
-root_path = NodePath("../..")
-replication_config = SubResource("SceneReplicationConfig_qa1y4")
-
 [node name="health_bar" type="ProgressBar" parent="warrior_m"]
 offset_left = -35.0
 offset_top = -35.0
@@ -185,3 +154,6 @@ theme = ExtResource("5_0p5ky")
 theme_override_styles/fill = SubResource("StyleBoxFlat_afrhq")
 show_percentage = false
 script = ExtResource("6_icr30")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_rv4cw")

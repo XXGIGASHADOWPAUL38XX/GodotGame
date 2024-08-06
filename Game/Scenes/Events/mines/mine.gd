@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingCollision
 
 var cshape: CollisionShape2D
 var animation: AnimatedSprite2D
@@ -9,8 +9,12 @@ var display_mines: Timer = Timer.new()
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		super._ready()
-	
+		
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 5.0
+		damage_ratio = 0.0
+		# ------------------------------------ #
+		
 		cshape = $CollisionShape2D
 		animation = $anim_mine as AnimatedSprite2D
 		
@@ -30,6 +34,7 @@ func _ready():
 		
 		body_entered.connect(func(obj): hitted())
 		
+		await super._ready()		
 		launch_timer()
 
 func launch_timer():

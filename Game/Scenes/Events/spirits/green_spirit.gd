@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingCollision
 
 const MARGIN_SPAWN_X = 600
 const MARGIN_SPAWN_Y = 400
@@ -11,11 +11,18 @@ var base_position_spawn
 var direction_vector
 var modulate_bool: bool = false
 
+var healing_base
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
-	animation = $green_spirit_anim as AnimatedSprite2D
 	if is_multiplayer_authority():
+		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		healing_base = 3.0
+		# ------------------------------------ #
+		
+		animation = $green_spirit_anim as AnimatedSprite2D
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -25,6 +32,8 @@ func _ready():
 		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
+		
+		await super._ready()		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,11 +53,11 @@ func spawn():
 	self.modulate.a = 1
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, get_window().size.x - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, get_window().size.y - MARGIN_SPAWN_Y))
-	self.show()
-	
+		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
+		
 	self.position = base_position_spawn
+	self.show()
 	
 	timer_explode = service_time.init_timer(self, 5)
 	timer_explode.start()
@@ -75,3 +84,6 @@ func activate():
 	
 	await get_tree().create_timer(5).timeout
 	die_animation()
+
+func output_damage_f(champion_hitted):
+	return healing_base * -1

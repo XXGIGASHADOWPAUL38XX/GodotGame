@@ -1,21 +1,14 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IControllerSpell
 
 func _ready():
-	if is_multiplayer_authority():
-		super._ready()
-		self.hide()
+	key = KEY_E
+	coltdown_time = 4
+	await super._ready()
 
-func spell3_explode(target_position):
-	if is_multiplayer_authority():	
-		self.position = target_position + ServiceSpell.set_random_pos(15)
-		self.scale = Vector2(0.02, 0.02)
-		self.modulate.a = 1
-		self.show()
-		
-		for i in range(8):
-			self.scale = self.scale * 1.03
-			self.modulate.a -= 0.01
-			await get_tree().create_timer(0).timeout
-			
-		self.hide()
+func active():
+	coltdown.start()
+	for spell3_per_champ in $dp_spell_3.get_children().filter(func(spell): return spell.name.begins_with('spell')):
+		spell3_per_champ.active()
 
+func send_to_spell4(frame_number):
+	self.get_parent().get_node('spells_ranger_m_4').mark_number += 1

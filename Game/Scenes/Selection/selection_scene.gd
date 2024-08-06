@@ -91,7 +91,7 @@ func launch_game():
 	get_tree().change_scene_to_file("res://Game/Scenes/Main/main_game.tscn")
 
 func set_player(id_player, champion_name, team_client_sender):
-	players.append(player_class.Player.new(id_player, champion_name, team_client_sender == team_client))
+	players.append(Player.new(id_player, champion_name, Team.new(team_client_sender)))
 	
 func id_client_to_team_client():
 	return [1, 2, 1, 2][Server.get_connected_clients().find(Server.get_actual_player())]

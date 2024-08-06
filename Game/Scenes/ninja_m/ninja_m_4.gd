@@ -1,6 +1,5 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
-var champion
 var cd_spell4 = 13.0
 var coltdown_spell4: Timer
 var passive: CharacterBody2D
@@ -46,5 +45,3 @@ func duplicate_spell_1(i):
 	MULTIPSYNC.replication_config.add_property('spells_ninja_m_4_R' + str(i) + ":modulate")
 	MULTIPSYNC.replication_config.add_property('spells_ninja_m_4_R' + str(i) + ":visible")
 	MULTIPSYNC.replication_config.add_property('spells_ninja_m_4_R' + str(i) + ":rotation")
-
-	ServiceScenes.addSpellToChampion(champion, spell4_unit)

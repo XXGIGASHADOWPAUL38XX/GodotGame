@@ -120,31 +120,7 @@ bg_color = Color(1, 0.827451, 0.568627, 1)
 skew = Vector2(0.2, 0)
 corner_radius_top_left = 2
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yyjlj"]
-properties/0/path = NodePath("healer_f:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("healer_f:visible")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("healer_f/health_bar:value")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("healer_f/health_bar:max_value")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("healer_f/health_bar:position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("healer_f/shield:size")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("healer_f/AnimatedSprite2D:frame")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("healer_f:modulate")
-properties/7/spawn = true
-properties/7/sync = true
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ge07w"]
 
 [node name="healer_f" type="Node2D"]
 
@@ -183,4 +159,4 @@ show_percentage = false
 script = ExtResource("6_fh3wg")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_yyjlj")
+replication_config = SubResource("SceneReplicationConfig_ge07w")

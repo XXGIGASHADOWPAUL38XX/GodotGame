@@ -10,6 +10,7 @@ var CONST_STATS = ['damage_final', 'armor_final', 'health_final', 'speed_final']
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ServiceScenes.HUD = self
 	champion = ServiceScenes.championNode
 	camera = ServiceScenes.getCamera()
 	champion_health = champion.get_node("health_bar")
@@ -34,12 +35,14 @@ func _process(delta):
 	
 func get_stats():
 	for stat in CONST_STATS:
-		var label_stat = Label.new()
-		label_stat.add_theme_font_size_override('font_size', 12)
-		label_stat.add_theme_color_override('font_color', Color.WHITE)
-		label_stat.set_name(stat)
-		label_stat.text = stat.to_upper() + ' : ' + str(int(champion.get(stat))) 
-		$Panel/HBoxContainer/Stats.add_child(label_stat)
+		if $Panel/HBoxContainer/Stats.get_children().size() < CONST_STATS.size():
+			var label_stat = Label.new()
+			label_stat.add_theme_font_size_override('font_size', 12)
+			label_stat.add_theme_color_override('font_color', Color.WHITE)
+			label_stat.set_name(stat)
+			$Panel/HBoxContainer/Stats.add_child(label_stat)
+		
+		$Panel/HBoxContainer/Stats.get_node(stat).text = stat.to_upper() + ' : ' + str(int(champion.get(stat))) 
 
 func update_stats_local():
 	var label_modified = $Panel/HBoxContainer/Stats.get_children().filter(func(label):

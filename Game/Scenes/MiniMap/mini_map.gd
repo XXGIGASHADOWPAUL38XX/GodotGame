@@ -21,7 +21,8 @@ func _process(delta):
 	assign_points()
 		
 func assign_points():
-	for i in range(ServiceScenes.alliesNode.size()):
-		$TextureRect/Allies.get_child(i).position = ServiceScenes.alliesNode[i].position * ratio
-	for i in range(ServiceScenes.ennemiesNode.size()):
-		$TextureRect/Ennemies.get_child(i).position = ServiceScenes.ennemiesNode[i].position * ratio
+#	for i in range(ServiceScenes.alliesNode.size()):
+#		$TextureRect/Allies.get_child(i).position = ServiceScenes.alliesNode[i].position * ratio
+#	for i in range(ServiceScenes.ennemiesNode.size()):
+#		$TextureRect/Ennemies.get_child(i).position = ServiceScenes.ennemiesNode[i].position * ratio
+	pass

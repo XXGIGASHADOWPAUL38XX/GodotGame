@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IPhysicalSpell.gd"
+extends IPhysicalSpell
 
 var animation: AnimatedSprite2D
 
@@ -8,11 +8,12 @@ var display_stones: Timer = Timer.new()
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		super._ready()
 	
 		cshape = $CollisionShape2D
 		animation = $anim_stone as AnimatedSprite2D
 		animation.animation_finished.connect(collision)
+		
+		await super._ready()		
 		
 		launch_timer()
 

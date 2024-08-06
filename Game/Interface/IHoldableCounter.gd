@@ -1,4 +1,6 @@
-extends "res://Game/Interface/ICounter.gd"
+class_name IHoldableCounter
+
+extends ICounter
 
 var cd_spell
 var spell: AnimatedSprite2D
@@ -12,7 +14,7 @@ var key_released_bool = false
 
 func _ready():
 	if is_multiplayer_authority():
-		super._ready()
+		await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

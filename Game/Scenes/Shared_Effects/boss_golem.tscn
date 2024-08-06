@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://dj6cg4y1n2q8h"]
+[gd_scene load_steps=35 format=3 uid="uid://dj6cg4y1n2q8h"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem.gd" id="1_iipq7"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem_phldr.gd" id="1_ktsv5"]
 [ext_resource type="Texture2D" uid="uid://v6ins432o35e" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/Character_sheet.png" id="2_yip8k"]
 [ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_4c3l2"]
 [ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="4_phfmg"]
@@ -190,39 +191,15 @@ animations = [{
 "speed": 30.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_th1uy"]
-properties/0/path = NodePath("boss_golem:visible")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("boss_golem:position")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("boss_golem:modulate")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("boss_golem:scale")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("boss_golem/boss_golem_anim:animation")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("boss_golem/boss_golem_anim:frame")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("boss_golem/attack_golem/anim_attack_golem:animation")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("boss_golem/attack_golem/anim_attack_golem:frame")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("boss_golem/attack_golem:visible")
-properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("boss_golem/health_bar:value")
-properties/9/spawn = true
-properties/9/sync = true
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ud83n"]
 
-[node name="boss_golem" type="Node2D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4a5ck"]
+properties/0/path = NodePath(".:process_mode")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="boss_golem_phldr" type="Node"]
+script = ExtResource("1_ktsv5")
 
 [node name="boss_golem" type="CharacterBody2D" parent="."]
 script = ExtResource("1_iipq7")
@@ -245,19 +222,25 @@ theme = ExtResource("3_4c3l2")
 value = 100.0
 script = ExtResource("4_phfmg")
 
-[node name="attack_golem" type="CharacterBody2D" parent="boss_golem"]
+[node name="spells" type="Node" parent="boss_golem"]
+
+[node name="attack_golem" type="Area2D" parent="boss_golem/spells"]
 position = Vector2(90, 0)
 scale = Vector2(3, 3)
 script = ExtResource("5_beh7g")
 
-[node name="anim_attack_golem" type="AnimatedSprite2D" parent="boss_golem/attack_golem"]
+[node name="anim_attack_golem" type="AnimatedSprite2D" parent="boss_golem/spells/attack_golem"]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_83h8c")
 frame = 6
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boss_golem/attack_golem"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="boss_golem/spells/attack_golem"]
 polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0, 20.5, 16, 6, 34.5, -30, 45.5)
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="boss_golem/spells"]
+root_path = NodePath("../attack_golem")
+replication_config = SubResource("SceneReplicationConfig_ud83n")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_th1uy")
+replication_config = SubResource("SceneReplicationConfig_4a5ck")

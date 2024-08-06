@@ -1,16 +1,22 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
-var champion
 var throw_direction = Vector2.RIGHT
 var animation: AnimatedSprite2D
 var passive: CharacterBody2D
 var HUD
 var shadow_node
 
-func _ready():	
-	champion = ServiceScenes.championNode
-	animation = $anim_ninja_m_1
-	shadow_node = get_parent().get_node('animations').get_node('shadow')
+func _ready():
+	if is_multiplayer_authority():
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 10.0
+		damage_ratio = 0.3
+		# ------------------------------------ #
+		
+		await super._ready()
+		
+		animation = $anim_ninja_m_1
+		shadow_node = get_parent().get_node('animations').get_node('shadow')
 
 func _process(delta):
 	pass

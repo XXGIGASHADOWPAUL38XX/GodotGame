@@ -1,11 +1,20 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
 var player # INSTANCIE LORS DE LA DUPLICATION
+
+var healing_base: float
 
 func _ready():
 #	self.hidden.connect(func(): self.position = Vector2(-1000, -1000))
 	CONF_DETECT_WITH = ServiceScenes.alliesNode + ServiceScenes.ennemiesNode
-	super._ready()
+	
+	# DEFINITION VARIABLES IDAMAGING SPELL #
+	damage_base = 8.0
+	healing_base = 8.0
+	damage_ratio = 0.2
+	# ------------------------------------ #
+		
+	await super._ready()
 			
 func _process(_delta):
 	pass
@@ -16,7 +25,7 @@ func spell4_heal():
 	self.show()
 	
 	self.get_node('spells_healer_f_4_anim').animation = 'ennemy' if ServiceScenes.get_property_from_player(
-		player, 'is_ally'
+		player, '.is_ally()'
 	) == false else 'ally'
 	
 	for i in range(10):
@@ -37,6 +46,9 @@ func spell4_heal():
 func test():
 	var m = get_parent().get_node('MultiplayerSynchronizer') as MultiplayerSynchronizer
 
-		
+func output_damage_f(champion_hitted):
+	if ServiceScenes.is_on_same_team(self, champion_hitted):
+		return (healing_base + (damage_ratio * champion.damage_final)) * -1
+	return damage_base + (damage_ratio * champion.damage_final) * (1 - (champion_hitted.armor_final / 100))
 
 

@@ -1,6 +1,5 @@
-extends "res://Game/Interface/IHoldableCounter.gd"
+extends IHoldableCounter
 
-var champion
 var animation 
 
 func _ready():
@@ -14,13 +13,13 @@ func _ready():
 		
 		cd_spell = 10
 		coltdown_spell = service_time.init_timer(self, cd_spell)
-		timer_key_release_cd = 1
+		timer_key_release_cd = 10
 		key = KEY_D
 
 		champion = ServiceScenes.championNode
-		super._ready()
+		await super._ready()
 		
-		func_on_entity_entered.append(Callable(self, 'dash'))
+		func_on_spell_entered.append(Callable(self, 'dash'))
 
 func _process(_delta):
 	if is_multiplayer_authority():
@@ -63,8 +62,8 @@ func dash():
 
 	animation.play("dash")
 
-	for i in range(20):
-		champion.position = champion.position + ServiceSpell.set_in_front(champion, 5)
+	for i in range(25):
+		champion.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 4)
 		self.position = champion.position + ServiceSpell.set_in_front(champion, 10)
 		await get_tree().create_timer(0).timeout
 

@@ -3,7 +3,7 @@ extends Node
 var client = ENetMultiplayerPeer.new()
 
 const PORT = 9999
-var ADDRESS = '86.202.179.214'
+var ADDRESS = '127.0.0.1'
 var data = {}
 
 var connected_peer_ids = []

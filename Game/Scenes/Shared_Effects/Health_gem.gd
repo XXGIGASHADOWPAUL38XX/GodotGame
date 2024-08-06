@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IReceiverObject.gd"
+extends IDamagingCollision
 
 const NUMBER_FRAMES = 4
 const MARGIN_SPAWN_X = 600
@@ -8,15 +8,17 @@ var timer_spawn
 var animation
 var modulate_bool: bool = false
 
+var healing_base
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
-	animation = $health_gem_anim
-	ServiceScenes.allEnnemiesNode.append(self)
-#	if is_multiplayer_authority():
-#		timer_spawn = service_time.init_timer(self, randf_range(5, 15))
-#		timer_spawn.start()
-#		timer_spawn.timeout.connect(spawn)
+	if is_multiplayer_authority():
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		healing_base = 5.0
+		# ------------------------------------ #
+		
+		animation = $health_gem_anim
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,8 +27,6 @@ func _process(delta):
 		
 		if self.visible: 
 			$CollisionShape2D.disabled = animation.frame + 1 >= NUMBER_FRAMES
-			if animation.animation == 'heal':
-				heal()
 		
 func spawn():
 	ServiceAnnounce.set_announce(
@@ -58,7 +58,6 @@ func die():
 	self.hide()
 	timer_spawn.start()
 	animation.play('default')
-		
-func heal():
-#	self.ennemy_f.take_damage(-2, State.StateMovement.NULL)
-	await get_tree().create_timer(0.2).timeout
+	
+func output_damage_f(champion_hitted):
+	return healing_base * -1

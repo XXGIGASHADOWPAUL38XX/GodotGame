@@ -22,7 +22,7 @@ func _ready():
 	camera = ServiceScenes.getCamera()
 	number_orb = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel/number
 	orbs_grid = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer as GridContainer
-	items_container = $PanelContainer/VBoxContainer/Items
+	items_container = $PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items
 	
 	number_orb_value(4)
 	
@@ -79,21 +79,20 @@ func mouse_panel(panel):
 		return
 	panel.modulate = Color.WHITE
 
-func on_click_actif(orb: TextureButton):
+func load_active(orb: Control):
+	var orb_texture_button = orb.get_node("GridContainer").get_node("MarginContainer").get_node("Panel5").get_child(0)
+	
 	var champion = ServiceScenes.champion.name
-	Servrpc.any(self, 'on_click_actif_rpc', [orb.get_name(), ServiceScenes.championNode, Server.get_actual_player()])
+	ServiceOrbs.instanciate_orb(orb.get_name())
 	ServiceAnimations.set_animation(ServiceScenes.championNode, 'animation_upgraded')
 	ServiceAnnounce.set_announce(
 		champion + ' purchased orb active : ' + orb.get_name(),
 		'res://Game/Ressources/Heros/icons/' + champion  + '.png',
-		orb.texture_normal.resource_path, champion
+		orb_texture_button.texture_normal.resource_path, champion
 	)
 #	disable_actifs()
 
-func on_click_actif_rpc(orb, champion, id):
-	var active_orb = load("res://Game/Scenes/Orbs_active/" + orb + "_active.tscn").instantiate()
-	active_orb.set_multiplayer_authority(id)
-	champion.add_child(active_orb)
+
 
 func orb_gained(item_name, label_number):
 	if int(number_orb.text) > 0:
@@ -104,17 +103,25 @@ func orb_gained(item_name, label_number):
 		else:
 			orb_dict[item_name] = 1
 		
-		items.filter(func(IItem): return IItem.is_not_selected()).map(func(IItem): IItem.status_texture_button(orb_dict))
+		items.filter(func(IItem): return IItem.is_not_selected()).map(
+			func(IItem): IItem.status_texture_button(orb_dict))
 		item_stats(item_name)
 		
 func item_bought(item):
 	orb_dict = {}
-	items.filter(func(IItem): return IItem.is_not_selected()).map(func(IItem): IItem.status_texture_button(orb_dict))
+	
+	items.filter(func(IItem): return IItem.is_not_selected()).map(
+		func(IItem): IItem.status_texture_button(orb_dict))
 	item_stats(item)
+	
+	var item_texture = items_container.get_children().filter(
+		func(x): return x.get_name().to_lower() == item.to_lower())[0]
+		
+	load_active(item_texture)
 	
 func item_stats(item_name):
 	var item = item_class.get(item_name)
-	Servrpc.any(ServiceStats, 'update_stats_from_item', [ServiceScenes.championNode, item])
+	ServiceStats.update_stats_from_item(ServiceScenes.championNode, item)
 	get_parent().get_node('stats_heros').update_stats_local()
 
 func on_click_passive_rpc(orb, champion, id):

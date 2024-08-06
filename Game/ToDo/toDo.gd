@@ -1,24 +1,23 @@
 # - PRIORITE 1
-# - optimier shop si possible {{VERIF}}
-# - refaire gestion stats / voir avec interfaces IHeros/ICharacter etc {{VERIF}}
-# - verifier que les spells marchent bien avec le nouveau fonctionnement {{VERIF}}
-# - spell 4 warrior
-# - faire effects speciaux / contres personnages
-# - faire mobs qui lachent les orbes
-# - voir pour ajouter les ennemies (allEnnemiesNodes) dans la classe IEntity et pas ailleurs
-# - modifier les healthbar pour le décalage
-# - mettre serviceMove dans IChampion + modifier animation.speed pour s'adapter avec speed_final
-# - regarder si ServiceScenes.addSpellToChampion sert tjrs a qqch
-# - faire une interface de duplication et revoir les duplications 
+# - mettre des conditions pour lancer des sorts dans IControllerSpell
+# - faire le lien entre spell3 et spell4 tireur
+ 
+# - algo qui met automatiquement le chemin du multiplayer bon
+# - trouver plus opti pour Servrpc.set_any(self, 'multip_sync_path', "./../../MultiplayerSynchronizer")
+# - faire un spell sans dégat basé sur node2D mais avec les attributs comme service time etc
 
+# - mettre serviceMove dans IChampion + modifier animation.speed pour s'adapter avec speed_final
+
+# - refaire gestion stats / voir avec interfaces IHeros/ICharacter etc {{VERIF}}
+# - faire une interface de duplication et revoir les duplications {{VERIF}}
+# - spell 4 warrior
+# - faire effects speciaux / contres personnages {{VERIF}}
+
+# - voir pour ajouter les ennemies (allEnnemiesNodes) dans la classe IEntity et pas ailleurs
+# - corriger bug de vie (pas a 100% au début)
+# - changer items en singleton (le shop)
 
 # RANGER_M CHAMPION_NODES
 
-# - ameliorer affichage champion ranger_m
-# - ajouter sort 4 warrior_m
-
 # - Faire HUD
-
-# - faire d'autres boss
 # - Faire TAB
-# - MAP

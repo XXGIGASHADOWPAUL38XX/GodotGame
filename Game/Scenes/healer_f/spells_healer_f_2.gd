@@ -1,37 +1,31 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
-var champion
-var cd_spell = 8.0
 var animation: AnimatedSprite2D
-var coltdown_spell: Timer
-var HUD
-var passive
 var modulate_bool = false
+
+var healing_base
 
 func _ready():
 	if is_multiplayer_authority():
-		CONF_DETECT_WITH = ServiceScenes.alliesNode
-		super._ready()
-		self.hide()
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 2.0
+		healing_base = 2.0
+		damage_ratio = 0.05
+		# ------------------------------------ #
 		
-		champion = ServiceScenes.championNode
-		animation = $spells_healer_f_2_anim
-		coltdown_spell = service_time.init_timer(self, cd_spell)
+		CONF_DETECT_WITH = ServiceScenes.alliesNode
+		
+		animation = $anim_healer_f_2
+		
+		await super._ready()		
 
 func _process(_delta):
 	if is_multiplayer_authority():
 		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
-		if Input.is_key_pressed(KEY_Z) && coltdown_spell.time_left == 0:
-			coltdown_spell.start()
-			spell2_heal()
-			
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell, 2)
+		pass
 			
 		
-func spell2_heal():
+func active():
 	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 300)
 	self.show()
 	animation.play("default")
@@ -40,6 +34,7 @@ func spell2_heal():
 	animation.stop()
 	self.hide()
 	
-func heal(heros):
-	champion.take_damage(-2, State.StateMovement.NULL)
-	await get_tree().create_timer(0.2).timeout
+func output_damage_f(champion_hitted):
+	if ServiceScenes.is_on_same_team(self, champion_hitted):
+		return (healing_base + (damage_ratio * champion.damage_final)) * -1
+	return damage_base + (damage_ratio * champion.damage_final) * (1 - (champion_hitted.armor_final / 100))

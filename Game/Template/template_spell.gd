@@ -25,7 +25,7 @@ func _process(delta):
 		spell_function()
 		
 func spell_function():
-	spell.play("spell1_launch")
+	spell.play("spell_launch")
 	spell.stop()
 	
 

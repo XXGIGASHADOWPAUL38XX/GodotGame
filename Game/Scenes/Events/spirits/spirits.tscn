@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxdqv4awdrwwg"]
+[gd_scene load_steps=25 format=3 uid="uid://dxdqv4awdrwwg"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Events/spirits/blue_spirit.gd" id="1_4rbg7"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/spirits/spirits_phldr.gd" id="1_g3d6b"]
 [ext_resource type="Texture2D" uid="uid://coyrf8e0qoobb" path="res://Game/Ressources/Main_Effects/Spirit/blueSpiritidle.png" id="1_l2ud3"]
 [ext_resource type="Texture2D" uid="uid://c54uveh2wofa" path="res://Game/Ressources/Main_Effects/Spirit/spritespell.png" id="3_4inwg"]
 [ext_resource type="Script" path="res://Game/Scenes/Events/spirits/red_spirit.gd" id="4_duswc"]
@@ -121,93 +122,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hglr1"]
 radius = 57.4891
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_deua2"]
-properties/0/path = NodePath("blue_spirit:position")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7thbg"]
+properties/0/path = NodePath(".:process_mode")
 properties/0/spawn = true
-properties/0/sync = false
-properties/1/path = NodePath("blue_spirit:modulate")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("blue_spirit:rotation")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("blue_spirit:visible")
-properties/3/spawn = true
-properties/3/sync = false
-properties/4/path = NodePath("blue_spirit/blue_spirit_anim:animation")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("blue_spirit/blue_spirit_anim:frame")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("blue_spirit/CollisionShape2D:disabled")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("red_spirit:position")
-properties/7/spawn = true
-properties/7/sync = false
-properties/8/path = NodePath("red_spirit:visible")
-properties/8/spawn = true
-properties/8/sync = false
-properties/9/path = NodePath("red_spirit:modulate")
-properties/9/spawn = true
-properties/9/sync = true
-properties/10/path = NodePath("red_spirit:rotation")
-properties/10/spawn = true
-properties/10/sync = true
-properties/11/path = NodePath("red_spirit/red_spirit_anim:animation")
-properties/11/spawn = true
-properties/11/sync = true
-properties/12/path = NodePath("red_spirit/red_spirit_anim:frame")
-properties/12/spawn = true
-properties/12/sync = true
-properties/13/path = NodePath("red_spirit/CollisionShape2D:disabled")
-properties/13/spawn = true
-properties/13/sync = true
-properties/14/path = NodePath("green_spirit:visible")
-properties/14/spawn = true
-properties/14/sync = false
-properties/15/path = NodePath("green_spirit:position")
-properties/15/spawn = true
-properties/15/sync = false
-properties/16/path = NodePath("green_spirit:modulate")
-properties/16/spawn = true
-properties/16/sync = true
-properties/17/path = NodePath("green_spirit:rotation")
-properties/17/spawn = true
-properties/17/sync = true
-properties/18/path = NodePath("green_spirit/green_spirit_anim:animation")
-properties/18/spawn = true
-properties/18/sync = true
-properties/19/path = NodePath("green_spirit/green_spirit_anim:frame")
-properties/19/spawn = true
-properties/19/sync = true
-properties/20/path = NodePath("green_spirit/CollisionShape2D:disabled")
-properties/20/spawn = true
-properties/20/sync = true
-properties/21/path = NodePath("yellow_spirit:visible")
-properties/21/spawn = true
-properties/21/sync = true
-properties/22/path = NodePath("yellow_spirit:position")
-properties/22/spawn = true
-properties/22/sync = true
-properties/23/path = NodePath("yellow_spirit:modulate")
-properties/23/spawn = true
-properties/23/sync = true
-properties/24/path = NodePath("yellow_spirit:rotation")
-properties/24/spawn = true
-properties/24/sync = true
-properties/25/path = NodePath("yellow_spirit/yellow_spirit_anim:animation")
-properties/25/spawn = true
-properties/25/sync = true
-properties/26/path = NodePath("yellow_spirit/yellow_spirit_anim:frame")
-properties/26/spawn = true
-properties/26/sync = true
-properties/27/path = NodePath("yellow_spirit/CollisionShape2D:disabled")
-properties/27/spawn = true
-properties/27/sync = true
+properties/0/replication_mode = 1
 
-[node name="spirits" type="Node2D"]
+[node name="spirits_phldr" type="Node"]
+script = ExtResource("1_g3d6b")
 
 [node name="blue_spirit" type="Area2D" parent="."]
 visible = false
@@ -261,4 +182,4 @@ shape = SubResource("CircleShape2D_hglr1")
 disabled = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_deua2")
+replication_config = SubResource("SceneReplicationConfig_7thbg")

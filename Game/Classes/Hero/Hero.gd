@@ -18,8 +18,13 @@ var ranger_m = Hero.new(120, 15, 15, 80)
 var ninja_m = Hero.new(120, 15, 15, 80)
 var healer_f = Hero.new(120, 15, 15, 80)
 var tank_m = Hero.new(140, 10, 20, 80)
+var witcher_f = Hero.new(120, 15, 15, 80)
 
-var monster_gem = Hero.new(200, 15, 15, 0)
+var monster_gem_1 = Hero.new(200, 15, 15, 0)
+var monster_gem_2 = Hero.new(200, 15, 15, 0)
+var monster_gem_3 = Hero.new(200, 15, 15, 0)
+var monster_gem_4 = Hero.new(200, 15, 15, 0)
+
 
 var boss_golem = Hero.new(300, 15, 15, 0)
 var boss_crystal = Hero.new(300, 15, 15, 0)

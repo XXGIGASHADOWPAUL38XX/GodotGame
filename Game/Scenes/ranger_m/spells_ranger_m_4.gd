@@ -1,54 +1,36 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IControllerSpell
 
-var speed = 20.0
-var champion
-var throw_direction = Vector2.RIGHT
-var cd_spell4 = 1.5
-var spell4: AnimatedSprite2D
-var coltdown_spell4: Timer
-var HUD
-var animation
-var pre_animation: AnimatedSprite2D
-var mines_count
+var anim_pre_spell
+var anim_count
+var active_spell
+var mark_number: int:
+	get:
+		return mark_number
+	set(value):
+		mark_number = min(anim_count.sprite_frames.get_frame_count(anim_count.animation) - 1, value)
+		mark_number_value_changed(mark_number)
 
 func _ready():
-	if is_multiplayer_authority():
-		super._ready()
-		self.hide()
-
-		mines_count = get_parent().get_node('animations').get_node('spells_4_count')
-		pre_animation = get_parent().get_node('animations').get_node('spells_4_pre_anim')
-		champion = ServiceScenes.championNode
-		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
-		animation = $Spells_ranger_anim_4
-
-func _process(_delta):
-	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_SPACE) && coltdown_spell4.time_left == 0 && mines_count.frame > 0:
-			coltdown_spell4.start()
-			spell4_pre_mine()
-		
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell4, 4)
-
-func spell4_pre_mine():
-	if is_multiplayer_authority():
-		pre_animation.position = get_global_mouse_position()
-		pre_animation.play("default")
-		pre_animation.show()
-		
-		if !(pre_animation.animation_finished.is_connected(spell4_mine)):
-			pre_animation.animation_finished.connect(spell4_mine)
-		
-func spell4_mine():
-	pre_animation.hide()
-	self.global_position = pre_animation.global_position
-	mines_count.frame -= 1
-	self.show()
-	animation.play("spell_4_pre_anim")
+	key = KEY_SPACE
+	coltdown_time = 12
+	need_release = true
 	
-	await animation.animation_finished
-	self.hide()
+	cond_spells.append(Callable(self, 'can_launch_spell'))
+	await super._ready()
 	
+	anim_pre_spell = $anim_pre_spell as AnimatedSprite2D
+	anim_count = $anim_count
+	active_spell = $active_ranger_m_4
+	
+	anim_pre_spell.animation_finished.connect(Callable(active_spell, 'active'))
+
+func active():
+	anim_pre_spell.active()
+	active_spell.position = anim_pre_spell.position
+	mark_number -= 1
+
+func mark_number_value_changed(frame_number):
+	$anim_count.frame = frame_number
+
+func can_launch_spell():
+	return mark_number != 0

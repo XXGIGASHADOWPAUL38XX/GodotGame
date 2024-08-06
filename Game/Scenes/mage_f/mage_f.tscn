@@ -9,42 +9,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t6m6m"]
-properties/0/path = NodePath("mage_f/health_bar:value")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("mage_f/health_bar:position")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("mage_f/health_bar:max_value")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("mage_f/shield:visible")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("mage_f/shield:position")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("mage_f/shield:size")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath("mage_f/AnimatedSprite2D:frame")
-properties/6/spawn = true
-properties/6/sync = true
-properties/7/path = NodePath("mage_f/AnimatedSprite2D:modulate")
-properties/7/spawn = true
-properties/7/sync = true
-properties/8/path = NodePath("mage_f:position")
-properties/8/spawn = true
-properties/8/sync = true
-properties/9/path = NodePath("mage_f:visible")
-properties/9/spawn = true
-properties/9/sync = true
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d73ip"]
 bg_color = Color(1, 0.827451, 0.568627, 1)
 skew = Vector2(0.2, 0)
-corner_radius_top_left = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq6ii"]
 atlas = ExtResource("2_2ipmp")
@@ -153,6 +120,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uhn6w"]
+properties/0/path = NodePath(".:process_mode")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="mage_f" type="Node2D"]
 
 [node name="mage_f" type="CharacterBody2D" parent="."]
@@ -163,21 +135,6 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_cawle")
 
 [node name="spells_mage_f" parent="mage_f" instance=ExtResource("3_hss6p")]
-
-[node name="health_bar" type="ProgressBar" parent="mage_f"]
-top_level = true
-offset_right = 75.0
-offset_bottom = 10.0
-theme = ExtResource("4_o3c3r")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 11
-max_value = 150.0
-value = 150.0
-show_percentage = false
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="mage_f"]
-root_path = NodePath("../..")
-replication_config = SubResource("SceneReplicationConfig_t6m6m")
 
 [node name="shield" type="ProgressBar" parent="mage_f"]
 visible = false
@@ -195,3 +152,28 @@ script = ExtResource("7_jh4ai")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mage_f"]
 sprite_frames = SubResource("SpriteFrames_pvuku")
 animation = &"walk_up"
+
+[node name="health_bar" type="ProgressBar" parent="mage_f"]
+top_level = true
+custom_minimum_size = Vector2(75, 10)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -5.0
+offset_right = 37.5
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("4_o3c3r")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
+max_value = 150.0
+value = 150.0
+show_percentage = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_uhn6w")

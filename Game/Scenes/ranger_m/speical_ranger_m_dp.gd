@@ -1,7 +1,6 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
 var speed = 20.0
-var champion
 var spell
 var coltdown_spell: Timer
 var pos_offset
@@ -16,10 +15,7 @@ func _ready():
 	if is_multiplayer_authority():
 		spell = $speical_ranger_anim
 		
-		super._ready()
-		self.func_on_entity_entered.append(Callable(get_parent().get_node('target_ranger_m_3'), 'marked').bind(self))
-		
-		champion = ServiceScenes.championNode
+		await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

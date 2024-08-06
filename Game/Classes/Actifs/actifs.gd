@@ -40,13 +40,7 @@ func get_list_by_category(category: String):
 	).map(func(obj):
 		return obj.name
 	)
-	
-func duplicate_item(item):
-	var new_item = Item.new(
-		item.name, item.category, item.damage,
-		item.health, item.armor, item.desc
-	) 
-	new_item
+
 	
 
 

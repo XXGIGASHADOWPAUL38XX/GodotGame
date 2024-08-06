@@ -1,50 +1,47 @@
-extends AnimatedSprite2D
+extends ICollision
 
-var animations
-const SHADOW_SIZE = 30
+var animation
+var is_shadow = true
 
 func _ready():
-	animations = get_parent()
+	if is_multiplayer_authority():
+		animation = $shadow_anim
+		super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func duplicate_shadow(name, position, distance):
-	var MULTIPSYNC = get_parent().get_parent().get_node('MultiplayerSynchronizer')
-	var shadow = self.duplicate()
+func active(shuriken):
+	self.position = shuriken.position
+	self.show()
 	
-	shadow.set_name(name)
-	shadow.set_script(preload("res://Game/Scenes/ninja_m/script_shadow.gd"))
-	shadow.show()
-	shadow.global_position = position
+func is_active():
+	return self.visible
 	
-	animations.add_child(shadow)
+func has_been_dashed_to():
+	self.hide()
 	
-func get_shadow_clicked(mouse_position):
-	var shadow = animations.get_children().filter(
-		func(obj):
-			return obj.get_name().begins_with('shadow') && obj.global_position.distance_to(
-				mouse_position) < SHADOW_SIZE
-	)
-
-	if shadow.size() == 1:
-		shadow = shadow[0]
-	elif shadow.size() > 1:
-		var min_distance = SHADOW_SIZE
-		for node in shadow:
-			if node.global_position.distance_to(mouse_position) < min_distance:
-				min_distance = node.global_position.distance_to(mouse_position)
-				shadow = [node]	
-	else:
-		shadow = null
+func dash():
+	pass
 	
-	return shadow
-	
-#func set_pos(obj, position_base, degres, distance):
-#	var angle = deg_to_rad(degres) # Convert 120 degrees to radians
-#	var xOffset = distance * cos(angle)
-#	var yOffset = distance * sin(angle)
+#func get_shadow_clicked(mouse_position):
+	#var shadow = animations.get_children().filter(
+		#func(obj):
+			#return obj.get_name().begins_with('shadow') && obj.global_position.distance_to(
+				#mouse_position) < SHADOW_SIZE
+	#)
 #
-#	obj.global_position = position_base + (obj.global_transform.origin + Vector2(xOffset, yOffset))
-
+	#if shadow.size() == 1:
+		#shadow = shadow[0]
+	#elif shadow.size() > 1:
+		#var min_distance = SHADOW_SIZE
+		#for node in shadow:
+			#if node.global_position.distance_to(mouse_position) < min_distance:
+				#min_distance = node.global_position.distance_to(mouse_position)
+				#shadow = [node]	
+	#else:
+		#shadow = null
+	#
+	#return shadow
+#

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv6i1ewoegpm0"]
+[gd_scene load_steps=17 format=3 uid="uid://cv6i1ewoegpm0"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Items/items.gd" id="1_l8xfo"]
 [ext_resource type="PackedScene" uid="uid://cxm4wlo8erofd" path="res://Game/Scenes/Items/ItemList/Shockwave.tscn" id="2_ml1ol"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://c1fd2buup7fuj" path="res://Game/Scenes/Items/ItemList/Drone.tscn" id="9_d1x7c"]
 [ext_resource type="PackedScene" uid="uid://uyerc8q0eu0w" path="res://Game/Scenes/Items/ItemList/Earthquake.tscn" id="10_eq45g"]
 [ext_resource type="PackedScene" uid="uid://c28ftqavo5eb" path="res://Game/Scenes/Items/ItemList/Slice.tscn" id="11_suaja"]
+[ext_resource type="PackedScene" uid="uid://bw30kj6g86xx5" path="res://Game/Scenes/Items/ItemList/Block.tscn" id="13_5y4xg"]
+[ext_resource type="PackedScene" uid="uid://d1xfk6sih738r" path="res://Game/Scenes/Items/ItemList/Boost.tscn" id="14_hr3lr"]
+[ext_resource type="PackedScene" uid="uid://mrquouv1xvxa" path="res://Game/Scenes/Items/ItemList/Mark.tscn" id="15_jh2oa"]
+[ext_resource type="PackedScene" uid="uid://yuptduhgie2x" path="res://Game/Scenes/Items/ItemList/Cleanse.tscn" id="16_2m3ju"]
 
 [node name="items" type="Control"]
 z_index = 5
@@ -234,28 +238,55 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "1"
 
-[node name="Items" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Shockwave" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("2_ml1ol")]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+
+[node name="Items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Shockwave_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("2_ml1ol")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Drone_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("9_d1x7c")]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Drone" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("9_d1x7c")]
+[node name="Earthquake_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("10_eq45g")]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Earthquake" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("10_eq45g")]
+[node name="Slice_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("11_suaja")]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Slice" parent="PanelContainer/VBoxContainer/Items" instance=ExtResource("11_suaja")]
+[node name="Block_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("13_5y4xg")]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 2
-size_flags_horizontal = 4
+
+[node name="Boost_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("14_hr3lr")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+
+[node name="Mark_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("15_jh2oa")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+
+[node name="Cleanse_gem" parent="PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items" instance=ExtResource("16_2m3ju")]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

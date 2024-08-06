@@ -1,6 +1,5 @@
-extends "res://Game/Interface/IHoldableCounter.gd"
+extends IHoldableCounter
 
-var champion
 var animation: AnimatedSprite2D
 
 func _ready():
@@ -8,9 +7,9 @@ func _ready():
 		animation = $AnimatedSprite2D
 		animation.animation = 'default'
 		animation.scale = Vector2(0.06, 0.06)
-		animation.animation_changed.connect(func(a) : 
-			HAS_DMG_EFFECT = a == 'explode'
-			self.modulate = 1 if a == 'explode' else 0
+		animation.animation_changed.connect(func() : 
+			HAS_DMG_EFFECT = animation.animation == 'explode'
+			self.modulate = 1 if animation.animation == 'explode' else 0
 		)
 		
 		cd_spell = 10
@@ -22,7 +21,7 @@ func _ready():
 
 		champion = ServiceScenes.championNode
 		self.modulate.a = 0
-		super._ready()
+		await super._ready()
 		
 		func_on_spell_entered.append(Callable(self, 'explode'))
 
@@ -56,7 +55,7 @@ func stop_spell():
 		await get_tree().create_timer(0.0).timeout
 
 	champion.set_attribute('state_damage', State.StateDamage.NULL)
-	champion.set_attribute('state_movement', State.StateMovement.IMMOBILE)
+	champion.set_attribute('state_movement', State.StateMovement.NULL)
 	self.hide()
 
 func explode():

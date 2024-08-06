@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IDamagingSpell.gd"
+extends IDamagingSpell
 
 var animation
 

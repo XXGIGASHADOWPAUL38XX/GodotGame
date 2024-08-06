@@ -1,5 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqklsygw427jh"]
+[gd_scene load_steps=26 format=3 uid="uid://dqklsygw427jh"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Events/explosions/explosions.gd" id="1_6am6t"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/explosions/explosion.gd" id="2_iskkd"]
 [ext_resource type="Script" path="res://Game/Scenes/Main/explosion.gd" id="11_nlj84"]
 [ext_resource type="Texture2D" uid="uid://cn5htcx73fnlt" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Explosion/001.png" id="12_vrdfk"]
 [ext_resource type="Texture2D" uid="uid://fwlhmnm3hk3a" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Explosion/002.png" id="13_0kwyn"]
@@ -71,25 +73,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr1hn"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cmia2"]
-properties/0/path = NodePath("explosion/explosion:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("explosion/warning:position")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("explosion/explosion:visible")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("explosion/warning:visible")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("explosion/explosion/animatedSprite:frame")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("explosion/warning/animatedSprite:frame")
-properties/5/spawn = true
-properties/5/sync = true
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rmv2a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ums8t"]
 animations = [{
@@ -116,21 +100,23 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aqh0u"]
 
-[node name="explosions" type="Node2D"]
+[node name="explosions_phldr" type="Node"]
+script = ExtResource("1_6am6t")
 
 [node name="explosion" type="Node" parent="."]
 script = ExtResource("11_nlj84")
 
-[node name="explosion" type="CharacterBody2D" parent="explosion"]
+[node name="explosion" type="Area2D" parent="explosion"]
+script = ExtResource("2_iskkd")
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="explosion/explosion"]
 sprite_frames = SubResource("SpriteFrames_l58va")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="explosion/explosion"]
 shape = SubResource("CircleShape2D_7gu5q")
-disabled = true
 
-[node name="warning" type="CharacterBody2D" parent="explosion"]
+[node name="warning" type="Area2D" parent="explosion"]
+visible = false
 position = Vector2(-1, 0)
 scale = Vector2(0.85, 0.85)
 
@@ -145,12 +131,14 @@ scale = Vector2(0.107338, 0.103763)
 shape = SubResource("CircleShape2D_dr1hn")
 disabled = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_cmia2")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="explosion"]
+root_path = NodePath("../explosion")
+replication_config = SubResource("SceneReplicationConfig_rmv2a")
 
 [node name="missile" type="Node" parent="."]
 
 [node name="missile" type="CharacterBody2D" parent="missile"]
+visible = false
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="missile/missile"]
 sprite_frames = SubResource("SpriteFrames_ums8t")

@@ -20,12 +20,15 @@ var allPlayersNode = []
 var allEnnemiesNode = [] # INCLUDE MONSTERS AND OBJECTS
 
 var main_scene
+var HUD
 var items
 var camera
 var SENode
 var rochers
 var ennemiesSpells: Array = []
 var championSpells: Array = []
+
+var mutlip_scene
 
 var CONFIG_NB_PLAYERS_GAME = null
 
@@ -39,9 +42,6 @@ func get_players():
 	return players
 	
 func set_global_players():
-	for player in players:
-		setSpells(player)
-	
 	champion = players.filter(
 		func(obj):
 			return obj.id == Server.get_actual_player()
@@ -52,7 +52,7 @@ func set_global_players():
 	if players.size() > 2:
 		ally = players.filter(
 			func(obj):
-				return obj.id != Server.get_actual_player() && obj.is_ally == true
+				return obj.id != Server.get_actual_player() && obj.is_ally() == true
 		)[0]
 		allyNode = ally.node
 		alliesNode.append(allyNode)
@@ -60,7 +60,7 @@ func set_global_players():
 	
 	var ennemies = players.filter(
 		func(obj):
-			return obj.is_ally == false
+			return obj.is_ally() == false
 	)
 		
 	for i in range(ennemies.size()):
@@ -100,21 +100,8 @@ func setSENode(node):
 func getEnnemySpells():
 	return ennemiesSpells
 
-func setSpells(champion_to_set):
-	for node in champion_to_set.node.get_node("spells_" + champion_to_set.name).get_children():
-		if node is Area2D && node.get_name().begins_with('spell'):
-			champion_to_set.spells.append(node)
-
 func getChampionSpells():
 	return championSpells
-
-func addSpellToChampion(champion_to_add, spell, time=null):
-	var player = get_player_from_property('node', champion_to_add)
-	if player.spells.find(spell) == -1:
-		player.spells.append(spell)
-		if time != null:
-			await get_tree().create_timer(time).timeout
-			player.spells.pop_at(player.spells.size() - 1)
 
 func get_player_from_property(property, value):
 	return players.filter(
@@ -134,3 +121,10 @@ func end_game(node):
 	
 	node.get_node('end_screen').end_game(false)
 	node.get_parent().get_parent().get_node(Server.get_opponent()).end_game(true)
+	
+func is_on_same_team(champion_1, champion_2):
+	var team_champion_1 = alliesNode if champion_1 in alliesNode else ennemiesNode
+	return champion_2 in team_champion_1
+	
+func add_as_ennemy(ennemy: Node2D):
+	allEnnemiesNode.append(ennemy)
