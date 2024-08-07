@@ -16,9 +16,9 @@ var multip_sync: MultiplayerSynchronizer
 func _ready():
 	# ----------------- RESSOURCE LOADER ----------------- #
 	self.process_mode = Node.PROCESS_MODE_DISABLED
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.5).timeout
 #
-	self.process_mode = Node.PROCESS_MODE_PAUSABLE
+	self.process_mode = Node.PROCESS_MODE_INHERIT
 	# ----------------- RESSOURCE LOADER ----------------- #
 	
 	Servrpc.any(self, 'set_multiplayer_properties', [])

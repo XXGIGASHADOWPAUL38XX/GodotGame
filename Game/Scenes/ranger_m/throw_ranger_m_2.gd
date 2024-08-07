@@ -34,5 +34,5 @@ func active(main_mector):
 		
 	self.hide()
 
-func post_dp_script(index):
-	delay = [0, 0.2, 0.4][index - 1]
+func post_dp_script(id, nbr_dupl):
+	delay = [0, 0.2, 0.4][id - 1]

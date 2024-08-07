@@ -12,7 +12,6 @@ var service_time = preload("res://Game/Services/service_time.gd").new()
 var HUD
 var cond_spells: Array[Callable]
 
-var need_release: bool = false
 var key_pressed: bool = false
 
 var spells_placeholder: IPlaceholderSpells
@@ -32,10 +31,10 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority() && cond_spells.all(func(c: Callable): return c.call()):
 		if Input.is_key_pressed(key):
-			if coltdown.time_left == 0 && ((need_release && !key_pressed) || !need_release):
+			if coltdown.time_left == 0 && !key_pressed:
 				self.active()
 				key_pressed = true
-		elif need_release:
+		else:
 			key_pressed = false
 		
 func get_spells(parent=self):
@@ -43,7 +42,8 @@ func get_spells(parent=self):
 	for c in parent.get_children():
 		if c is IDuplication:
 			spells += get_spells(c)
-		elif (c is IDamagingSpell && !c.is_base_dp_spell()) || (c is Area2D && !c is IDamagingSpell):
+		#elif (c is IDamagingSpell && !c.is_base_dp_spell()) || (c is Area2D && !c is IDamagingSpell):
+		elif (c is IDamagingSpell) || (c is Area2D && !c is IDamagingSpell):
 			spells.append(c)
 			
 	return spells

@@ -9,7 +9,6 @@ func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
-		need_release = true
 		
 		dash = $dash as IDamagingSpell
 		dash.CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode

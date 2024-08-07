@@ -39,10 +39,10 @@ func duplicate_obj(id):
 	
 	dp_parent.add_child(dp_object)
 	
-	dp_object.set_meta("dp_id", dp_id == 1)
+	dp_object.set_meta("dp_id", dp_id)
 	
 	if dp_object.has_method('post_dp_script') && is_multiplayer_authority():
-		dp_object.post_dp_script(id)
+		dp_object.post_dp_script(id, dp_number)
 		 
 func spells_placeholder_f(node: Node = self):
 	if node is IPlaceholderSpells:

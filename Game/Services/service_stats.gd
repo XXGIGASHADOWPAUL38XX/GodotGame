@@ -16,7 +16,7 @@ var colors = {
 }
 
 func set_attributes(heros):
-	var stats = class_hero.get(heros.name)
+	var stats = class_hero.get_heros(heros.name)
 	heros.set('damage_base', stats.get('damage'))
 	heros.set('armor_base', stats.get('armor'))
 	heros.set('health_base', stats.get('health'))

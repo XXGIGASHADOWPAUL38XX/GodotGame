@@ -26,7 +26,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	angle = id * 60
 
 func active():

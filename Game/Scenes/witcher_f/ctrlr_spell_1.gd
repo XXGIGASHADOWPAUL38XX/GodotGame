@@ -9,7 +9,6 @@ func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 3
-		need_release = true
 		
 		dp_cube_s1 = $dp_cube_1
 		dp_spell = $dp_spell

@@ -45,7 +45,7 @@ func _process(delta):
 		#else:
 			#HUD.bindTo(coltdown_spell_2, 2)
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	self.number_orb = id
 	self.angle = (id - 1) * 90
 	
@@ -74,7 +74,7 @@ func active():
 		await get_tree().create_timer(0).timeout
 		
 	# COME BACK
-	while !ServiceSpell.isCloseTo(self, champion, 30):
+	while !ServiceSpell.is_close_to(self, champion, 30):
 		self.position += (champion.position - self.position).normalized() * comeback_speed
 		await get_tree().create_timer(0).timeout
 		

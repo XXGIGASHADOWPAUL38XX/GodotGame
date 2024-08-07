@@ -1,4 +1,5 @@
 extends IDamagingCollision
+
 const RANGE_MAX = 900
 
 var speed = 25

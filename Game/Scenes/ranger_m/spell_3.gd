@@ -28,7 +28,7 @@ func active():
 		#thread_1.wait_to_finish()
 		#thread_2.wait_to_finish()
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	target.key_ennemy_marked = ennemies_of_current()[id - 1]
 	bubble.key_ennemy_marked = ennemies_of_current()[id - 1]
 

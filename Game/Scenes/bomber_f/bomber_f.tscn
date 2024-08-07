@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://dan7581x64urs"]
+
+[ext_resource type="Script" path="res://Game/Scenes/bomber_f/bomber_f.gd" id="1_kue0w"]
+[ext_resource type="Texture2D" uid="uid://dvell2h2msiu1" path="res://ressource/rpgsprites1/ranger_f.png" id="1_suv3w"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="2_qmuqt"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="3_wos0j"]
+[ext_resource type="PackedScene" uid="uid://dkeb5sqvgpnma" path="res://Game/Scenes/bomber_f/spells_bomber_f.tscn" id="4_7ts3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie2jl"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(0, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k55m"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(32, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyoue"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(64, 72, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b78fm"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(0, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymmmm"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(32, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uqmg"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(64, 108, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvuvp"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(0, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7unh"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(32, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0klew"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(64, 36, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kdv6"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7es0a"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4x0q"]
+atlas = ExtResource("1_suv3w")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxwov"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie2jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k55m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyoue")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b78fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymmmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uqmg")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvuvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7unh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0klew")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kdv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7es0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4x0q")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m0n7g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkavx"]
+bg_color = Color(1, 0.827451, 0.568627, 1)
+skew = Vector2(0.2, 0)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6vm0k"]
+
+[node name="bomber_f" type="Node2D"]
+
+[node name="bomber_f" type="CharacterBody2D" parent="."]
+script = ExtResource("1_kue0w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bomber_f"]
+sprite_frames = SubResource("SpriteFrames_fxwov")
+animation = &"walk_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bomber_f"]
+shape = SubResource("CapsuleShape2D_m0n7g")
+
+[node name="shield" type="ProgressBar" parent="bomber_f"]
+visible = false
+offset_left = 76.0
+offset_top = -14.0
+offset_right = 80.0
+offset_bottom = -4.0
+theme = ExtResource("2_qmuqt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xkavx")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+script = ExtResource("3_wos0j")
+
+[node name="health_bar" type="ProgressBar" parent="bomber_f"]
+top_level = true
+custom_minimum_size = Vector2(75, 10)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -5.0
+offset_right = 37.5
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_qmuqt")
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 11
+max_value = 150.0
+value = 150.0
+show_percentage = false
+
+[node name="spells_bomber_f" parent="bomber_f" instance=ExtResource("4_7ts3p")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6vm0k")

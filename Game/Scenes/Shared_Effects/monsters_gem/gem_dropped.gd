@@ -13,7 +13,7 @@ func _process(delta):
 	
 func dropped(heros):
 	self.show()
-	while not ServiceSpell.isCloseTo(self, heros, 15):
+	while not ServiceSpell.is_close_to(self, heros, 15):
 		self.global_position += (heros.position - self.global_position).normalized() * speed
 		await get_tree().create_timer(0.01).timeout
 		

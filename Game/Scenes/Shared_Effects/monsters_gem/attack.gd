@@ -10,7 +10,6 @@ func _ready():
 		# ------------------------------------ #
 		
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		await get_tree().create_timer(0.1).timeout
 		
 		await super._ready()
 		self.hide()

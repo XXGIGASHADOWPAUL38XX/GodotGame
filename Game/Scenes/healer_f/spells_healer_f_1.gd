@@ -12,8 +12,6 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-		
-		print(spell_controller.mark_stun_anim)
 		self.func_on_entity_entered.append(Callable(spell_controller.mark_stun_anim, 'marked'))
 
 		animation = $anim_healer_f_1

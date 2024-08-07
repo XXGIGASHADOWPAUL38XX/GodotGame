@@ -22,5 +22,5 @@ func die(heros_dealing_dmg):
 func bonus():
 	ServiceScenes.items.number_orb_value(int(ServiceScenes.items.number_orb.text) + 1)
 	
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	self.position = metadata_position[id - 1]

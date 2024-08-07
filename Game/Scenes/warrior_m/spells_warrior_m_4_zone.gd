@@ -1,12 +1,8 @@
 extends ICollision
 
 var speed = 20.0
-var throw_direction = Vector2.RIGHT
-var cd_spell4 = 14.0
-var spell4: AnimatedSprite2D
-var coltdown_spell4: Timer
-var HUD
 var modulate_bool: bool = false
+var animation 
 
 func _ready():
 	#!!
@@ -16,8 +12,7 @@ func _ready():
 		champion = ServiceScenes.championNode
 		self.modulate.a = 0.5
 		await super._ready()
-		spell4 = $spells_warrior_anim_4_zone
-		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
+		animation = $spells_warrior_anim_4_zone
 		
 		func_on_entity_entered.append(Callable(self, 'boost_zone_entered'))
 		func_on_entity_exited.append(Callable(self, 'boost_zone_exited'))

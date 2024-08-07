@@ -46,5 +46,5 @@ func active(matching_orb_s_2):
 		
 	self.hide()
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	self.number_orb = id

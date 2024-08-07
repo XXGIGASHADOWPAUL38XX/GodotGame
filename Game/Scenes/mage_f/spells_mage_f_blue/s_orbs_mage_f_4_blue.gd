@@ -77,7 +77,7 @@ func ready_to_launch_f(orb_from_spell_2):
 	
 	ready_to_launch = false
 	
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	self.number_orb = id
 	self.main_dp_authority = id == MAX_NUMBER_ORB
 

@@ -38,5 +38,5 @@ func active():
 	animation.stop()
 	self.hide()
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	base_angle = (id - 1) * 90

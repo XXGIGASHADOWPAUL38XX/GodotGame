@@ -16,10 +16,10 @@ func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	
 	#!! - Faire fonctionner avec tous les noms
-	self.get_node("CollisionShape2D").disabled = !self.visible
-	self.visibility_changed.connect(
-		func(): self.get_node("CollisionShape2D").disabled = !self.visible
-	)
+	#self.get_node("CollisionShape2D").disabled = !self.visible
+	#self.visibility_changed.connect(
+		#func(): self.get_node("CollisionShape2D").disabled = !self.visible
+	#)
 	
 	self.body_entered.connect(func(obj): 
 		if CONF_DETECT_WITH.find(obj) != -1:

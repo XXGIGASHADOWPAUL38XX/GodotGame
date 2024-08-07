@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsrslssd2npjh"]
+[gd_scene load_steps=16 format=3 uid="uid://dsrslssd2npjh"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Selection/selection_scene.gd" id="1_iitgv"]
 [ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="2_0slvs"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cvwbrg68s4s76" path="res://Game/Ressources/Heros/icons_champ_select_2/healer_f.png" id="8_nbjai"]
 [ext_resource type="Texture2D" uid="uid://q3ojbo56f25m" path="res://Game/Ressources/Heros/icons_champ_select_2/tank_m.png" id="9_ilhmo"]
 [ext_resource type="Texture2D" uid="uid://ch2fjccudxr0" path="res://Game/Ressources/Heros/icons_champ_select_2/witcher_f.png" id="10_h4van"]
+[ext_resource type="Texture2D" uid="uid://ccu2etfcy862" path="res://Game/Ressources/Heros/icons_champ_select_2/bomber_f.png" id="11_c37rt"]
+[ext_resource type="Texture2D" uid="uid://bm5cy0k0ki0cb" path="res://Game/Ressources/Heros/icons_champ_select_2/fighter_f.png" id="12_bittn"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_iitgv")
@@ -120,6 +122,20 @@ stretch_mode = 0
 custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 texture_normal = ExtResource("10_h4van")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="bomber_f" type="TextureButton" parent="Champions"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+texture_normal = ExtResource("11_c37rt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="fighter_f" type="TextureButton" parent="Champions"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+texture_normal = ExtResource("12_bittn")
 ignore_texture_size = true
 stretch_mode = 0
 

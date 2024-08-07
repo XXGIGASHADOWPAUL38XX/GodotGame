@@ -239,7 +239,6 @@ sprite_frames = SubResource("SpriteFrames_p6h6u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_spell_2/zone"]
 position = Vector2(6.81196e-06, -1.36239e-05)
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_af8ds")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_2"]

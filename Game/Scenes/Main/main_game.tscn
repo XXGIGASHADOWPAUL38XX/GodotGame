@@ -58,7 +58,6 @@ func _ready():
 	self.add_child(items_scene)
 	
 	var events_scene = preload(\"res://Game/Scenes/Events/events.tscn\").instantiate()
-	events_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
 	self.add_child(events_scene)
 
 	var stats_scene = preload(\"res://Game/Scenes/Stats_Heros/stats_heros.tscn\").instantiate()

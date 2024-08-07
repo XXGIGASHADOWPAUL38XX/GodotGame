@@ -6,7 +6,6 @@ var dp_node_spell_2
 func _ready():
 	key = KEY_SPACE
 	coltdown_time = 12
-	need_release = true
 	
 	dp_node_spell_2 = get_parent().get_node("ctrlr_mage_f_2_blue").get_node('dp_mage_f_2_blue')
 	dp_node = $dp_mage_f_4_blue

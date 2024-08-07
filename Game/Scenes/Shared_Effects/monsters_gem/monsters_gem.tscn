@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=3 uid="uid://bqyci8g30rwl"]
+[gd_scene load_steps=56 format=3 uid="uid://bqyci8g30rwl"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem_phldr.gd" id="1_2wahi"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem.gd" id="1_i8oys"]
 [ext_resource type="Texture2D" uid="uid://cdkyc0kydqejn" path="res://Game/Ressources/Main_Effects/Metal Monster/sheet-metal-monster-lila.png" id="2_qf8ie"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monster_gem.gd" id="3_eykrh"]
 [ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_lr2xw"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/attack.gd" id="4_hlxa2"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_fh2xh"]
@@ -330,6 +331,7 @@ script = ExtResource("1_2wahi")
 script = ExtResource("1_i8oys")
 
 [node name="monster_gem" type="CharacterBody2D" parent="monsters_gem"]
+script = ExtResource("3_eykrh")
 
 [node name="anim_monster_gem" type="AnimatedSprite2D" parent="monsters_gem/monster_gem"]
 scale = Vector2(2, 2)

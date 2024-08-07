@@ -5,7 +5,7 @@ func set_in_front(champion: Node2D, distance: int, incl: int=0):
 	direction = direction.rotated(champion.rotation + deg_to_rad(incl))
 	return direction.normalized() * distance
 		
-func isCloseTo(obj1, obj2, distance):
+func is_close_to(obj1, obj2, distance):
 	return obj1.global_position.distance_to(obj2.global_position) < distance
 	
 func set_random_pos(distance: int):

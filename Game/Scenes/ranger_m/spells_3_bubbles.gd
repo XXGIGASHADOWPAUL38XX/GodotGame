@@ -18,7 +18,7 @@ func active(target_position):
 
 	self.show()
 	
-	while !ServiceSpell.isCloseTo(champion, self, 3):
+	while !ServiceSpell.is_close_to(champion, self, 3):
 		var direction = champion.position - self.position
 		var velocity = direction.normalized() * speed
 		

@@ -13,7 +13,7 @@ func _ready():
 		animation = $anim_stone as AnimatedSprite2D
 		animation.animation_finished.connect(collision)
 		
-		await super._ready()		
+		await super._ready()
 		
 		launch_timer()
 

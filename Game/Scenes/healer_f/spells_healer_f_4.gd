@@ -40,7 +40,7 @@ func active():
 
 	self.hide()
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	key_champion_marked = champions_sorted()[id - 1]
 	
 func champions_sorted():

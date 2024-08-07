@@ -14,5 +14,5 @@ func active():
 	await shuriken.active()
 	shadow.active(shuriken)
 
-func post_dp_script(id):
+func post_dp_script(id, nbr_dupl):
 	shuriken.angle = id * 120

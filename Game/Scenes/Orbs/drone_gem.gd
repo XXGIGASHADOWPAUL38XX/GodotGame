@@ -5,7 +5,7 @@ var coltdown: Timer
 
 var center_object: Node2D
 var distance: float = 45.0  # Distance from center_object
-var rotation_speed: float = 2  # Adjust as needed
+var rotation_speed: float = 2  
 var current_angle: float = 0.0
 var missile
 var direction

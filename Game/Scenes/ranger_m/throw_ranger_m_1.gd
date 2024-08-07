@@ -2,9 +2,6 @@ extends IDamagingSpell
 
 var speed = 20.0
 var throw_direction = Vector2.RIGHT
-var spell2: AnimatedSprite2D
-var coltdown_spell: Timer
-var HUD
 var animation
 var delay
 
@@ -34,5 +31,5 @@ func active(main_mector):
 		
 	self.hide()
 
-func post_dp_script(index):
-	delay = [0, 0.2, 0.4, 0.6, 0.8][index - 1]
+func post_dp_script(id, nbr_dupl):
+	delay = [0, 0.2, 0.4, 0.6, 0.8][id - 1]

@@ -484,6 +484,7 @@ replication_config = SubResource("SceneReplicationConfig_dqoiu")
 script = ExtResource("11_6flm3")
 
 [node name="spell_warrior_m_3" type="Area2D" parent="ctrlr_warrior_m_3"]
+visible = false
 scale = Vector2(1.5, 2)
 script = ExtResource("3_7nk42")
 
@@ -505,6 +506,7 @@ script = ExtResource("4_ndepu")
 script = ExtResource("11_wl6rf")
 
 [node name="hit_warrior_m_4" type="Area2D" parent="ctrlr_warrior_m_4/dp_hit_warrior_m_4"]
+visible = false
 scale = Vector2(0.2, 0.25)
 script = ExtResource("13_3ehgl")
 

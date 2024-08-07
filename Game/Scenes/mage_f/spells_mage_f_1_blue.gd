@@ -20,7 +20,7 @@ func _process(delta):
 		pass
 			
 func active():
-	self.spell.frame = 0
+	animation.frame = 0
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 30)
 	
 	var direction = get_global_mouse_position() - position

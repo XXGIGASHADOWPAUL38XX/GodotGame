@@ -13,7 +13,6 @@ var mark_number: int:
 func _ready():
 	key = KEY_SPACE
 	coltdown_time = 12
-	need_release = true
 	
 	cond_spells.append(Callable(self, 'can_launch_spell'))
 	await super._ready()
