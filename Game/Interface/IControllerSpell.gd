@@ -24,8 +24,8 @@ func _ready():
 		
 		spells_placeholder_f()
 		
-		await CustomResourceLoader.await_resource_loaded(func(): return self.spells_placeholder != null)
-		await CustomResourceLoader.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		await await_resource_loaded(func(): return self.spells_placeholder != null)
+		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -61,8 +61,8 @@ func active():
 	pass
 
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while !c.call():
-		await self.get_tree().create_timer(retry_timeout).timeout
+	while c.get_object() != null && !c.call():
+		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 		
 	return true
 

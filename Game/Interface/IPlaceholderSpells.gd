@@ -17,7 +17,7 @@ func _ready():
 		ready_to_load_spell = true
 	
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
-	await CustomResourceLoader.await_resource_loaded(func(): return self.ready_to_load_spell)
+	await await_resource_loaded(func(): return self.ready_to_load_spell)
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
 
 	all_actives = get_all_actives()
@@ -49,3 +49,8 @@ func duplication_node_performed():
 	if (duplication_phldrs.all(func(d) : return d.duplication_performed)):
 		ready_to_load_spell = true
 
+func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
+	while c.get_object() != null && !c.call():
+		await c.get_object().get_tree().create_timer(retry_timeout).timeout
+		
+	return true

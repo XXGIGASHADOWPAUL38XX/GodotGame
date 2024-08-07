@@ -22,7 +22,7 @@ func _ready():
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	if spells_placeholder != null:
-		await CustomResourceLoader.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	
 	
@@ -98,7 +98,7 @@ func champion_hitting(node: Node = self):
 	return null
 
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while !c.call():
-		await self.get_tree().create_timer(retry_timeout).timeout
+	while c.get_object() != null && !c.call():
+		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 		
 	return true
