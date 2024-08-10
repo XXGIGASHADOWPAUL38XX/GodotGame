@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cktcyb5h1gdov"]
+[gd_scene load_steps=8 format=3 uid="uid://cktcyb5h1gdov"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/shockwave_gem.gd" id="1_2r6jq"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_green_orb_passive.gd" id="1_lbprw"]
 [ext_resource type="Texture2D" uid="uid://ctp86pkj66xoq" path="res://Game/Ressources/Orbs/green_orb/special.png" id="2_bqxxs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6w6r8"]
@@ -24,29 +25,33 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l4b3l"]
 properties/0/path = NodePath("green_orb_passive:position")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 properties/1/path = NodePath("green_orb_passive:modulate")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/replication_mode = 1
 properties/2/path = NodePath("green_orb_passive:visible")
 properties/2/spawn = true
-properties/2/sync = true
+properties/2/replication_mode = 1
 properties/3/path = NodePath("green_orb_passive:scale")
 properties/3/spawn = true
-properties/3/sync = true
+properties/3/replication_mode = 1
 
 [node name="green_orb_passive" type="Node2D"]
 
-[node name="green_orb_passive" type="Area2D" parent="."]
+[node name="ctrlr_green_orb_passive" type="Node2D" parent="."]
+script = ExtResource("1_lbprw")
+
+[node name="green_orb_passive" type="Area2D" parent="ctrlr_green_orb_passive"]
 visible = false
 script = ExtResource("1_2r6jq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="green_orb_passive"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_green_orb_passive/green_orb_passive"]
 shape = SubResource("CircleShape2D_6w6r8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="green_orb_passive"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ctrlr_green_orb_passive/green_orb_passive"]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_du3oc")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_green_orb_passive"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_l4b3l")

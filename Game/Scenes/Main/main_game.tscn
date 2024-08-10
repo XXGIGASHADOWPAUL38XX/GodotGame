@@ -97,13 +97,12 @@ func last_round_ended(champion): # FONCTION GLOBALE, le champion est celui qui e
 func check_health(value):
 	if (value == 0):
 		Servrpc.any(self, \"wait_sync\", [ServiceScenes.championNode])
-		await get_tree().create_timer(5.1).timeout # A VIRER DANS LE FUTUR
+		await get_tree().create_timer(5).timeout # A VIRER DANS LE FUTUR
 		
 		if ServiceScenes.players.filter(func(obj): obj.team.round_won == 3).size() != 0:
 			Servrpc.any(self, \"last_round_ended\", [ServiceScenes.championNode])
 		
 func wait_sync(heros_0_hp):
-	heros_0_hp = get_node(heros_0_hp as NodePath)
 	if ServiceScenes.championNode.get_node('health_bar').value == 0:
 		while heros_0_hp.get_node('health_bar').value != 0:
 			await get_tree().create_timer(0).timeout

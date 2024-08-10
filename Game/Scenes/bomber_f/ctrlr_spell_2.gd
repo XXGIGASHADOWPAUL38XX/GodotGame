@@ -1,4 +1,4 @@
-extends IControllerSpell
+extends IControllerKeyPressed
 
 var duplicated_spells
 

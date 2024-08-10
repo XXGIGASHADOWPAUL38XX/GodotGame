@@ -2,6 +2,9 @@ extends ICharacter
 
 class_name IHeros
 
+var target_position_mvmt = Vector2.ZERO
+var angle_mvmt
+
 func _ready():
 	if is_multiplayer_authority():
 		shield = $shield
@@ -14,7 +17,7 @@ func _ready():
 		
 func _process(delta):
 	if is_multiplayer_authority():
-		ServiceMovements.move(self, animation, speed_final * delta)	
+		move()
 		ServiceHealth.setBar(self, $health_bar)
 	
 func take_damage():
@@ -47,3 +50,31 @@ func set_multiplayer_properties():
 	
 	multip_sync.replication_config.add_property(shld_bar_path + ":position")
 	multip_sync.replication_config.add_property(shld_bar_path + ":size")
+	
+func move():
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		target_position_mvmt = get_global_mouse_position()
+		
+	self.direction = (target_position_mvmt - self.position).normalized()
+	self.velocity = self.direction * speed_final
+	
+	if (self.state_movement == State.StateMovement.SLOWED):
+		self.velocity *= 0.5
+	elif (self.state_movement == State.StateMovement.STUNNED or self.state_movement == State.StateMovement.IMMOBILE):
+		self.velocity *= 0
+	
+	self.move_and_collide(self.velocity)
+
+	play_movement_animation(animation)
+	#await get_tree().create_timer(0.05).timeout
+	
+func play_movement_animation(animation):
+	angle_mvmt = rad_to_deg(self.direction.angle())
+	if angle_mvmt >= -45 && angle_mvmt <= 45:
+		animation.play("walk_right")
+	elif angle_mvmt >= 45 && angle_mvmt <= 135:
+		animation.play("walk_down")
+	elif angle_mvmt >= 135 || angle_mvmt <= -135:
+		animation.play("walk_left")
+	else:
+		animation.play("walk_up")

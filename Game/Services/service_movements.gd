@@ -1,14 +1,13 @@
 extends Node
 
-var target_position = Vector2.ZERO
-var direction = Vector2.ZERO
-var angle = direction.angle()
+var target_position_mvmt = Vector2.ZERO
+var angle_mvmt
 	
 func move(character, animation, speed):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		target_position = character.get_global_mouse_position()
+		target_position_mvmt = character.get_global_mouse_position()
 		
-	character.direction = (target_position - character.position).normalized()
+	character.direction = (target_position_mvmt - character.position).normalized()
 	character.velocity = character.direction * speed
 	
 	if (character.state_movement == State.StateMovement.SLOWED):
@@ -21,13 +20,12 @@ func move(character, animation, speed):
 	play_movement_animation(character, animation)
 	
 func play_movement_animation(character, animation):
-	angle = character.direction.angle() 
-	angle = rad_to_deg(angle)  
-	if angle >= -45 && angle <= 45:
+	angle_mvmt = rad_to_deg(character.direction.angle())
+	if angle_mvmt >= -45 && angle_mvmt <= 45:
 		animation.play("walk_right")
-	elif angle >= 45 && angle <= 135:
+	elif angle_mvmt >= 45 && angle_mvmt <= 135:
 		animation.play("walk_down")
-	elif angle >= 135 || angle <= -135:
+	elif angle_mvmt >= 135 || angle_mvmt <= -135:
 		animation.play("walk_left")
 	else:
 		animation.play("walk_up")

@@ -1,4 +1,4 @@
-extends IControllerSpell
+extends IControllerKeyPressed
 
 var anim_pre_spell
 var anim_count

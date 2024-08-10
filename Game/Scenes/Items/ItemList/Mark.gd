@@ -1,4 +1,4 @@
-extends "res://Game/Interface/IItems.gd"
+extends IItems
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

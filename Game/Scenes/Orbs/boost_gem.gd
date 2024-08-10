@@ -1,32 +1,31 @@
-extends AnimatedSprite2D
+extends IAnimation
 
 var augment: int = 0
 const MAX_AUGMENT = 5
 var service_time = preload("res://Game/Services/service_time.gd").new()
 var item_class = preload("res://Game/Classes/Item/item.gd").new()
 
-var coltdown_wave = Timer.new()
-var cd_wave = 3.0
+var coltdown = Timer.new()
+var cd_boost = 5.0
 
 func _ready():
 	if is_multiplayer_authority():
-		coltdown_wave = service_time.init_timer(self, cd_wave)
-		coltdown_wave.timeout.connect(
+		coltdown = service_time.init_timer(self, cd_boost)
+		coltdown.timeout.connect(
 			func(): 
 				remove_stats()
 				augment = 0
 		)
 		
-		ServiceScenes.championNode.func_hit.append(Callable(self, 'special'))
+		await self._ready()
 		
-func special():
+func active():
 	if is_multiplayer_authority():
-		coltdown_wave.start()
+		coltdown.start()
 		
 		if augment < MAX_AUGMENT:
 			augment += 1
 			add_stats()
-			coltdown_wave.start() #!!
 			self.position = ServiceScenes.championNode.position
 			self.scale = Vector2(0.08, 0.08)
 			self.modulate.a = 0.4

@@ -1,4 +1,4 @@
-extends IControllerSpell
+extends IControllerKeyPressed
 
 var zone_ult 
 var cubes

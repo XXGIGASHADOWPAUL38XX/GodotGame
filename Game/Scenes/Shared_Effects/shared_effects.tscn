@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxlqqsgeeqtvw"]
+[gd_scene load_steps=30 format=3 uid="uid://dxlqqsgeeqtvw"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shared_effects.gd" id="1_voula"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/health_gem_phldr.gd" id="2_vn0h0"]
@@ -85,10 +85,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0xg5k"]
 radius = 18.0
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rhoha"]
-properties/0/path = NodePath(".:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2i2l4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3o0l8"]
 atlas = ExtResource("6_04pjl")
@@ -128,6 +125,11 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5de2"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rhoha"]
+properties/0/path = NodePath(".:process_mode")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="shared_effects" type="Node2D"]
 script = ExtResource("1_voula")
 
@@ -146,8 +148,7 @@ sprite_frames = SubResource("SpriteFrames_fmr5r")
 shape = SubResource("CircleShape2D_0xg5k")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="health_gem_phldr"]
-root_path = NodePath("../health_gem")
-replication_config = SubResource("SceneReplicationConfig_rhoha")
+replication_config = SubResource("SceneReplicationConfig_2i2l4")
 
 [node name="orb_gem_phldr" type="Node" parent="."]
 script = ExtResource("5_8ogd8")

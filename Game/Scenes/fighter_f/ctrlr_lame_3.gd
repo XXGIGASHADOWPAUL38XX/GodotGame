@@ -1,4 +1,4 @@
-extends IControllerSpell
+extends IControllerKeyPressed
 
 func _ready():
 	if is_multiplayer_authority():

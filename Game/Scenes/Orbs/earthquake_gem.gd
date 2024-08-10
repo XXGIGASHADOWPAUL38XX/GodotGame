@@ -12,13 +12,7 @@ func _ready():
 		
 		await super._ready()
 
-func _process(_delta):
-	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_F) && coltdown.time_left == 0:
-			special()
-			coltdown.start()
-
-func special():
+func active():
 	self.modulate.a = 0.02
 	self.show()
 	for i in range (5):

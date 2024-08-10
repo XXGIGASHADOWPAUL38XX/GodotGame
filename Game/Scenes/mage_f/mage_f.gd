@@ -9,11 +9,11 @@ var orb
 func _ready():
 	health_bar = $health_bar
 	if is_multiplayer_authority():
-		await super._ready()
-		
 		orb = $spells_mage_f/ctrlr_mage_f_1/spells_mage_f_1
 		animation = $AnimatedSprite2D
 		self.show()
+		
+	await super._ready()
 
 func _process(delta):
 	super._process(delta)

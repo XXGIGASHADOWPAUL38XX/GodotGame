@@ -1,4 +1,4 @@
-extends IControllerSpell
+extends IControllerKeyPressed
 
 var dp_node: IDuplication
 var dp_node_spell_2

@@ -187,7 +187,7 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fco3k"]
 properties/0/path = NodePath(".:process_mode")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 
 [node name="boss_crystal" type="Node2D"]
 
@@ -225,7 +225,6 @@ sprite_frames = SubResource("SpriteFrames_12cwg")
 polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0, 20.5, 16, 6, 34.5, -30, 45.5)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="boss_crystal/spells"]
-root_path = NodePath("../attack_crystal")
 replication_config = SubResource("SceneReplicationConfig_isunt")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

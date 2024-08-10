@@ -132,7 +132,6 @@ shape = SubResource("CircleShape2D_dr1hn")
 disabled = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="explosion"]
-root_path = NodePath("../explosion")
 replication_config = SubResource("SceneReplicationConfig_rmv2a")
 
 [node name="missile" type="Node" parent="."]

@@ -12,9 +12,8 @@ func _ready():
 		
 		await super._ready()
 		coltdown_wave = service_time.init_timer(self, cd_wave)
-		ServiceScenes.championNode.func_hitted.append(Callable(special))
 
-func special():
+func active():
 	if is_multiplayer_authority() && coltdown_wave.time_left == 0:
 		coltdown_wave = service_time.init_timer(self, cd_wave)
 		coltdown_wave.start()
@@ -24,7 +23,7 @@ func special():
 		self.modulate.a = 0.5
 		self.show()
 		
-		for i in range(16):
+		for i in range(25):
 			self.scale = self.scale * 1.05
 			self.modulate.a -= 0.03
 			await get_tree().create_timer(0).timeout

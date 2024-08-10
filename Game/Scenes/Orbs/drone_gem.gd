@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var cd = 4.0
+var cd = 2.0
 var coltdown: Timer
 
 var center_object: Node2D
