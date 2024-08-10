@@ -1,5 +1,7 @@
 extends Control
 
+class_name IItems
+
 var items_container = []
 var item_actif: TextureButton
 var item_class = preload("res://Game/Classes/Item/item.gd").new()

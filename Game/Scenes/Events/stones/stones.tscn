@@ -97,5 +97,4 @@ sprite_frames = SubResource("SpriteFrames_vev1a")
 animation = &"pre_fall"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="stones"]
-root_path = NodePath("../stone")
 replication_config = SubResource("SceneReplicationConfig_oj8iq")

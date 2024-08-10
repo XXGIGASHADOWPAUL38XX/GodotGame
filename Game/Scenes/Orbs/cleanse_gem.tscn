@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ivn1bxx3mfwp"]
+[gd_scene load_steps=15 format=3 uid="uid://ivn1bxx3mfwp"]
 
 [ext_resource type="Texture2D" uid="uid://dn0viosf3qoff" path="res://Game/Ressources/Orbs/blue_orb/blue_orb_active.png" id="1_3nwcy"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_blue_orb_active.gd" id="1_tsy5m"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/cleanse_gem.gd" id="2_dn41s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8upm1"]
@@ -71,30 +72,22 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 25.0
+"speed": 45.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s4vfp"]
-properties/0/path = NodePath("blue_orb_active:modulate")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("blue_orb_active:visible")
-properties/1/spawn = true
-properties/1/sync = true
-properties/2/path = NodePath("blue_orb_active:frame")
-properties/2/spawn = true
-properties/2/sync = true
-properties/3/path = NodePath("blue_orb_active:position")
-properties/3/spawn = true
-properties/3/sync = true
 
 [node name="blue_orb_active" type="Node2D"]
 
-[node name="blue_orb_active" type="AnimatedSprite2D" parent="."]
+[node name="ctrlr_blue_orb_active" type="Node2D" parent="."]
+script = ExtResource("1_tsy5m")
+
+[node name="blue_orb_active" type="AnimatedSprite2D" parent="ctrlr_blue_orb_active"]
 visible = false
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_okgfu")
 script = ExtResource("2_dn41s")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_blue_orb_active"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_s4vfp")

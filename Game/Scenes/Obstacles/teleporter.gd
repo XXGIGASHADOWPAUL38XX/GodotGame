@@ -35,7 +35,7 @@ func portal_entered(node_body, portal_emit, portal_to_send):
 			animation_portal.animation_finished.connect(tp_to_portal.bind(
 				node_body, animation_portal, portal_to_send, temp_speed_champion))
 		
-		Servrpc.send_to_id(node_body.get_multiplayer_authority(), node_body.name, 'set_attribute', 
+		Servrpc.send_to_id(node_body.get_multiplayer_authority(), node_body, 'set_attribute', 
 		['speed', 0, 0.2])
 		
 		dict_champ_portal[node_body] = false

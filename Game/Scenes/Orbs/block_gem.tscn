@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cks8l0fj8ghp1"]
+[gd_scene load_steps=8 format=3 uid="uid://cks8l0fj8ghp1"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/block_gem.gd" id="1_kqqdn"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_orange_orb_active.gd" id="1_oqaw1"]
 [ext_resource type="Texture2D" uid="uid://b6qtyp12q2j5h" path="res://Game/Ressources/Orbs/orange_orb/orange_orb_active.png" id="2_77oau"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5fbx"]
@@ -24,27 +25,29 @@ radius = 84.7172
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7h4j"]
 properties/0/path = NodePath("orange_orb_active:visible")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 properties/1/path = NodePath("orange_orb_active:position")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/replication_mode = 1
 properties/2/path = NodePath("orange_orb_active:modulate")
 properties/2/spawn = true
-properties/2/sync = true
+properties/2/replication_mode = 1
 
 [node name="orange_orb_active" type="Node"]
 
-[node name="orange_orb_active" type="Area2D" parent="."]
-visible = false
+[node name="ctrlr_orange_orb_active" type="Node2D" parent="."]
+script = ExtResource("1_oqaw1")
+
+[node name="orange_orb_active" type="Area2D" parent="ctrlr_orange_orb_active"]
 collision_layer = 2
 script = ExtResource("1_kqqdn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="orange_orb_active"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ctrlr_orange_orb_active/orange_orb_active"]
 scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_07spu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="orange_orb_active"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_orange_orb_active/orange_orb_active"]
 shape = SubResource("CircleShape2D_8jdpv")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_orange_orb_active"]
 replication_config = SubResource("SceneReplicationConfig_d7h4j")

@@ -2,7 +2,10 @@ extends IDamagingCollision
 
 var coltdown = Timer.new()
 var cd = 15.0
+
 var animation
+var collision_shape
+var slice_distance
 
 func _ready():
 	if is_multiplayer_authority():
@@ -11,17 +14,14 @@ func _ready():
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		await super._ready()
 		coltdown = service_time.init_timer(self, cd)
 		animation = $animation_dash
+		collision_shape = $CollisionShape2D
+		slice_distance = collision_shape.shape.polygon[0].collision_shape.shape.polygon[2]
+		
+		await super._ready()
 
-func _process(_delta):
-	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_F) && coltdown.time_left == 0:
-			special()
-			coltdown.start()
-
-func special():
+func active():
 	self.position = ServiceSpell.set_in_front_mouse(ServiceScenes.championNode, get_global_mouse_position(), 50)
 	animation.play('default')
 
@@ -32,7 +32,7 @@ func special():
 	
 	await get_tree().create_timer(0.15).timeout
 	ServiceScenes.championNode.position += ServiceSpell.set_in_front_mouse(
-		ServiceScenes.championNode, get_global_mouse_position(), 100)
+		ServiceScenes.championNode, get_global_mouse_position(), slice_distance)
 	
 	await get_tree().create_timer(0.2).timeout
 	self.hide()

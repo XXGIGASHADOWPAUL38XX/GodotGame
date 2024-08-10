@@ -7,6 +7,10 @@ var display_stones: Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
+		# DEFINITION VARIABLES IPHYSICALSPELL #
+		damage_base = 5.0
+		# ------------------------------------ #
+		
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
 		cshape = $CollisionShape2D

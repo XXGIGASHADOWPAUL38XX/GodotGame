@@ -39,7 +39,7 @@ func active(main_vector):
 	shadow_assigned.position += main_vector
 
 func post_dp_script(id, nbr_dupl):
-	await CustomResourceLoader.await_resource_loaded(func(): return self.spells_placeholder != null && spells_placeholder.shadows.size() == 4)
+	await await_resource_loaded(func(): return self.spells_placeholder != null && spells_placeholder.shadows.size() == 4)
 	
 	shadow_assigned = spells_placeholder.shadows[id - 1]
 	

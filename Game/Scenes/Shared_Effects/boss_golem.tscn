@@ -239,7 +239,6 @@ frame_progress = 1.0
 polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0, 20.5, 16, 6, 34.5, -30, 45.5)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="boss_golem/spells"]
-root_path = NodePath("../attack_golem")
 replication_config = SubResource("SceneReplicationConfig_ud83n")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

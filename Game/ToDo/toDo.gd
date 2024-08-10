@@ -1,10 +1,6 @@
 # - PRIORITE 1
-# - mettre des conditions pour lancer des sorts dans IControllerSpell
-# - faire le lien entre spell3 et spell4 tireur
- 
 # - algo qui met automatiquement le chemin du multiplayer bon
 # - trouver plus opti pour Servrpc.set_any(self, 'multip_sync_path', "./../../MultiplayerSynchronizer")
-# - faire un spell sans dégat basé sur node2D mais avec les attributs comme service time etc
 
 # - mettre serviceMove dans IChampion + modifier animation.speed pour s'adapter avec speed_final
 

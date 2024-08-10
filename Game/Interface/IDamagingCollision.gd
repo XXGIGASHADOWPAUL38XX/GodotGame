@@ -13,13 +13,12 @@ var retrigger = false
 var output_damage = Callable(output_damage_f)
 
 func _ready():
-	self.func_on_entity_entered.append(Callable(self, 'collision'))
-	
 	self.visibility_changed.connect(
 		func(): self.get_node("CollisionShape2D").disabled = !self.visible
 	)
 	
 	await super._ready()
+	self.func_on_entity_entered.append(Callable(self, 'collision'))
 
 func collision():
 	if self.visible && ennemies_in.find(player_hitted) != -1:

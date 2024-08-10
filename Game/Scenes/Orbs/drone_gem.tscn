@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bljavwt5xbx4v"]
+[gd_scene load_steps=13 format=3 uid="uid://bljavwt5xbx4v"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_blue_orb_passive.gd" id="1_1jeno"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/drone_gem.gd" id="1_ixedj"]
 [ext_resource type="Texture2D" uid="uid://7hx7q6puo7ek" path="res://Game/Ressources/Orbs/blue_orb/blue_orb_passive.png" id="2_8jxfh"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/missile.gd" id="3_heify"]
@@ -58,28 +59,32 @@ properties/4/replication_mode = 1
 
 [node name="blue_orb_passive" type="Node"]
 
-[node name="blue_orb_passive" type="CharacterBody2D" parent="."]
+[node name="ctrlr_blue_orb_passive" type="Node2D" parent="."]
+script = ExtResource("1_1jeno")
+
+[node name="blue_orb_passive" type="CharacterBody2D" parent="ctrlr_blue_orb_passive"]
 script = ExtResource("1_ixedj")
 
-[node name="blue_orb_passive" type="AnimatedSprite2D" parent="blue_orb_passive"]
+[node name="blue_orb_passive" type="AnimatedSprite2D" parent="ctrlr_blue_orb_passive/blue_orb_passive"]
 scale = Vector2(0.06, 0.064)
 sprite_frames = SubResource("SpriteFrames_3ibu6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_orb_passive"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_blue_orb_passive/blue_orb_passive"]
 shape = SubResource("CircleShape2D_r2b5p")
 
-[node name="blue_orb_p_missile" type="Area2D" parent="."]
+[node name="blue_orb_p_missile" type="Area2D" parent="ctrlr_blue_orb_passive"]
 visible = false
 scale = Vector2(0.5, 0.533)
 script = ExtResource("3_heify")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="blue_orb_p_missile"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ctrlr_blue_orb_passive/blue_orb_p_missile"]
 scale = Vector2(0.2, 0.3)
 sprite_frames = SubResource("SpriteFrames_uys51")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_orb_p_missile"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_blue_orb_passive/blue_orb_p_missile"]
 shape = SubResource("CircleShape2D_2aln2")
 disabled = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_blue_orb_passive"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_ch6ki")

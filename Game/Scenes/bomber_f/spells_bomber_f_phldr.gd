@@ -1,6 +1,6 @@
 extends IPlaceholderSpells
 
-var dp_bomb
+var dp_10x_bomb
 var all_shoots
 var all_bombs
 
@@ -8,15 +8,24 @@ var active_bomb_file: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	dp_bomb = $ctrlr_spell_1/dp_bomb
+	dp_10x_bomb = $ctrlr_spell_1/dp_10x_bomb
 	await super._ready()
 	
 	all_shoots = get_all_shoots()
-	all_bombs = get_all_bombs()
+	all_bombs = get_all_bombs(dp_10x_bomb)
+	print(all_bombs)
 
 # -------------- FUNCTIONS BOMBS ---------------
-func get_all_bombs():
-	return dp_bomb.get_children().filter(func(b): return b is IActive)
+func get_all_bombs(bomb_parent):
+	var bombs = []
+	
+	for c in bomb_parent.get_children():
+		if c is IActive:
+			bombs.append(c)
+		elif c.get_children().size() != 0:
+			bombs += get_all_bombs(c)
+			
+	return bombs
 
 func get_inactives_bombs():
 	return all_bombs.filter(func(b): return !b.visible)

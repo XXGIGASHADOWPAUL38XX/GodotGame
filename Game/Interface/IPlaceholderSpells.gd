@@ -12,17 +12,16 @@ func _ready():
 	duplication_phldrs = get_duplication_phldrs()
 	
 	# PERMET D'ATTENDRE QUE LES SORTS SOIENT DUPLIQUEES
-	
 	if duplication_phldrs.size() == 0:
 		ready_to_load_spell = true
 	
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
-	await CustomResourceLoader.await_resource_loaded(func(): return self.ready_to_load_spell)
+	await await_resource_loaded(func(): return self.ready_to_load_spell)
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
 
 	all_actives = get_all_actives()
 	
-	# ON A MTN TOUS LES SORTS : ON VA POUVOIR ARRETER DE FAIRE ATTENDRE LE _ready() d'IActive
+	# ON A MTN TOUS LES SORTS / ENTITES : ON VA POUVOIR ARRETER DE FAIRE ATTENDRE LE _ready() d'IActive / IEntity
 	spells_dependencies_ready = true
 
 func get_all_actives(parent=self):
@@ -38,7 +37,7 @@ func get_all_actives(parent=self):
 func get_duplication_phldrs(parent=self):
 	var duplication_phldrs = []
 	for p in parent.get_children():
-		if (!p is IDuplication):
+		if (!p is IDuplication || p.is_multiple_duplication):
 			duplication_phldrs += get_duplication_phldrs(p)
 		else:
 			duplication_phldrs.append(p)
@@ -46,6 +45,10 @@ func get_duplication_phldrs(parent=self):
 	return duplication_phldrs
 
 func duplication_node_performed():
-	if (duplication_phldrs.all(func(d) : return d.duplication_performed)):
+	if (duplication_phldrs.all(func(d) : return d == null || d.duplication_performed)):
 		ready_to_load_spell = true
+
+func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
+	while c.get_object() != null && !c.call():
+		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 

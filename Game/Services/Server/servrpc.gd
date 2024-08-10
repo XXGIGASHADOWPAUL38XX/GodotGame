@@ -13,9 +13,15 @@ func any(node, f, args:Array):
 	all_remotes(node, f, args)
 
 @rpc("any_peer")
-func f_rpc(f, path, args):
+func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 	args = convert_args_to_nodes(args)
+	
 	var node = get_node(path as String)
+	
+	while node == null && retry_instances > 0:
+		await get_tree().create_timer(retry_interval).timeout
+		node = get_node(path as String)
+		retry_instances -= 1
 	
 	node.callv(f, args)
 

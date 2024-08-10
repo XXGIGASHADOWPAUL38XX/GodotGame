@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dkeb5sqvgpnma"]
+[gd_scene load_steps=65 format=3 uid="uid://dkeb5sqvgpnma"]
 
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/spells_bomber_f_phldr.gd" id="1_m41yb"]
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/ctrlr_spell_1.gd" id="2_580iy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://nnc7wh7ppmm1" path="res://Game/Ressources/Heros/bomber_f/spell_1_1.png" id="4_kvygm"]
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/dp_bomb.gd" id="5_2om8s"]
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/ctrlr_spell_2.gd" id="5_ti45g"]
+[ext_resource type="Script" path="res://Game/Scenes/bomber_f/dp_10x_bomb.gd" id="6_m7gwf"]
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/dp_spell_2.gd" id="6_mo4vg"]
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/spell_2.gd" id="7_moodi"]
 [ext_resource type="Texture2D" uid="uid://dqkhadqw6nx0i" path="res://Game/Ressources/Heros/bomber_f/bomb.png" id="8_djjs1"]
@@ -312,20 +313,23 @@ sprite_frames = SubResource("SpriteFrames_3b4qk")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_1/dp_shoot_1"]
 replication_config = SubResource("SceneReplicationConfig_lukyb")
 
-[node name="dp_bomb" type="Node2D" parent="ctrlr_spell_1"]
+[node name="dp_10x_bomb" type="Node2D" parent="ctrlr_spell_1"]
+script = ExtResource("6_m7gwf")
+
+[node name="dp_bomb" type="Node2D" parent="ctrlr_spell_1/dp_10x_bomb"]
 script = ExtResource("5_2om8s")
 
-[node name="bomb" type="Area2D" parent="ctrlr_spell_1/dp_bomb"]
+[node name="bomb" type="Area2D" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb"]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("8_x5jqv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_spell_1/dp_bomb/bomb"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb/bomb"]
 shape = SubResource("CircleShape2D_qksua")
 
-[node name="anim_bomb" type="AnimatedSprite2D" parent="ctrlr_spell_1/dp_bomb/bomb"]
+[node name="anim_bomb" type="AnimatedSprite2D" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb/bomb"]
 sprite_frames = SubResource("SpriteFrames_32clg")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_1/dp_bomb"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb"]
 replication_config = SubResource("SceneReplicationConfig_l0ech")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_1"]

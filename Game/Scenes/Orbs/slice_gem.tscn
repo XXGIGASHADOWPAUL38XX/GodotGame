@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw7kluig5n4og"]
+[gd_scene load_steps=15 format=3 uid="uid://dw7kluig5n4og"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_red_orb_active.gd" id="1_jyqg7"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/slice_gem.gd" id="1_loove"]
 [ext_resource type="Texture2D" uid="uid://nwy57f04yc4" path="res://Game/Ressources/Orbs/red_orb/special.png" id="2_widmc"]
 
@@ -77,25 +78,29 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6l8ty"]
 properties/0/path = NodePath("red_orb_active:position")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 properties/1/path = NodePath("red_orb_active:visible")
 properties/1/spawn = true
-properties/1/sync = true
+properties/1/replication_mode = 1
 properties/2/path = NodePath("red_orb_active/animation_dash:frame")
 properties/2/spawn = true
-properties/2/sync = true
+properties/2/replication_mode = 1
 
 [node name="red_orb_active" type="Node2D"]
 
-[node name="red_orb_active" type="Area2D" parent="."]
-scale = Vector2(0.25, 0.25)
+[node name="ctrlr_red_orb_active" type="Node2D" parent="."]
+script = ExtResource("1_jyqg7")
+
+[node name="red_orb_active" type="Area2D" parent="ctrlr_red_orb_active"]
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_loove")
 
-[node name="animation_dash" type="AnimatedSprite2D" parent="red_orb_active"]
+[node name="animation_dash" type="AnimatedSprite2D" parent="ctrlr_red_orb_active/red_orb_active"]
 sprite_frames = SubResource("SpriteFrames_1dir4")
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="red_orb_active"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ctrlr_red_orb_active/red_orb_active"]
 polygon = PackedVector2Array(480, -56, -52, -120, -592, -52, -40, 8)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_red_orb_active"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_6l8ty")

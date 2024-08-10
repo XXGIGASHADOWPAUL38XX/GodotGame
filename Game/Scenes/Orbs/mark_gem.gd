@@ -28,7 +28,6 @@ func _ready():
 		)
 		
 		animation.frame_changed.connect(func(): collision_shape.disabled = animation.frame != MAX_AUGMENT)
-		champion.func_hitted.append(Callable(self, "special"))
 
 func _process(delta):
 	if is_multiplayer_authority():
@@ -38,7 +37,7 @@ func _process(delta):
 		if self.visible:
 			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
 
-func special():
+func active():
 	if is_multiplayer_authority() && coltdown_explode.time_left == 0:
 		self.show()
 		coltdown_stay.start()
@@ -48,7 +47,7 @@ func special():
 			animation.frame = augment
 			coltdown_stay.start()
 		else:
-			Servrpc.send_to_id('id_ennemy', self, 'explode', [])
+			Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), self, 'explode', [])
 			coltdown_explode.start()
 
 func explode():

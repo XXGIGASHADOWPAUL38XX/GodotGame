@@ -13,14 +13,16 @@ var last_spell_hitting
 
 var multip_sync: MultiplayerSynchronizer
 
+var spells_placeholder
+
 func _ready():
-	# ----------------- RESSOURCE LOADER ----------------- #
-	self.process_mode = Node.PROCESS_MODE_DISABLED
-	await get_tree().create_timer(0.5).timeout
-#
-	self.process_mode = Node.PROCESS_MODE_INHERIT
-	# ----------------- RESSOURCE LOADER ----------------- #
+	spells_placeholder_f()
 	
+	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
+	if spells_placeholder != null:
+		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
+		
 	Servrpc.any(self, 'set_multiplayer_properties', [])
 
 func hitted(spell):
@@ -50,6 +52,15 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(anim_path + ":modulate")
 	multip_sync.replication_config.add_property(anim_path + ":frame")
 
+func spells_placeholder_f(node: Node = self):
+	if node is IPlaceholderSpells:
+		spells_placeholder = node
+		return null
+	if node.get_parent() != null && node.get_parent() != ServiceScenes.main_scene:
+		return spells_placeholder_f(node.get_parent())
+		
+	return null
 
-
-
+func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
+	while c.get_object() != null && !c.call():
+		await c.get_object().get_tree().create_timer(retry_timeout).timeout
