@@ -53,13 +53,13 @@ var laser = Spell.new(10.0, 0.0, State.StateMovement.NULL, 1.0)
 class Spell:
 	var damage: float
 	var damage_ratio: float
-	var state_movement: State.StateMovement
+	var curr_state_movement: State.StateMovement
 	var retrigger: float
 	
-	func _init(damage, damage_ratio, state_movement, retrigger, after_retrg_ratio = 1):
+	func _init(damage, damage_ratio, curr_state_movement, retrigger, after_retrg_ratio = 1):
 		self.damage = damage
 		self.damage_ratio = damage_ratio
-		self.state_movement = state_movement
+		self.curr_state_movement = curr_state_movement
 		self.retrigger = retrigger
 
 func get_spell(spell_name):

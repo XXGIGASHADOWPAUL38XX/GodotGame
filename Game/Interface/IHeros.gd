@@ -21,20 +21,22 @@ func _process(delta):
 		ServiceHealth.setBar(self, $health_bar)
 	
 func take_damage():
-	if state_damage == State.StateDamage.IMMUNE:
+	if curr_state_damage == State.StateDamage.IMMUNE:
 		return
 
 	var output_damage = last_spell_hitting.output_damage.call(self)
 		
 	if output_damage > 0:
-		if state_shielded == State.StateShielded.SHIELDED:
+		if curr_state_shielded == State.StateShielded.SHIELDED:
 			output_damage = shield.remaining_damage(output_damage)		
 		ServiceAnimations.set_animation(self, 'animation_hitted')
 	else:
 		ServiceAnimations.set_animation(self, 'animation_healed')
 		
-	self.state_movement = state_movement
+	self.curr_state_movement = curr_state_movement
 	self.health_bar.value -= output_damage
+	if self.health_bar.value <= 0:
+		ServiceRounds.new_round_global(last_spell_hitting.champion)
 		
 	var color = Color.GREEN if output_damage < 0 else Color.RED
 			
@@ -58,9 +60,9 @@ func move():
 	self.direction = (target_position_mvmt - self.position).normalized()
 	self.velocity = self.direction * speed_final
 	
-	if (self.state_movement == State.StateMovement.SLOWED):
+	if (self.curr_state_movement == State.StateMovement.SLOWED):
 		self.velocity *= 0.5
-	elif (self.state_movement == State.StateMovement.STUNNED or self.state_movement == State.StateMovement.IMMOBILE):
+	elif (self.curr_state_movement == State.StateMovement.STUNNED or self.curr_state_movement == State.StateMovement.IMMOBILE):
 		self.velocity *= 0
 	
 	self.move_and_collide(self.velocity)

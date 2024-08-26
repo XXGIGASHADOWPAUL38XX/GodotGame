@@ -2,7 +2,7 @@ extends IDamagingSpell
 
 var speed = 20.0
 var animation: AnimatedSprite2D
-var deg_arc = -30
+var deg_arc = -20
 
 func _ready():
 	if is_multiplayer_authority():
@@ -12,7 +12,6 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-		self.func_on_entity_entered.append(Callable(spell_controller.mark_stun_anim, 'marked'))
 
 		animation = $anim_healer_f_1
 
@@ -20,14 +19,13 @@ func _process(_delta):
 	if is_multiplayer_authority():
 		pass
 
-func active():
+func active(destination_point, main_vector):
 	self.position = champion.position + ServiceSpell.set_in_front_mouse_incl(champion, 
-		get_global_mouse_position(), 30, deg_arc * 1.5)
+		destination_point, 30, deg_arc * 1.5)
 	self.modulate.a = 1
 	
-	var direction = (get_global_mouse_position() - self.position).rotated(deg_to_rad(deg_arc))
-	var destination = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 400)
-	var steps_to_destination = int(ceil(self.position.distance_to(destination) / speed))
+	var direction = main_vector.rotated(deg_to_rad(deg_arc))
+	var steps_to_destination = int(ceil(self.position.distance_to(destination_point) / speed))
 	
 	self.scale = Vector2(0.1, 0.1)
 	self.show()

@@ -12,20 +12,20 @@ class Hero:
 		self.speed = speed
 		self.spells = []
 
-var mage_f = Hero.new(120, 15, 15, 3)
-var warrior_m = Hero.new(130, 15, 15, 3)
-var ranger_m = Hero.new(120, 15, 15, 3)
-var ninja_m = Hero.new(120, 15, 15, 3)
-var healer_f = Hero.new(120, 15, 15, 3)
-var tank_m = Hero.new(140, 10, 20, 3)
-var witcher_f = Hero.new(120, 15, 15, 3)
-var bomber_f = Hero.new(120, 15, 15, 3)
-var fighter_f = Hero.new(120, 15, 15, 3)
+var mage_f = Hero.new(120, 15, 15, 2)
+var warrior_m = Hero.new(130, 15, 15, 2)
+var ranger_m = Hero.new(120, 15, 15, 2)
+var ninja_m = Hero.new(120, 15, 15, 2)
+var healer_f = Hero.new(120, 15, 15, 2)
+var tank_m = Hero.new(140, 10, 20, 2)
+var witcher_f = Hero.new(120, 15, 15, 2)
+var bomber_f = Hero.new(120, 15, 15, 2)
+var fighter_f = Hero.new(120, 15, 15, 2)
 
 var monster_gem = Hero.new(200, 15, 15, 0)
 
-var boss_golem = Hero.new(300, 15, 15, 0)
-var boss_crystal = Hero.new(300, 15, 15, 0)
+var boss_golem = Hero.new(50, 15, 15, 0)
+var boss_crystal = Hero.new(50, 15, 15, 0)
 
 func get_heros(heros_name):
 	var regex = RegEx.new()

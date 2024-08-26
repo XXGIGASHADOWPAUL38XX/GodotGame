@@ -17,7 +17,7 @@ func _ready():
 		
 		animation.animation_finished.connect(func(): 
 			self.hide()
-			champion.state_movement = State.StateMovement.NULL
+			champion.remove_state(self, 'states_movement')
 		)
 
 
@@ -26,7 +26,7 @@ func _process(delta):
 	pass
 
 func active(angle):
-	champion.state_movement = State.StateMovement.IMMOBILE
+	champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
 	self.position = champion.position + (Vector2.RIGHT.rotated(angle).normalized() * 25)
 	self.rotation = angle
 	

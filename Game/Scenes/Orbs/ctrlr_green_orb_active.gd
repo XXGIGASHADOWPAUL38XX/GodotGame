@@ -8,3 +8,4 @@ func _ready():
 
 func active():
 	$green_orb_active.active()
+	coltdown.start()

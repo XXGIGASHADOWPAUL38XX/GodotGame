@@ -1,13 +1,15 @@
 extends IMob
 
+const SCENE_BONUS_PATH = "res://Game/Scenes/Shared_Effects/shield_boss_crystal.tscn"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.set_multiplayer_authority(Server.get_first_player_connected_id())
 	if is_multiplayer_authority():
-		attack = $attack_crystal
+		attack = $spells/attack_crystal
 		animation = $anim_boos_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		self.position = Vector2(get_window().size.x, get_window().size.y)
+		
 		await super._ready()
 
 func attack_back():
@@ -21,8 +23,17 @@ func die(heros_dealing_dmg):
 		'res://Game/Ressources/Heros/icons/' + heros_dealing_dmg.name + '.png',
 		'res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Crystal Knight/logo.png'
 	)
+	
+	await multip_sync.synchronized
+	get_parent().queue_free()
 
-func bonus():
-	pass
+func bonus(heros_dealing_dmg):
 	
+	var allies_of_heros_dmg = ServiceScenes.alliesNode if ServiceScenes.is_on_same_team(
+	heros_dealing_dmg, ServiceScenes.championNode) else ServiceScenes.ennemiesNode
 	
+	allies_of_heros_dmg.map(func(ally): 
+		var scene_bonus = preload(SCENE_BONUS_PATH).duplicate().instantiate()
+		scene_bonus.set_multiplayer_authority(ally.get_multiplayer_authority())
+		ally.add_child(scene_bonus)
+	)

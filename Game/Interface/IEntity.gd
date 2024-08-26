@@ -16,6 +16,7 @@ var multip_sync: MultiplayerSynchronizer
 var spells_placeholder
 
 func _ready():
+	ServiceScenes.entites.append(self)
 	spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
@@ -27,7 +28,7 @@ func _ready():
 
 func hitted(spell):
 	last_spell_hitting = spell
-	last_ennemy_hitting = spell.get_parent().get_parent()
+	last_ennemy_hitting = spell.champion
 	
 	for fc in func_hitted:
 		fc.call()
@@ -61,6 +62,12 @@ func spells_placeholder_f(node: Node = self):
 		
 	return null
 
+func new_round():
+	pass
+
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
+
+#func _exit_tree():
+	#Servrpc.recently_freed_nodepaths.append(self.get_path())

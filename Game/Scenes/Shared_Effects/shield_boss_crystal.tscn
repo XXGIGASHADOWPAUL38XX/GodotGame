@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjln03mywhi00"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/ctrlr_shield.gd" id="1_fmyaq"]
+[ext_resource type="Texture2D" uid="uid://becvs0ry6lnsn" path="res://Game/Ressources/Main_Effects/Boss/boss_crystal/shield.png" id="2_besqg"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shield.gd" id="3_70enl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rv7j"]
+atlas = ExtResource("2_besqg")
+region = Rect2(0, 0, 1304, 1304)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eh4jq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rv7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eo8fg"]
+
+[node name="ShieldBossCrystal" type="Node"]
+
+[node name="ctrlr_shield" type="Node2D" parent="."]
+script = ExtResource("1_fmyaq")
+
+[node name="shield" type="AnimatedSprite2D" parent="ctrlr_shield"]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_eh4jq")
+script = ExtResource("3_70enl")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_shield"]
+replication_config = SubResource("SceneReplicationConfig_eo8fg")

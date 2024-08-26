@@ -5,7 +5,7 @@
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h1ce5"]
 properties/0/path = NodePath(".:process_mode")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 
 [node name="ms_template" type="Node"]
 script = ExtResource("1_mi7sd")

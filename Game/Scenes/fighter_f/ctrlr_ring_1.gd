@@ -29,7 +29,7 @@ func _ready():
 
 func active():
 	if first_activation:
-		champion.state_movement = State.StateMovement.IMMOBILE
+		champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
 		zone.active()
 		anim_champ_leap.active()
 		champion.leap()
@@ -40,6 +40,6 @@ func active():
 	coltdown.start()
 	zone.end_spell()
 	await jump.active()
-	champion.state_movement = State.StateMovement.NULL
+	champion.remove_state(self, 'states_movement')
 	
 	first_activation = true

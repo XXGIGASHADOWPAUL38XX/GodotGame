@@ -1,12 +1,15 @@
-[gd_scene load_steps=84 format=3 uid="uid://b2qkqfms18jkm"]
+[gd_scene load_steps=92 format=3 uid="uid://b2qkqfms18jkm"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m.gd" id="1_6u13a"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m_1.gd" id="1_de7xw"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/dpnode_ranger_m_1.gd" id="1_uo5te"]
 [ext_resource type="Texture2D" uid="uid://cdcq1gr5wpa5x" path="res://Game/Ressources/Heros/ranger_m/spell1_range.png" id="2_8svtn"]
+[ext_resource type="Script" path="res://Game/Scenes/ranger_m/ctrlr_aa_ranger_m.gd" id="2_dmlhs"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/throw_ranger_m_1.gd" id="3_5437c"]
+[ext_resource type="Script" path="res://Game/Scenes/ranger_m/aa_ranger_m.gd" id="3_e3eg8"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m_2.gd" id="3_hbiyv"]
 [ext_resource type="Texture2D" uid="uid://cqne6givhr718" path="res://Game/Ressources/Heros/ranger_m/spell3_damage.png" id="4_6swrf"]
+[ext_resource type="Texture2D" uid="uid://beum17khbqfp1" path="res://Game/Ressources/Heros/ranger_m/aa.png" id="4_l1pyf"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/dpnode_ranger_m_2.gd" id="4_oj56v"]
 [ext_resource type="Texture2D" uid="uid://cewgk3g2fpcck" path="res://Game/Ressources/Heros/ranger_m/spell2_dash.png" id="4_rdmg2"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m_3.gd" id="5_6w82n"]
@@ -28,6 +31,26 @@
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_3_bubbles.gd" id="18_ee6hd"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/anim_pre_spell.gd" id="20_0tfgf"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/active_ranger_m_4.gd" id="22_qqg68"]
+[ext_resource type="Script" path="res://Game/Scenes/ranger_m/ctrlr_special_ranger_m.gd" id="30_wlv7i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k0xo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctbm7"]
+atlas = ExtResource("4_l1pyf")
+region = Rect2(0, 0, 1012, 149)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ysgii"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctbm7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mkfbk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8xwh"]
 radius = 11.0
@@ -337,7 +360,7 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hw33d"]
 
 [sub_resource type="GDScript" id="GDScript_qwurn"]
-script/source = "extends IHoldableSpell
+script/source = "extends IDamagingCollision
 
 var speed = 20.0
 var pos_offset
@@ -351,45 +374,18 @@ var is_launched = false
 func _ready():	
 	if is_multiplayer_authority():
 		pos_offset = Vector2.ZERO
-		cd_spell = 3
-		spell = $speical_ranger_anim
-		coltdown_spell = service_time.init_timer(self, cd_spell)
-		timer_key_release_cd = 1.5
-		key = KEY_D
 		
 		super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():
-		super._process(delta)
-			
-#		if (HUD == null):
-#			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-#		else:
-#			HUD.bindTo(coltdown_spell, 3)
-			
 		if self.visible && !is_launched:
 			current_angle += rotation_speed * delta
 			direction = Vector2(cos(current_angle), sin(current_angle))
 			self.position = ServiceScenes.championNode.position + (direction * distance)
 
-func start_spell():
-	champion.set_attribute('state_movement', State.StateMovement.IMMOBILE)
-	var specials = get_parent().get_children().filter(func(obj) : return obj.name.begins_with('special_ranger_m'))
-	specials.map(func(obj) : obj.show())
-	
-	spell_movement()
-	for special in specials:
-		await get_tree().create_timer(0.16).timeout
-		special.spell_movement()
-		
-func stop_spell():
-	super.stop_spell()
-	champion.set_attribute('state_movement', State.StateMovement.NULL)
-	for special in get_parent().get_children().filter(func(obj) : return obj.name.begins_with('special_ranger_m')):
-		special.hide()
-
-func spell_movement():
+func active():
+	self.show()
 	is_launched = true
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 35)
 
@@ -403,8 +399,8 @@ func spell_movement():
 	self.hide()
 	is_launched = false
 
-func post_dp_script(index):
-	pos_offset = Vector2(20, 0).rotated(deg_to_rad((index - 1) * 45))
+func post_dp_script(id, dp_number):
+	pos_offset = Vector2(20, 0).rotated(deg_to_rad((id - 1) * 45))
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w02b2"]
@@ -430,6 +426,22 @@ animations = [{
 
 [node name="spells_ranger_m" type="Node"]
 script = ExtResource("1_6u13a")
+
+[node name="ctrlr_aa_ranger_m" type="Node2D" parent="."]
+script = ExtResource("2_dmlhs")
+
+[node name="aa_ranger_m" type="Area2D" parent="ctrlr_aa_ranger_m"]
+scale = Vector2(0.025, 0.025)
+script = ExtResource("3_e3eg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_ranger_m/aa_ranger_m"]
+shape = SubResource("CircleShape2D_1k0xo")
+
+[node name="anim_aa" type="AnimatedSprite2D" parent="ctrlr_aa_ranger_m/aa_ranger_m"]
+sprite_frames = SubResource("SpriteFrames_ysgii")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_aa_ranger_m"]
+replication_config = SubResource("SceneReplicationConfig_mkfbk")
 
 [node name="spells_ranger_m_1" type="Node2D" parent="."]
 script = ExtResource("1_de7xw")
@@ -591,21 +603,24 @@ animation = &"spell_4_pre_anim"
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="spells_ranger_m_4"]
 replication_config = SubResource("SceneReplicationConfig_hw33d")
 
-[node name="special_ranger_m" type="Node" parent="."]
+[node name="ctrlr_special_ranger_m" type="Node2D" parent="."]
+script = ExtResource("30_wlv7i")
+
+[node name="special_ranger_m" type="Node" parent="ctrlr_special_ranger_m"]
 script = ExtResource("11_yaltb")
 
-[node name="special_ranger_m" type="Area2D" parent="special_ranger_m"]
+[node name="special_ranger_m" type="Area2D" parent="ctrlr_special_ranger_m/special_ranger_m"]
 visible = false
 script = SubResource("GDScript_qwurn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="special_ranger_m/special_ranger_m"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ranger_m/special_ranger_m/special_ranger_m"]
 shape = SubResource("CircleShape2D_w02b2")
 
-[node name="speical_ranger_anim" type="AnimatedSprite2D" parent="special_ranger_m/special_ranger_m"]
+[node name="speical_ranger_anim" type="AnimatedSprite2D" parent="ctrlr_special_ranger_m/special_ranger_m/special_ranger_m"]
 scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_hjepj")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="special_ranger_m"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_ranger_m/special_ranger_m"]
 replication_config = SubResource("SceneReplicationConfig_ey5ca")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

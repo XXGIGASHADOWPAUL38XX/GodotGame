@@ -18,7 +18,7 @@ func spell_purge_allies():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
 		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.4]
 	)
-	player.state_movement = State.StateMovement.NULL
+	player.remove_all_states('states_movement')
 	animation.play('default')
 	
 	self.modulate.a = 0.5

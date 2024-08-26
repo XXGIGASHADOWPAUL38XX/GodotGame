@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dxlqqsgeeqtvw"]
+[gd_scene load_steps=29 format=3 uid="uid://dxlqqsgeeqtvw"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shared_effects.gd" id="1_voula"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/health_gem_phldr.gd" id="2_vn0h0"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cfw5p6p2o8k4n" path="res://Game/Scenes/Teleportation/teleportation.tscn" id="8_f3a37"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/orb_gem.gd" id="8_plmok"]
 [ext_resource type="PackedScene" uid="uid://bqyci8g30rwl" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem.tscn" id="9_jg1ya"]
-[ext_resource type="PackedScene" uid="uid://dj6cg4y1n2q8h" path="res://Game/Scenes/Shared_Effects/boss_golem.tscn" id="9_l8oyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76mgc"]
 atlas = ExtResource("3_438dn")
@@ -170,7 +169,5 @@ root_path = NodePath("../orb_gem")
 replication_config = SubResource("SceneReplicationConfig_rhoha")
 
 [node name="teleportation" parent="." instance=ExtResource("8_f3a37")]
-
-[node name="boss_golem" parent="." instance=ExtResource("9_l8oyc")]
 
 [node name="monsters_gem" parent="." instance=ExtResource("9_jg1ya")]

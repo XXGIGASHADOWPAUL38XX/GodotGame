@@ -1,4 +1,4 @@
-extends IControllerKeyPressed
+extends IControllerSpell
 
 func _ready():
 	key = KEY_A

@@ -24,10 +24,8 @@ func new_round(victory: bool):
 	styleBox.border_color = Color.BLUE if victory else Color.RED
 	$Events.get_node("Event" + str(actual_round)).add_theme_stylebox_override('panel', styleBox)
 	
-	var test = $Events.get_node("Event1") as Panel
-	
 	new_event()
-
+	
 func new_event():
 	while all_events.size() == 0:
 		await get_tree().create_timer(0).timeout

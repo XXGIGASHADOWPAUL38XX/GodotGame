@@ -1,10 +1,13 @@
-[gd_scene load_steps=61 format=3 uid="uid://bdlmf4ux4n4pm"]
+[gd_scene load_steps=78 format=3 uid="uid://bdlmf4ux4n4pm"]
 
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m.gd" id="1_gc2tw"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_1.gd" id="1_v41x7"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_tank_m_1.gd" id="2_0dq0n"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_aa_tank.gd" id="2_ggjgq"]
 [ext_resource type="Texture2D" uid="uid://bnmyx8si41vxd" path="res://Game/Ressources/Heros/tank_m/spell_1.png" id="2_gt2pn"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_2.gd" id="3_svxqv"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/aa_tank.gd" id="3_txguk"]
+[ext_resource type="Texture2D" uid="uid://ccbq5vx1qpwo1" path="res://Game/Ressources/Heros/tank_m/aa.png" id="4_c1xar"]
 [ext_resource type="Texture2D" uid="uid://bi3byo27c1pbq" path="res://Game/Ressources/Heros/tank_m/spell_3.png" id="4_kmjpx"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_tank_m_2.gd" id="5_44gva"]
 [ext_resource type="Texture2D" uid="uid://ci0ek1vyncvtv" path="res://Game/Ressources/Heros/tank_m/spell_2.png" id="6_x8u38"]
@@ -20,6 +23,89 @@
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/special_tank_m.gd" id="13_t75lh"]
 [ext_resource type="Texture2D" uid="uid://oe1cqtur2dnj" path="res://Game/Ressources/Heros/tank_m/special_charge.png" id="14_klvca"]
 [ext_resource type="Texture2D" uid="uid://edcref8u2bdm" path="res://Game/Ressources/Heros/tank_m/special_shield.png" id="15_ei068"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_special_tank_m.gd" id="21_85vo5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubnvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2r3f"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(0, 0, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfqnn"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(792, 0, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4mhq"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(1584, 0, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmiaa"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(2376, 0, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag48f"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(3168, 0, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60e2e"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(0, 788, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seee3"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(792, 788, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bhjr"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(1584, 788, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlmq4"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(2376, 788, 792, 788)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i7nh"]
+atlas = ExtResource("4_c1xar")
+region = Rect2(3168, 788, 792, 788)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy5s0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2r3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfqnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4mhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmiaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag48f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60e2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seee3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bhjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlmq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i7nh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_unsbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txiln"]
 size = Vector2(84, 156)
@@ -339,6 +425,23 @@ properties/25/replication_mode = 1
 [node name="spells_tank_m_phldr" type="Node"]
 script = ExtResource("1_gc2tw")
 
+[node name="ctrlr_aa_tank_m" type="Node2D" parent="."]
+script = ExtResource("2_ggjgq")
+
+[node name="aa_tank_m" type="Area2D" parent="ctrlr_aa_tank_m"]
+visible = false
+scale = Vector2(0.08, 0.08)
+script = ExtResource("3_txguk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_tank_m/aa_tank_m"]
+shape = SubResource("CircleShape2D_ubnvs")
+
+[node name="aa_anim" type="AnimatedSprite2D" parent="ctrlr_aa_tank_m/aa_tank_m"]
+sprite_frames = SubResource("SpriteFrames_sy5s0")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_aa_tank_m"]
+replication_config = SubResource("SceneReplicationConfig_unsbh")
+
 [node name="ctrlr_tank_m_1" type="Node2D" parent="."]
 script = ExtResource("2_0dq0n")
 
@@ -437,17 +540,21 @@ shape = SubResource("CircleShape2D_kye3g")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_tank_m_4"]
 replication_config = SubResource("SceneReplicationConfig_bfhoh")
 
-[node name="special_tank_m" type="Area2D" parent="."]
+[node name="ctrlr_special_tank_m" type="Node2D" parent="."]
+script = ExtResource("21_85vo5")
+
+[node name="special_tank_m" type="Area2D" parent="ctrlr_special_tank_m"]
 visible = false
 script = ExtResource("13_t75lh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="special_tank_m"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_tank_m/special_tank_m"]
 shape = SubResource("CircleShape2D_yxwp8")
 
-[node name="special_tank_m_anim" type="AnimatedSprite2D" parent="special_tank_m"]
+[node name="special_tank_m_anim" type="AnimatedSprite2D" parent="ctrlr_special_tank_m/special_tank_m"]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_xjxe7")
 animation = &"dash"
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_tank_m"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_oekkq")

@@ -153,7 +153,7 @@ script = ExtResource("8_ga3vw")
 
 [node name="s_orbs_mage_f_2" type="Area2D" parent="ctrlr_mage_f_2_blue/dp_mage_f_2_blue"]
 visible = false
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.04, 0.04)
 script = ExtResource("9_qpcr6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_2_blue/dp_mage_f_2_blue/s_orbs_mage_f_2"]
@@ -173,7 +173,7 @@ script = ExtResource("5_7s751")
 
 [node name="s_orbs_mage_f_4" type="Area2D" parent="ctrlr_mage_f_4_blue/dp_mage_f_4_blue"]
 visible = false
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.04, 0.04)
 script = ExtResource("6_xy0lg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_4_blue/dp_mage_f_4_blue/s_orbs_mage_f_4"]

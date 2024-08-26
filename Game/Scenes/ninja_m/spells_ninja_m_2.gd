@@ -28,7 +28,7 @@ func active():
 	if is_multiplayer_authority():
 		var endpoint_dash = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 100)
 		
-		champion.set_attribute('state_damage', State.StateMovement.IMMOBILE)
+		champion.add_state(self, 'states_damage', State.StateMovement.IMMOBILE)
 		
 		self.position = champion.position + ((endpoint_dash - champion.position) / 2)
 		self.rotation = (endpoint_dash - champion.position).angle()
@@ -40,7 +40,7 @@ func active():
 		animation.play("default")
 		
 		champion.position = endpoint_dash
-		champion.set_attribute('state_movement', State.StateMovement.NULL)
+		champion.remove_state(self, 'states_movement')
 		
 		await animation.animation_finished
 		

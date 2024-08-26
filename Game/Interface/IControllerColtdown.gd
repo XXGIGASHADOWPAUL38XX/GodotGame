@@ -15,4 +15,5 @@ func _ready():
 		await super._ready()
 
 func no_remaining_cd():
+	print(coltdown.time_left)
 	return coltdown.time_left == 0

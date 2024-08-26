@@ -17,13 +17,12 @@ func _ready():
 		
 		animation = $anim_healer_f_2
 		
-		await super._ready()		
+		await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():
-		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool, 0.15, 0.4)
 		pass
-			
 		
 func active():
 	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 300)

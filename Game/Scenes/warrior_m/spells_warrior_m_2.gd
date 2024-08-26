@@ -22,7 +22,7 @@ func _ready():
 		
 		animation.animation_finished.connect(func(): 
 			self.hide()
-			champion.state_movement = State.StateMovement.NULL
+			champion.remove_state(self, 'states_movement')
 		)
 
 func _process(_delta):
@@ -33,7 +33,7 @@ func _process(_delta):
 			HUD.bindTo(coltdown_spell, 2)
 
 func active():
-	champion.state_movement = State.StateMovement.IMMOBILE
+	champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
 	self.position = champion.position
 	
 	self.show()

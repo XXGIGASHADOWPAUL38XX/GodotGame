@@ -14,6 +14,7 @@ var spells_placeholder: IPlaceholderSpells
 @export var champion: IEntity
 
 func _ready():
+	ServiceScenes.actives.append(self)
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	spell_controller_f()
@@ -24,20 +25,15 @@ func _ready():
 		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	
-	
 	# IMPORTANT, PERMET D'EVITER UN BUG OU LE SPELL DE DUPLICATION DE BASE EST 
 	# SUPPRIME PENDANT LA FONCTION SUIVANTE, CE QUI CAUSE UNE ERREUR, ON NE DOIT
 	# PAS DECLENCHER LA FONCTION SUIVANTE DANS CE CAS
+	
 	Servrpc.any(self, 'champion_hitting', [])
 
 	if !ignore_multiconf_debug:
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 
-		#multip_sync.replication_config.get_properties().filter(func(p): return get_prpty_name(p) == self.name).map(func(p): 
-			#if !str(p).ends_with(":position"):
-				#multip_sync.replication_config.property_set_replication_mode(p, SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE)
-		#)
-		
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 func set_multiplayer_properties():
@@ -84,9 +80,3 @@ func champion_hitting(node: Node = self):
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
-
-func get_prpty_name(input_string: String) -> String:
-	var substrings = input_string.split("/", false)
-	substrings = substrings[0].split(":", false)
-
-	return substrings[0]

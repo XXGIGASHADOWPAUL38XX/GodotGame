@@ -17,24 +17,25 @@ func _ready():
 		coltdown = service_time.init_timer(self, cd)
 		animation = $animation_dash
 		collision_shape = $CollisionShape2D
-		slice_distance = collision_shape.shape.polygon[0].collision_shape.shape.polygon[2]
+		slice_distance = collision_shape.polygon[0].distance_to(collision_shape.polygon[2]) * self.scale.x
 		
 		await super._ready()
 
 func active():
 	self.position = ServiceSpell.set_in_front_mouse(ServiceScenes.championNode, get_global_mouse_position(), 50)
-	animation.play('default')
+	animation.play()
 
 	self.rotation = ServiceSpell.set_in_front_mouse(ServiceScenes.championNode, get_global_mouse_position(), 30).angle()
-	ServiceScenes.championNode.set_attribute('speed', 0, 0.2)
+	ServiceScenes.championNode.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
 	
 	self.show()
 	
-	await get_tree().create_timer(0.15).timeout
+	await animation.animation_finished
 	ServiceScenes.championNode.position += ServiceSpell.set_in_front_mouse(
-		ServiceScenes.championNode, get_global_mouse_position(), slice_distance)
-	
-	await get_tree().create_timer(0.2).timeout
+		ServiceScenes.championNode, get_global_mouse_position(), slice_distance
+	)
+		
+	ServiceScenes.championNode.remove_state(self, 'states_movement')
 	self.hide()
 	animation.stop()
 

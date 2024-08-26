@@ -172,6 +172,7 @@ replication_config = SubResource("SceneReplicationConfig_1ucvf")
 script = ExtResource("4_jkkl4")
 
 [node name="spell_mage_f_4_red" type="Area2D" parent="ctrlr_mage_f_4_red"]
+visible = false
 scale = Vector2(0.15, 0.15)
 script = ExtResource("8_nrlu1")
 

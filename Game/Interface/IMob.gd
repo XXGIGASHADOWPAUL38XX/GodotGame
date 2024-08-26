@@ -13,8 +13,6 @@ var attack_timer: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
-		
 		self.func_hitted.append(Callable(self, 'attack_back'))
 		attack_timer = service_time.init_timer(self, cd_attack)
 		animation.play("default")
@@ -29,6 +27,7 @@ func _ready():
 		)
 		
 		await super._ready()
+		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -46,12 +45,12 @@ func send_damage_to_authority(heros_dealing_dmg):
 
 func die(heros_dealing_dmg):
 	self.func_hitted.remove_at(self.func_hitted.find(Callable(self, 'attack_back')))
-	Servrpc.send_to_id(heros_dealing_dmg.get_multiplayer_authority(), self, 'bonus', [])
+	Servrpc.any(self, 'bonus', [heros_dealing_dmg])
 	
 	animation.play('die')
 	animation.animation_finished.connect(func():
 		for i in range(10):
-			animation.modulate.a -= 26
+			self.modulate.a -= 26
 			await get_tree().create_timer(0).timeout
 				
 		self.hide()
@@ -65,7 +64,7 @@ func attack_back():
 		
 	animation.animation = 'attack'
 	
-func bonus():
+func bonus(heros_dealing_dmg):
 	pass
 	
 	

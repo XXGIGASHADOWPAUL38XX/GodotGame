@@ -8,4 +8,4 @@ func _ready():
 
 func active():
 	coltdown.start()
-	$spell_3.active()
+	$stunning_bomb.active()

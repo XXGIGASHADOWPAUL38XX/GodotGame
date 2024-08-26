@@ -4,10 +4,6 @@ var end_screen = preload("res://Game/Scenes/End_Screen/end_screen.tscn").instant
 # OBJECTS PLAYERS
 var players
 var champion
-var ally
-var ennemy1
-var ennemy2
-var player_with_obj_auth
 
 # NODES PLAYERS
 var championNode
@@ -19,17 +15,19 @@ var ennemiesNode = []
 var allPlayersNode = []
 var allEnnemiesNode = [] # INCLUDE MONSTERS AND OBJECTS
 
+# REFERENCES TO SCENES
 var main_scene
 var HUD
 var items
 var camera
 var SENode
 var rochers
-var ennemiesSpells: Array = []
-var championSpells: Array = []
 
-var mutlip_scene
+# SPECIALS
+var entites = []
+var actives = []
 
+# SPECIALS
 var CONFIG_NB_PLAYERS_GAME = null
 
 func set_player_node(player, node_player):
@@ -47,26 +45,15 @@ func set_global_players():
 			return obj.id == Server.get_actual_player()
 	)[0]
 	championNode = champion.node
-	alliesNode.append(championNode)
 	
-	if players.size() > 2:
-		ally = players.filter(
-			func(obj):
-				return obj.id != Server.get_actual_player() && obj.is_ally() == true
-		)[0]
-		allyNode = ally.node
-		alliesNode.append(allyNode)
-		
-	
-	var ennemies = players.filter(
-		func(obj):
-			return obj.is_ally() == false
+	alliesNode += players.filter(func(obj): return obj.is_ally()).map(
+		func(obj): return obj.node
 	)
 		
-	for i in range(ennemies.size()):
-		ennemiesNode.append(ennemies[i].node)
+	ennemiesNode = players.filter(func(obj): return !obj.is_ally()).map(
+		func(obj): return obj.node
+	)
 		
-	player_with_obj_auth = get_player_from_property('id', Server.get_first_player_connected_id())
 	allPlayersNode = alliesNode + ennemiesNode
 	allEnnemiesNode += ennemiesNode
 
@@ -97,12 +84,6 @@ func getSENode():
 func setSENode(node):
 	SENode = node
 
-func getEnnemySpells():
-	return ennemiesSpells
-
-func getChampionSpells():
-	return championSpells
-
 func get_player_from_property(property, value):
 	return players.filter(
 		func (player):
@@ -116,6 +97,7 @@ func get_property_from_player(player_node, property):
 	)[0].get(property)
 
 func end_game(node):
+	##!!
 	node.add_child(end_screen)
 	node.get_parent().get_parent().get_node(Server.get_opponent()).add_child(end_screen)
 	

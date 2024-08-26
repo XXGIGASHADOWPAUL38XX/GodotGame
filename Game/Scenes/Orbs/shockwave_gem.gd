@@ -18,7 +18,7 @@ func active():
 		coltdown_wave = service_time.init_timer(self, cd_wave)
 		coltdown_wave.start()
 		
-		self.global_position = ServiceScenes.championNode.global_position
+		self.position = ServiceScenes.championNode.position
 		self.scale = Vector2(0.6, 0.6)
 		self.modulate.a = 0.5
 		self.show()

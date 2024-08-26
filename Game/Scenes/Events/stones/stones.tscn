@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://mw5tpsccfsbn"]
+[gd_scene load_steps=18 format=3 uid="uid://mw5tpsccfsbn"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Events/stones/stones_phldr.gd" id="1_ied2a"]
 [ext_resource type="Script" path="res://Game/Scenes/Events/stones/stones.gd" id="1_rrg8l"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/stones/dp_10x_stones.gd" id="2_5mi0n"]
 [ext_resource type="Texture2D" uid="uid://ci0ek1vyncvtv" path="res://Game/Ressources/Heros/tank_m/spell_2.png" id="2_daop2"]
 [ext_resource type="Script" path="res://Game/Scenes/Events/stones/stone.gd" id="2_mava0"]
 [ext_resource type="Texture2D" uid="uid://dj4seucin4i5k" path="res://Game/Ressources/Main_Effects/Stones/pre_fall.png" id="4_8p2bj"]
@@ -82,19 +83,22 @@ animations = [{
 [node name="stones_phldr" type="Node"]
 script = ExtResource("1_ied2a")
 
-[node name="stones" type="Node2D" parent="."]
+[node name="dp_10x_stones" type="Node2D" parent="."]
+script = ExtResource("2_5mi0n")
+
+[node name="dp_stones" type="Node2D" parent="dp_10x_stones"]
 script = ExtResource("1_rrg8l")
 
-[node name="stone" type="CharacterBody2D" parent="stones"]
+[node name="stone" type="CharacterBody2D" parent="dp_10x_stones/dp_stones"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_mava0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="stones/stone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dp_10x_stones/dp_stones/stone"]
 shape = SubResource("CircleShape2D_7v12i")
 
-[node name="anim_stone" type="AnimatedSprite2D" parent="stones/stone"]
+[node name="anim_stone" type="AnimatedSprite2D" parent="dp_10x_stones/dp_stones/stone"]
 sprite_frames = SubResource("SpriteFrames_vev1a")
-animation = &"pre_fall"
+animation = &"fall"
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="stones"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="dp_10x_stones/dp_stones"]
 replication_config = SubResource("SceneReplicationConfig_oj8iq")

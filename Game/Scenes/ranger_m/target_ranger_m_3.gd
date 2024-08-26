@@ -40,7 +40,8 @@ func _process(delta):
 		self.rotate(delta)
 
 func marked(spell):
-	Servrpc.send_to_multi_auth(self, 'send_to_local', [spell.player_hitted])
+	if spell.player_hitted == key_ennemy_marked:
+		Servrpc.send_to_multi_auth(self, 'send_to_local', [spell.player_hitted])
 
 func send_to_local(player_hitted):
 	animation.frame += 1
