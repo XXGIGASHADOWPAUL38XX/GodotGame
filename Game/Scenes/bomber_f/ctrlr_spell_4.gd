@@ -11,5 +11,5 @@ func _ready():
 		shoots = $dp_spell_4.get_children().filter(func(s): return s is IActive)
 
 func active():
-	coltdown.start()
+	super.active()
 	shoots.map(func(s): s.active())

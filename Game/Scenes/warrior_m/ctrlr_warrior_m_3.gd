@@ -6,6 +6,7 @@ func _ready():
 	await super._ready()
 
 func active():
+	super.active()
 	$spell_warrior_m_3.active()
 
-	coltdown.start()
+	

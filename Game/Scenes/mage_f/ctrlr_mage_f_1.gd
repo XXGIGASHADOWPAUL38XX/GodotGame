@@ -13,5 +13,5 @@ func _ready():
 	await super._ready()
 			
 func active():
-	orb.active()
-	coltdown.start()
+	super.active()orb.active()
+	

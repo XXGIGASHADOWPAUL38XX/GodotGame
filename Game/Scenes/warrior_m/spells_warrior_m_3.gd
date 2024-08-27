@@ -19,8 +19,6 @@ func active():
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 30)
 	var throw_direction = (get_global_mouse_position() - champion.position).normalized()
 	
-	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
-	champion.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
 	champion.hide()
 	self.show()
 	
@@ -36,5 +34,3 @@ func active():
 	self.hide()
 	champion.show()
 	
-	champion.remove_state(self, 'states_action')
-	champion.remove_state(self, 'states_damage')

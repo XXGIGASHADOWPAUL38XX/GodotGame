@@ -14,7 +14,7 @@ func _ready():
 		specials = $special_ranger_m.get_children().filter(func(s): return s is IActive)
 
 func active():
-	specials.map(func(s): 
+	super.active()specials.map(func(s): 
 		if !key_pressed_bool:
 			return
 			

@@ -9,5 +9,6 @@ func _ready():
 		await super._ready()
 
 func active():
+	super.active()
 	$damage.active()
-	coltdown.start()
+	

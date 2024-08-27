@@ -6,6 +6,6 @@ func _ready():
 	await super._ready()
 
 func active():
-	coltdown.start()
+	super.active()
 	$spells_healer_f_2.active()
 

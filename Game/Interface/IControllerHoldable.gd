@@ -25,14 +25,18 @@ func can_active():
 		timer_key_release.start()
 		key_pressed_bool = true
 		
-		coltdown.start()
 		self.active()
 
 func active():
-	pass
+	coltdown.start()
+	ServiceScenes.championNode.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
+	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 
 func stop_spell():
 	if timer_key_release.timeout.is_connected(stop_spell):
 		timer_key_release.timeout.disconnect(stop_spell)
 	
 	key_pressed_bool = false
+	
+	ServiceScenes.championNode.remove_state(self, 'states_damage')
+	ServiceScenes.championNode.remove_state(self, 'states_action')

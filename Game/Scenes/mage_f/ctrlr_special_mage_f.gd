@@ -10,6 +10,7 @@ func _ready():
 		await super._ready()
 
 func active():
+	super.active()
 	$special_mage_f.active()
 
 func stop_spell():

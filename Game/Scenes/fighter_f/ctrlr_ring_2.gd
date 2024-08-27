@@ -25,7 +25,7 @@ func _ready():
 		await super._ready()
 
 func active():
-	counter_count.show()
+	super.active()counter_count.show()
 	anim_rotate.show()
 	reduce.show()
 	reduce.active()

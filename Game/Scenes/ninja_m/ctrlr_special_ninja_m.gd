@@ -10,6 +10,7 @@ func _ready():
 		await super._ready()
 
 func active():
+	super.active()
 	$special_ninja_m.active()
 
 func stop_spell():

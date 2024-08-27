@@ -30,6 +30,7 @@ func active(mouse_position):
 	animation.stop()
 	self.hide()
 	
+	champion.remove_state(spell_controller.zone_b4pulse, 'states_action')
 	spell_controller.zone_b4pulse.hide()
 
 func push_ennemy():

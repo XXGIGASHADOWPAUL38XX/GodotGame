@@ -12,5 +12,5 @@ func _ready():
 	pulse = $pulse
 
 func active():
-	zone_b4pulse.active(get_global_mouse_position())
-	coltdown.start()
+	super.active()zone_b4pulse.active(get_global_mouse_position())
+	

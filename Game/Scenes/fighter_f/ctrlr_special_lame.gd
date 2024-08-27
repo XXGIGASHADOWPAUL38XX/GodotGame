@@ -16,7 +16,7 @@ func _ready():
 		special_dashes = $dp_special_dash.get_children().filter(func(lame): return lame is IActive)
 
 func active():
-	special_lame.active()
+	super.active()special_lame.active()
 
 func stop_spell():
 	super.stop_spell()

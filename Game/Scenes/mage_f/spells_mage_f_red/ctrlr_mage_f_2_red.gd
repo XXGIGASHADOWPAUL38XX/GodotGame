@@ -13,7 +13,7 @@ func _ready():
 		cond_spells.append(Callable(self, 'launch_spell_cond'))	
 
 func active():
-	coltdown.start()
+	super.active()
 	spell.active()
 
 func launch_spell_cond():

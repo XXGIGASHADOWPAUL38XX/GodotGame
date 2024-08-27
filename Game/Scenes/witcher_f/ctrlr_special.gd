@@ -16,7 +16,7 @@ func _ready():
 		await super._ready()
 
 func active():
-	special.active()
+	super.active()special.active()
 
 func stop_spell():
 	super.stop_spell()

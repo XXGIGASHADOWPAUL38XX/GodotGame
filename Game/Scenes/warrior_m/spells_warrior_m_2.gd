@@ -15,7 +15,6 @@ func _ready():
 		animation = $Spells_warrior_anim_2
 
 func active():
-	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.position = champion.position
 	
 	self.show()
@@ -23,4 +22,4 @@ func active():
 
 	await animation.animation_finished
 	self.hide()
-	champion.remove_state(self, 'states_action')
+	

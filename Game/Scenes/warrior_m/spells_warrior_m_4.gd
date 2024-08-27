@@ -20,7 +20,5 @@ func active():
 	if hits.size() > 1:
 		coltdown.start()
 		spell_zone.active()
-		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 		await hits.map(func(hit): await hit.active())
-		
-		champion.remove_state(self, 'states_action')
+

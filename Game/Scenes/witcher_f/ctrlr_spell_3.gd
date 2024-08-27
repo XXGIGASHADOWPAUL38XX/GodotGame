@@ -13,6 +13,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = KEY_E
 		coltdown_time = 6
+		cast_time = 0.25
 		
 		dash_first = $dash_first
 		dash_back = $dash_back
@@ -28,7 +29,7 @@ func _ready():
 		await super._ready()
 
 func active():
-	if first_activation:
+	super.active()if first_activation:
 		dash_first.active_first()
 		dash_back.active_first()
 		first_activation = false
@@ -37,7 +38,7 @@ func active():
 	else:
 		dash_first.active_back()
 		dash_back.active_back()
-		coltdown.start()
+		
 		
 	anim_dash.active()
 	pass

@@ -13,7 +13,7 @@ func _ready():
 		shoots = $dp_shoot_1.get_children().filter(func(s): return s is IActive)
 
 func active():
-	coltdown.start()
+	super.active()
 	var main_vector = get_global_mouse_position() - champion.position
 		
 	shoots.map(func(s): s.active(main_vector))

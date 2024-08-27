@@ -9,6 +9,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
+		cast_time = ServiceSpell.animation_duration($dash/anim_ninja_m_2)
 		
 		dash = $dash as IDamagingSpell
 		dash.CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode
@@ -23,8 +24,8 @@ func _ready():
 		)
 
 func active():
-	dash.active()
-	coltdown.start()
+	super.active()dash.active()
+	
 
 func reset(is_champion=false):
 	if is_champion:

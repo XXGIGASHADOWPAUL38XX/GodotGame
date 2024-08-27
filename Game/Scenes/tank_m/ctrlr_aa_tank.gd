@@ -6,5 +6,6 @@ func _ready():
 	await super._ready()
 			
 func active():
+	super.active()
 	$aa_tank_m.active()
-	coltdown.start()
+	

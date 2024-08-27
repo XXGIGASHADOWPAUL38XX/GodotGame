@@ -24,8 +24,6 @@ func _process(_delta):
 
 func active():
 	self.show()
-	champion.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
-	champion.add_state(self, 'states_damage', State.StateAction.IMMOBILE)
 	
 	for i in range(5):
 		self.modulate.a += 0.1
@@ -36,8 +34,6 @@ func stop_spell():
 		self.modulate.a -= 0.1
 		await get_tree().create_timer(0.0).timeout
 
-	champion.remove_state(self, 'states_damage')
-	champion.remove_state(self, 'states_action')
 	self.hide()
 
 func explode():

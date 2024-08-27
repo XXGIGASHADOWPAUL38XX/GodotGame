@@ -7,5 +7,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
+	super.active()
 	$stunning_bomb.active()

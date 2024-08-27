@@ -17,8 +17,7 @@ func _ready():
 		
 		animation.animation_finished.connect(func(): 
 			self.hide()
-			champion.remove_state(self, 'states_action')
-		)
+				)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,7 +25,6 @@ func _process(delta):
 	pass
 
 func active(angle):
-	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.position = champion.position + (Vector2.RIGHT.rotated(angle).normalized() * 25)
 	self.rotation = angle
 	

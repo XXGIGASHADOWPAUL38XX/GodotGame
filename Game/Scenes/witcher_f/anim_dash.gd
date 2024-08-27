@@ -15,10 +15,7 @@ func _process(delta):
 		self.rotate(deg_to_rad(rotate_speed))
 		
 func active():
-	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.show()
 	
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(spell_controller.cast_time).timeout
 	self.hide()
-	
-	champion.remove_state(self, 'states_action')

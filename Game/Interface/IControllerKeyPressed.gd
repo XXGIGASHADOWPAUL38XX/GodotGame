@@ -25,16 +25,15 @@ func _ready():
 
 func can_active():
 	if cond_spells.all(func(c: Callable): return c.call()):
-		self.pre_active()
+		self.active()
 
-func pre_active():
+func active():
 	if cast_time != null:
 		ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE, cast_time)
 		cast_timer.start()
 		await cast_timer.timeout
 		
-		self.active()
+		coltdown.start()
 	
-		
 func is_not_impaired():
 	return ServiceScenes.championNode.curr_state_action.state != State.StateAction.STUNNED

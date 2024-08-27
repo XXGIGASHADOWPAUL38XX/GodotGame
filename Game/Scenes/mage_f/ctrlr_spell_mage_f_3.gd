@@ -7,4 +7,5 @@ func _ready():
 	await super._ready()
 			
 func active():
+	super.active()
 	$spell_mage_f_3/spell_mage_f_3_HBOX.active()

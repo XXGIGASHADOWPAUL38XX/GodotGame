@@ -17,7 +17,7 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
+	super.active()
 	var destination_point = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 400)
 	var main_vector = destination_point - self.position
 	

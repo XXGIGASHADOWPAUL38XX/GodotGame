@@ -11,7 +11,7 @@ func _ready():
 		spell_nodes = $dp_ninja_m_4.get_children().filter(func(c): return c.name.begins_with('spell'))
 
 func active():
-	coltdown.start()
+	super.active()
 	spell_nodes.map(func(spell_node): spell_node.active())
 	
 

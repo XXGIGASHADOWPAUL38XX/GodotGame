@@ -11,8 +11,8 @@ func _ready():
 		champion = ServiceScenes.championNode
 
 func active():
-	var base_destination = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 250)
-	coltdown.start()
+	super.active()var base_destination = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 250)
+	
 	$lame_1.active(base_destination)
 	await get_tree().create_timer(0.25).timeout
 	$lame_2.active(base_destination)

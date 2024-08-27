@@ -16,8 +16,8 @@ func _ready():
 	cond_spells.append(Callable(self, 'launch_spell_cond_2'))
 
 func active():
-	if get_current_orb().number_orb == all_orbs().size():
-		coltdown.start()
+	super.active()if get_current_orb().number_orb == all_orbs().size():
+		
 		
 	var matching_orb_s_2 = get_matching_orb_s_2()
 	matching_orb_s_2.activation_f4()

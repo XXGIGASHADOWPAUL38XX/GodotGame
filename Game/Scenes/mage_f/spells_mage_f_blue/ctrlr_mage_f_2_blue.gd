@@ -13,7 +13,7 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
+	super.active()
 	all_orbs().map(func(o): o.active())
 
 func get_current_orb():
