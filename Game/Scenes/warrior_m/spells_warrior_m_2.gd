@@ -15,6 +15,7 @@ func _ready():
 		animation = $Spells_warrior_anim_2
 
 func active():
+	
 	self.position = champion.position
 	
 	self.show()

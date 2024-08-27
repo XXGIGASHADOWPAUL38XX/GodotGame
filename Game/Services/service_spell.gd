@@ -70,4 +70,4 @@ func push_ennemy_ca(node, champion_to_push, push_strength, retry_instance): #AT 
 		await get_tree().create_timer(0.02).timeout
 		
 func animation_duration(animation: AnimatedSprite2D):
-	return animation.get_frame_count(animation.animation) / animation.speed_scale
+	return animation.sprite_frames.get_frame_count(animation.animation) / animation.speed_scale

@@ -14,10 +14,11 @@ func _ready():
 		specials = $special_ranger_m.get_children().filter(func(s): return s is IActive)
 
 func active():
-	super.active()specials.map(func(s): 
+	super.active()
+	specials.map(func(s): 
 		if !key_pressed_bool:
 			return
 			
-		s.active()
+		s.can_active()
 		await get_tree().create_timer(0.16).timeout
 	)

@@ -14,9 +14,6 @@ func _ready():
 		self.hide()
 		
 		animation = $Spells_warrior_anim_1_2 as AnimatedSprite2D
-		animation.animation_finished.connect(func(): 
-			self.hide()
-				)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,3 +26,7 @@ func active(angle):
 	
 	self.show()
 	animation.play()
+	
+	await animation.animation_finished
+	self.hide()
+	

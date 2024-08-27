@@ -8,4 +8,4 @@ func _ready():
 
 func active():
 	super.active()
-	$special.active()
+	$special.can_active()

@@ -12,6 +12,6 @@ func orb_additionnal_operations(orb_kind):
 		)
 		
 	if $ctrlr_mage_f_1.orb.visible:
-		$ctrlr_mage_f_1.anim_orb_hide.active()
+		$ctrlr_mage_f_1.anim_orb_hide.can_active()
 	
 	$ctrlr_mage_f_1.orb.hide()

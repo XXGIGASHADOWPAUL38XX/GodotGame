@@ -8,4 +8,4 @@ func _ready():
 
 func active():
 	super.active()
-	$change_weapon.active()
+	$change_weapon.can_active()

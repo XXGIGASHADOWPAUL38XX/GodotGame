@@ -32,4 +32,4 @@ func stop_spell():
 	self.hide()
 		
 func special_pulse():
-	spell_controller.special_pulse.active()
+	spell_controller.special_pulse.can_active()

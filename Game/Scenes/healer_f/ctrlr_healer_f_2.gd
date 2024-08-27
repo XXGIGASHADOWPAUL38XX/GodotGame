@@ -7,5 +7,5 @@ func _ready():
 
 func active():
 	super.active()
-	$spells_healer_f_2.active()
+	$spells_healer_f_2.can_active()
 

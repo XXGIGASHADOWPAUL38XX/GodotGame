@@ -12,6 +12,6 @@ func _ready():
 
 func active():
 	super.active()
-	spell_nodes.map(func(spell_node): spell_node.active())
+	spell_nodes.map(func(spell_node): spell_node.can_active())
 	
 

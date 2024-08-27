@@ -11,5 +11,6 @@ func _ready():
 		lames = $dp_lame_3.get_children().filter(func(lame) : return lame is IActive)
 
 func active():
-	super.active()lames.map(func(lame): lame.active())
+	super.active()
+	lames.map(func(lame): lame.can_active())
 	

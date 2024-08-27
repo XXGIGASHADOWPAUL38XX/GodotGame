@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/mage_f.gd" id="1_sybsp"]
 [ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="2_2ipmp"]
 [ext_resource type="PackedScene" uid="uid://srarkkpwqkkt" path="res://Game/Scenes/mage_f/spells_mage_f.tscn" id="3_hss6p"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_ip1y0"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)
@@ -116,9 +116,6 @@ animations = [{
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uhn6w"]
-properties/0/path = NodePath(".:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [node name="mage_f" type="Node2D"]
 
@@ -129,13 +126,13 @@ script = ExtResource("1_sybsp")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_cawle")
 
+[node name="pgbars" parent="mage_f" instance=ExtResource("4_pmvq1")]
+
 [node name="spells_mage_f" parent="mage_f" instance=ExtResource("3_hss6p")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mage_f"]
 sprite_frames = SubResource("SpriteFrames_pvuku")
 animation = &"walk_up"
-
-[node name="pgbars" parent="mage_f" instance=ExtResource("4_ip1y0")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uhn6w")

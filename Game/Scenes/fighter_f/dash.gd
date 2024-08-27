@@ -9,6 +9,7 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.2
+		immobile_while_active = true
 		# ------------------------------------ #
 		
 		await super._ready()
@@ -21,7 +22,6 @@ func _process(_delta):
 			self.position = champion.position
 
 func active():
-	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.show()
 
 	animation.play()
@@ -32,4 +32,3 @@ func active():
 
 	animation.stop()
 	self.hide()
-	champion.remove_state(self, 'states_action')

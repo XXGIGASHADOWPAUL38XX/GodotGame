@@ -27,7 +27,7 @@ func set_shield(value_shield, time):
 		coltdown.start()
 		value_shield(value_shield)
 		
-		ServiceScenes.championNode.add_state(self, 'states_shielded', State.StateShielded.SHIELDED)
+		pgbars.attached_entity.add_state(self, 'states_shielded', State.StateShielded.SHIELDED)
 
 func value_shield(value_shield):
 	self.max_value = value_shield
@@ -36,7 +36,7 @@ func value_shield(value_shield):
 	self.show()
 
 func shield_expired():
-	ServiceScenes.championNode.remove_state(self, 'states_shielded')
+	pgbars.attached_entity.remove_state(self, 'states_shielded')
 	self.hide()
 
 func remaining_damage(incoming_damage):

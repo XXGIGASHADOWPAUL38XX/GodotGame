@@ -25,10 +25,12 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()counter_count.show()
+	super.active()
+	
+	counter_count.show()
 	anim_rotate.show()
 	reduce.show()
-	reduce.active()
+	reduce.can_active()
 	
 	timer_active.start()
 	await timer_active.timeout
@@ -37,7 +39,7 @@ func active():
 	anim_rotate.hide()
 	reduce.hide()
 
-	zone_damage.active()
+	zone_damage.can_active()
 
 func stop_spell():
 	super.stop_spell()

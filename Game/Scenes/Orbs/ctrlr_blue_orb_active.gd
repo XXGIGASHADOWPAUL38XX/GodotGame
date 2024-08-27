@@ -8,4 +8,4 @@ func _ready():
 
 func active():
 	super.active()
-	$orange_orb_active.active()
+	$orange_orb_active.can_active()

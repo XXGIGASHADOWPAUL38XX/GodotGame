@@ -11,7 +11,7 @@ func _ready():
 
 func active():
 	super.active()
-	$special_warrior_m.active()
+	$special_warrior_m.can_active()
 
 func stop_spell():
 	super.stop_spell()

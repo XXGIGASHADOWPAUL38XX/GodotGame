@@ -14,7 +14,7 @@ func _ready():
 
 func active():
 	super.active()
-	all_orbs().map(func(o): o.active())
+	all_orbs().map(func(o): o.can_active())
 
 func get_current_orb():
 	return all_orbs().filter(func(s): return s.number_orb == dp_node.current_orb)[0]

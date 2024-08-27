@@ -7,5 +7,5 @@ func _ready():
 
 func active():
 	super.active()
-	$dp_healer_f_4.get_children().filter(func(c): return c is IActive).map(func(heal): heal.active()) 
+	$dp_healer_f_4.get_children().filter(func(c): return c is IActive).map(func(heal): heal.can_active()) 
 

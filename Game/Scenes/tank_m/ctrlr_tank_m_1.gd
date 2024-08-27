@@ -14,4 +14,4 @@ func _ready():
 
 func active():
 	super.active()
-	spell.active()
+	spell.can_active()

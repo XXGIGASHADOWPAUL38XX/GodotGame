@@ -29,6 +29,9 @@ func _process(delta):
 	if is_multiplayer_authority():
 		self.position = champion.position + Vector2(-14, -10)
 
+func can_active():
+	active()
+
 func active():
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 
 		return sorted_slots.find(slot) != sorted_slots.size() - 1

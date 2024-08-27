@@ -53,7 +53,7 @@ func send_to_local(player_hitted):
 
 func fully_completed_mark():
 	animation.frame = 0
-	mark_overall_node.sphere_regen.active()
+	mark_overall_node.sphere_regen.can_active()
 	Servrpc.send_to_multi_auth(key_ennemy_marked, 'stun', [key_ennemy_marked])
 	
 func stun(key_ennemy_marked):

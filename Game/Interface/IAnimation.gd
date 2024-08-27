@@ -7,6 +7,7 @@ var multip_sync_path: NodePath = "./../MultiplayerSynchronizer"
 var ignore_multiconf_debug: bool = false
 
 var spell_controller: Node
+var immobile_while_active: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,3 +34,11 @@ func spell_controller_f(node: Node = self):
 		return spell_controller_f(node.get_parent())
 		
 	return null
+
+func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
+	if immobile_while_active:
+		ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+		
+	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
+	if immobile_while_active:
+		ServiceScenes.championNode.remove_state(self, 'states_action')

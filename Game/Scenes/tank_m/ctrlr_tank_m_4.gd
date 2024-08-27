@@ -16,5 +16,5 @@ func _ready():
 
 func active():
 	super.active()
-	charge.active()
-	zone.active()
+	charge.can_active()
+	zone.can_active()

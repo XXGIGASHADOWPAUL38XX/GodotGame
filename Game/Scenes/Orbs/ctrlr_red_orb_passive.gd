@@ -7,4 +7,4 @@ func _ready():
 
 func active():
 	super.active()
-	$red_orb_passive.active()
+	$red_orb_passive.can_active()

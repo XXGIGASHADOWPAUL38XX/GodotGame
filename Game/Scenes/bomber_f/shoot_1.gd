@@ -31,7 +31,7 @@ func active(main_mector):
 		
 	self.hide()
 	
-	spells_placeholder.get_inactive_bomb().active(self.position)
+	spells_placeholder.get_inactive_bomb().can_active(self.position)
 
 func post_dp_script(id, nbr_dupl):
 	var difference_angle = (RANGE_ANGLE_INCL * 2) / (nbr_dupl - 1)

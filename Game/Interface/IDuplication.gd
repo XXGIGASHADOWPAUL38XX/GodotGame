@@ -32,7 +32,9 @@ func _ready():
 		if dp_node != null && child.name == dp_node.name:
 			duplication_performed = true
 			if spells_placeholder != null:
-				await await_resource_loaded(func(): return !child.is_visible_in_tree() && spells_placeholder.duplication_phldrs != null)
+				await await_resource_loaded(func(): 
+					return (child == null || !child.is_visible_in_tree()) && spells_placeholder.duplication_phldrs != null
+				)
 				spells_placeholder.duplication_node_performed()
 	)
 		

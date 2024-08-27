@@ -16,7 +16,8 @@ func _ready():
 		special_pulse = $special_pulse
 
 func active():
-	super.active()special_ring.active()
+	super.active()
+	special_ring.can_active()
 
 func stop_spell():
 	super.stop_spell()

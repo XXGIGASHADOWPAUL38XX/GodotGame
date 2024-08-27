@@ -19,6 +19,6 @@ func active():
 	)
 	if hits.size() > 1:
 		coltdown.start()
-		spell_zone.active()
-		await hits.map(func(hit): await hit.active())
+		spell_zone.can_active()
+		await hits.map(func(hit): await hit.can_active())
 

@@ -12,5 +12,5 @@ func _ready():
 
 func active():
 	super.active()
-	duplicated_spells.map(func(ds): ds.active())
+	duplicated_spells.map(func(ds): ds.can_active())
 

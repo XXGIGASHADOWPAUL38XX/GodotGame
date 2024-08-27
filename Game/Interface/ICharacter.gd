@@ -36,7 +36,7 @@ var curr_state_action: SingleState = SingleState.new(State.StateAction.NULL, nul
 		return curr_state_action
 	set(value):
 		curr_state_action = value
-		if curr_state_action.state == State.StateAction.STUNNED:
+		if curr_state_action.state in state_bar.mapping_state_color.keys():
 			state_bar.init_state_bar(curr_state_action)
 		
 var curr_state_damage: SingleState = SingleState.new(State.StateDamage.NULL, null)
@@ -96,7 +96,7 @@ func new_round():
 func set_multiplayer_properties():
 	super.set_multiplayer_properties()
 	var hlth_bar_path = self.name + "/pgbars/health_bar"
-	var state_bar_path = self.name + "/pgbars/state_bar"	
+	var state_bar_path = self.name + "/pgbars/state_bar"
 	
 	multip_sync.replication_config.add_property(self.name + ":damage_final")
 	multip_sync.replication_config.add_property(self.name + ":health_final")

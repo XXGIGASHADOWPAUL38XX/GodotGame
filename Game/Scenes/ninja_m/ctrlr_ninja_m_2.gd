@@ -24,7 +24,8 @@ func _ready():
 		)
 
 func active():
-	super.active()dash.active()
+	super.active()
+	dash.can_active()
 	
 
 func reset(is_champion=false):

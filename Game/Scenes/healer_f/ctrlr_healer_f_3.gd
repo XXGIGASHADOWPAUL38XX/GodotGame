@@ -10,5 +10,5 @@ func _ready():
 
 func active():
 	super.active()
-	$damage.active()
+	$damage.can_active()
 	

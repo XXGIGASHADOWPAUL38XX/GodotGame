@@ -29,8 +29,8 @@ func can_active():
 
 func active():
 	coltdown.start()
-	ServiceScenes.championNode.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
-	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+	ServiceScenes.championNode.add_state(self, 'states_damage', State.StateDamage.IMMUNE, timer_key_release_cd)
+	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE, timer_key_release_cd)
 
 func stop_spell():
 	if timer_key_release.timeout.is_connected(stop_spell):

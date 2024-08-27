@@ -11,7 +11,7 @@ func _ready():
 
 func active():
 	super.active()
-	$special_mage_f.active()
+	$special_mage_f.can_active()
 
 func stop_spell():
 	super.stop_spell()

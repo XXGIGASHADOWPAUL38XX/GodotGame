@@ -13,9 +13,6 @@ func _ready():
 	health_bar = get_tree().root.get_node('Node2D').get_node('HealthBarP1')
 
 func _process(delta):
-	
-	service_health.setBar(self, health_bar)
-	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		target_position = get_global_mouse_position()
 		is_moving = true

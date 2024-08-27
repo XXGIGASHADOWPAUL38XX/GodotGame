@@ -16,5 +16,5 @@ func active():
 	super.active()
 	var main_vector = get_global_mouse_position() - champion.position
 		
-	shoots.map(func(s): s.active(main_vector))
+	shoots.map(func(s): s.can_active(main_vector))
 

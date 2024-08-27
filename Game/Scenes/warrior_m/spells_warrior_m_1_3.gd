@@ -14,10 +14,6 @@ func _ready():
 		self.hide()
 		
 		animation = $Spells_warrior_anim_1_3 as AnimatedSprite2D
-		
-		animation.animation_finished.connect(func(): 
-			self.hide()
-				)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +21,7 @@ func _process(delta):
 	pass
 
 func active(angle):
+		
 	self.position = champion.position + (Vector2.RIGHT.rotated(angle).normalized() * 25)
 	self.rotation = angle
 	
@@ -35,3 +32,5 @@ func active(angle):
 		self.position += Vector2.RIGHT.rotated(angle).normalized() * 5
 		await get_tree().create_timer(0).timeout
 
+	self.hide()
+	

@@ -8,6 +8,7 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.1
+		immobile_while_active = true
 		# ------------------------------------ #
 		
 		await super._ready()
@@ -28,3 +29,4 @@ func active():
 	await animation.animation_finished
 	
 	self.hide()
+	

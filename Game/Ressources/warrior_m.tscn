@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://1mlwrfuvk4np"]
+[gd_scene load_steps=16 format=3 uid="uid://cfigy8i5rulph"]
 
-[ext_resource type="Script" path="res://Game/warrior_m.gd" id="1_3jeqy"]
 [ext_resource type="Texture2D" uid="uid://csrv5wg2rrt5i" path="res://ressource/rpgsprites1/warrior_m.png" id="2_xolwn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kr1uj"]
@@ -115,7 +114,6 @@ animations = [{
 [node name="warrior_m" type="Node2D"]
 
 [node name="warrior_m" type="CharacterBody2D" parent="."]
-script = ExtResource("1_3jeqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="warrior_m"]
 sprite_frames = SubResource("SpriteFrames_quqnj")

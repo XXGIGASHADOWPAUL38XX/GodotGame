@@ -25,4 +25,4 @@ func get_inactive_spell():
 func launch_lasers(cube):
 	for active_cube in get_active_cubes().filter(func(c): return c != cube):
 		var spell = get_inactive_spell()[0]
-		spell.active(cube, active_cube)
+		spell.can_active(cube, active_cube)

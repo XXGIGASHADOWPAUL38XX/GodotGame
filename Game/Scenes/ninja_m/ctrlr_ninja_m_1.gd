@@ -19,5 +19,5 @@ func active():
 	super.active()
 	
 	shadow.hide()
-	await shuriken.active()
-	shadow.active(shuriken)
+	await shuriken.can_active()
+	shadow.can_active(shuriken)

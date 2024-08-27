@@ -10,6 +10,7 @@ var ignore_multiconf_debug = false
 
 var spell_controller: IControllerKeyPressed
 var spells_placeholder: IPlaceholderSpells
+var immobile_while_active: bool
 
 @export var champion: IEntity
 
@@ -35,6 +36,14 @@ func _ready():
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 
 	self.process_mode = Node.PROCESS_MODE_INHERIT
+
+func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
+	if immobile_while_active:
+		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+		
+	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
+	if immobile_while_active:
+		champion.remove_state(self, 'states_action')
 
 func set_multiplayer_properties():
 	var animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bsvvnqn503mcm"]
+[gd_scene load_steps=32 format=3 uid="uid://bsvvnqn503mcm"]
 
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/warrior_m.gd" id="1_pil80"]
 [ext_resource type="Texture2D" uid="uid://csrv5wg2rrt5i" path="res://ressource/rpgsprites1/warrior_m.png" id="2_04sja"]
 [ext_resource type="PackedScene" uid="uid://bbboj25fy4156" path="res://Game/Scenes/warrior_m/spells_warrior_m.tscn" id="3_lhuqc"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_umps8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa7up"]
 atlas = ExtResource("2_04sja")
@@ -115,6 +114,195 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eb5"]
 size = Vector2(20, 32)
 
+[sub_resource type="GDScript" id="GDScript_krg0a"]
+script/source = "extends Node
+
+var health_bar
+var shield
+
+func _ready():
+	health_bar = $health_bar
+	shield = $shield
+
+func _process(_delta):
+	pass
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2umpj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.784314)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s75p0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.160784, 0.592157, 0.14902, 0.4)
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_gbd6h"]
+default_font_size = 15
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 15
+ProgressBar/styles/background = SubResource("StyleBoxFlat_2umpj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_s75p0")
+
+[sub_resource type="GDScript" id="GDScript_jh1n4"]
+script/source = "extends ProgressBar
+
+const decalage = 35
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+func _process(delta):
+	if is_multiplayer_authority():
+		self.position = Vector2(
+			ServiceScenes.championNode.position.x + (self.size.x / -2), 
+			ServiceScenes.championNode.position.y + (decalage * -1)
+		)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nquhe"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.784314)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f11ax"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.588864, 0.152777, 0.4)
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_60o7p"]
+default_font_size = 15
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 15
+ProgressBar/styles/background = SubResource("StyleBoxFlat_nquhe")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_f11ax")
+
+[sub_resource type="GDScript" id="GDScript_o6mp1"]
+script/source = "extends ProgressBar
+
+var service_time = preload(\"res://Game/Services/service_time.gd\").new()
+var pgbars
+
+var coltdown = Timer.new()
+
+const MARGIN_MIN = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pgbars = get_parent()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if is_multiplayer_authority(): 
+		if self.visible:
+			self.position = Vector2(
+				(pgbars.health_bar.position.x + (pgbars.health_bar.size.x * (pgbars.health_bar.value / pgbars.health_bar.max_value))) * pgbars.health_bar.scale.x,
+				pgbars.health_bar.position.y * pgbars.health_bar.scale.y
+			)
+		
+func set_shield(value_shield, time):
+	if is_multiplayer_authority():
+		coltdown = service_time.init_timer(self, time)
+		coltdown.timeout.connect(shield_expired)
+		coltdown.start()
+		value_shield(value_shield)
+		
+		ServiceScenes.championNode.add_state(self, 'states_shielded', State.StateShielded.SHIELDED)
+
+func value_shield(value_shield):
+	self.max_value = value_shield
+	self.value = value_shield
+	self.size.x = value_shield * (pgbars.health_bar.size.x / pgbars.health_bar.max_value)
+	self.show()
+
+func shield_expired():
+	ServiceScenes.championNode.remove_state(self, 'states_shielded')
+	self.hide()
+
+func remaining_damage(incoming_damage):
+	if incoming_damage >= self.value:
+		shield_expired()
+		return incoming_damage - self.value
+
+	set_value(self.value - incoming_damage)
+	return 0
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qpbo"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.392157)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8od4d"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_g2a04"]
+default_font_size = 15
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 15
+ProgressBar/styles/background = SubResource("StyleBoxFlat_7qpbo")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_8od4d")
+
+[sub_resource type="GDScript" id="GDScript_df4ax"]
+script/source = "extends ProgressBar
+
+var mapping_state_color = {
+	State.StateAction.STUNNED: Color.DIM_GRAY,
+	State.StateAction.IMMOBILE: Color.ORANGE
+}
+
+var current_state_bar: Timer
+const decalage = 55
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if is_multiplayer_authority() && self.visible:
+		self.value = current_state_bar.time_left
+		self.position = Vector2(
+			ServiceScenes.championNode.position.x + (self.size.x / -2), 
+			ServiceScenes.championNode.position.y + (decalage * -1)
+		)
+
+func init_state_bar(curr_state_action: SingleState):
+	self.get_theme_stylebox(\"fill\", \"ProgressBar\").bg_color = mapping_state_color[curr_state_action.state]
+	
+	current_state_bar = curr_state_action.timer
+	current_state_bar.timeout.connect(func(): self.hide())
+	
+	self.max_value = current_state_bar.wait_time
+	self.show()
+	
+"
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rv4cw"]
 
 [node name="warrior_m" type="Node2D"]
@@ -133,7 +321,41 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="spells_warrior_m" parent="warrior_m" instance=ExtResource("3_lhuqc")]
 
-[node name="pgbars" parent="warrior_m" instance=ExtResource("4_umps8")]
+[node name="pgbars" type="Node" parent="warrior_m"]
+script = SubResource("GDScript_krg0a")
+
+[node name="health_bar" type="ProgressBar" parent="warrior_m/pgbars"]
+top_level = true
+offset_right = 75.0
+offset_bottom = 10.0
+theme = SubResource("Theme_gbd6h")
+max_value = 120.0
+value = 88.0
+show_percentage = false
+script = SubResource("GDScript_jh1n4")
+
+[node name="shield" type="ProgressBar" parent="warrior_m/pgbars"]
+visible = false
+offset_left = 75.0
+offset_right = 76.0
+offset_bottom = 10.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_60o7p")
+value = 20.0
+show_percentage = false
+script = SubResource("GDScript_o6mp1")
+
+[node name="state_bar" type="ProgressBar" parent="warrior_m/pgbars"]
+visible = false
+offset_left = 62.0
+offset_top = 33.0
+offset_right = 137.0
+offset_bottom = 38.0
+theme = SubResource("Theme_g2a04")
+value = 0.75
+show_percentage = false
+script = SubResource("GDScript_df4ax")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_rv4cw")

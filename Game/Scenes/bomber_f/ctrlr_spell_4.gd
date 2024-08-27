@@ -12,4 +12,4 @@ func _ready():
 
 func active():
 	super.active()
-	shoots.map(func(s): s.active())
+	shoots.map(func(s): s.can_active())

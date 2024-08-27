@@ -16,7 +16,8 @@ top_level = true
 offset_right = 75.0
 offset_bottom = 10.0
 theme = ExtResource("2_jph32")
-value = 50.0
+max_value = 120.0
+value = 88.0
 show_percentage = false
 script = ExtResource("3_llsbv")
 

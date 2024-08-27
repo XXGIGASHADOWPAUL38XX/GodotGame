@@ -8,5 +8,5 @@ func _ready():
 
 func active():
 	super.active()
-	$shield_crystal.active()
+	$shield_crystal.can_active()
 

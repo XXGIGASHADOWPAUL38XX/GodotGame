@@ -9,7 +9,7 @@ func _ready():
 
 func active():
 	super.active()
-	$dash.active()
+	$dash.can_active()
 	await get_tree().create_timer(0.5).timeout
-	$dash.active()
+	$dash.can_active()
 

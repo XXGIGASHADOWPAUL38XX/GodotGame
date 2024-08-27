@@ -33,9 +33,6 @@ func _ready():
 	
 	self.body_entered.connect(func(obj): 
 		if CONF_DETECT_WITH.find(obj) != -1:
-			if self.name.begins_with("laser"):
-				print("self.cshape.disabled")
-				print(self.cshape.disabled)
 			ennemies_in.append(obj)
 			entity_entered(obj)
 	)

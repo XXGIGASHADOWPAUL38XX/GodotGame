@@ -24,7 +24,7 @@ func _ready():
 	anim_pre_spell.animation_finished.connect(Callable(active_spell, 'active'))
 
 func active():
-	anim_pre_spell.active()
+	anim_pre_spell.can_active()
 	active_spell.position = anim_pre_spell.position
 	mark_number -= 1
 

@@ -7,5 +7,5 @@ func _ready():
 			
 func active():
 	super.active()
-	$aa_mage_f.active()
+	$aa_mage_f.can_active()
 	

@@ -9,4 +9,4 @@ func _ready():
 
 func active():
 	super.active()
-	$zone.active()
+	$zone.can_active()

@@ -13,10 +13,15 @@ var cd_explode = 8.0
 
 var modulate_bool: bool = false
 
+var duplicator
+var key_ennemy_marked
+
 func _ready():
 	if is_multiplayer_authority():
 		animation = $red_orb_passive
 		collision_shape = $CollisionShape2D
+		duplicator = get_parent()
+		
 		await super._ready()
 		
 		coltdown_stay = service_time.init_timer(self, cd_stay)
@@ -47,9 +52,12 @@ func active():
 			animation.frame = augment
 			coltdown_stay.start()
 		else:
-			Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), self, 'explode', [])
+			Servrpc.send_to_id(key_ennemy_marked.get_multiplayer_authority(), self, 'explode', [])
 			coltdown_explode.start()
 
 func explode():
 	pass
 #	champion.take_damage(5, State.StateAction.NULL)
+
+func post_dp_script(id, nbr_dupl):
+	key_ennemy_marked = duplicator.ennemies_sorted()[id - 1]

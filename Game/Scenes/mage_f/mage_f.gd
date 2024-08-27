@@ -14,7 +14,6 @@ var orb
 var anim_orb_hide
 
 func _ready():
-	health_bar = $health_bar
 	if is_multiplayer_authority():
 		orb = $spells_mage_f/ctrlr_mage_f_1/spells_mage_f_1
 		anim_orb_hide = $spells_mage_f/ctrlr_mage_f_1/anim_orb_hide

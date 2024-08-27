@@ -13,5 +13,6 @@ func _ready():
 	await super._ready()
 			
 func active():
-	super.active()orb.active()
+	super.active()
+	orb.can_active()
 	

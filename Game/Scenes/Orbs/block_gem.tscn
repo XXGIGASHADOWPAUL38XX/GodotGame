@@ -1,8 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://cks8l0fj8ghp1"]
+[gd_scene load_steps=18 format=3 uid="uid://cks8l0fj8ghp1"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/block_gem.gd" id="1_kqqdn"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_orange_orb_active.gd" id="1_oqaw1"]
 [ext_resource type="Texture2D" uid="uid://b6qtyp12q2j5h" path="res://Game/Ressources/Orbs/orange_orb/orange_orb_active.png" id="2_77oau"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/dp_anim_blocked.gd" id="2_e3d0c"]
+[ext_resource type="Texture2D" uid="uid://dosudk5dancut" path="res://Game/Ressources/Orbs/orange_orb/orange_orb_block.png" id="3_aufxw"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/anim_blocked.gd" id="3_kkjy1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ryx7"]
+atlas = ExtResource("3_aufxw")
+region = Rect2(0, 0, 1404, 1403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc7dl"]
+atlas = ExtResource("3_aufxw")
+region = Rect2(1404, 0, 1404, 1403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unktl"]
+atlas = ExtResource("3_aufxw")
+region = Rect2(2808, 0, 1404, 1403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dmdc"]
+atlas = ExtResource("3_aufxw")
+region = Rect2(1404, 1403, 1404, 1403)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0mot"]
+atlas = ExtResource("3_aufxw")
+region = Rect2(2808, 1403, 1404, 1403)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfnl7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ryx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc7dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unktl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dmdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0mot")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lnte8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5fbx"]
 atlas = ExtResource("2_77oau")
@@ -23,22 +71,26 @@ animations = [{
 radius = 84.7172
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7h4j"]
-properties/0/path = NodePath("orange_orb_active:visible")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("orange_orb_active:position")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("orange_orb_active:modulate")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
 [node name="orange_orb_active" type="Node"]
 
 [node name="ctrlr_orange_orb_active" type="Node2D" parent="."]
 script = ExtResource("1_oqaw1")
 
+[node name="dp_anim_blocked" type="Node2D" parent="ctrlr_orange_orb_active"]
+script = ExtResource("2_e3d0c")
+
+[node name="anim_blocked" type="AnimatedSprite2D" parent="ctrlr_orange_orb_active/dp_anim_blocked"]
+modulate = Color(1, 1, 1, 0.784314)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_qfnl7")
+script = ExtResource("3_kkjy1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_orange_orb_active/dp_anim_blocked"]
+replication_config = SubResource("SceneReplicationConfig_lnte8")
+
 [node name="orange_orb_active" type="Area2D" parent="ctrlr_orange_orb_active"]
+visible = false
 collision_layer = 2
 script = ExtResource("1_kqqdn")
 

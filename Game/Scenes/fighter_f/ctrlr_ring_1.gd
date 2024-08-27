@@ -31,8 +31,8 @@ func active():
 	super.active()
 	if first_activation:
 		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
-		zone.active()
-		anim_champ_leap.active()
+		zone.can_active()
+		anim_champ_leap.can_active()
 		champion.leap()
 		
 		zone_timer.start()
@@ -40,7 +40,7 @@ func active():
 		
 	
 	zone.end_spell()
-	await jump.active()
+	await jump.can_active()
 	champion.remove_state(self, 'states_action')
 	
 	first_activation = true

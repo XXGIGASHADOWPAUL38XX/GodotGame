@@ -8,4 +8,4 @@ func _ready():
 
 func active():
 	super.active()
-	$stunning_bomb.active()
+	$stunning_bomb.can_active()

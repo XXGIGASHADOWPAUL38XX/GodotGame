@@ -9,7 +9,7 @@ func _ready():
 	dp_number = ennemies_sorted().size()
 	
 	dp_callable_name = name_callable
-	dp_node = $mark_passive
+	dp_node = $red_orb_passive
 	
 	await super._ready()
 

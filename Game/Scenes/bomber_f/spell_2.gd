@@ -13,7 +13,7 @@ func _process(delta):
 	pass
 
 func active():
-	sphere.active()
+	sphere.can_active()
 
 func post_dp_script(id, dp_number):
 	sphere.current_angle = (id - 1) * PI

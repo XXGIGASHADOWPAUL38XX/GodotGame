@@ -8,5 +8,5 @@ func _ready():
 
 func active():
 	super.active()
-	$shield_golem.active()
+	$shield_golem.can_active()
 

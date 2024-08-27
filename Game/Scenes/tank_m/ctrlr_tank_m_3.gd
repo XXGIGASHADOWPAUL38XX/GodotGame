@@ -16,4 +16,4 @@ func _ready():
 
 func active():
 	super.active()
-	rock.active()
+	rock.can_active()

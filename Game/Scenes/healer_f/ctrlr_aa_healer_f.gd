@@ -7,5 +7,5 @@ func _ready():
 			
 func active():
 	super.active()
-	$aa_healer_f.active()
+	$aa_healer_f.can_active()
 	

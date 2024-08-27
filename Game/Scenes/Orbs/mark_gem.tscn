@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cl05yw5l5drbb"]
+[gd_scene load_steps=12 format=3 uid="uid://cl05yw5l5drbb"]
 
 [ext_resource type="Texture2D" uid="uid://be28l2raofswm" path="res://Game/Ressources/Orbs/red_orb/passive.png" id="1_5bt0k"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_red_orb_passive.gd" id="1_kcwm6"]
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/dp_red_orb_passive.gd" id="2_24j4c"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/mark_gem.gd" id="2_cmxku"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugqig"]
@@ -43,31 +44,25 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_43mpc"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cvgvc"]
-properties/0/path = NodePath("Area2D:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Area2D:visible")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Area2D/red_orb_passive:frame")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
 [node name="red_orb_passive" type="Node2D"]
 
 [node name="ctrlr_red_orb_passive" type="Node2D" parent="."]
 script = ExtResource("1_kcwm6")
 
-[node name="red_orb_passive" type="Area2D" parent="ctrlr_red_orb_passive"]
+[node name="dp_red_orb_passive" type="Node2D" parent="ctrlr_red_orb_passive"]
+script = ExtResource("2_24j4c")
+
+[node name="red_orb_passive" type="Area2D" parent="ctrlr_red_orb_passive/dp_red_orb_passive"]
 visible = false
 script = ExtResource("2_cmxku")
 
-[node name="anim_red_orb_passive" type="AnimatedSprite2D" parent="ctrlr_red_orb_passive/red_orb_passive"]
+[node name="anim_red_orb_passive" type="AnimatedSprite2D" parent="ctrlr_red_orb_passive/dp_red_orb_passive/red_orb_passive"]
 scale = Vector2(0.07, 0.07)
 sprite_frames = SubResource("SpriteFrames_5nxib")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_red_orb_passive/red_orb_passive"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_red_orb_passive/dp_red_orb_passive/red_orb_passive"]
 shape = SubResource("CircleShape2D_43mpc")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_red_orb_passive"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_red_orb_passive/dp_red_orb_passive"]
 replication_config = SubResource("SceneReplicationConfig_cvgvc")

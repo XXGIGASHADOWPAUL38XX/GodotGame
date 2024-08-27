@@ -15,6 +15,6 @@ func active():
 	var endpoint_dash = ServiceSpell.distance_range_max(ServiceScenes.championNode.position, get_global_mouse_position(), 100)
 	var main_vector = endpoint_dash - ServiceScenes.championNode.position
 	
-	await dashes_shadows.map(func(dash): await dash.active(main_vector))
+	await dashes_shadows.map(func(dash): await dash.can_active(main_vector))
 	
 

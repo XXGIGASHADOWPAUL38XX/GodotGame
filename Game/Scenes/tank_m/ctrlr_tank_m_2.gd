@@ -15,7 +15,7 @@ func _ready():
 
 func active():
 	super.active()
-	spell.active()
+	spell.can_active()
 
 func stop_spell():
 	super.stop_spell()

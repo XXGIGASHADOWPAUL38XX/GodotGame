@@ -14,7 +14,7 @@ func _ready():
 
 func active():
 	super.active()
-	spell.active()
+	spell.can_active()
 
 func launch_spell_cond():
 	return ServiceScenes.championNode.orb_kind == spell.orb_kind

@@ -11,5 +11,5 @@ func _ready():
 
 func active():
 	super.active()
-	purges.map(func(purge): purge.active()) 
+	purges.map(func(purge): purge.can_active()) 
 

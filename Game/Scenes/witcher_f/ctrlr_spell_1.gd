@@ -13,7 +13,8 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()var cube
+	super.active()
+	var cube
 	var inactive_cubes = get_inactive_cubes(cubes_s1())
 	
 	if inactive_cubes.size() == 0:
@@ -22,13 +23,11 @@ func active():
 		cube = inactive_cubes[0]
 		cube_file.append(cube)
 		
-	cube.active()
+	cube.can_active()
 	
 	inactive_cubes = get_inactive_cubes(cubes_s1())
 	if inactive_cubes.size() == 0:
-		
-		
-	spells_placeholder.controller_laser.launch_lasers(cube)
+		spells_placeholder.controller_laser.launch_lasers(cube)
 
 # --------------------- CUBES FUNCTIONS --------------------------- #
 func get_inactive_cubes(cube_list):
