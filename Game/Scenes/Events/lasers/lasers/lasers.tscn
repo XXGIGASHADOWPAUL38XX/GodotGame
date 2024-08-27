@@ -70,7 +70,6 @@ height = 420.0
 script = ExtResource("1_jvpkk")
 
 [node name="laser" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -200)
 scale = Vector2(1, 0.5)
 script = ExtResource("2_ulycm")
@@ -79,8 +78,6 @@ script = ExtResource("2_ulycm")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_vk1b8")
 animation = &"laser"
-frame = 4
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="laser"]
 position = Vector2(0.5, 0.5)

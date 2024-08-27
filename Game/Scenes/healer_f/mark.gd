@@ -57,8 +57,8 @@ func fully_completed_mark():
 	Servrpc.send_to_multi_auth(key_ennemy_marked, 'stun', [key_ennemy_marked])
 	
 func stun(key_ennemy_marked):
-	key_ennemy_marked.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	key_ennemy_marked.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	await get_tree().create_timer(0.75).timeout
 	
-	key_ennemy_marked.remove_state(self, 'states_movement')
+	key_ennemy_marked.remove_state(self, 'states_action')
 

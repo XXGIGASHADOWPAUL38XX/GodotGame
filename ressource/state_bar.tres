@@ -1,11 +1,11 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b3kqqqrhuonft"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dvb45s5gthdi2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2umpj"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(1, 1, 1, 0.784314)
+bg_color = Color(1, 1, 1, 0.392157)
 corner_detail = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s75p0"]
@@ -13,7 +13,7 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.160784, 0.592157, 0.14902, 0.4)
+bg_color = Color(0, 0, 0, 1)
 corner_detail = 6
 
 [resource]

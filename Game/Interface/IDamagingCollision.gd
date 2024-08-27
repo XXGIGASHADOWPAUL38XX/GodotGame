@@ -6,7 +6,7 @@ class_name IDamagingCollision
 # si on ne veut pas utilser on surcharge output_damage_f()
 @export var damage_base: float
 @export var damage_ratio: float
-@export var state: State.StateMovement = State.StateMovement.NULL
+@export var state: State.StateAction = State.StateAction.NULL
 
 var output_damage = Callable(output_damage_f)
 

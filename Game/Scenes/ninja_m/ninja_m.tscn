@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://by2les1golmq7"]
+[gd_scene load_steps=20 format=3 uid="uid://by2les1golmq7"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ninja_m.gd" id="1_176nu"]
 [ext_resource type="Texture2D" uid="uid://dl83g4n8u8hot" path="res://ressource/rpgsprites1/ninja_m.png" id="2_v242r"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="4_30y3p"]
-[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="5_0o7r8"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_eglqf"]
 [ext_resource type="PackedScene" uid="uid://dpcvbwqik5lfg" path="res://Game/Scenes/ninja_m/spells_ninja_m.tscn" id="6_e6mmi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6pgvu"]
@@ -116,11 +115,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trl6c"]
 size = Vector2(20, 32)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72375"]
-bg_color = Color(1, 0.827451, 0.568627, 1)
-skew = Vector2(0.2, 0)
-corner_radius_top_left = 2
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xv8wf"]
 properties/0/path = NodePath("ninja_m:visible")
 properties/0/spawn = true
@@ -187,29 +181,7 @@ animation = &"walk_down"
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_trl6c")
 
-[node name="health_bar" type="ProgressBar" parent="ninja_m"]
-top_level = true
-offset_right = 75.0
-offset_bottom = 10.0
-theme = ExtResource("4_30y3p")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 11
-max_value = 150.0
-value = 150.0
-show_percentage = false
-
-[node name="shield" type="ProgressBar" parent="ninja_m"]
-visible = false
-offset_left = 76.0
-offset_top = -14.0
-offset_right = 80.0
-offset_bottom = -4.0
-theme = ExtResource("4_30y3p")
-theme_override_styles/fill = SubResource("StyleBoxFlat_72375")
-max_value = 10.0
-value = 10.0
-show_percentage = false
-script = ExtResource("5_0o7r8")
+[node name="pgbars" parent="ninja_m" instance=ExtResource("3_eglqf")]
 
 [node name="spells_ninja_m" parent="ninja_m" instance=ExtResource("6_e6mmi")]
 

@@ -1,9 +1,11 @@
 extends Node
 
 var health_bar
+var shield
 
 func _ready():
-	health_bar = $HealthBarP1
+	health_bar = $health_bar
+	shield = $shield
 
 func _process(_delta):
 	pass

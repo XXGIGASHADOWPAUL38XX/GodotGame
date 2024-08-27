@@ -8,6 +8,9 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.12
+		
+		state_action = State.StateAction.STUNNED
+		state_duration = 0.75
 		# ------------------------------------ #
 		
 		await super._ready()

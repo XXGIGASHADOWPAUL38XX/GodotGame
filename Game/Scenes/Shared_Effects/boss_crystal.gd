@@ -28,7 +28,6 @@ func die(heros_dealing_dmg):
 	get_parent().queue_free()
 
 func bonus(heros_dealing_dmg):
-	
 	var allies_of_heros_dmg = ServiceScenes.alliesNode if ServiceScenes.is_on_same_team(
 	heros_dealing_dmg, ServiceScenes.championNode) else ServiceScenes.ennemiesNode
 	

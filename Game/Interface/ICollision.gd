@@ -18,6 +18,9 @@ var DISABLE_BASE_BEHAVIOR_COLLISION = false
 @export var retrigger_time: float
 var retrigger_timer
 
+@export var state_action: State.StateAction = State.StateAction.NULL
+@export var state_duration: float = 1.0
+
 func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	
@@ -30,6 +33,9 @@ func _ready():
 	
 	self.body_entered.connect(func(obj): 
 		if CONF_DETECT_WITH.find(obj) != -1:
+			if self.name.begins_with("laser"):
+				print("self.cshape.disabled")
+				print(self.cshape.disabled)
 			ennemies_in.append(obj)
 			entity_entered(obj)
 	)
@@ -58,6 +64,8 @@ func entity_exited(ennemy):
 
 func set_multiplayer_properties():
 	super.set_multiplayer_properties()
+	multip_sync.replication_config.add_property(self.name + ":state_action")
+	multip_sync.replication_config.add_property(self.name + ":state_duration")
 		
 	if retrigger:
 		multip_sync.replication_config.add_property(self.name + ":retrigger")

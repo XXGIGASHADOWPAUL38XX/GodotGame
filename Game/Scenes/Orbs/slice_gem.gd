@@ -26,7 +26,7 @@ func active():
 	animation.play()
 
 	self.rotation = ServiceSpell.set_in_front_mouse(ServiceScenes.championNode, get_global_mouse_position(), 30).angle()
-	ServiceScenes.championNode.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	
 	self.show()
 	
@@ -35,7 +35,7 @@ func active():
 		ServiceScenes.championNode, get_global_mouse_position(), slice_distance
 	)
 		
-	ServiceScenes.championNode.remove_state(self, 'states_movement')
+	ServiceScenes.championNode.remove_state(self, 'states_action')
 	self.hide()
 	animation.stop()
 

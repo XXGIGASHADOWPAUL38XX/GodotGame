@@ -52,4 +52,4 @@ func active():
 
 func explode():
 	pass
-#	champion.take_damage(5, State.StateMovement.NULL)
+#	champion.take_damage(5, State.StateAction.NULL)

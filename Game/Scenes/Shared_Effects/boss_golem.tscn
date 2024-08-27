@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://dj6cg4y1n2q8h"]
+[gd_scene load_steps=34 format=3 uid="uid://dj6cg4y1n2q8h"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem.gd" id="1_iipq7"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem_phldr.gd" id="1_ktsv5"]
 [ext_resource type="Texture2D" uid="uid://v6ins432o35e" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/Character_sheet.png" id="2_yip8k"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_4c3l2"]
-[ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="4_phfmg"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_21ask"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_4kiom"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/attack_golem.gd" id="5_beh7g"]
 
@@ -188,7 +187,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 30.0
+"speed": 25.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ud83n"]
@@ -212,19 +211,12 @@ animation = &"attack"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss_golem"]
 shape = SubResource("RectangleShape2D_pgf00")
 
-[node name="health_bar" type="ProgressBar" parent="boss_golem"]
-top_level = true
-offset_left = -74.0
-offset_top = -14.0
-offset_right = 78.0
-offset_bottom = 13.0
-theme = ExtResource("3_4c3l2")
-value = 100.0
-script = ExtResource("4_phfmg")
+[node name="pgbars" parent="boss_golem" instance=ExtResource("4_21ask")]
 
-[node name="spells" type="Node" parent="boss_golem"]
+[node name="spells" type="Node2D" parent="boss_golem"]
 
 [node name="attack_golem" type="Area2D" parent="boss_golem/spells"]
+visible = false
 position = Vector2(90, 0)
 scale = Vector2(3, 3)
 script = ExtResource("5_beh7g")

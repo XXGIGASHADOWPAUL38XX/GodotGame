@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxrr1eijthugr"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Health/health.gd" id="1_ntddm"]
+[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="2_jph32"]
+[ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="3_llsbv"]
+[ext_resource type="Theme" uid="uid://bvu0egsqn6n2i" path="res://ressource/shield.tres" id="4_wkx5a"]
+[ext_resource type="Script" path="res://Game/Scenes/Health/shield.gd" id="5_qjp0x"]
+[ext_resource type="Theme" uid="uid://dvb45s5gthdi2" path="res://ressource/state_bar.tres" id="6_adkxa"]
+[ext_resource type="Script" path="res://Game/Scenes/Health/state_bar.gd" id="7_lm1ll"]
+
+[node name="pgbars" type="Node"]
+script = ExtResource("1_ntddm")
+
+[node name="health_bar" type="ProgressBar" parent="."]
+top_level = true
+offset_right = 75.0
+offset_bottom = 10.0
+theme = ExtResource("2_jph32")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_llsbv")
+
+[node name="shield" type="ProgressBar" parent="."]
+visible = false
+offset_left = 75.0
+offset_right = 76.0
+offset_bottom = 10.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_wkx5a")
+value = 20.0
+show_percentage = false
+script = ExtResource("5_qjp0x")
+
+[node name="state_bar" type="ProgressBar" parent="."]
+visible = false
+offset_left = 62.0
+offset_top = 33.0
+offset_right = 137.0
+offset_bottom = 38.0
+theme = ExtResource("6_adkxa")
+value = 0.75
+show_percentage = false
+script = ExtResource("7_lm1ll")

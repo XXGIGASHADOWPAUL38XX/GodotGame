@@ -653,5 +653,4 @@ sprite_frames = SubResource("SpriteFrames_dt6cl")
 animation = &"explode"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_warrior_m"]
-root_path = NodePath("../../ctrlr_warrior_m_2")
 replication_config = SubResource("SceneReplicationConfig_qq8po")

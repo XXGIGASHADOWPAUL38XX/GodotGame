@@ -4,7 +4,6 @@ var recently_freed_nodepaths: Array:
 	get:
 		if recently_freed_nodepaths.size() > 5:
 			recently_freed_nodepaths.remove_at(0)
-		print(recently_freed_nodepaths)
 		return recently_freed_nodepaths
 
 func all_remotes(node, f, args:Array):

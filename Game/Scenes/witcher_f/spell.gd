@@ -15,6 +15,12 @@ func _ready():
 		animation = $anim_spell
 		collision_shape = $CollisionShape2D
 		
+		animation.animation = 'pre'
+		DISABLE_BASE_BEHAVIOR_COLLISION = true
+		animation.animation_changed.connect(func(): collision_shape.disabled = (animation.animation != 'damage'))
+		
+		self.visibility_changed.connect(func(): if not self.visible: animation.animation = 'pre')
+		
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height
 		
@@ -31,6 +37,9 @@ func active(cube, active_cube):
 	
 	#self.modulate.a = 0
 	self.show()
+	
+	await get_tree().create_timer(0.4).timeout
+	animation.animation = 'damage'
 	
 	animation.play()
 	

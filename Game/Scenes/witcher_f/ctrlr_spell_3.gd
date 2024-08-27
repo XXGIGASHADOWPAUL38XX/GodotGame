@@ -37,8 +37,7 @@ func active():
 	else:
 		dash_first.active_back()
 		dash_back.active_back()
-		coltdown
+		coltdown.start()
 		
 	anim_dash.active()
-	#$spell.active()
 	pass

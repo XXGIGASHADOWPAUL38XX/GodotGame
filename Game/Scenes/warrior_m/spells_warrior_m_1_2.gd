@@ -16,7 +16,7 @@ func _ready():
 		animation = $Spells_warrior_anim_1_2 as AnimatedSprite2D
 		animation.animation_finished.connect(func(): 
 			self.hide()
-			champion.remove_state(self, 'states_movement')
+			champion.remove_state(self, 'states_action')
 		)
 
 
@@ -25,7 +25,7 @@ func _process(delta):
 	pass
 
 func active(angle):
-	champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.position = champion.position + (Vector2.RIGHT.rotated(angle).normalized() * 35)
 	self.rotation = angle
 	

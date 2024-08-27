@@ -1,6 +1,6 @@
 extends Node
 
-var LIST_BOSSES = ['boss_golem', 'boss_crystal']
+var LIST_BOSSES = ['boss_golem'] #! rajouter boss crystal
 
 func init_first_round():
 	add_random_boss()

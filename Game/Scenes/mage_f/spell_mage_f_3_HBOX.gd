@@ -13,10 +13,6 @@ var spell3_elements = {
 var sorted_slots = []
 var champion
 
-var cd_spell = 1.0
-var spell: AnimatedSprite2D
-var coltdown_spell: Timer
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
@@ -27,18 +23,13 @@ func _ready():
 		sorted_slots.shuffle()
 		assign_to_solts()
 		champion.update_orb_kind(sorted_slots[sorted_slots.size() - 1])
-		
-		coltdown_spell = service_time.init_timer(self, cd_spell)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
 		self.position = champion.position + Vector2(-14, -10)
-		if Input.is_key_pressed(KEY_E) && coltdown_spell.time_left == 0:
-			coltdown_spell.start()
-			next_element()
 
-func next_element():
+func active():
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 
 		return sorted_slots.find(slot) != sorted_slots.size() - 1
 	)

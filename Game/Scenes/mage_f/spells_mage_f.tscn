@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://srarkkpwqkkt"]
+[gd_scene load_steps=75 format=3 uid="uid://srarkkpwqkkt"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_1_blue.gd" id="1_8i1aq"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f.gd" id="1_r6idw"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d1c3q11idb17t" path="res://Game/Ressources/Heros/mage_f/spell3_1_mage.png" id="9_1kw5p"]
 [ext_resource type="Texture2D" uid="uid://c3forur6ur58v" path="res://Game/Ressources/Heros/mage_f/spellC_mage.png" id="9_u5k0v"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/ctrlr_special_mage_f.gd" id="15_btxxl"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/ctrlr_spell_mage_f_3.gd" id="17_4526p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewonb"]
 
@@ -356,7 +357,7 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kkcun"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6iccr"]
-properties/0/path = NodePath("spell_mage_f_3/spell_mage_f_3_HBOX:position")
+properties/0/path = NodePath("ctrlr_mage_f_3/spell_mage_f_3:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
@@ -386,6 +387,7 @@ script = ExtResource("1_r6idw")
 script = ExtResource("2_uo4ux")
 
 [node name="aa_mage_f" type="Area2D" parent="ctrlr_mage_f_aa"]
+visible = false
 scale = Vector2(0.05, 0.05)
 script = ExtResource("3_15i1u")
 
@@ -402,6 +404,7 @@ replication_config = SubResource("SceneReplicationConfig_r5qtg")
 script = ExtResource("2_qs6wv")
 
 [node name="anim_orb_hide" type="AnimatedSprite2D" parent="ctrlr_mage_f_1"]
+visible = false
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_gwt5w")
 animation = &"RED"
@@ -432,13 +435,16 @@ replication_config = SubResource("SceneReplicationConfig_kkcun")
 
 [node name="spells_mage_f_red" parent="." instance=ExtResource("7_pshf4")]
 
-[node name="spell_mage_f_3" type="Control" parent="."]
+[node name="ctrlr_mage_f_3" type="Node2D" parent="."]
+script = ExtResource("17_4526p")
+
+[node name="spell_mage_f_3" type="Control" parent="ctrlr_mage_f_3"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="spell_mage_f_3_HBOX" type="HBoxContainer" parent="spell_mage_f_3"]
+[node name="spell_mage_f_3_HBOX" type="HBoxContainer" parent="ctrlr_mage_f_3/spell_mage_f_3"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -450,26 +456,26 @@ offset_bottom = 10.0
 grow_horizontal = 2
 script = ExtResource("8_fe4uq")
 
-[node name="slot1" type="TextureRect" parent="spell_mage_f_3/spell_mage_f_3_HBOX"]
+[node name="slot1" type="TextureRect" parent="ctrlr_mage_f_3/spell_mage_f_3/spell_mage_f_3_HBOX"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("9_1kw5p")
 expand_mode = 1
 
-[node name="slot2" type="TextureRect" parent="spell_mage_f_3/spell_mage_f_3_HBOX"]
+[node name="slot2" type="TextureRect" parent="ctrlr_mage_f_3/spell_mage_f_3/spell_mage_f_3_HBOX"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("9_1kw5p")
 expand_mode = 1
 
-[node name="slot3" type="TextureRect" parent="spell_mage_f_3/spell_mage_f_3_HBOX"]
+[node name="slot3" type="TextureRect" parent="ctrlr_mage_f_3/spell_mage_f_3/spell_mage_f_3_HBOX"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 texture = ExtResource("9_1kw5p")
 expand_mode = 1
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="spell_mage_f_3"]
-root_path = NodePath("../..")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_3/spell_mage_f_3"]
+root_path = NodePath("../../..")
 replication_config = SubResource("SceneReplicationConfig_6iccr")
 
 [node name="ctrlr_special_mage_f" type="Node2D" parent="."]

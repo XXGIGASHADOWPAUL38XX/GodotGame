@@ -20,9 +20,10 @@ func _ready():
 		
 		cshape = $CollisionShape2D
 		animation = $anim_laser
+		animation.animation = 'pre_laser'
 		
-		animation.animation == 'pre_laser'
-		animation.animation_changed.connect(func(obj): cshape.disabled != (animation.animation == 'laser'))
+		DISABLE_BASE_BEHAVIOR_COLLISION = true
+		animation.animation_changed.connect(func(): cshape.disabled = (animation.animation != 'laser'))
 	
 		base_size_x = cshape.shape.height
 		
@@ -54,17 +55,16 @@ func launch_laser():
 	self.scale.x = input.global_position.distance_to(output.global_position) / base_size_x
 	
 	
-	animation.animation == 'pre_laser'
+	animation.animation = 'pre_laser'
 	self.show()
 	await get_tree().create_timer(0.5).timeout
 	
-	animation.animation == 'laser'
-	
-	if get_tree() == null:
-		return
+	animation.animation = 'laser'
+	animation.play()
 		
-	await get_tree().create_timer(0.5).timeout
+	await animation.animation_finished
 	self.hide()
+	animation.animation = 'pre_laser'
 	
 	launch_timer()
 

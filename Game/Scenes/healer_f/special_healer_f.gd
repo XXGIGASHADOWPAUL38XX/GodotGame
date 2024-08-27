@@ -20,7 +20,7 @@ func active():
 	Servrpc.send_to_id(player.get_multiplayer_authority(), ServiceStats, 
 		'update_stats_local', [player, 'speed_bonus_ratio', player.speed_bonus_ratio + 0.4]
 	)
-	player.remove_all_states('states_movement')
+	player.remove_all_states('states_action')
 	animation.play('default')
 	
 	self.modulate.a = 0.5

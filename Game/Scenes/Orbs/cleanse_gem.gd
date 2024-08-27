@@ -7,7 +7,7 @@ func _ready():
 		await self._ready()
 
 func active():
-	ServiceScenes.championNode.state = State.StateMovement.NULL
+	ServiceScenes.championNode.state = State.StateAction.NULL
 	self.play("default")
 	self.show()
 	await get_tree().create_timer(0.3).timeout

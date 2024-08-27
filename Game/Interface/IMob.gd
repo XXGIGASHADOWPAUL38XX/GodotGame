@@ -17,22 +17,13 @@ func _ready():
 		attack_timer = service_time.init_timer(self, cd_attack)
 		animation.play("default")
 		
-		animation.animation_changed.connect(func(): 
-			if animation.animation == 'attack' && attack_timer.time_left == 0:
-				attack.init_attack()
-				animation.animation_finished.connect(func():
-					animation.play('default')
-				)
-				attack_timer.start()
-		)
-		
 		await super._ready()
 		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
-		ServiceHealth.setBar(self, health_bar)
+		pass
 	
 func take_damage():
 	if is_multiplayer_authority() && health_bar.value > 0:
@@ -57,12 +48,22 @@ func die(heros_dealing_dmg):
 	)
 	
 func attack_back():
-	if (self.last_ennemy_hitting.position - self.position).x > 0:
+	if (self.last_ennemy_hitting.position - self.global_position).x > 0:
 		self.scale.x = 1
 	else:
 		self.scale.x = -1
 		
+	await multip_sync.synchronized
+		
 	animation.animation = 'attack'
+	animation.play()
+	
+	if attack_timer.time_left == 0:
+		attack.init_attack()
+		animation.animation_finished.connect(func():
+			animation.play('default')
+		)
+		attack_timer.start()
 	
 func bonus(heros_dealing_dmg):
 	pass

@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcmenkfg20a6a"]
+[gd_scene load_steps=20 format=3 uid="uid://bcmenkfg20a6a"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/ranger_m.gd" id="1_q6wg0"]
 [ext_resource type="Texture2D" uid="uid://kgepdx0arv71" path="res://ressource/rpgsprites1/ranger_m.png" id="2_2fh3v"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="4_o4ur7"]
-[ext_resource type="Script" path="res://Game/Scenes/ranger_m/shield.gd" id="6_iyp80"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_7yts7"]
 [ext_resource type="PackedScene" uid="uid://b2qkqfms18jkm" path="res://Game/Scenes/ranger_m/spells_ranger_m.tscn" id="6_t2n6e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5brpn"]
@@ -116,11 +115,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ab1if"]
 size = Vector2(20, 32)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fha27"]
-bg_color = Color(1, 0.827451, 0.568627, 1)
-skew = Vector2(0.2, 0)
-corner_radius_top_left = 2
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a6nq1"]
 
 [node name="ranger_m" type="Node2D"]
@@ -137,23 +131,9 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ab1if")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="pgbars" parent="ranger_m" instance=ExtResource("3_7yts7")]
+
 [node name="spells_ranger_m" parent="ranger_m" instance=ExtResource("6_t2n6e")]
-
-[node name="shield" type="ProgressBar" parent="ranger_m"]
-offset_right = 4.0
-offset_bottom = 10.0
-theme = ExtResource("4_o4ur7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fha27")
-show_percentage = false
-script = ExtResource("6_iyp80")
-
-[node name="health_bar" type="ProgressBar" parent="ranger_m"]
-offset_left = -35.0
-offset_top = -35.0
-offset_right = 40.0
-offset_bottom = -25.0
-theme = ExtResource("4_o4ur7")
-show_percentage = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_a6nq1")

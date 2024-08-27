@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cp8ekwnsx7qm2"]
+[gd_scene load_steps=20 format=3 uid="uid://cp8ekwnsx7qm2"]
 
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/witcher_f.gd" id="1_e0rno"]
 [ext_resource type="Texture2D" uid="uid://crxqdcayk4c00" path="res://ressource/rpgsprites1/townfolk1_f.png" id="1_hk4qp"]
 [ext_resource type="PackedScene" uid="uid://bysdh8s3xalfq" path="res://Game/Scenes/witcher_f/spells_witcher_f.tscn" id="2_errlb"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_cehiu"]
-[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="4_c71b7"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_3ff58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewym3"]
 atlas = ExtResource("1_hk4qp")
@@ -115,10 +114,6 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1selq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1p2i"]
-bg_color = Color(1, 0.827451, 0.568627, 1)
-skew = Vector2(0.2, 0)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_muu8w"]
 
 [node name="witcher_f" type="Node2D"]
@@ -133,42 +128,9 @@ animation = &"walk_down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="witcher_f"]
 shape = SubResource("CapsuleShape2D_1selq")
 
+[node name="pgbars" parent="witcher_f" instance=ExtResource("3_3ff58")]
+
 [node name="spells_witcher_f" parent="witcher_f" instance=ExtResource("2_errlb")]
-
-[node name="shield" type="ProgressBar" parent="witcher_f"]
-visible = false
-offset_left = 76.0
-offset_top = -14.0
-offset_right = 80.0
-offset_bottom = -4.0
-theme = ExtResource("3_cehiu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_e1p2i")
-max_value = 10.0
-value = 10.0
-show_percentage = false
-script = ExtResource("4_c71b7")
-
-[node name="health_bar" type="ProgressBar" parent="witcher_f"]
-top_level = true
-custom_minimum_size = Vector2(75, 10)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -5.0
-offset_right = 37.5
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-theme = ExtResource("3_cehiu")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 11
-max_value = 150.0
-value = 150.0
-show_percentage = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_muu8w")

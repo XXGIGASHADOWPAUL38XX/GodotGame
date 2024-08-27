@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bysdh8s3xalfq"]
+[gd_scene load_steps=75 format=3 uid="uid://bysdh8s3xalfq"]
 
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/spells_witcher_f_phldr.gd" id="1_ju60n"]
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/ctrlr_spell_1.gd" id="2_6jiwp"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://chpdf3eogofxt" path="res://Game/Ressources/Heros/witcher_f/aa.png" id="4_y5455"]
 [ext_resource type="Texture2D" uid="uid://cnxva6d3jkdlq" path="res://Game/Ressources/Heros/witcher_f/spell_1_cube.png" id="5_nywvf"]
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/dp_spell.gd" id="6_k555q"]
+[ext_resource type="Texture2D" uid="uid://c62ptyfda1gi2" path="res://Game/Ressources/Heros/witcher_f/pre_spell_1.png" id="6_u3by3"]
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/spell.gd" id="7_ka6tk"]
 [ext_resource type="Texture2D" uid="uid://opbbcqgse8nj" path="res://Game/Ressources/Heros/witcher_f/spell_1.png" id="8_ewc2u"]
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/ctrlr_spell_2.gd" id="9_np2cp"]
@@ -35,6 +36,10 @@
 atlas = ExtResource("8_ewc2u")
 region = Rect2(0, 0, 1797, 584)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4swof"]
+atlas = ExtResource("6_u3by3")
+region = Rect2(0, 0, 1798, 585)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fcdsu"]
 animations = [{
 "frames": [{
@@ -42,7 +47,15 @@ animations = [{
 "texture": SubResource("AtlasTexture_vbfga")
 }],
 "loop": false,
-"name": &"default",
+"name": &"damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4swof")
+}],
+"loop": false,
+"name": &"pre",
 "speed": 5.0
 }]
 
@@ -280,6 +293,7 @@ script = ExtResource("7_ka6tk")
 
 [node name="anim_spell" type="AnimatedSprite2D" parent="ctrlr_lasers/dp_spell/spell"]
 sprite_frames = SubResource("SpriteFrames_fcdsu")
+animation = &"pre"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_lasers/dp_spell/spell"]
 rotation = 1.5708
@@ -313,7 +327,7 @@ script = ExtResource("3_hy66u")
 
 [node name="cube" type="CharacterBody2D" parent="ctrlr_spell_1/dp_cube_1"]
 visible = false
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.08, 0.08)
 script = ExtResource("4_j667r")
 
 [node name="anim_cube" type="AnimatedSprite2D" parent="ctrlr_spell_1/dp_cube_1/cube"]
@@ -402,7 +416,7 @@ script = ExtResource("3_qron6")
 
 [node name="cube_4" type="CharacterBody2D" parent="ctrlr_spell_4/dp_cube_4"]
 visible = false
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.08, 0.08)
 script = ExtResource("16_0etxq")
 
 [node name="anim_cube" type="AnimatedSprite2D" parent="ctrlr_spell_4/dp_cube_4/cube_4"]
@@ -435,7 +449,7 @@ shape = SubResource("CircleShape2D_5uajb")
 
 [node name="cube_special" type="CharacterBody2D" parent="ctrlr_special"]
 visible = false
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.08, 0.08)
 script = ExtResource("22_wyh5l")
 
 [node name="anim_cube_special" type="AnimatedSprite2D" parent="ctrlr_special/cube_special"]

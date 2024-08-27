@@ -1,8 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsi5mopi3we6o"]
+[gd_scene load_steps=11 format=3 uid="uid://bsi5mopi3we6o"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/ctrlr_shield_golem.gd" id="1_0aqgy"]
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/anim_ready_golem.gd" id="1_twud0"]
 [ext_resource type="Texture2D" uid="uid://bkspusceof2qw" path="res://Game/Ressources/Main_Effects/Boss/boss_golem/shield.png" id="2_c1dmo"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shield_golem.gd" id="3_2ekf8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d34l"]
+atlas = ExtResource("2_c1dmo")
+region = Rect2(0, 0, 1433, 1403)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dley"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d34l")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s657h"]
 atlas = ExtResource("2_c1dmo")
@@ -21,7 +37,14 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_j5k4m"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_24aw7"]
+
 [node name="ShieldBossGolem" type="Node"]
+
+[node name="anim_ready_golem" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_4dley")
+script = ExtResource("1_twud0")
 
 [node name="ctrlr_shield_golem" type="Node2D" parent="."]
 script = ExtResource("1_0aqgy")
@@ -35,3 +58,6 @@ script = ExtResource("3_2ekf8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_shield_golem"]
 replication_config = SubResource("SceneReplicationConfig_j5k4m")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_24aw7")

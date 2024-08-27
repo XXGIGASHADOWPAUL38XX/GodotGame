@@ -8,5 +8,5 @@ func _ready():
 
 func active():
 	coltdown.start()
-	$shield.active()
+	$shield_crystal.active()
 

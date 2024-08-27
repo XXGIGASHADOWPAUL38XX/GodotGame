@@ -48,6 +48,7 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
+	multip_sync.replication_config.add_property(self.name + ":scale")
 	
 	multip_sync.replication_config.add_property(anim_path + ":animation")
 	multip_sync.replication_config.add_property(anim_path + ":modulate")

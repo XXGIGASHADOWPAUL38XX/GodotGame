@@ -24,7 +24,7 @@ func _process(delta):
 			direction = Vector2(cos(current_angle), sin(current_angle))
 			self.position = ServiceScenes.championNode.position + (direction * distance)
 
-func spell_movement():
+func spell_action():
 	is_launched = true
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 35)
 

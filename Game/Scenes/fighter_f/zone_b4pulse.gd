@@ -17,7 +17,7 @@ func _process(delta):
 	pass
 
 func active(mouse_position):
-	champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE, 0.55) #!!
 	
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, mouse_position, 30 + (cshape.shape.size.x / 2 * 0.1))
 	self.rotation = (self.position - champion.position).angle()

@@ -21,7 +21,7 @@ func _process(_delta):
 			self.position = champion.position
 
 func active():
-	champion.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	self.show()
 
 	animation.play()
@@ -32,4 +32,4 @@ func active():
 
 	animation.stop()
 	self.hide()
-	champion.remove_state(self, 'states_movement')
+	champion.remove_state(self, 'states_action')

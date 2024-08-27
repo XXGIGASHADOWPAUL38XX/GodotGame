@@ -17,11 +17,11 @@ func _process(delta):
 func active():
 	self.show()
 	champion_assigned.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
-	champion_assigned.add_state(self, 'states_movement', State.StateMovement.IMMOBILE)
+	champion_assigned.add_state(self, 'states_action', State.StateAction.IMMOBILE)
 	
 	await get_tree().create_timer(duration).timeout
 	
 	champion_assigned.remove_state(self, 'states_damage')
-	champion_assigned.remove_state(self, 'states_movement')
+	champion_assigned.remove_state(self, 'states_action')
 	self.hide()
 
