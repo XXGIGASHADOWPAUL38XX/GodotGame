@@ -8,6 +8,7 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
 		damage_ratio = 0.0
+		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
 		await super._ready()

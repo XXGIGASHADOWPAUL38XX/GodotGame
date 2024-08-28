@@ -1,4 +1,4 @@
-extends "res://Game/Interface/ICollision.gd"
+extends ICollision
 
 var player # INSTANCIE LORS DE LA DUPLICATION
 

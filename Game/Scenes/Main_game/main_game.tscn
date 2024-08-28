@@ -27,7 +27,10 @@ var round = 1
 signal wait_sync_complete(result)
 
 func _ready():
-	print(\"RB1\")
+	after_ready()
+	
+func after_ready():
+	pass
 	ServiceScenes.main_scene = self
 	
 	var champions = ServiceScenes.get_players()
@@ -35,7 +38,7 @@ func _ready():
 		
 	for i in range(champions.size()):
 		var champion = champions[i]
-		player_scene = load(\"res://Game/Scenes/\" + champion.name + \"/\"  + champion.name + \".tscn\").instantiate()
+		player_scene = ResourceLoader.load_threaded_get(champion.nodePath).instantiate()
 		player_scene.set_multiplayer_authority(champion.id)
 		node_heros = player_scene.get_node(champion.name as NodePath)
 		
@@ -51,7 +54,7 @@ func _ready():
 	for champions_scenes in champions_node_scenes:
 		self.add_child(champions_scenes)
 	
-	# ---------------------- AJOUT DES SCENES SECONDAIRES ---------------------------------
+	 #---------------------- AJOUT DES SCENES SECONDAIRES ---------------------------------
 
 	var items_scene = preload(\"res://Game/Scenes/Items/items.tscn\").instantiate()
 	self.add_child(items_scene)
@@ -76,8 +79,8 @@ func _ready():
 	if ServiceScenes.champion.id == Server.get_first_player_connected_id():
 		ServiceRounds.init_first_round()
 	
-	# -------------------------------------------------------------------------------------
-	
+	# ------------------------------------------------------------------------------------- #
+
 func _process(delta):
 	pass
 
@@ -1489,7 +1492,6 @@ script = ExtResource("3_x461s")
 [node name="texte" parent="." instance=ExtResource("4_kvyx1")]
 
 [node name="announcer_progress" parent="." instance=ExtResource("5_vcx51")]
-visible = true
 
 [node name="obstacles" parent="." instance=ExtResource("6_oityy")]
 

@@ -1,7 +1,7 @@
 extends IActive
 
 var collision_shape
-var ring_border_active_ratio = 0.2 # ratio du collisionshape qui compte pour la 
+var ring_border_active_ratio = 0.3 # ratio du collisionshape qui compte pour la 
 # suppression d'un spell, permet de pas supprimer un spell au centre du spell et
 # de seulement supprimer ceux sur les côtés
 

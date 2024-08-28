@@ -1,4 +1,4 @@
-extends "res://Game/Interface/ICollision.gd"
+extends ICollision
 
 const MARGIN_SPAWN_X = 600
 const MARGIN_SPAWN_Y = 400
