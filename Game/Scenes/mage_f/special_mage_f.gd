@@ -1,9 +1,9 @@
 extends ICounter
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0
-		await super.after_ready()
+		await super._ready()
 		
 		#!!
 		await ServiceEvents.await_event(func f(): return champion != null)

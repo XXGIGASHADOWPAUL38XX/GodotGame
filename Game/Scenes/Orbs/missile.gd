@@ -6,14 +6,14 @@ var speed = 25
 var drone
 var ennemy_in_range = []
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		drone = get_parent().get_node('blue_orb_passive')
 
 func shoot():

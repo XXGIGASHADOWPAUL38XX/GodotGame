@@ -2,7 +2,7 @@ extends IDamagingSpell
 
 var collision_shape
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		COLLISION_ON_SPECIFIC_ANIM = true
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -18,7 +18,7 @@ func after_ready():
 				self.modulate.a == min(1, 1.2 - (animation.frame / 10))
 		)
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	animation.animation = "default"

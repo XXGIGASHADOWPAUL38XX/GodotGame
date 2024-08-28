@@ -6,7 +6,7 @@ var shadow_assigned
 
 
 
-func after_ready():	
+func _ready():	
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -14,7 +14,7 @@ func after_ready():
 		# ------------------------------------ #
 		
 			
-		await super.after_ready()
+		await super._ready()
 		
 		self.hide()
 

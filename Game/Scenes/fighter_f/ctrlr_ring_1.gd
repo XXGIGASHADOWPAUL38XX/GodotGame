@@ -8,7 +8,7 @@ var jump
 var anim_champ_leap
 var champion
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 6
@@ -25,7 +25,7 @@ func after_ready():
 				active()
 		)
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

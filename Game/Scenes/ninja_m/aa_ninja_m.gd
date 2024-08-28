@@ -3,14 +3,14 @@ extends IDamagingSpell
 
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.1
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		
 		animation = $anim_aa

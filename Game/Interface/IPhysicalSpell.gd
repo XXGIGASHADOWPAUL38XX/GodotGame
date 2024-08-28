@@ -14,8 +14,8 @@ var output_damage = Callable(output_damage_f)
 
 var CONF_DETECT_WITH
 
-func after_ready():
-	await super.after_ready()
+func _ready():
+	await super._ready()
 	
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	self.visibility_changed.connect(func(): get_node('CollisionShape2D').disabled = !self.visible)

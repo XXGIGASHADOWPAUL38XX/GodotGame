@@ -5,7 +5,7 @@ var dash
 var shadow
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 5
@@ -13,7 +13,7 @@ func after_ready():
 		shuriken = $spell_ninja_m_1/shuriken_m_1
 		shadow = $spell_ninja_m_1/shadow_m_1
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

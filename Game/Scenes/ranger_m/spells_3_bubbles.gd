@@ -4,8 +4,8 @@ var key_ennemy_marked
 
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
-	await super.after_ready()
+func _ready():
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -3,7 +3,7 @@ extends IDamagingSpell
 var speed = 13.0
 var throw_direction = Vector2.RIGHT
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -11,7 +11,7 @@ func after_ready():
 		# ------------------------------------ #
 		
 			
-		await super.after_ready()
+		await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

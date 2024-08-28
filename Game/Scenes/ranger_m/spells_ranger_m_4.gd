@@ -10,12 +10,12 @@ var mark_number: int:
 		mark_number = min(anim_count.sprite_frames.get_frame_count(anim_count.animation) - 1, value)
 		mark_number_value_changed(mark_number)
 
-func after_ready():
+func _ready():
 	key = KEY_SPACE
 	coltdown_time = 12
 	
 	cond_spells.append(Callable(self, 'can_launch_spell'))
-	await super.after_ready()
+	await super._ready()
 	
 	anim_pre_spell = $anim_pre_spell as AnimatedSprite2D
 	anim_count = $anim_count

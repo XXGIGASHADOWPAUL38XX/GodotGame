@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 var dashes_shadows
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_E
 		coltdown_time = 8
-		await super.after_ready()
+		await super._ready()
 		
 		dashes_shadows = $dp_dashes_shadows.get_children().filter(func(c): return c is IActive)
 

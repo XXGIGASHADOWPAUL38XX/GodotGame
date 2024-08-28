@@ -2,14 +2,14 @@ extends IControllerKeyPressed
 
 var spell
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
 		
 		spell = $spell_mage_f_2_red
 		
-		await super.after_ready()
+		await super._ready()
 		cond_spells.append(Callable(self, 'launch_spell_cond'))	
 
 func active():

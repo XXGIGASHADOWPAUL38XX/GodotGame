@@ -1,9 +1,9 @@
 extends IAnimation
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	self.frame = 0
-	await super.after_ready()
+	await super._ready()
 	
 	self.frame_changed.connect(func():
 		if self.frame > 0:

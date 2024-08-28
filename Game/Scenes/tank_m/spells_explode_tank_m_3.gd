@@ -2,7 +2,7 @@ extends IDamagingSpell
 
 var ready_to_explode = false
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
@@ -12,7 +12,7 @@ func after_ready():
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		
 func explode():
 	self.position = spell_controller.rock.position

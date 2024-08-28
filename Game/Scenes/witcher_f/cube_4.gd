@@ -10,7 +10,7 @@ var angle
 var controller
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		collision_shape = $CollisionShape2D
 		
@@ -19,7 +19,7 @@ func after_ready():
 		controller = get_parent().get_parent()
 		
 		self.visibility_changed.connect(func(): collision_shape.disabled == !self.visible)
-		await super.after_ready()
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

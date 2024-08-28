@@ -18,9 +18,6 @@ var spells_placeholder
 var animation: AnimatedSprite2D
 
 func _ready():
-	after_ready()
-
-func after_ready():
 	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	ServiceScenes.entites.append(self)
 	spells_placeholder_f()

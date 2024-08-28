@@ -1,10 +1,10 @@
 extends IControllerKeyPressed
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 8
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

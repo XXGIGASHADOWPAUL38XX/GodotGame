@@ -8,7 +8,7 @@ var item_class = preload("res://Game/Classes/Item/item.gd").new()
 var coltdown = Timer.new()
 var cd_boost = 5.0
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		coltdown = service_time.init_timer(self, cd_boost)
 		coltdown.timeout.connect(
@@ -17,7 +17,7 @@ func after_ready():
 				augment = 0
 		)
 		
-		await super.after_ready()
+		await super._ready()
 		
 func active():
 	if is_multiplayer_authority():

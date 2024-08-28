@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 var champion
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 2
-		await super.after_ready()
+		await super._ready()
 		
 		champion = ServiceScenes.championNode
 

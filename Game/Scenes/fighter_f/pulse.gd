@@ -2,14 +2,14 @@ extends IDamagingSpell
 
 var speed = 10
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))

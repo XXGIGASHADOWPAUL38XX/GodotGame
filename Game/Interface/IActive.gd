@@ -19,9 +19,6 @@ var animation
 @export var champion: IEntity
 
 func _ready():
-	after_ready()
-
-func after_ready():
 	Servrpc.any(ServiceScenes.loading_game, 'append', [self])
 	
 	self.process_mode = Node.PROCESS_MODE_DISABLED

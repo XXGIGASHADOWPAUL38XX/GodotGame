@@ -2,7 +2,7 @@ extends IDamagingSpell
 
 var collision_shape
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -11,7 +11,7 @@ func after_ready():
 		
 		collision_shape = $CollisionShape2D
 
-		await super.after_ready()
+		await super._ready()
 		
 		animation.animation_changed.connect(func():
 			collision_shape.disabled = animation.animation == "default"

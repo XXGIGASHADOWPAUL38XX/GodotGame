@@ -370,7 +370,7 @@ var current_angle: float = 0.0
 var direction
 var is_launched = false
 
-func after_ready():	
+func _ready():	
 	if is_multiplayer_authority():
 		pos_offset = Vector2.ZERO
 		cd_spell = 3
@@ -379,7 +379,7 @@ func after_ready():
 		timer_key_release_cd = 1.5
 		key = KEY_D
 		
-		super.after_ready()
+		super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

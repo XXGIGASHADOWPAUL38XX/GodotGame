@@ -6,7 +6,7 @@ var cd = 15.0
 var collision_shape
 var slice_distance
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
@@ -17,7 +17,7 @@ func after_ready():
 		collision_shape = $CollisionShape2D
 		slice_distance = collision_shape.polygon[0].distance_to(collision_shape.polygon[2]) * self.scale.x
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	self.position = ServiceSpell.set_in_front_mouse(ServiceScenes.championNode, get_global_mouse_position(), 50)

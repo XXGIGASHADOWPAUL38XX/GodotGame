@@ -7,7 +7,7 @@ var coltdown_spell: Timer
 var HUD
 var delay
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
@@ -18,7 +18,7 @@ func after_ready():
 		champion = ServiceScenes.championNode
 		animation = $throw_ranger_anim
 
-		await super.after_ready()
+		await super._ready()
 		
 func active(main_mector):
 	await get_tree().create_timer(delay).timeout

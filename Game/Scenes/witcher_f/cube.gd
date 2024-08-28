@@ -8,7 +8,7 @@ var duration = 3
 var duration_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		animation = $anim_cube
 		collision_shape = $CollisionShape2D
@@ -17,7 +17,7 @@ func after_ready():
 		duration_timer = service_time.init_timer(self, duration)
 		
 		self.visibility_changed.connect(func(): collision_shape.disabled == !self.visible)
-		await super.after_ready()
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

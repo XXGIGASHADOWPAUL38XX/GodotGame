@@ -4,13 +4,13 @@ var dp_cube_s1: IDuplication
 
 var cube_file: Array = []
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 3
 		
 		dp_cube_s1 = $dp_cube_1
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

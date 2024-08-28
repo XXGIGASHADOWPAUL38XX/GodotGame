@@ -3,9 +3,9 @@ extends IActive
 var duplicator
 var player # INSTANCIE LORS DE LA DUPLICATION
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		await super.after_ready()
+		await super._ready()
 		
 		animation.animation_finished.connect(stop_spell)
 		duplicator = self.get_parent()

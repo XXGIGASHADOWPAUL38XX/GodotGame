@@ -11,7 +11,7 @@ var direction_vector
 var modulate_bool: bool = false
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	func_on_entity_entered.append(Callable(self, 'spirit_entered'))
 	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
@@ -23,7 +23,7 @@ func after_ready():
 		timer_spawn.start()
 		timer_spawn.timeout.connect(spawn)
 		
-		await super.after_ready()
+		await super._ready()
 		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')

@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 var anims_block
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_F
 		coltdown_time = 12
-		await super.after_ready()
+		await super._ready()
 		
 		anims_block = $dp_anim_blocked.get_children().filter(func(c): return c is IAnimation)
 

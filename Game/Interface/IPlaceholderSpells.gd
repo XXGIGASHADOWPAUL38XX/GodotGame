@@ -7,11 +7,8 @@ var duplication_phldrs
 var ready_to_load_spell: bool = false
 var spells_dependencies_ready: bool = false
 
-func _ready():
-	after_ready()
-
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	duplication_phldrs = get_duplication_phldrs()
 	
 	# PERMET D'ATTENDRE QUE LES SORTS SOIENT DUPLIQUEES

@@ -3,14 +3,14 @@ extends IDamagingSpell
 var speed = 3
 
 
-func after_ready():	
+func _ready():	
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 3.0
 		damage_ratio = 0.075
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		
 		animation = $Spells_warrior_anim_3

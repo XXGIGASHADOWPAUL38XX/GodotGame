@@ -11,11 +11,11 @@ var rotation_speed: float = 2  # Adjust as needed
 var current_angle: float = 0.0
 var direction
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		spell = $speical_ranger_anim
 		
-		await super.after_ready()
+		await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

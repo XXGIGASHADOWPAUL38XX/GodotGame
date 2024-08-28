@@ -5,8 +5,8 @@ class_name IHeros
 var target_position_mvmt = Vector2.ZERO
 var angle_mvmt
 
-func after_ready():
-	await super.after_ready()
+func _ready():
+	await super._ready()
 	shield = $pgbars/shield
 		
 	if ServiceScenes.get_property_from_player(self, '.is_ally()') == true:

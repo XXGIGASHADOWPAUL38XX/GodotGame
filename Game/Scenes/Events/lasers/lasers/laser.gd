@@ -9,7 +9,7 @@ var cshape: CollisionShape2D
 var base_size_x
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
@@ -21,7 +21,7 @@ func after_ready():
 		COLLISION_ON_SPECIFIC_ANIM = true
 	
 		starter_points_scene = get_parent().get_parent().get_node('starter_points')
-		await super.after_ready()
+		await super._ready()
 		
 		cshape = $CollisionShape2D
 		animation.animation = 'pre_laser'

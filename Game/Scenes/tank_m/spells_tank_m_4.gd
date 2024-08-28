@@ -2,14 +2,14 @@ extends IDamagingSpell
 
 var speed = 10.0
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.12
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 
 			
 		self.body_entered.connect(func(obj): if obj.visible && obj in spells_placeholder.rocks:

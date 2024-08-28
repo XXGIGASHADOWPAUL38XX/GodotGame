@@ -3,9 +3,9 @@ extends IPlaceholderSpells
 var shadows: Array
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		await super.after_ready()
+		await super._ready()
 		
 		shadows = get_all_shadows()
 

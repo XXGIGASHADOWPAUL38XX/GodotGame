@@ -7,7 +7,7 @@ var ennemy_in_range = []
 
 var overall_spell
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -16,7 +16,7 @@ func after_ready():
 		
 		overall_spell = get_parent()
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	var sphere = overall_spell.sphere

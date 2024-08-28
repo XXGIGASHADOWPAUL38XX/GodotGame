@@ -11,12 +11,12 @@ var target_timer: Timer = Timer.new()
 var modulate_bool: bool = false
 var key_ennemy_marked
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		self.hide()
 		mark_overall_node = get_parent()
 		
-		await super.after_ready()
+		await super._ready()
 		
 		for damaging_spells in spells_placeholder.all_actives.filter(
 			func(s): return s is ICollision && s != mark_overall_node.sphere_regen):

@@ -5,9 +5,9 @@ class_name IControllerSpell
 var spells = []
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		await super.after_ready()
+		await super._ready()
 		spells = get_spells()
 	
 func get_spells(parent=self):

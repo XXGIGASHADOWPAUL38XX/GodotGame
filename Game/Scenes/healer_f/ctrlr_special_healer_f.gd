@@ -2,10 +2,10 @@ extends IControllerKeyPressed
 
 var purges
 
-func after_ready():
+func _ready():
 	key = KEY_D
 	coltdown_time = 8
-	await super.after_ready()
+	await super._ready()
 	
 	purges = $dp_special_healer_f.get_children().filter(func(c): return c is IActive)
 

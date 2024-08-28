@@ -1,8 +1,8 @@
 extends IActive
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		animation = $dash_ranger_anim_2
 

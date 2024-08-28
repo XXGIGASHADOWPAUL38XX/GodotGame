@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 var shoots
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 12
-		await super.after_ready()
+		await super._ready()
 		
 		shoots = $dp_spell_4.get_children().filter(func(s): return s is IActive)
 

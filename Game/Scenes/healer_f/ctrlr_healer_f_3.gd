@@ -1,12 +1,12 @@
 extends IControllerKeyPressed
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_E
 		coltdown_time = 6
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

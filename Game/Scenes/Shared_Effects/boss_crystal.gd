@@ -3,13 +3,13 @@ extends IMob
 const SCENE_BONUS_PATH = "res://Game/Scenes/Shared_Effects/shield_boss_crystal.tscn"
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		self.position = Vector2(get_window().size.x, get_window().size.y)
 		
-		await super.after_ready()
+		await super._ready()
 
 func attack_back():
 	super.attack_back()

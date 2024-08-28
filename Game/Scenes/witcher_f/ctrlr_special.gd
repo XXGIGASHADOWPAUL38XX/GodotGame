@@ -4,7 +4,7 @@ var special
 var cube_special
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_D
 		coltdown_time = 7
@@ -13,7 +13,7 @@ func after_ready():
 		special = $special
 		cube_special = $cube_special
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

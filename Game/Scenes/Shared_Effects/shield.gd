@@ -4,10 +4,10 @@ var champion_assigned
 var modulate_bool: bool = false
 var duration = 2
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		champion_assigned = ServiceScenes.get_player_from_property('id', get_multiplayer_authority()).node
-		await super.after_ready()
+		await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:

@@ -3,7 +3,7 @@ extends IControllerHoldable
 var spell
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 7
@@ -11,7 +11,7 @@ func after_ready():
 		
 		spell = $spell_tank_m_2
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

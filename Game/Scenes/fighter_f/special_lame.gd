@@ -3,14 +3,14 @@ extends IDamagingSpell
 var angle = 0
 var speed = 16
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		animation = $anim_special_dash
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

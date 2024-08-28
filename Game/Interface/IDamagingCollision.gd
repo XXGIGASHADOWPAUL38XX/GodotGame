@@ -10,8 +10,8 @@ class_name IDamagingCollision
 
 var output_damage = Callable(output_damage_f)
 
-func after_ready():
-	await super.after_ready()
+func _ready():
+	await super._ready()
 	self.func_on_entity_entered.append(Callable(self, 'collision'))
 
 func collision():

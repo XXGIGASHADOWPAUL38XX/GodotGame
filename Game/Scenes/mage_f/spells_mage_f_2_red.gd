@@ -9,7 +9,7 @@ var HUD
 
 const orb_kind = MageOrb.OrbKind.RED
 
-func after_ready():	
+func _ready():	
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 12.0
@@ -26,7 +26,7 @@ func after_ready():
 			self.modulate.a = 1 / (1 + (ratio))
 		)
 		
-		await super.after_ready()
+		await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority() && orb_kind == champion.orb_kind:

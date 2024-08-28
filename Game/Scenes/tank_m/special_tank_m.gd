@@ -1,8 +1,8 @@
 extends ICounter
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		await super.after_ready()
+		await super._ready()
 		
 		animation.animation = 'default'
 		animation.animation_changed.connect(func(a) : 

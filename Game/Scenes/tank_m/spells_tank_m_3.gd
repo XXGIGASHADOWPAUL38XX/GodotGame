@@ -4,9 +4,9 @@ var champion
 var passive
 var animation
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-		super.after_ready()
+		super._ready()
 		animation.animation_finished.connect(func(obj): collision())
 
 func _process(_delta):

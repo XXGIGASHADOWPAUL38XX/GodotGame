@@ -7,14 +7,14 @@ var throw_direction
 var base_angle: float = 0
 var duplicator
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 			
 		duplicator = self.get_parent()
 

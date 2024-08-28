@@ -15,7 +15,7 @@ var modulate_bool: bool = false
 var duplicator
 var key_ennemy_marked
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -31,7 +31,7 @@ func after_ready():
 		
 		duplicator = get_parent()
 		
-		await super.after_ready()
+		await super._ready()
 		
 		coltdown_stay = service_time.init_timer(self, cd_stay)
 		coltdown_explode = service_time.init_timer(self, cd_explode)

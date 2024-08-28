@@ -27,7 +27,7 @@ var retrigger_timer
 @export var state_action: State.StateAction = State.StateAction.NULL
 @export var state_duration: float = 1.0
 
-func after_ready():
+func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	collision_conditions.append(Callable(self, 'is_an_ennemy'))
 	
@@ -35,7 +35,7 @@ func after_ready():
 		collision_conditions.append(Callable(self, 'is_on_border'))
 	
 	#!! - Faire fonctionner avec tous les noms
-	await super.after_ready()
+	await super._ready()
 	gestion_collision()
 	
 	self.body_entered.connect(func(obj): 

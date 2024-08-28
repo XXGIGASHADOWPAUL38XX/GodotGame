@@ -9,7 +9,7 @@ var timer_active: Timer
 var timer_active_duration: float = 10.0
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 7
@@ -22,7 +22,7 @@ func after_ready():
 		
 		timer_active = service_time.init_timer(self, timer_active_duration)
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

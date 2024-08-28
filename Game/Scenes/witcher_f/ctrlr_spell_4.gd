@@ -3,14 +3,14 @@ extends IControllerKeyPressed
 var zone_ult 
 var cubes
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 13
 		
 		zone_ult = $zone_ult
 		
-		await super.after_ready()
+		await super._ready()
 		cubes = $dp_cube_4.get_children().filter(func(c): return c is CharacterBody2D)
 		
 		zone_ult.duration_timer.timeout.connect(func():

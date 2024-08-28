@@ -2,9 +2,9 @@ extends ICollision
 
 var is_shadow = true
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
-			super.after_ready()
+			super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

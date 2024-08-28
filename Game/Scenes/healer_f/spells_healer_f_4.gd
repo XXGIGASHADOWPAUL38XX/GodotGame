@@ -3,7 +3,7 @@ extends IDamagingSpell
 var healing_base
 var key_champion_marked
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
@@ -13,7 +13,7 @@ func after_ready():
 		CONF_DETECT_WITH = ServiceScenes.alliesNode + ServiceScenes.ennemiesNode
 		
 			
-		await super.after_ready()
+		await super._ready()
 			
 func _process(_delta):
 	if is_multiplayer_authority():

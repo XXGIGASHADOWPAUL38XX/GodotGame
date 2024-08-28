@@ -4,7 +4,7 @@ var modulate_bool: bool = false
 const SCALE_PER_MODULATE_RATIO = 0.7
 const EARTHQUAKE_DURATION = 4
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 2.0
@@ -16,7 +16,7 @@ func after_ready():
 		
 			
 		self.modulate.a = 0.15
-		await super.after_ready()
+		await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:

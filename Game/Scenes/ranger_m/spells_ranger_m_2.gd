@@ -1,9 +1,9 @@
 extends IControllerSpell
 
-func after_ready():
+func _ready():
 	key = KEY_Z
 	coltdown_time = 6
-	await super.after_ready()
+	await super._ready()
 
 func active():
 	var main_vector = get_global_mouse_position() - ServiceScenes.championNode.position

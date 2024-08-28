@@ -3,14 +3,14 @@ extends IDamagingSpell
 var speed = 20.0
 var angle_incl_start = -30
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		
 		animation = $anim_shoot_2

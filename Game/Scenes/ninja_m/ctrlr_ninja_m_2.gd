@@ -5,7 +5,7 @@ var ennemies_marked: Array:
 	get:
 		return ennemies_marked
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
@@ -15,7 +15,7 @@ func after_ready():
 		dash.CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode
 		ennemies_marked = ServiceScenes.allEnnemiesNode
 		
-		await super.after_ready()
+		await super._ready()
 		
 		dash.func_on_entity_entered.append(Callable(self, 'reset').bind(true))
 		dash.area_entered.connect(func(area): if area in spells_placeholder.shadows:

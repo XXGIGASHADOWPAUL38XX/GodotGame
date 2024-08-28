@@ -4,7 +4,7 @@ var charge
 var zone
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 14
@@ -12,7 +12,7 @@ func after_ready():
 		charge = $charge
 		zone = $zone
 		
-		await super.after_ready()
+		await super._ready()
 
 func active():
 	super.active()

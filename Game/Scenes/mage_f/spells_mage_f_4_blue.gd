@@ -11,14 +11,14 @@ var cd_spell4 = 2.0
 
 const orb_kind = MageOrb.OrbKind.BLUE
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 7.0
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 		
 		spell1 = $Spells_mage_ult

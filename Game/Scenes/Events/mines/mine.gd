@@ -6,7 +6,7 @@ var cshape: CollisionShape2D
 var display_mines: Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
@@ -27,7 +27,7 @@ func after_ready():
 		
 		body_entered.connect(func(obj): hitted())
 		
-		await super.after_ready()
+		await super._ready()
 		
 		animation.animation = 'mine'
 		animation.animation_changed.connect(

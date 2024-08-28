@@ -4,10 +4,10 @@ extends IActive
 var cshape
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		immobile_while_active = true
-		await super.after_ready()
+		await super._ready()
 		
 		self.hide()
 		

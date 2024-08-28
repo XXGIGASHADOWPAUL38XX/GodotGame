@@ -4,14 +4,14 @@ var name_callable: Callable = func dp_callable_name(id):
 	return dp_node.name + "_" + allies_sorted()[id - 1].name
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	# VALUES TO OVERRIDE #
 	dp_number = allies_sorted().size()
 	
 	dp_callable_name = name_callable
 	dp_node = $special_healer_f
 	
-	await super.after_ready()
+	await super._ready()
 
 
 func allies_sorted():

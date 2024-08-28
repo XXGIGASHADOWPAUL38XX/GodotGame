@@ -7,14 +7,14 @@ var coltdown = Timer
 
 const orb_kind = MageOrb.OrbKind.RED
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 12.0
 		damage_ratio = 0.4
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		self.hide()
 
 func active():

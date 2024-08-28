@@ -10,9 +10,6 @@ var multip_sync_path: NodePath = "./../MultiplayerSynchronizer"
 var ignore_multiconf_debug: bool = false
 
 func _ready():
-	after_ready()
-
-func after_ready():
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	#spell_controller_f()

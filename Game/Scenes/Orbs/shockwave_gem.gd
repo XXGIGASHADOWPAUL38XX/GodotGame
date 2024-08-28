@@ -3,7 +3,7 @@ extends IDamagingCollision
 var coltdown_wave = Timer.new()
 var cd_wave = 8.0
 
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
@@ -11,7 +11,7 @@ func after_ready():
 		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super.after_ready()
+		await super._ready()
 		coltdown_wave = service_time.init_timer(self, cd_wave)
 
 func active():

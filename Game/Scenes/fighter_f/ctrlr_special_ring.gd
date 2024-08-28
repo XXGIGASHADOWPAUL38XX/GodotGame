@@ -4,13 +4,13 @@ var special_ring
 var special_pulse
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		key = KEY_D
 		coltdown_time = 7
 		timer_key_release_cd = 10
 		
-		await super.after_ready()
+		await super._ready()
 		
 		special_ring = $special_ring
 		special_pulse = $special_pulse

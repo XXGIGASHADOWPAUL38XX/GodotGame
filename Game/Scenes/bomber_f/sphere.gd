@@ -19,7 +19,7 @@ var current_angle: float:
 		current_angle = value
 
 # Called when the node enters the scene tree for the first time.
-func after_ready():
+func _ready():
 	if is_multiplayer_authority():
 		overall_spell = self.get_parent()
 		
@@ -33,7 +33,7 @@ func after_ready():
 			timer_missile.start()
 		)
 		
-		await super.after_ready()
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
