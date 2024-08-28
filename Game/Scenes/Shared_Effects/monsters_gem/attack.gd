@@ -1,6 +1,6 @@
 extends IDamagingCollision
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6
@@ -9,7 +9,7 @@ func _ready():
 		
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
-		await super._ready()
+		await super.after_ready()
 		self.hide()
 			
 		animation.animation_finished.connect(

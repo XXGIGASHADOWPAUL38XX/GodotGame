@@ -2,11 +2,11 @@ extends IActive
 
 var base_scale
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		base_scale = self.scale
 		
-		super._ready()
+		super.after_ready()
 
 func _process(_delta):
 	pass

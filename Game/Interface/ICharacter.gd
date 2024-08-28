@@ -77,7 +77,7 @@ func take_damage():
 func set_state_action():
 	self.add_state(self, 'states_action', last_spell_hitting.state_action, last_spell_hitting.state_duration)
 
-func _ready():
+func after_ready():
 	health_bar = $pgbars/health_bar
 
 	if is_multiplayer_authority():
@@ -85,7 +85,7 @@ func _ready():
 		ServiceStats.set_attributes(self)
 		self.new_round()
 
-		await super._ready()
+		await super.after_ready()
 		func_hitted.append(Callable(self, 'take_damage')) #!!
 		
 func new_round():

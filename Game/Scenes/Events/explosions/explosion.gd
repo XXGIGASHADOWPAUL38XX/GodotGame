@@ -1,8 +1,8 @@
 extends IDamagingCollision
 
-func _ready():
+func after_ready():
 	# DEFINITION VARIABLES IDAMAGING SPELL #
 	damage_base = 10.0
 	# ------------------------------------ #
 	
-	await super._ready()
+	await super.after_ready()

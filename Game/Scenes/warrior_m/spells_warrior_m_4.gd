@@ -3,7 +3,7 @@ extends IControllerKeyPressed
 var spell_zone
 var champion
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 11
@@ -11,7 +11,7 @@ func _ready():
 		
 		champion = ServiceScenes.championNode
 		
-		await super._ready()
+		await super.after_ready()
 		
 func active():
 	var hits = $dp_hit_warrior_m_4.get_children().filter(

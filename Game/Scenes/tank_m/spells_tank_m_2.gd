@@ -1,13 +1,13 @@
 extends IDamagingSpell
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 1.0
 		damage_ratio = 0.015
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 func _process(_delta):
 	if is_multiplayer_authority():

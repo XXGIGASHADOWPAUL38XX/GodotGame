@@ -3,10 +3,10 @@ extends IControllerKeyPressed
 var zone_b4pulse
 var pulse
 
-func _ready():
+func after_ready():
 	key = KEY_E
 	coltdown_time = 8
-	await super._ready()
+	await super.after_ready()
 	
 	zone_b4pulse = $zone_b4pulse
 	pulse = $pulse

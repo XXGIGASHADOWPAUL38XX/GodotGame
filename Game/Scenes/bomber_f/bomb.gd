@@ -5,7 +5,7 @@ var collision_shape
 
 var rotate_speed = 5
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
@@ -15,7 +15,7 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		collision_shape.disabled
 		
-		await super._ready()
+		await super.after_ready()
 			
 		animation.animation_changed.connect(func():
 			collision_shape.disabled = animation.animation == "default"

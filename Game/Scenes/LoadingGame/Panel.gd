@@ -14,11 +14,6 @@ var delay_increment_dot: float = 0.4
 
 var actives = []
 var last_active_loaded = 'null'
-var loaded_actives: Array = []:
-	get:
-		if loaded_actives.size() != 0:
-			last_active_loaded = loaded_actives[loaded_actives.size() - 1].name
-		return loaded_actives
 
 @onready var loading_bar = $loading_bar
 @onready var label_loading = $label_loading
@@ -44,11 +39,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(randf())
 	if self.visible:
-		current_resource.text = "loaded : " + last_active_loaded
-		loading_bar.max_value = actives.size()
-		loading_bar.value = loaded_actives.size()
+		loading_bar.max_value = actives.filter(func(a): return a != null).size()
+		loading_bar.value = actives.filter(func(a): return a != null && a.is_ready).size()
 		
-		
+		if loading_bar.max_value == loading_bar.value && loading_bar.value != 0:
+			self.hide()
 

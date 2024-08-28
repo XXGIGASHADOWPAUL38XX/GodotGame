@@ -4,14 +4,14 @@ var speed = 20.0
 var modulate_bool: bool = false
  
 
-func _ready():
+func after_ready():
 	#!!
 	CONF_DETECT_WITH = ServiceScenes.alliesNode
 	
 	if is_multiplayer_authority():
 		champion = ServiceScenes.championNode
 		self.modulate.a = 0.5
-		await super._ready()
+		await super.after_ready()
 			
 		func_on_entity_entered.append(Callable(self, 'boost_zone_entered'))
 		func_on_entity_exited.append(Callable(self, 'boost_zone_exited'))

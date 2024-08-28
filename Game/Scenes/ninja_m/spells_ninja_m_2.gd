@@ -10,14 +10,14 @@ var shadow_node
 var shadow_to_dash
 var collision_shape: CollisionPolygon2D
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 9.0
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		animation = $anim_ninja_m_2
 
 func _process(_delta):

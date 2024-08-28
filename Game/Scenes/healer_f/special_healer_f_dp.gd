@@ -1,10 +1,10 @@
-extends "res://Game/Interface/ICollision.gd"
+extends ICollision
 
 var player # INSTANCIE LORS DE LA DUPLICATION
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
-		await super._ready()
+		await super.after_ready()
 		
 		animation.animation_finished.connect(stop_spell)
 		CONF_DETECT_WITH = ServiceScenes.alliesNode

@@ -3,11 +3,11 @@ extends ICollision
 var zone_damage
 var counter_count
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0.5
 			
-		await super._ready()
+		await super.after_ready()
 		zone_damage = spell_controller.zone_damage
 		counter_count = spell_controller.counter_count
 		

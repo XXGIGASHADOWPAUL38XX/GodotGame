@@ -13,13 +13,13 @@ var service_health = preload("res://Game/Services/service_health.gd").new()
 var orb
 var anim_orb_hide
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		orb = $spells_mage_f/ctrlr_mage_f_1/spells_mage_f_1
 		anim_orb_hide = $spells_mage_f/ctrlr_mage_f_1/anim_orb_hide
 		self.show()
 		
-	await super._ready()
+	await super.after_ready()
 
 func _process(delta):
 	super._process(delta)

@@ -6,14 +6,14 @@ var speed = 10.0
 var angle_incl_start
 var delay
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		self.hide()
 		
 		animation = $anim_shoot_1

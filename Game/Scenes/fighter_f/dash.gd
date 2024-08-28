@@ -4,7 +4,7 @@ var speed = 8
 var rotate_speed = 25
 
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
@@ -12,7 +12,7 @@ func _ready():
 		immobile_while_active = true
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		animation = $anim_dash
 
 func _process(_delta):

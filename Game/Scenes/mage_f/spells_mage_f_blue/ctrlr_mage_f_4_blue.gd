@@ -3,14 +3,14 @@ extends IControllerKeyPressed
 var dp_node: IDuplication
 var dp_node_spell_2
 
-func _ready():
+func after_ready():
 	key = KEY_SPACE
 	coltdown_time = 12
 	
 	dp_node_spell_2 = get_parent().get_node("ctrlr_mage_f_2_blue").get_node('dp_mage_f_2_blue')
 	dp_node = $dp_mage_f_4_blue
 	
-	await super._ready()
+	await super.after_ready()
 	
 	cond_spells.append(Callable(self, 'launch_spell_cond_1'))
 	cond_spells.append(Callable(self, 'launch_spell_cond_2'))

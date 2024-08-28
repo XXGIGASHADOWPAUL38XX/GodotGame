@@ -3,14 +3,14 @@ extends IDamagingSpell
 var speed = 20.0
 var deg_arc = -20
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 
 		animation = $anim_healer_f_1
 

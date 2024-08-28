@@ -7,7 +7,7 @@ var HUD
 var shadow_node
 var spell1
 
-func _ready():	
+func after_ready():	
 	spell1 = get_parent().get_node('spells_ninja_m_1')
 	champion = ServiceScenes.championNode
 	shadow_node = get_parent().get_node('animations').get_node('shadow')

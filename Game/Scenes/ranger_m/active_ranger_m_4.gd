@@ -7,7 +7,7 @@ var spell4: AnimatedSprite2D
 var coltdown_spell4: Timer
 var HUD
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
@@ -19,7 +19,7 @@ func _ready():
 		champion = ServiceScenes.championNode
 		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
 			
-		await super._ready()
+		await super.after_ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

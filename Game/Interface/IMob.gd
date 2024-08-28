@@ -11,12 +11,12 @@ var cd_attack = 1
 var attack_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		self.func_hitted.append(Callable(self, 'attack_back'))
 		attack_timer = service_time.init_timer(self, cd_attack)
 		
-		await super._ready()
+		await super.after_ready()
 		animation.play("default")
 		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
 

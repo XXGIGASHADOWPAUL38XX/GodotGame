@@ -7,9 +7,9 @@ var timer_key_release = Timer.new()
 var key_pressed_bool = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
-		await super._ready()
+		await super.after_ready()
 
 func _input(event):
 	if is_multiplayer_authority() && event is InputEventKey && event.keycode == key:

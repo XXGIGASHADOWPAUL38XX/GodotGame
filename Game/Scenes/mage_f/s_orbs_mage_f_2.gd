@@ -22,7 +22,7 @@ var should_rotate_champ: bool = false
 const orb_kind = MageOrb.OrbKind.BLUE
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING spell #
 		damage_base = 6.0
@@ -32,7 +32,7 @@ func _ready():
 		duplicator = self.get_parent()
 		spell = $anim_orbs_mage_f_2 as AnimatedSprite2D
 		
-		await super._ready()
+		await super.after_ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

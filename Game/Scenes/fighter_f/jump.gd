@@ -3,7 +3,7 @@ extends IDamagingSpell
 var speed = 20.0
 
 
-func _ready():	
+func after_ready():	
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 9.0
@@ -13,7 +13,7 @@ func _ready():
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 		animation = $anim_jump as AnimatedSprite2D
 

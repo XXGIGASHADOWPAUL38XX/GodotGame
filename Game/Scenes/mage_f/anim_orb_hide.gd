@@ -1,9 +1,9 @@
 extends IAnimation
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
-		await super._ready()
+		await super.after_ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

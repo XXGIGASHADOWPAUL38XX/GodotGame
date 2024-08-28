@@ -4,7 +4,7 @@ var speed = 20.0
 
 const orb_kind = MageOrb.OrbKind.GOLD
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
@@ -14,7 +14,7 @@ func _ready():
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 			
 		frame_based_anim()

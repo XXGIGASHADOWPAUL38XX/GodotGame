@@ -4,7 +4,7 @@ var modulate_bool = false
 
 var healing_base
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 2.0
@@ -15,7 +15,7 @@ func _ready():
 		CONF_DETECT_WITH = ServiceScenes.alliesNode
 		
 			
-		await super._ready()
+		await super.after_ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

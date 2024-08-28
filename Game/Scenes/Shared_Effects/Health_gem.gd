@@ -10,13 +10,13 @@ var modulate_bool: bool = false
 var healing_base
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		healing_base = 5.0
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -4,7 +4,7 @@ var collision_shape
 var base_size
 var base_scale
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 9.0
@@ -19,7 +19,7 @@ func _ready():
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height
 		
-		await super._ready()
+		await super.after_ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

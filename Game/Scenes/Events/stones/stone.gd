@@ -4,7 +4,7 @@ var animation
 var display_stones: Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IPHYSICALSPELL #
 		damage_base = 5.0
@@ -16,7 +16,7 @@ func _ready():
 		cshape = $CollisionShape2D
 		animation.animation_finished.connect(collision)
 		
-		await super._ready()
+		await super.after_ready()
 		
 		launch_timer()
 

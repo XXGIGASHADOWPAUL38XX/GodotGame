@@ -4,14 +4,14 @@ const ANGLE_RANGE = 20
 var speed = 12.0
 var angle
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 		
 		self.hide()

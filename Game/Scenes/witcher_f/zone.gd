@@ -5,7 +5,7 @@ var modulate_bool = false
 var duration = 3
 var duration_timer: Timer
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -14,7 +14,7 @@ func _ready():
 		
 		duration_timer = service_time.init_timer(self, duration)
 		
-		await super._ready()
+		await super.after_ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

@@ -3,8 +3,8 @@ extends IControllerActive
 var dp_spell
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	await super._ready()
+func after_ready():
+	await super.after_ready()
 	dp_spell = $dp_spell
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

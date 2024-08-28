@@ -1,8 +1,8 @@
 extends IActive
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
-		await super._ready()
+		await super.after_ready()
 		animation = $anim_dash
 
 func active_first():

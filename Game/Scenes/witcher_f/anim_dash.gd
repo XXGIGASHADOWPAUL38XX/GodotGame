@@ -4,8 +4,8 @@ var champion
 var rotate_speed = 25
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	await super._ready()
+func after_ready():
+	await super.after_ready()
 	champion = ServiceScenes.championNode
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

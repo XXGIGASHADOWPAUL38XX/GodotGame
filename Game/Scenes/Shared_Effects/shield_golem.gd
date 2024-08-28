@@ -3,10 +3,10 @@ extends IAnimation
 var champion_assigned
 var modulate_bool: bool = false
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		champion_assigned = ServiceScenes.get_player_from_property('id', get_multiplayer_authority()).node
-		await super._ready()
+		await super.after_ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:

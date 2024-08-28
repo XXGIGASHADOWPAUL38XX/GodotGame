@@ -8,6 +8,9 @@ var spells_placeholder: IPlaceholderSpells
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	after_ready()
+
+func after_ready():
 	if is_multiplayer_authority():
 		spells_placeholder_f()
 		

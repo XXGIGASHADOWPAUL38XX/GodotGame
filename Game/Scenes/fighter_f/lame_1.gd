@@ -4,14 +4,14 @@ var speed = 20.0
 
 var deg_arc = 25
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		animation = $anim_lame_1
 
 func _process(_delta):

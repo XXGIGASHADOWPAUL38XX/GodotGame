@@ -1,9 +1,9 @@
 extends ICounter
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0
-		await super._ready()
+		await super.after_ready()
 		
 		func_on_spell_entered.append(Callable(self, 'explode'))
 		

@@ -4,7 +4,7 @@ var player # INSTANCIE LORS DE LA DUPLICATION
 
 var healing_base: float
 
-func _ready():
+func after_ready():
 #	self.hidden.connect(func(): self.position = Vector2(-1000, -1000))
 	CONF_DETECT_WITH = ServiceScenes.alliesNode + ServiceScenes.ennemiesNode
 	
@@ -14,7 +14,7 @@ func _ready():
 	damage_ratio = 0.2
 	# ------------------------------------ #
 		
-	await super._ready()
+	await super.after_ready()
 			
 func _process(_delta):
 	pass

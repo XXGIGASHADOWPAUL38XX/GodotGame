@@ -1,8 +1,8 @@
 extends IPlaceholderSpells
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	await super._ready()
+func after_ready():
+	await super.after_ready()
 
 func orb_additionnal_operations(orb_kind):
 	##!! mettre des animations

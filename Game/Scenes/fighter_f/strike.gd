@@ -7,14 +7,14 @@ var direction
 
 var angle = 0
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		animation = $anim_strike
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

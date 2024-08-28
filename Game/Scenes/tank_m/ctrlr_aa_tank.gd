@@ -1,9 +1,9 @@
 extends IControllerKeyPressed
 
-func _ready():
+func after_ready():
 	key = MOUSE_BUTTON_RIGHT
 	coltdown_time = 1
-	await super._ready()
+	await super.after_ready()
 			
 func active():
 	super.active()

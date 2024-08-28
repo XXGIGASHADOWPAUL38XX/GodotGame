@@ -6,14 +6,14 @@ var is_dp_shuriken = true
 
 var angle # INSTANCIATED BY PARENT
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 10.0
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

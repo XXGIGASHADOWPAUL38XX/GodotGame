@@ -1,13 +1,14 @@
 extends IDamagingSpell
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 2.5
 		damage_ratio = 0.05
+		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 

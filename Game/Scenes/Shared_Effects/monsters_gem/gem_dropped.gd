@@ -3,8 +3,8 @@ extends ICollision
 var speed = 10
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	await super._ready()
+func after_ready():
+	await super.after_ready()
 	pass # Replace with function body.
 
 

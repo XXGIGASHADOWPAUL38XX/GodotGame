@@ -8,14 +8,15 @@ var HUD
 
 const orb_kind = MageOrb.OrbKind.GOLD
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
 		damage_ratio = 0.15
+		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		self.hide()
 		
 		animation = $Spells_mage_ult

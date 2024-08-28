@@ -371,11 +371,11 @@ var current_angle: float = 0.0
 var direction
 var is_launched = false
 
-func _ready():	
+func after_ready():	
 	if is_multiplayer_authority():
 		pos_offset = Vector2.ZERO
 		
-		super._ready()
+		super.after_ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

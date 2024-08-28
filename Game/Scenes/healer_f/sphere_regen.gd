@@ -4,7 +4,7 @@ var allies_nodes
 var mark_overall_node
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	# DEFINITION VARIABLES IDAMAGING SPELL #
 	damage_base = 5.0
 	damage_ratio = 0.8
@@ -12,7 +12,7 @@ func _ready():
 		
 	mark_overall_node = get_parent()
 	allies_nodes = ServiceScenes.ennemiesNode ## EN REALITE C'EST LES ALLIES CAR LES MARQUES SONT SUR LES ENNEMIES (DONC ENNEMI D'ENNEMI)
-	await super._ready()
+	await super.after_ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

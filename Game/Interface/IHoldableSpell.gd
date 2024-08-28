@@ -12,9 +12,9 @@ var timer_key_release_cd
 var timer_key_release = Timer.new()
 var key_released_bool = false
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
-		await super._ready()
+		await super.after_ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

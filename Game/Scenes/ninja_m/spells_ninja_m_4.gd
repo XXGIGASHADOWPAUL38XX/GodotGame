@@ -5,14 +5,14 @@ var passive: CharacterBody2D
 var HUD
 var shadow_node
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 10.0
 		damage_ratio = 0.3
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 		shadow_node = get_parent().get_node('animations').get_node('shadow')
 

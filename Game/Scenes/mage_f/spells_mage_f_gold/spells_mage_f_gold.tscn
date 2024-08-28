@@ -124,6 +124,14 @@ script = ExtResource("4_6q7rn")
 visible = false
 scale = Vector2(0.08, 0.08)
 script = ExtResource("8_m1ukk")
+damage_base = null
+damage_ratio = null
+state = null
+retrigger = null
+retrigger_time = null
+state_action = null
+state_duration = null
+is_ready = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mage_f_4_gold/spell_mage_f_4_gold"]
 position = Vector2(0, -1)

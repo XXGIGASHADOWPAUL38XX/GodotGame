@@ -14,14 +14,14 @@ func _input(event):
 			can_active()
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		cond_spells.append(Callable(self, 'is_not_impaired'))
 		
 		if cast_time != null:
 			cast_timer = service_time.init_timer(self, cast_time)
 		
-		await super._ready()
+		await super.after_ready()
 
 func can_active():
 	if cond_spells.all(func(c: Callable): return c.call()):

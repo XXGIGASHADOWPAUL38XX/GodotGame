@@ -11,7 +11,7 @@ var direction_vector
 var modulate_bool: bool = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
@@ -27,7 +27,7 @@ func _ready():
 		timer_spawn.start()
 		timer_spawn.timeout.connect(spawn)
 		
-		await super._ready()
+		await super.after_ready()
 		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')

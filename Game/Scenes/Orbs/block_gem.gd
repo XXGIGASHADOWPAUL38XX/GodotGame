@@ -1,17 +1,17 @@
 extends IActive
 
 var collision_shape
-var ring_border_active_ratio = 0.2 # ratio du collisionshape qui compte pour la 
+var ring_border_active_ratio = 0.3 # ratio du collisionshape qui compte pour la 
 # suppression d'un spell, permet de pas supprimer un spell au centre du spell et
 # de seulement supprimer ceux sur les côtés
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		collision_shape = $CollisionShape2D
 		self.area_entered.connect(Callable(self, '_on_area_entered'))
 		
-		await super._ready()
+		await super.after_ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

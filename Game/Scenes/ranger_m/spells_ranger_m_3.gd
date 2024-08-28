@@ -1,9 +1,9 @@
 extends IControllerKeyPressed
 
-func _ready():
+func after_ready():
 	key = KEY_E
 	coltdown_time = 4
-	await super._ready()
+	await super.after_ready()
 
 func active():
 	coltdown.start()

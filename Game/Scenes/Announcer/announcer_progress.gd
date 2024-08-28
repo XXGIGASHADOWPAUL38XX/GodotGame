@@ -18,17 +18,19 @@ func _process(delta):
 		self.position = camera.offset
 
 	if $Panel/HBox/Time.text != '' && $Panel/HBox/Time.text != '0':
-		$Panel/Progress.value = $Panel/Progress.max_value - (timer.time_left * 100)
-		$Panel/HBox/Time.text = str(ceil(timer.time_left))
+		$Panel/Progress.max_value = timer.wait_time
+		$Panel/Progress.value = timer.time_left
+		#$Panel/HBox/Time.text = str(ceil(timer.time_left))
 	
 func set_announce(announce, time, relative=false, time_implicit=false): #RELATIVE = RELATIVE TO ONE SPECIFIC PLAYER 
 	timer = service_time.init_timer(self, time)
 	timer.start()
-	timer.timeout.connect(hide_announcer)
+	timer.timeout.connect(func():
+		hide_announcer()
+	)
 	$Panel.play("default")
 	
 	$Panel/HBox/Announce.text = announce + ' '
-	$Panel/Progress.max_value = time * 100
 	$Panel/HBox/Time.text = str(time)
 	
 	show_announcer()
@@ -43,7 +45,5 @@ func show_announcer():
 
 func hide_announcer():
 	emit_signal('anncounce_timeout')
-	for i in range(10):
-		$Panel.modulate.a -= 0.1
 		
 	self.hide()

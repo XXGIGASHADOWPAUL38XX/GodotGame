@@ -1,6 +1,6 @@
 extends IDamagingCollision
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
@@ -9,7 +9,7 @@ func _ready():
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		await super._ready()
+		await super.after_ready()
 		
 		
 func _process(_delta):

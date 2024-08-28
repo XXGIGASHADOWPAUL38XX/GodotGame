@@ -5,7 +5,7 @@ var base_scale
 @export var bonus_damage_count: float
 @export var bonus_damage_count_ratio: float
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 5.0
@@ -17,7 +17,7 @@ func _ready():
 		
 		base_scale = self.scale
 		
-		super._ready()
+		super.after_ready()
 
 func _process(_delta):
 	pass

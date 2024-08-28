@@ -4,11 +4,11 @@ var metadata_position = [Vector2(600, 300), Vector2(600, 900),
 						Vector2(1800, 300), Vector2(1800, 900)]
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_mg
 		collision_shape = $CollisionShape2D as CollisionShape2D
-		await super._ready()
+		await super.after_ready()
 
 func attack_back():
 	super.attack_back()

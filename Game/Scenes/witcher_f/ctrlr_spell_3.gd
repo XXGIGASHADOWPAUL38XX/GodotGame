@@ -9,7 +9,7 @@ var first_activation: bool = true
 var timer_visible
 var timer_visible_cd = 3
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		key = KEY_E
 		coltdown_time = 6
@@ -26,7 +26,7 @@ func _ready():
 			dash_back.hide()
 		)
 		
-		await super._ready()
+		await super.after_ready()
 
 func active():
 	super.active()

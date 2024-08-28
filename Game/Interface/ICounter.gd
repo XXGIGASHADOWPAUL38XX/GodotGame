@@ -9,7 +9,7 @@ var spell_hitted
 var CONF_DETECT_WITH_SP
 var HAS_DMG_EFFECT = false
 
-func _ready():
+func after_ready():
 	if CONF_DETECT_WITH_SP == null:
 		CONF_DETECT_WITH_SP = ServiceScenes.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
 		CONF_DETECT_WITH_SP = CONF_DETECT_WITH_SP.reduce(func(a, b): return a + b)
@@ -19,7 +19,7 @@ func _ready():
 			spell_entered(obj)
 	)
 	
-	await super._ready()
+	await super.after_ready()
 
 func spell_entered(spell): #FAIRE LES DEGATS
 	spell_hitted = spell

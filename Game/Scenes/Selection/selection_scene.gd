@@ -8,6 +8,8 @@ var player_server: int = 0
 const SELECTION_TIME = 10
 const START_GAME_WAIT_TIME = 3
 const MAIN_GAME_SCENE_PATH = "res://Game/Scenes/Main_game/main_game.tscn"
+var CHAMPION_SCENE_PATH
+
 
 var service_time = preload("res://Game/Services/service_time.gd").new()
 var player_class = preload("res://Game/Classes/Players/Player.gd")
@@ -91,13 +93,22 @@ func display_champion(champion_name, team_client_sender, player_client_sender):
 
 func pre_launch_game():
 	ServiceScenes.set_players(players)
+	ResourceLoader.load_threaded_request(MAIN_GAME_SCENE_PATH)
+	
+	for champion in ServiceScenes.get_players():
+		ResourceLoader.load_threaded_request(champion.nodePath)
+	
 	$announcer_progress.set_announce('GAME STARTING IN : ', START_GAME_WAIT_TIME)
 
 func launch_game():
+	ServiceScenes.loading_game.show()
+	
+	await get_tree().process_frame
+	
 	var main_game_scene = ResourceLoader.load_threaded_get(MAIN_GAME_SCENE_PATH).instantiate()
 	ServiceScenes.root_scene.add_child(main_game_scene)
 	self.queue_free()
-
+	
 func set_player(id_player, champion_name, team_client_sender):
 	players.append(Player.new(id_player, champion_name, Team.new(team_client_sender)))
 	

@@ -8,13 +8,13 @@ var modulate_bool = false
 var duration = 8
 var duration_timer: Timer
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0.3
 		collision = $CollisionShape2D # UTILISE PAR LES CUBES S4 ! LAISSER
 		duration_timer = service_time.init_timer(self, duration)
 			
-		await super._ready()
+		await super.after_ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

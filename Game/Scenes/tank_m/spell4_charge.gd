@@ -2,10 +2,10 @@ extends IActive
 
 var speed = 15
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 			
-		super._ready()
+		super.after_ready()
 
 func _process(_delta):
 	pass

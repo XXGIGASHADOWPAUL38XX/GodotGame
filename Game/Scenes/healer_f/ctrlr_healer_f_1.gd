@@ -5,7 +5,7 @@ var spell_2
 
 var champion
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		key = KEY_A
 		coltdown_time = 6
@@ -14,7 +14,7 @@ func _ready():
 		spell_1 = $spells_healer_f_1_1
 		spell_2 = $spells_healer_f_1_2
 		
-		await super._ready()
+		await super.after_ready()
 
 func active():
 	super.active()

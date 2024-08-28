@@ -2,7 +2,7 @@ extends IControllerKeyPressed
 
 var dp_node: IDuplication
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
@@ -10,7 +10,7 @@ func _ready():
 		dp_node = $dp_mage_f_2_blue
 		
 		cond_spells.append(Callable(self, 'launch_spell_cond'))	
-		await super._ready()
+		await super.after_ready()
 
 func active():
 	super.active()

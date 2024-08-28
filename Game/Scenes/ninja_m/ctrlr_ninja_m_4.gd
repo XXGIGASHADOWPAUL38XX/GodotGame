@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 var spell_nodes
 
-func _ready():
+func after_ready():
 	if is_multiplayer_authority():
 		key = KEY_SPACE
 		coltdown_time = 2
-		await super._ready()
+		await super.after_ready()
 		
 		spell_nodes = $dp_ninja_m_4.get_children().filter(func(c): return c.name.begins_with('spell'))
 

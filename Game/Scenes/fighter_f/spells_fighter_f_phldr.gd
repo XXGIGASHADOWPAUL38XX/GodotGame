@@ -10,10 +10,10 @@ enum weapons {
 }
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	change_weapon = $ctrlr_spell_4/change_weapon
 	enable_disable_weapons()
-	await super._ready()
+	await super.after_ready()
 
 func switch_weapon():
 	var current_weapon_key = weapons.keys().filter(func(w): return weapons[w] != current_weapon)[0]

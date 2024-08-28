@@ -7,9 +7,9 @@ var all_bombs
 var active_bomb_file: Array = []
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func after_ready():
 	dp_10x_bomb = $ctrlr_spell_1/dp_10x_bomb
-	await super._ready()
+	await super.after_ready()
 	
 	all_shoots = get_all_shoots()
 	all_bombs = get_all_bombs(dp_10x_bomb)
