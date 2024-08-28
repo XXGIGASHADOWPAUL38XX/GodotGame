@@ -16,6 +16,8 @@ var allPlayersNode = []
 var allEnnemiesNode = [] # INCLUDE MONSTERS AND OBJECTS
 
 # REFERENCES TO SCENES
+var root_scene
+var loading_game
 var main_scene
 var HUD
 var items
@@ -25,7 +27,6 @@ var rochers
 
 # SPECIALS
 var entites = []
-var actives = []
 
 # SPECIALS
 var CONFIG_NB_PLAYERS_GAME = null

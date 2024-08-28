@@ -9,8 +9,6 @@ func _ready():
 		await super._ready()
 		
 		anims_block = $dp_anim_blocked.get_children().filter(func(c): return c is IAnimation)
-		print(ServiceScenes.championNode)
-		print(anims_block)
 
 func active():
 	super.active()

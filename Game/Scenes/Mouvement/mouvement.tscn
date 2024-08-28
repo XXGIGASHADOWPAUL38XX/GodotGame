@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Services/service_movements.gd" id="1_tuiow"]
 [ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="2_156sm"]
-[ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="3_sywp0"]
+[ext_resource type="Script" path="res://Game/Scenes/Main_game/HealthBar.gd" id="3_sywp0"]
 
 [node name="mouvement" type="Node"]
 script = ExtResource("1_tuiow")

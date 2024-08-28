@@ -41,7 +41,7 @@ func new_event():
 	var new_event_scene = load("res://Game/Scenes/Events/" + current_event + "/"  + current_event + ".tscn").instantiate()
 	new_event_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
 	
-	ServiceScenes.main_scene.add_child(new_event_scene)
+	ServiceScenes.main_scene.add_child.call_deferred(new_event_scene)
 
 func display_events():
 	for i in range(5):

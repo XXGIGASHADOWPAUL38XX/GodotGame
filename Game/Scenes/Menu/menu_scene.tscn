@@ -12,8 +12,11 @@ script/source = "extends Node
 var modulation = 0
 var players_needed_for_match: int = 4
 
+const SELECTION_SCENE_PATH = \"res://Game/Scenes/Selection/selection_scene.tscn\"
+
 func _ready():
 	hide_queue()
+	ResourceLoader.load_threaded_request(SELECTION_SCENE_PATH)
 
 func _process(delta):
 	if Server.get_connected_clients().size() == players_needed_for_match:
@@ -48,7 +51,9 @@ func show_queue():
 	$QueuePlayers.show()
 
 func match_up():
-	get_tree().change_scene_to_file(\"res://Game/Scenes/Selection/selection_scene.tscn\")
+	var selection_scene = ResourceLoader.load_threaded_get(SELECTION_SCENE_PATH).instantiate()
+	ServiceScenes.root_scene.add_child(selection_scene)
+	self.queue_free()
 
 func modulate(obj):
 	if obj.self_modulate.a <= 0.5:
@@ -135,7 +140,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0lhi"]
 
-[node name="Main" type="Node"]
+[node name="menu_scene" type="Node"]
 script = SubResource("GDScript_5pvo6")
 
 [node name="Background" type="TextureRect" parent="."]

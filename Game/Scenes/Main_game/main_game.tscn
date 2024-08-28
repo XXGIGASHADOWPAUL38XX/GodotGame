@@ -1,16 +1,16 @@
 [gd_scene load_steps=26 format=3 uid="uid://n752femkjdpy"]
 
-[ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="1_wupbn"]
-[ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="7_87r70"]
-[ext_resource type="Texture2D" uid="uid://bbro6vr2aiyqc" path="res://Game/Ressources/Background/arena.jpg" id="8_5kg5y"]
-[ext_resource type="Texture2D" uid="uid://cdogv2bexjcyn" path="res://Game/Ressources/TileSet/Tilemap/tileset_legacy.png" id="8_fe2jq"]
-[ext_resource type="Texture2D" uid="uid://bt2wqu747w7qw" path="res://Game/Ressources/TileSet/Dungeon tileset.png" id="9_3s1qk"]
-[ext_resource type="Script" path="res://Game/Scenes/mage_f/Camera.gd" id="9_nmeb1"]
-[ext_resource type="PackedScene" uid="uid://0of8jyqcwuhn" path="res://Game/Scenes/Texte/texte.tscn" id="10_qk6nr"]
-[ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="12_cq2je"]
+[ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="1_yr6oh"]
+[ext_resource type="Texture2D" uid="uid://bbro6vr2aiyqc" path="res://Game/Ressources/Background/arena.jpg" id="2_t431i"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/Camera.gd" id="3_x461s"]
+[ext_resource type="PackedScene" uid="uid://0of8jyqcwuhn" path="res://Game/Scenes/Texte/texte.tscn" id="4_kvyx1"]
+[ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="5_vcx51"]
+[ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="6_oityy"]
+[ext_resource type="Texture2D" uid="uid://cdogv2bexjcyn" path="res://Game/Ressources/TileSet/Tilemap/tileset_legacy.png" id="7_y23q0"]
+[ext_resource type="Texture2D" uid="uid://bt2wqu747w7qw" path="res://Game/Ressources/TileSet/Dungeon tileset.png" id="8_fq3du"]
 
 [sub_resource type="GDScript" id="GDScript_vapeg"]
-script/source = "extends Node
+script/source = "extends Node2D
 
 var player_scene
 var class_hero = preload(\"res://Game/Classes/Hero/Hero.gd\").new()
@@ -27,6 +27,7 @@ var round = 1
 signal wait_sync_complete(result)
 
 func _ready():
+	print(\"RB1\")
 	ServiceScenes.main_scene = self
 	
 	var champions = ServiceScenes.get_players()
@@ -40,7 +41,7 @@ func _ready():
 		
 		if champion.id == Server.get_actual_player():
 			node_heros.position = Vector2(200 + (200 * i), 200 + (140 * i))
-			$Camera.offset = node_heros.position
+			#$Camera.offset = node_heros.position
 		
 		ServiceScenes.set_player_node(champion, node_heros)
 		champions_node_scenes.append(player_scene)
@@ -83,51 +84,51 @@ func _process(delta):
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8xaue"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(0, 72, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgco5"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(32, 72, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rn2qw"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(64, 72, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixo4b"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(0, 108, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwudx"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(32, 108, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmx8o"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(64, 108, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ih8ra"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(0, 36, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f618q"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(32, 36, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4vyt"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(64, 36, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eua3t"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(0, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfq3o"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdiey"]
-atlas = ExtResource("1_wupbn")
+atlas = ExtResource("1_yr6oh")
 region = Rect2(64, 0, 32, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vwmx6"]
@@ -190,7 +191,7 @@ animations = [{
 }]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0q5jt"]
-texture = ExtResource("8_fe2jq")
+texture = ExtResource("7_y23q0")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1282,7 +1283,7 @@ texture = ExtResource("8_fe2jq")
 32:32/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rtr2"]
-texture = ExtResource("9_3s1qk")
+texture = ExtResource("8_fq3du")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1459,7 +1460,7 @@ texture = ExtResource("9_3s1qk")
 sources/0 = SubResource("TileSetAtlasSource_0q5jt")
 sources/1 = SubResource("TileSetAtlasSource_6rtr2")
 
-[node name="main_game" type="Node"]
+[node name="main_game" type="Node2D"]
 script = SubResource("GDScript_vapeg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -1480,17 +1481,17 @@ offset_left = -374.0
 offset_top = -331.0
 offset_right = 2846.0
 offset_bottom = 1649.0
-texture = ExtResource("8_5kg5y")
+texture = ExtResource("2_t431i")
 
 [node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("9_nmeb1")
+script = ExtResource("3_x461s")
 
-[node name="texte" parent="." instance=ExtResource("10_qk6nr")]
+[node name="texte" parent="." instance=ExtResource("4_kvyx1")]
 
-[node name="announcer_progress" parent="." instance=ExtResource("12_cq2je")]
+[node name="announcer_progress" parent="." instance=ExtResource("5_vcx51")]
 visible = true
 
-[node name="obstacles" parent="." instance=ExtResource("7_87r70")]
+[node name="obstacles" parent="." instance=ExtResource("6_oityy")]
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5

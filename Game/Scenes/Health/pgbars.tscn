@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Scenes/Health/health.gd" id="1_ntddm"]
 [ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="2_jph32"]
-[ext_resource type="Script" path="res://Game/Scenes/Main/HealthBar.gd" id="3_llsbv"]
+[ext_resource type="Script" path="res://Game/Scenes/Main_game/HealthBar.gd" id="3_yqh77"]
 [ext_resource type="Theme" uid="uid://bvu0egsqn6n2i" path="res://ressource/shield.tres" id="4_wkx5a"]
 [ext_resource type="Script" path="res://Game/Scenes/Health/shield.gd" id="5_qjp0x"]
 [ext_resource type="Theme" uid="uid://dvb45s5gthdi2" path="res://ressource/state_bar.tres" id="6_adkxa"]
@@ -19,7 +19,7 @@ theme = ExtResource("2_jph32")
 max_value = 120.0
 value = 88.0
 show_percentage = false
-script = ExtResource("3_llsbv")
+script = ExtResource("3_yqh77")
 
 [node name="shield" type="ProgressBar" parent="."]
 visible = false

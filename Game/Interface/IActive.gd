@@ -18,7 +18,7 @@ var animation
 
 func _ready():
 	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
-	ServiceScenes.actives.append(self)
+	ServiceScenes.loading_game.actives.append(self)
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	spell_controller_f()
@@ -39,6 +39,7 @@ func _ready():
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 
 	self.process_mode = Node.PROCESS_MODE_INHERIT
+	ServiceScenes.loading_game.loaded_actives.append(self)
 
 func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
 	if immobile_while_active:

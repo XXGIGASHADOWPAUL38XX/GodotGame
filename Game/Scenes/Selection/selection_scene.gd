@@ -7,6 +7,7 @@ var player_server: int = 0
 
 const SELECTION_TIME = 10
 const START_GAME_WAIT_TIME = 3
+const MAIN_GAME_SCENE_PATH = "res://Game/Scenes/Main_game/main_game.tscn"
 
 var service_time = preload("res://Game/Services/service_time.gd").new()
 var player_class = preload("res://Game/Classes/Players/Player.gd")
@@ -15,6 +16,8 @@ var players = []
 var time_label = Timer.new()
 
 func _ready():
+	ResourceLoader.load_threaded_request(MAIN_GAME_SCENE_PATH)
+		
 	for champion in $Champions.get_children():
 		champion.mouse_entered.connect(_button_hovered.bind(champion))
 		champion.mouse_exited.connect(_button_unhovered.bind(champion))
@@ -60,7 +63,7 @@ func lock_champion(champion):
 	Servrpc.any(self, 'set_player', [Server.get_actual_player(), champion.name, team_client])
 	
 	if player_server > ServiceScenes.CONFIG_NB_PLAYERS_GAME / 2:
-		Servrpc.any($announcer_progress, 'set_announce', ['GAME STARTING IN : ', START_GAME_WAIT_TIME])
+		Servrpc.any(self, 'pre_launch_game', [])
 	else:
 		Servrpc.any($announcer_progress, 'set_announce', ['PICK PHASE - PLAYER ' + str(team_server) + ' : ', SELECTION_TIME])
 		
@@ -86,9 +89,14 @@ func display_champion(champion_name, team_client_sender, player_client_sender):
 	
 	team_server = [null, 2, 1].find(team_server)
 
-func launch_game():
+func pre_launch_game():
 	ServiceScenes.set_players(players)
-	get_tree().change_scene_to_file("res://Game/Scenes/Main/main_game.tscn")
+	$announcer_progress.set_announce('GAME STARTING IN : ', START_GAME_WAIT_TIME)
+
+func launch_game():
+	var main_game_scene = ResourceLoader.load_threaded_get(MAIN_GAME_SCENE_PATH).instantiate()
+	ServiceScenes.root_scene.add_child(main_game_scene)
+	self.queue_free()
 
 func set_player(id_player, champion_name, team_client_sender):
 	players.append(Player.new(id_player, champion_name, Team.new(team_client_sender)))
