@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation 
 var collision_shape
 var base_size
 var base_scale
@@ -12,14 +11,10 @@ func _ready():
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		animation = $anim_spell
 		collision_shape = $CollisionShape2D
 		
 		animation.animation = 'pre'
-		DISABLE_BASE_BEHAVIOR_COLLISION = true
-		animation.animation_changed.connect(func(): collision_shape.disabled = (animation.animation != 'damage'))
-		
-		self.visibility_changed.connect(func(): if not self.visible: animation.animation = 'pre')
+		COLLISION_ON_SPECIFIC_ANIM = true
 		
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height

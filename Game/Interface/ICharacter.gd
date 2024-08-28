@@ -2,8 +2,6 @@ extends IEntity
 
 class_name ICharacter
 
-var animation: AnimatedSprite2D
-
 # STATS ------------
 var damage_base
 var armor_base

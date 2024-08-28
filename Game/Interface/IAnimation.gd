@@ -42,3 +42,6 @@ func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
 	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
 	if immobile_while_active:
 		ServiceScenes.championNode.remove_state(self, 'states_action')
+
+func _exit_tree():
+	Servrpc.recently_freed_nodepaths.append(self.get_path())

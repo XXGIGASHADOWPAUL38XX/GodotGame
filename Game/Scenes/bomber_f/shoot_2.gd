@@ -2,7 +2,6 @@ extends IDamagingSpell
 
 var speed = 20.0
 var angle_incl_start = -30
-var animation
 
 func _ready():
 	if is_multiplayer_authority():

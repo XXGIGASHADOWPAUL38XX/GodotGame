@@ -1,14 +1,13 @@
 extends "res://Game/Interface/ICollision.gd"
 
 var player # INSTANCIE LORS DE LA DUPLICATION
-var animation
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $special_healer_f_anim
+		await super._ready()
+		
 		animation.animation_finished.connect(stop_spell)
 		CONF_DETECT_WITH = ServiceScenes.alliesNode
-		await super._ready()
 			
 func _process(_delta):
 	if self.visible:

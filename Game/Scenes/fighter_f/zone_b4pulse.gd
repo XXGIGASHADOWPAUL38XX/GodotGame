@@ -1,6 +1,6 @@
 extends IActive
 
-var animation: AnimatedSprite2D
+
 var cshape
 
 # Called when the node enters the scene tree for the first time.
@@ -11,7 +11,6 @@ func _ready():
 		
 		self.hide()
 		
-		animation = $anim_zone as AnimatedSprite2D
 		cshape = $CollisionShape2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

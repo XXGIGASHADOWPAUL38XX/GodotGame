@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://c3co6236ljth3"]
+[gd_scene load_steps=99 format=3 uid="uid://c3co6236ljth3"]
 
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_1.gd" id="1_67fow"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f.gd" id="1_75utu"]
@@ -21,8 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://ktdh2862xios" path="res://Game/Ressources/Heros/healer_f/special_healer.png" id="9_sfi01"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/damage.gd" id="14_mwbt2"]
 [ext_resource type="Texture2D" uid="uid://b8xcx8jbdheol" path="res://Game/Ressources/Heros/healer_f/spell3_pre_explosion.png" id="15_qen67"]
-[ext_resource type="Texture2D" uid="uid://c12ox7qhi2b3m" path="res://Game/Ressources/Heros/healer_f/Explosion_5/Explosion_1.png" id="16_aqjbs"]
-[ext_resource type="Texture2D" uid="uid://csygpmldcoj5q" path="res://Game/Ressources/Heros/healer_f/Explosion_5/Explosion_2.png" id="17_yg7gr"]
 [ext_resource type="Texture2D" uid="uid://o7x4k8xh6qys" path="res://Game/Ressources/Heros/healer_f/Explosion_5/Explosion_3.png" id="18_xfaay"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_special_healer_f.gd" id="19_bexbr"]
 [ext_resource type="Texture2D" uid="uid://cx8cmkvmn5i43" path="res://Game/Ressources/Heros/healer_f/Explosion_5/Explosion_4.png" id="19_wmqcm"]
@@ -188,18 +186,6 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o0u7j"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ix1kn"]
-atlas = ExtResource("15_qen67")
-region = Rect2(0, 0, 524, 524)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qc4sx"]
-atlas = ExtResource("16_aqjbs")
-region = Rect2(0, 0, 640, 640)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfetk"]
-atlas = ExtResource("17_yg7gr")
-region = Rect2(0, 0, 640, 640)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7qv3"]
 atlas = ExtResource("18_xfaay")
 region = Rect2(0, 0, 640, 640)
@@ -232,23 +218,13 @@ region = Rect2(0, 0, 640, 640)
 atlas = ExtResource("25_r3lr2")
 region = Rect2(0, 0, 640, 640)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix1kn"]
+atlas = ExtResource("15_qen67")
+region = Rect2(0, 0, 524, 524)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2hkr"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ix1kn")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qc4sx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfetk")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c7qv3")
 }, {
@@ -274,8 +250,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_dr38a")
 }],
 "loop": false,
-"name": &"explode",
+"name": &"damage",
 "speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix1kn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bi77l"]
@@ -496,6 +480,13 @@ script = ExtResource("1_67fow")
 [node name="spells_healer_f_1_1" type="Area2D" parent="ctrlr_healer_f_1"]
 visible = false
 script = ExtResource("1_sskcw")
+damage_base = null
+damage_ratio = null
+state = null
+retrigger = null
+retrigger_time = null
+state_action = null
+state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_1"]
 shape = SubResource("CircleShape2D_ab7vm")
@@ -507,6 +498,13 @@ animation = &"aoe"
 [node name="spells_healer_f_1_2" type="Area2D" parent="ctrlr_healer_f_1"]
 visible = false
 script = ExtResource("5_43rjg")
+damage_base = null
+damage_ratio = null
+state = null
+retrigger = null
+retrigger_time = null
+state_action = null
+state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_2"]
 shape = SubResource("CircleShape2D_ab7vm")
@@ -524,6 +522,13 @@ script = ExtResource("4_ba2ns")
 [node name="spells_healer_f_2" type="Area2D" parent="ctrlr_healer_f_2"]
 visible = false
 script = ExtResource("3_ndysl")
+damage_base = null
+damage_ratio = null
+state = null
+retrigger = null
+retrigger_time = null
+state_action = null
+state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_2/spells_healer_f_2"]
 shape = SubResource("CircleShape2D_wylsp")
@@ -547,6 +552,7 @@ script = ExtResource("14_mwbt2")
 
 [node name="anim_damage" type="AnimatedSprite2D" parent="ctrlr_healer_f_3/damage"]
 sprite_frames = SubResource("SpriteFrames_m2hkr")
+animation = &"damage"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_3/damage"]
 shape = SubResource("CircleShape2D_bi77l")
@@ -564,6 +570,13 @@ script = ExtResource("9_inyhr")
 [node name="heal_f_4" type="Area2D" parent="ctrlr_healer_f_4/dp_healer_f_4"]
 visible = false
 script = ExtResource("5_en0gn")
+damage_base = null
+damage_ratio = null
+state = null
+retrigger = null
+retrigger_time = null
+state_action = null
+state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_4/dp_healer_f_4/heal_f_4"]
 shape = SubResource("CircleShape2D_5elm7")

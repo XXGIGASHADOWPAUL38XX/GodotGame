@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
-
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #

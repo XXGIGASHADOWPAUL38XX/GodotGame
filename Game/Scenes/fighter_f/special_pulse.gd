@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -11,7 +9,6 @@ func _ready():
 		
 		await super._ready()
 		
-		animation = $anim_special_pulse
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 
 func active():

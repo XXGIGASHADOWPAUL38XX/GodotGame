@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
 var ready_to_explode = false
 
 func _ready():
@@ -14,8 +13,7 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-		animation = $anim_exp_tank_m_3
-	
+		
 func explode():
 	self.position = spell_controller.rock.position
 	self.scale = Vector2(1, 1)

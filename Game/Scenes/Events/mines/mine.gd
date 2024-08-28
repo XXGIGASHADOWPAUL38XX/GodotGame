@@ -1,7 +1,7 @@
 extends IDamagingCollision
 
 var cshape: CollisionShape2D
-var animation: AnimatedSprite2D
+
 
 var display_mines: Timer = Timer.new()
 
@@ -16,16 +16,9 @@ func _ready():
 		# ------------------------------------ #
 		
 		cshape = $CollisionShape2D
-		animation = $anim_mine as AnimatedSprite2D
-		
+			
 		self.modulate.a = 0
 		self.scale = Vector2(0.5, 0.5) 
-		animation.animation = 'mine'
-		animation.animation_changed.connect(
-			func(): 
-				cshape.disabled != (animation.animation == 'explosion')
-				self.scale = Vector2(1.5, 1.5) if animation.animation == 'explosion' else Vector2(0.5, 0.5) 
-		)
 		
 		self.global_position = Vector2(
 			randi_range(0, get_window().size.x * 2),
@@ -34,7 +27,15 @@ func _ready():
 		
 		body_entered.connect(func(obj): hitted())
 		
-		await super._ready()		
+		await super._ready()
+		
+		animation.animation = 'mine'
+		animation.animation_changed.connect(
+			func(): 
+				cshape.disabled != (animation.animation == 'explosion')
+				self.scale = Vector2(1.5, 1.5) if animation.animation == 'explosion' else Vector2(0.5, 0.5) 
+		)
+		
 		launch_timer()
 
 func launch_timer():

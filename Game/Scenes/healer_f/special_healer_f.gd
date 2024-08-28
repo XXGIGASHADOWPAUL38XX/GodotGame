@@ -2,15 +2,13 @@ extends IActive
 
 var duplicator
 var player # INSTANCIE LORS DE LA DUPLICATION
-var animation
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $special_healer_f_anim
+		await super._ready()
+		
 		animation.animation_finished.connect(stop_spell)
 		duplicator = self.get_parent()
-		
-		await super._ready()
 		
 func _process(_delta):
 	if self.visible:

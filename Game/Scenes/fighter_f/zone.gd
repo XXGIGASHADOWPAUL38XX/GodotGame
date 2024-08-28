@@ -1,11 +1,9 @@
 extends IActive
 
-var animation
 var base_scale
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_zone
 		base_scale = self.scale
 		
 		super._ready()

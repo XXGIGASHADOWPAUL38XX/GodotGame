@@ -3,7 +3,6 @@ extends IDamagingCollision
 var coltdown = Timer.new()
 var cd = 15.0
 
-var animation
 var collision_shape
 var slice_distance
 
@@ -15,7 +14,6 @@ func _ready():
 		# ------------------------------------ #
 		
 		coltdown = service_time.init_timer(self, cd)
-		animation = $animation_dash
 		collision_shape = $CollisionShape2D
 		slice_distance = collision_shape.polygon[0].distance_to(collision_shape.polygon[2]) * self.scale.x
 		

@@ -2,7 +2,6 @@ extends IDamagingSpell
 
 var speed = 14.0
 var throw_direction = Vector2.RIGHT
-var animation 
 
 func _ready():
 	if is_multiplayer_authority():
@@ -10,9 +9,7 @@ func _ready():
 		damage_base = 5.0
 		damage_ratio = 0.1
 		# ------------------------------------ #
-		
-		animation = $anim_aa
-		
+	
 		await super._ready()
 
 func _process(delta):

@@ -4,8 +4,6 @@ var modulate_bool: bool = false
 const SCALE_PER_MODULATE_RATIO = 0.7
 const EARTHQUAKE_DURATION = 4
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -16,8 +14,7 @@ func _ready():
 		retrigger_time = 0.5
 		# ------------------------------------ #
 		
-		animation = $anim_green_orb
-		
+			
 		self.modulate.a = 0.15
 		await super._ready()
 

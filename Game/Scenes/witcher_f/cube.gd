@@ -1,8 +1,8 @@
 extends IPhysical
 
-var animation
 var collision_shape
 var champion
+var animation
 
 var duration = 3
 var duration_timer: Timer

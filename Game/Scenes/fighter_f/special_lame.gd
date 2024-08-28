@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation
-
 var angle = 0
 var speed = 16
 

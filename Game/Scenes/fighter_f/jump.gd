@@ -1,7 +1,7 @@
 extends IDamagingSpell
 
 var speed = 20.0
-var animation: AnimatedSprite2D
+
 
 func _ready():	
 	if is_multiplayer_authority():

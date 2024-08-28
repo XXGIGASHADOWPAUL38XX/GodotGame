@@ -1,7 +1,7 @@
 extends IActive
 
 var speed = 20.0
-var animation: AnimatedSprite2D
+
 
 var cd_target = 10.0
 var target_timer: Timer = Timer.new()
@@ -12,8 +12,7 @@ var key_ennemy_marked
 func _ready():
 	if is_multiplayer_authority():
 		self.hide()
-		animation = $target_anim as AnimatedSprite2D
-		
+			
 		await super._ready()
 		
 		for damaging_spells in spells_placeholder.all_actives.filter(func(s): 

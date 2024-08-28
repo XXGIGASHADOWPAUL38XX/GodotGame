@@ -10,4 +10,4 @@ func _process(delta):
 	pass
 
 func disable_all():
-	
+	pass

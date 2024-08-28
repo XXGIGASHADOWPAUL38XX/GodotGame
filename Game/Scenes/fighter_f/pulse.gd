@@ -1,9 +1,8 @@
 extends IDamagingSpell
 
 var speed = 10
-var animation
 
-func _ready():	
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
@@ -13,7 +12,6 @@ func _ready():
 		await super._ready()
 		self.hide()
 		
-		animation = $anim_pulse
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 
 func active(mouse_position):

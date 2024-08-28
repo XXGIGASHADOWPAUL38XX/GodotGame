@@ -1,11 +1,10 @@
 extends IActive
 
 var key_ennemy_marked
-var animation
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation = $anim_bubbles
 	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

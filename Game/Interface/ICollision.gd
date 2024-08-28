@@ -12,7 +12,8 @@ var spells_retrigger = {}
 var CONF_DETECT_WITH
 var class_spell = CSpell.new()
 
-var DISABLE_BASE_BEHAVIOR_COLLISION = false
+var COLLISION_ON_SPECIFIC_ANIM = false
+var collision_specific_anim = 'damage'
 
 @export var retrigger: bool = false
 @export var retrigger_time: float
@@ -25,11 +26,8 @@ func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	
 	#!! - Faire fonctionner avec tous les noms
-	if !DISABLE_BASE_BEHAVIOR_COLLISION:
-		self.get_node("CollisionShape2D").disabled = !self.visible
-		self.visibility_changed.connect(
-			func(): self.call_deferred("set_collision_disabled", !self.visible)
-		)
+	await super._ready()
+	gestion_collision()
 	
 	self.body_entered.connect(func(obj): 
 		if CONF_DETECT_WITH.find(obj) != -1:
@@ -41,9 +39,19 @@ func _ready():
 			ennemies_in.remove_at(ennemies_in.find(obj))
 			entity_exited(obj)
 	)
-	
-	await super._ready()
 
+func gestion_collision():
+	var collision_shape = self.get_node("CollisionShape2D")
+	
+	if COLLISION_ON_SPECIFIC_ANIM:
+		animation.animation_changed.connect(func(): collision_shape.disabled = (animation.animation != 'damage'))
+		self.visibility_changed.connect(func(): if !self.visible: collision_shape.disabled = true)
+	else:
+		self.get_node("CollisionShape2D").disabled = !self.visible
+		self.visibility_changed.connect(
+			func(): self.call_deferred("set_collision_disabled", !self.visible)
+		)
+		
 func set_collision_disabled(disabled: bool) -> void:
 	self.get_node("CollisionShape2D").disabled = disabled
 

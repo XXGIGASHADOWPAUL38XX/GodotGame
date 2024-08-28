@@ -30,7 +30,7 @@ func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 		retry_instances -= 1
 		
 	# SI LE NODE A ETE SUPPRIME RECEMMENT POUR L'AUTORITHE A APPELLEE DEPUIS L'AUTHORITE B
-	if retry_instances == 0 && recently_freed_nodepaths.any(func(rfn): return rfn == node):
+	if retry_instances == 0 && recently_freed_nodepaths.any(func(rfn): return rfn == path):
 		return
 	
 	node.callv(f, args)

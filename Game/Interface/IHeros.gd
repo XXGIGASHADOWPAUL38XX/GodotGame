@@ -41,9 +41,9 @@ func take_damage():
 	var color = Color.GREEN if output_damage < 0 else Color.RED
 			
 	for i in range(2):
-		self.animation.modulate = color
+		self.modulate = color
 		await get_tree().create_timer(0.15).timeout
-		self.animation.modulate = Color.WHITE
+		self.modulate = Color.WHITE
 		await get_tree().create_timer(0.15).timeout
 
 func set_multiplayer_properties():

@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
 var modulate_bool = false
 
 var healing_base
@@ -15,8 +14,7 @@ func _ready():
 		
 		CONF_DETECT_WITH = ServiceScenes.alliesNode
 		
-		animation = $anim_healer_f_2
-		
+			
 		await super._ready()
 
 func _process(_delta):

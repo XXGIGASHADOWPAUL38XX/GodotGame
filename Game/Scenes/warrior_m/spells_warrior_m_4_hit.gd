@@ -1,7 +1,7 @@
 extends IDamagingSpell
 
 var speed = 20.0
-var animation
+
 var throw_direction
 
 var base_angle: float = 0
@@ -15,8 +15,7 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-		animation = $spells_warrior_anim_4_hit
-		
+			
 		duplicator = self.get_parent()
 
 func _process(_delta):

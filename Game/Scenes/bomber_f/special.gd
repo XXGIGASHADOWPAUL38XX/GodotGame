@@ -1,14 +1,13 @@
 extends IActive
 
-var animation: AnimatedSprite2D
+
 var modulate_bool = false
 
 var healing_base
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_special
-		
+			
 		await super._ready()
 		
 func active():

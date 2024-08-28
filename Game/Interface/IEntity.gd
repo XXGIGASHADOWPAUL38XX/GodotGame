@@ -15,7 +15,10 @@ var multip_sync: MultiplayerSynchronizer
 
 var spells_placeholder
 
+var animation: AnimatedSprite2D
+
 func _ready():
+	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	ServiceScenes.entites.append(self)
 	spells_placeholder_f()
 	
@@ -39,9 +42,10 @@ func hit(): #FAIRE LES DEGATS
 		fc.call()
 
 func set_multiplayer_properties():
+	if animation == null:
+		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	multip_sync = self.get_parent().get_node("MultiplayerSynchronizer")
 	
-	var animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	var anim_path = self.name + "/" + animation.name
 	
 	multip_sync.replication_config.add_property(self.name + ":visible")
@@ -70,5 +74,5 @@ func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 
-#func _exit_tree():
-	#Servrpc.recently_freed_nodepaths.append(self.get_path())
+func _exit_tree():
+	Servrpc.recently_freed_nodepaths.append(self.get_path())

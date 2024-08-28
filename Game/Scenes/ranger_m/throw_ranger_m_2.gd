@@ -5,7 +5,6 @@ var throw_direction = Vector2.RIGHT
 var spell2: AnimatedSprite2D
 var coltdown_spell: Timer
 var HUD
-var animation
 var delay
 
 func _ready():

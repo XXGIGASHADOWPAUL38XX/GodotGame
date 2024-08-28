@@ -1,8 +1,7 @@
 extends IDamagingSpell
 
 var speed = 16.0
-var throw_direction = Vector2.RIGHT
-var animation 
+var throw_direction = Vector2.RIGHT 
 
 func _ready():
 	if is_multiplayer_authority():
@@ -11,8 +10,7 @@ func _ready():
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		animation = $Spells_mage_anim
-		
+			
 		await super._ready()
 
 func _process(delta):

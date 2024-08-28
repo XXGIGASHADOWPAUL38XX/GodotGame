@@ -2,7 +2,6 @@ extends IDamagingSpell
 
 var speed = 20.0
 var cd = 8.0
-var animation: AnimatedSprite2D
 var target_position = Vector2.ZERO
 var coltdown = Timer
 var HUD

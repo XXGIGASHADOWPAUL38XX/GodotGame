@@ -1,7 +1,5 @@
 extends IDamagingCollision
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
@@ -13,8 +11,7 @@ func _ready():
 		
 		await super._ready()
 		
-		animation = $anim_attack_golem
-	
+		
 func _process(_delta):
 	pass
 	

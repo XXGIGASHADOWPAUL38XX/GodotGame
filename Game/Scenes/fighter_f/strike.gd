@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation
-
 var distance_base: float = 30.0  # Distance from center_object
 var rotation_speed: float = 40  
 var current_angle: float = 0.0

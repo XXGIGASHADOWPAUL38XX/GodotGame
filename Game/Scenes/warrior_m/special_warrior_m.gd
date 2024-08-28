@@ -1,21 +1,19 @@
 extends ICounter
 
-var animation: AnimatedSprite2D
-
 func _ready():
 	if is_multiplayer_authority():
-		animation = $AnimatedSprite2D
+		self.modulate.a = 0
+		await super._ready()
+		
+		func_on_spell_entered.append(Callable(self, 'explode'))
+		
 		animation.animation = 'default'
+					
 		animation.scale = Vector2(0.06, 0.06)
 		animation.animation_changed.connect(func() : 
 			HAS_DMG_EFFECT = animation.animation == 'explode'
 			self.modulate = 1 if animation.animation == 'explode' else 0
 		)
-
-		self.modulate.a = 0
-		await super._ready()
-		
-		func_on_spell_entered.append(Callable(self, 'explode'))
 
 func _process(_delta):
 	if is_multiplayer_authority() && self.visible:

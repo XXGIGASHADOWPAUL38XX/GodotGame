@@ -6,7 +6,6 @@ var cd_spell4 = 1.5
 var spell4: AnimatedSprite2D
 var coltdown_spell4: Timer
 var HUD
-var animation
 
 func _ready():
 	if is_multiplayer_authority():
@@ -19,8 +18,7 @@ func _ready():
 
 		champion = ServiceScenes.championNode
 		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
-		animation = $Spells_ranger_anim_4
-		
+			
 		await super._ready()
 
 func _process(_delta):

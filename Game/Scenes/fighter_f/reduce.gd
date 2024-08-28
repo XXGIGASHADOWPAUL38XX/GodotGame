@@ -1,14 +1,12 @@
 extends ICollision
 
-var animation 
 var zone_damage
 var counter_count
 
 func _ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0.5
-		animation = $anim_reduce
-		
+			
 		await super._ready()
 		zone_damage = spell_controller.zone_damage
 		counter_count = spell_controller.counter_count

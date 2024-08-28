@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
 var collision_shape
 
 func _ready():
@@ -10,15 +9,15 @@ func _ready():
 		damage_ratio = 0.08
 		# ------------------------------------ #
 		
-		animation = $anim_stunning_bomb
 		collision_shape = $CollisionShape2D
 
+		await super._ready()
+		
 		animation.animation_changed.connect(func():
 			collision_shape.disabled = animation.animation == "default"
 			self.scale = self.scale / 5 if animation.animation == "default" else self.scale * 5
 		)
 		
-		await super._ready()
 		
 func active():
 	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 300)

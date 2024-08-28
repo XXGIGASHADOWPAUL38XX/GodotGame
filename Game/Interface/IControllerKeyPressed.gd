@@ -33,7 +33,7 @@ func active():
 		cast_timer.start()
 		await cast_timer.timeout
 		
-		coltdown.start()
+	coltdown.start()
 	
 func is_not_impaired():
 	return ServiceScenes.championNode.curr_state_action.state != State.StateAction.STUNNED

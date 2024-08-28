@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var speed = 20.0
-var animation: AnimatedSprite2D
 
 const orb_kind = MageOrb.OrbKind.GOLD
 
@@ -17,8 +16,7 @@ func _ready():
 		
 		await super._ready()
 		
-		animation = $Spells_mage_explode as AnimatedSprite2D
-		
+			
 		frame_based_anim()
 
 func _process(_delta):

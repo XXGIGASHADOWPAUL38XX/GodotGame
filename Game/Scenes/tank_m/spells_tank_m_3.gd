@@ -1,12 +1,11 @@
 extends IPhysicalSpell
 
 var champion
-var animation: AnimatedSprite2D
 var passive
+var animation
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_tank_m_3
 		super._ready()
 		animation.animation_finished.connect(func(obj): collision())
 

@@ -1,7 +1,5 @@
 extends IDamagingCollision
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -13,8 +11,7 @@ func _ready():
 		
 		await super._ready()
 		self.hide()
-		animation = $anim_attack_mg
-		
+			
 		animation.animation_finished.connect(
 			func():
 				self.hide()

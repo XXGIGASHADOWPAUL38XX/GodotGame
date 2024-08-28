@@ -6,7 +6,7 @@ var throw_direction = Vector2.RIGHT
 var cd_spell = 3.0
 var spell: AnimatedSprite2D
 var coltdown_spell: Timer
-var service_time = prepreload("res://Game/Services/service_time.gd").new()
+var service_time = preload("res://Game/Services/service_time.gd").new()
 var coltdown_display_spell
 
 func _ready():

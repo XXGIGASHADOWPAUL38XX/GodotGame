@@ -5,7 +5,7 @@ var cd_spell2 = 0.01
 var spell2: AnimatedSprite2D
 var coltdown_spell2: Timer
 var HUD
-var animation
+
 var shadow_node
 var shadow_to_dash
 var collision_shape: CollisionPolygon2D

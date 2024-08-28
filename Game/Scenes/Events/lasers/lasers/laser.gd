@@ -5,7 +5,7 @@ var random_laser: Timer = Timer.new()
 var starter_points_scene
 
 var cshape: CollisionShape2D
-var animation: AnimatedSprite2D
+
 var base_size_x
 
 # Called when the node enters the scene tree for the first time.
@@ -17,18 +17,15 @@ func _ready():
 		damage_base = 8.0
 		damage_ratio = 0.0
 		# ------------------------------------ #
-		
-		cshape = $CollisionShape2D
-		animation = $anim_laser
-		animation.animation = 'pre_laser'
-		
-		DISABLE_BASE_BEHAVIOR_COLLISION = true
-		animation.animation_changed.connect(func(): cshape.disabled = (animation.animation != 'laser'))
+			
+		COLLISION_ON_SPECIFIC_ANIM = true
 	
-		base_size_x = cshape.shape.height
-		
 		starter_points_scene = get_parent().get_parent().get_node('starter_points')
 		await super._ready()
+		
+		cshape = $CollisionShape2D
+		animation.animation = 'pre_laser'
+		base_size_x = cshape.shape.height		
 		
 		launch_timer()
 		
@@ -59,7 +56,7 @@ func launch_laser():
 	self.show()
 	await get_tree().create_timer(0.5).timeout
 	
-	animation.animation = 'laser'
+	animation.animation = 'damage'
 	animation.play()
 		
 	await animation.animation_finished

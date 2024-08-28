@@ -17,7 +17,6 @@ func _ready():
 	if is_multiplayer_authority():
 		orb = $spells_mage_f/ctrlr_mage_f_1/spells_mage_f_1
 		anim_orb_hide = $spells_mage_f/ctrlr_mage_f_1/anim_orb_hide
-		animation = $AnimatedSprite2D
 		self.show()
 		
 	await super._ready()

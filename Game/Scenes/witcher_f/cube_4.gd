@@ -1,6 +1,5 @@
 extends IPhysical
 
-var animation
 var collision_shape
 var champion
 
@@ -13,7 +12,6 @@ var controller
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_cube
 		collision_shape = $CollisionShape2D
 		
 		champion = ServiceScenes.championNode

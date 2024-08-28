@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cks8l0fj8ghp1"]
+[gd_scene load_steps=19 format=3 uid="uid://cks8l0fj8ghp1"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Orbs/block_gem_phldr.gd" id="1_5b3xa"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/block_gem.gd" id="1_kqqdn"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_orange_orb_active.gd" id="1_oqaw1"]
 [ext_resource type="Texture2D" uid="uid://b6qtyp12q2j5h" path="res://Game/Ressources/Orbs/orange_orb/orange_orb_active.png" id="2_77oau"]
@@ -50,7 +51,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lnte8"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pre0i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5fbx"]
 atlas = ExtResource("2_77oau")
@@ -72,7 +73,8 @@ radius = 84.7172
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d7h4j"]
 
-[node name="orange_orb_active" type="Node"]
+[node name="orange_orb_active_phldr" type="Node"]
+script = ExtResource("1_5b3xa")
 
 [node name="ctrlr_orange_orb_active" type="Node2D" parent="."]
 script = ExtResource("1_oqaw1")
@@ -81,13 +83,14 @@ script = ExtResource("1_oqaw1")
 script = ExtResource("2_e3d0c")
 
 [node name="anim_blocked" type="AnimatedSprite2D" parent="ctrlr_orange_orb_active/dp_anim_blocked"]
+visible = false
 modulate = Color(1, 1, 1, 0.784314)
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_qfnl7")
 script = ExtResource("3_kkjy1")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_orange_orb_active/dp_anim_blocked"]
-replication_config = SubResource("SceneReplicationConfig_lnte8")
+replication_config = SubResource("SceneReplicationConfig_pre0i")
 
 [node name="orange_orb_active" type="Area2D" parent="ctrlr_orange_orb_active"]
 visible = false

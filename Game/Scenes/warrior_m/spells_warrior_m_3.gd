@@ -1,7 +1,7 @@
 extends IDamagingSpell
 
 var speed = 3
-var animation
+
 
 func _ready():	
 	if is_multiplayer_authority():

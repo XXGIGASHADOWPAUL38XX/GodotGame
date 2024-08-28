@@ -15,9 +15,9 @@ func _ready():
 	if is_multiplayer_authority():
 		self.func_hitted.append(Callable(self, 'attack_back'))
 		attack_timer = service_time.init_timer(self, cd_attack)
-		animation.play("default")
 		
 		await super._ready()
+		animation.play("default")
 		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

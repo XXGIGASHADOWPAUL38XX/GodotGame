@@ -4,7 +4,6 @@ var RANGE_ANGLE_INCL = 30
 
 var speed = 10.0
 var angle_incl_start
-var animation
 var delay
 
 func _ready():

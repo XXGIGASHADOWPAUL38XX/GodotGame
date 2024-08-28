@@ -7,8 +7,11 @@ var ring_border_active_ratio = 0.2 # ratio du collisionshape qui compte pour la
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	collision_shape = $CollisionShape2D
-	self.area_entered.connect(_on_area_entered)
+	if is_multiplayer_authority():
+		collision_shape = $CollisionShape2D
+		self.area_entered.connect(Callable(self, '_on_area_entered'))
+		
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

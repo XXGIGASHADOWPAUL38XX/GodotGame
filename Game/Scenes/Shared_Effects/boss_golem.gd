@@ -6,7 +6,6 @@ const SCENE_BONUS_PATH = "res://Game/Scenes/Shared_Effects/shield_boss_golem.tsc
 func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_golem
-		animation = $boss_golem_anim
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		self.position = Vector2(get_window().size.x, get_window().size.y)
 		

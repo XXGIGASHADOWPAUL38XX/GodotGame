@@ -2,12 +2,9 @@ extends IActive
 
 var speed = 15
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_zone
-		
+			
 		super._ready()
 
 func _process(_delta):

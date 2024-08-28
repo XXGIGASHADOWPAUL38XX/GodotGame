@@ -2,7 +2,7 @@ extends IActive
 
 const OFFSET_Y = 60
 
-var animation: AnimatedSprite2D
+
 var mark_overall_node
 
 var cd_target = 10.0
@@ -14,7 +14,6 @@ var key_ennemy_marked
 func _ready():
 	if is_multiplayer_authority():
 		self.hide()
-		animation = $anim_mark as AnimatedSprite2D
 		mark_overall_node = get_parent()
 		
 		await super._ready()

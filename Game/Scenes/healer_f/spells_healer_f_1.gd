@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var speed = 20.0
-var animation: AnimatedSprite2D
 var deg_arc = 20
 
 func _ready():

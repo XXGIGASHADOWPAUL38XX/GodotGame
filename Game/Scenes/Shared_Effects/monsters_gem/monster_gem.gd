@@ -7,7 +7,6 @@ var metadata_position = [Vector2(600, 300), Vector2(600, 900),
 func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_mg
-		animation = $anim_monster_gem
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		await super._ready()
 

@@ -1,7 +1,5 @@
 extends IActive
 
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		await super._ready()

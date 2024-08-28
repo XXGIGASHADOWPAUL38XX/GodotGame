@@ -1,18 +1,15 @@
 extends ICounter
 
-var animation 
-
 func _ready():
 	if is_multiplayer_authority():
-		animation = $special_tank_m_anim
+		await super._ready()
+		
 		animation.animation = 'default'
 		animation.animation_changed.connect(func(a) : 
 			HAS_DMG_EFFECT = a == 'dash'
 			self.modulate = 1 if a == 'dash' else 0
 		)
 
-		await super._ready()
-		
 		func_on_spell_entered.append(Callable(self, 'dash'))
 
 func _process(_delta):

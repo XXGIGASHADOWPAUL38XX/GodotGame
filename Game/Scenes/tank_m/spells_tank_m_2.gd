@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
-
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -10,8 +8,7 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-		animation = $anim_tank_m_2
-	
+		
 func _process(_delta):
 	if is_multiplayer_authority():
 		if self.visible:

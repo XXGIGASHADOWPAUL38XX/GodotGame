@@ -33,11 +33,6 @@ script = ExtResource("1_vhapj")
 visible = false
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_md5tu")
-damage_base = null
-damage_ratio = null
-state = null
-retrigger = null
-retrigger_time = null
 
 [node name="anim_green_orb" type="AnimatedSprite2D" parent="ctrlr_green_orb_active/green_orb_active"]
 sprite_frames = SubResource("SpriteFrames_svgtt")

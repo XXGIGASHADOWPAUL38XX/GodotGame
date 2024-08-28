@@ -1,6 +1,6 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
+
 var collision_shape
 
 var rotate_speed = 5
@@ -15,8 +15,8 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		collision_shape.disabled
 		
-		animation = $anim_bomb as AnimatedSprite2D
-		
+		await super._ready()
+			
 		animation.animation_changed.connect(func():
 			collision_shape.disabled = animation.animation == "default"
 			self.scale = self.scale / 2 if animation.animation == "default" else self.scale * 2
@@ -28,7 +28,6 @@ func _ready():
 				self.explode()
 		)
 		
-		await super._ready()
 
 
 func _process(delta):

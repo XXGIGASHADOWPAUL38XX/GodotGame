@@ -1,11 +1,10 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
 var collision_shape
 
 func _ready():
 	if is_multiplayer_authority():
-		DISABLE_BASE_BEHAVIOR_COLLISION = true
+		COLLISION_ON_SPECIFIC_ANIM = true
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
 		damage_ratio = 0.15
@@ -13,17 +12,10 @@ func _ready():
 		
 		collision_shape = $CollisionShape2D
 		
-		animation = $anim_damage as AnimatedSprite2D
-		
-		self.visibility_changed.connect(func(): 
-			if !self.visible:
-				collision_shape.disabled = true
-		)
-		
+				
 		animation.frame_changed.connect(func():
-			collision_shape.disabled = animation.frame < 3
 			if animation.animation == "explode":
-				self.modulate.a == min(1, 1.4 - (animation.frame / 10))
+				self.modulate.a == min(1, 1.2 - (animation.frame / 10))
 		)
 		
 		await super._ready()

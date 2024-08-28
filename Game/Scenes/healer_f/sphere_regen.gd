@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var allies_nodes
-var animation
 var mark_overall_node
 
 # Called when the node enters the scene tree for the first time.
@@ -11,7 +10,6 @@ func _ready():
 	damage_ratio = 0.8
 	# ------------------------------------ #
 		
-	animation = $anim_sphere_regen
 	mark_overall_node = get_parent()
 	allies_nodes = ServiceScenes.ennemiesNode ## EN REALITE C'EST LES ALLIES CAR LES MARQUES SONT SUR LES ENNEMIES (DONC ENNEMI D'ENNEMI)
 	await super._ready()

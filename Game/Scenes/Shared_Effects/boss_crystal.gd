@@ -6,7 +6,6 @@ const SCENE_BONUS_PATH = "res://Game/Scenes/Shared_Effects/shield_boss_crystal.t
 func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_crystal
-		animation = $anim_boos_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
 		self.position = Vector2(get_window().size.x, get_window().size.y)
 		
