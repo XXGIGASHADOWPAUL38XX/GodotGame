@@ -1,9 +1,13 @@
-[gd_scene load_steps=61 format=3 uid="uid://bgb8y5bj2phxf"]
+[gd_scene load_steps=118 format=3 uid="uid://bgb8y5bj2phxf"]
 
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/spells_fighter_f_phldr.gd" id="1_3vmbn"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_aa.gd" id="2_sg1j0"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_lame_1.gd" id="2_st1af"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/aa.gd" id="3_cblf8"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/lame_1.gd" id="3_jw88h"]
+[ext_resource type="Texture2D" uid="uid://ccka7we2tpoc5" path="res://Game/Ressources/Heros/fighter_f/lames_aa.png" id="4_1q4aj"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/lame_2.gd" id="4_eim0s"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/aa_lames_2.gd" id="4_rihmd"]
 [ext_resource type="Texture2D" uid="uid://cgtu1lll2i8q" path="res://Game/Ressources/Heros/fighter_f/spell_1.png" id="4_s5ldc"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_lame_2.gd" id="5_5gpot"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/dash.gd" id="6_epdw1"]
@@ -15,18 +19,96 @@
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/zone.gd" id="11_wjfw6"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/jump.gd" id="12_4ddu1"]
 [ext_resource type="Texture2D" uid="uid://dolfokcoada1p" path="res://Game/Ressources/Heros/fighter_f/weapon_lames.png" id="12_awbdr"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_aa_ring.gd" id="13_1kbg2"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_ring_2.gd" id="13_8aa2t"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/counter_count.gd" id="14_f8rss"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/anim_champ_leap.gd" id="14_fkycy"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/aa_ring.gd" id="14_up1ss"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/dp_lame_3.gd" id="14_wvrwy"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/strike.gd" id="15_3wa4q"]
 [ext_resource type="Texture2D" uid="uid://b0y3krwco0we6" path="res://Game/Ressources/Heros/fighter_f/ring_1_zone.png" id="15_kv7jq"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/reduce.gd" id="15_qacm7"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_special_lame.gd" id="16_8okm5"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/zone_damage.gd" id="16_jc6ha"]
+[ext_resource type="Texture2D" uid="uid://e2m6ltkhsuef" path="res://Game/Ressources/Heros/fighter_f/ring_aa.png" id="16_ukpu8"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/special.gd" id="17_2xj35"]
 [ext_resource type="Texture2D" uid="uid://cdw8gnptbyft7" path="res://Game/Ressources/Heros/fighter_f/ring_1_leap.png" id="18_ds0m5"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/dp_special_lame.gd" id="18_wj3jj"]
 [ext_resource type="Texture2D" uid="uid://d1bkbhj65wjwq" path="res://Game/Ressources/Heros/fighter_f/counter_count.png" id="19_syuah"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/special_lame.gd" id="19_vl8tl"]
 [ext_resource type="Texture2D" uid="uid://clvprbraarhi1" path="res://Game/Ressources/Heros/fighter_f/ring_counter_2.png" id="20_fqsbh"]
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/anim_rotate.gd" id="20_nlb2a"]
 [ext_resource type="Texture2D" uid="uid://yumghlolhx6q" path="res://Game/Ressources/Heros/fighter_f/ring_counter.png" id="24_6lbay"]
 [ext_resource type="Texture2D" uid="uid://chglefas4mars" path="res://Game/Ressources/Heros/fighter_f/weapon_ring.png" id="26_i7k6l"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_ring_3.gd" id="37_qpuif"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/ctrlr_special_ring.gd" id="37_uv3ou"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/zone_b4pulse.gd" id="38_2u10m"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/special_ring.gd" id="38_564s0"]
+[ext_resource type="Texture2D" uid="uid://cwjdspk6p2adb" path="res://Game/Ressources/Heros/fighter_f/ring_3_zone.png" id="39_qhe7c"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/pulse.gd" id="40_gc8sw"]
+[ext_resource type="Texture2D" uid="uid://c5joff31v4wyh" path="res://Game/Ressources/Heros/fighter_f/ring_3_pulse.png" id="41_kp7pk"]
+[ext_resource type="Script" path="res://Game/Scenes/fighter_f/special_pulse.gd" id="44_2uaag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jna0"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(0, 0, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm6ww"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(538, 0, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqwgy"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(1076, 0, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejac7"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(1614, 0, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trfwl"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(0, 551, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo67y"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(538, 551, 538, 551)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqwxq"]
+atlas = ExtResource("4_1q4aj")
+region = Rect2(1076, 551, 538, 551)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvvxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jna0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm6ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqwgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejac7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trfwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo67y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqwxq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r2lrc"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_00qn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gky5j"]
 radius = 425.0
@@ -82,6 +164,66 @@ animations = [{
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_me3td"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvei1"]
+atlas = ExtResource("4_s5ldc")
+region = Rect2(0, 0, 928, 826)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c30hf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvei1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jffqn"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h5jiu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wskk"]
+radius = 19.0263
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8imr"]
+atlas = ExtResource("4_s5ldc")
+region = Rect2(0, 0, 928, 826)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6pl86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8imr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ae25y"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dae81"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_etb0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0qtc"]
+atlas = ExtResource("16_ukpu8")
+region = Rect2(0, 0, 976, 1012)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_woidc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0qtc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1o1o1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3um4b"]
 radius = 480.185
@@ -208,6 +350,79 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_074pj"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg1gx"]
+atlas = ExtResource("39_qhe7c")
+region = Rect2(0, 0, 1550, 1141)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_legre"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg1gx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l300v"]
+size = Vector2(1540, 1140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe2ri"]
+atlas = ExtResource("41_kp7pk")
+region = Rect2(0, 0, 500, 1164)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cofa4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe2ri")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_shf55"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25qbm"]
+atlas = ExtResource("26_i7k6l")
+region = Rect2(0, 0, 976, 1012)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_biorm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25qbm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sr733"]
+radius = 483.333
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny6cg"]
+atlas = ExtResource("15_kv7jq")
+region = Rect2(0, 0, 1005, 1005)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_caujv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny6cg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_law8h"]
+radius = 492.009
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e0ejs"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a75om"]
 atlas = ExtResource("12_awbdr")
 region = Rect2(0, 0, 902, 842)
@@ -241,6 +456,34 @@ animations = [{
 script = ExtResource("1_3vmbn")
 
 [node name="weapon_lames" type="Node2D" parent="."]
+
+[node name="ctrlr_aa_lames" type="Node2D" parent="weapon_lames"]
+script = ExtResource("2_sg1j0")
+
+[node name="aa_lames_1" type="Area2D" parent="weapon_lames/ctrlr_aa_lames"]
+visible = false
+scale = Vector2(0.09, 0.09)
+script = ExtResource("3_cblf8")
+
+[node name="aa_anim" type="AnimatedSprite2D" parent="weapon_lames/ctrlr_aa_lames/aa_lames_1"]
+sprite_frames = SubResource("SpriteFrames_rvvxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_aa_lames/aa_lames_1"]
+shape = SubResource("CircleShape2D_r2lrc")
+
+[node name="aa_lames_2" type="Area2D" parent="weapon_lames/ctrlr_aa_lames"]
+visible = false
+scale = Vector2(0.09, -0.09)
+script = ExtResource("4_rihmd")
+
+[node name="aa_anim" type="AnimatedSprite2D" parent="weapon_lames/ctrlr_aa_lames/aa_lames_2"]
+sprite_frames = SubResource("SpriteFrames_rvvxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_aa_lames/aa_lames_2"]
+shape = SubResource("CircleShape2D_r2lrc")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_lames/ctrlr_aa_lames"]
+replication_config = SubResource("SceneReplicationConfig_00qn1")
 
 [node name="ctrlr_lame_1" type="Node2D" parent="weapon_lames"]
 script = ExtResource("2_st1af")
@@ -290,7 +533,76 @@ replication_config = SubResource("SceneReplicationConfig_me3td")
 [node name="ctrlr_lame_3" type="Node2D" parent="weapon_lames"]
 script = ExtResource("7_uprhv")
 
+[node name="dp_lame_3" type="Node2D" parent="weapon_lames/ctrlr_lame_3"]
+script = ExtResource("14_wvrwy")
+
+[node name="strike" type="Area2D" parent="weapon_lames/ctrlr_lame_3/dp_lame_3"]
+visible = false
+scale = Vector2(0.03, 0.03)
+script = ExtResource("15_3wa4q")
+
+[node name="anim_strike" type="AnimatedSprite2D" parent="weapon_lames/ctrlr_lame_3/dp_lame_3/strike"]
+sprite_frames = SubResource("SpriteFrames_c30hf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_lame_3/dp_lame_3/strike"]
+shape = SubResource("CircleShape2D_jffqn")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_lames/ctrlr_lame_3/dp_lame_3"]
+replication_config = SubResource("SceneReplicationConfig_h5jiu")
+
+[node name="ctrlr_special_lame" type="Node2D" parent="weapon_lames"]
+script = ExtResource("16_8okm5")
+
+[node name="special_lame" type="Area2D" parent="weapon_lames/ctrlr_special_lame"]
+visible = false
+script = ExtResource("17_2xj35")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_special_lame/special_lame"]
+shape = SubResource("CircleShape2D_6wskk")
+
+[node name="anim_special" type="AnimatedSprite2D" parent="weapon_lames/ctrlr_special_lame/special_lame"]
+sprite_frames = SubResource("SpriteFrames_6pl86")
+
+[node name="dp_special_dash" type="Node2D" parent="weapon_lames/ctrlr_special_lame"]
+script = ExtResource("18_wj3jj")
+
+[node name="special_dash" type="Area2D" parent="weapon_lames/ctrlr_special_lame/dp_special_dash"]
+visible = false
+scale = Vector2(0.5, 0.5)
+script = ExtResource("19_vl8tl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_special_lame/dp_special_dash/special_dash"]
+shape = SubResource("CircleShape2D_6wskk")
+
+[node name="anim_special_dash" type="AnimatedSprite2D" parent="weapon_lames/ctrlr_special_lame/dp_special_dash/special_dash"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_6pl86")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_lames/ctrlr_special_lame/dp_special_dash"]
+replication_config = SubResource("SceneReplicationConfig_ae25y")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_lames/ctrlr_special_lame"]
+replication_config = SubResource("SceneReplicationConfig_dae81")
+
 [node name="weapon_ring" type="Node2D" parent="."]
+
+[node name="ctrlr_aa_ring" type="Node2D" parent="weapon_ring"]
+script = ExtResource("13_1kbg2")
+
+[node name="aa_ring" type="Area2D" parent="weapon_ring/ctrlr_aa_ring"]
+visible = false
+scale = Vector2(0.06, 0.06)
+script = ExtResource("14_up1ss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_ring/ctrlr_aa_ring/aa_ring"]
+shape = SubResource("CircleShape2D_etb0j")
+
+[node name="aa_anim" type="AnimatedSprite2D" parent="weapon_ring/ctrlr_aa_ring/aa_ring"]
+sprite_frames = SubResource("SpriteFrames_woidc")
+frame_progress = 1.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_ring/ctrlr_aa_ring"]
+replication_config = SubResource("SceneReplicationConfig_1o1o1")
 
 [node name="ctrlr_ring_1" type="Node2D" parent="weapon_ring"]
 script = ExtResource("10_es3me")
@@ -365,6 +677,61 @@ sprite_frames = SubResource("SpriteFrames_tugqm")
 replication_config = SubResource("SceneReplicationConfig_074pj")
 
 [node name="ctrlr_ring_3" type="Node2D" parent="weapon_ring"]
+script = ExtResource("37_qpuif")
+
+[node name="zone_b4pulse" type="Area2D" parent="weapon_ring/ctrlr_ring_3"]
+visible = false
+scale = Vector2(0.1, 0.1)
+script = ExtResource("38_2u10m")
+
+[node name="anim_zone" type="AnimatedSprite2D" parent="weapon_ring/ctrlr_ring_3/zone_b4pulse"]
+sprite_frames = SubResource("SpriteFrames_legre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_ring/ctrlr_ring_3/zone_b4pulse"]
+position = Vector2(-0.000124574, -1.90735e-05)
+shape = SubResource("RectangleShape2D_l300v")
+
+[node name="pulse" type="Area2D" parent="weapon_ring/ctrlr_ring_3"]
+visible = false
+script = ExtResource("40_gc8sw")
+
+[node name="anim_pulse" type="AnimatedSprite2D" parent="weapon_ring/ctrlr_ring_3/pulse"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_cofa4")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="weapon_ring/ctrlr_ring_3/pulse"]
+polygon = PackedVector2Array(-24, -58, 8, -58, 25, -1, 8, 58, -25, 58, -7, -1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_ring/ctrlr_ring_3"]
+replication_config = SubResource("SceneReplicationConfig_shf55")
+
+[node name="ctrlr_special_ring" type="Node2D" parent="weapon_ring"]
+script = ExtResource("37_uv3ou")
+
+[node name="special_ring" type="Area2D" parent="weapon_ring/ctrlr_special_ring"]
+visible = false
+scale = Vector2(0.06, 0.06)
+script = ExtResource("38_564s0")
+
+[node name="anim_special_ring" type="AnimatedSprite2D" parent="weapon_ring/ctrlr_special_ring/special_ring"]
+sprite_frames = SubResource("SpriteFrames_biorm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_ring/ctrlr_special_ring/special_ring"]
+shape = SubResource("CircleShape2D_sr733")
+
+[node name="special_pulse" type="Area2D" parent="weapon_ring/ctrlr_special_ring"]
+visible = false
+scale = Vector2(0.075, 0.075)
+script = ExtResource("44_2uaag")
+
+[node name="anim_special_pulse" type="AnimatedSprite2D" parent="weapon_ring/ctrlr_special_ring/special_pulse"]
+sprite_frames = SubResource("SpriteFrames_caujv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_ring/ctrlr_special_ring/special_pulse"]
+shape = SubResource("CircleShape2D_law8h")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="weapon_ring/ctrlr_special_ring"]
+replication_config = SubResource("SceneReplicationConfig_e0ejs")
 
 [node name="ctrlr_spell_4" type="Node2D" parent="."]
 script = ExtResource("8_5kiai")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dw7kluig5n4og"]
+[gd_scene load_steps=11 format=3 uid="uid://dw7kluig5n4og"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/ctrlr_red_orb_active.gd" id="1_jyqg7"]
 [ext_resource type="Script" path="res://Game/Scenes/Orbs/slice_gem.gd" id="1_loove"]
@@ -16,14 +16,6 @@ region = Rect2(1357, 0, 1357, 608)
 atlas = ExtResource("2_widmc")
 region = Rect2(2714, 0, 1357, 608)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn80g"]
-atlas = ExtResource("2_widmc")
-region = Rect2(0, 608, 1357, 608)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqtld"]
-atlas = ExtResource("2_widmc")
-region = Rect2(1357, 608, 1357, 608)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7diot"]
 atlas = ExtResource("2_widmc")
 region = Rect2(2714, 608, 1357, 608)
@@ -31,14 +23,6 @@ region = Rect2(2714, 608, 1357, 608)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxo7p"]
 atlas = ExtResource("2_widmc")
 region = Rect2(0, 1216, 1357, 608)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vguuu"]
-atlas = ExtResource("2_widmc")
-region = Rect2(1357, 1216, 1357, 608)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhyxq"]
-atlas = ExtResource("2_widmc")
-region = Rect2(2714, 1216, 1357, 608)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1dir4"]
 animations = [{
@@ -53,26 +37,14 @@ animations = [{
 "texture": SubResource("AtlasTexture_qml7n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dn80g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqtld")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7diot")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sxo7p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vguuu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uhyxq")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 25.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6l8ty"]
@@ -92,6 +64,7 @@ properties/2/replication_mode = 1
 script = ExtResource("1_jyqg7")
 
 [node name="red_orb_active" type="Area2D" parent="ctrlr_red_orb_active"]
+visible = false
 scale = Vector2(0.15, 0.15)
 script = ExtResource("1_loove")
 

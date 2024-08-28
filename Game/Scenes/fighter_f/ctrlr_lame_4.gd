@@ -7,5 +7,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
-	$change_weapon.active()
+	super.active()
+	$change_weapon.can_active()

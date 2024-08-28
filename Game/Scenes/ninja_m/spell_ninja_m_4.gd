@@ -11,8 +11,8 @@ func _ready():
 
 func active():
 	shadow.hide()
-	await shuriken.active()
-	shadow.active(shuriken)
+	await shuriken.can_active()
+	shadow.can_active(shuriken)
 
 func post_dp_script(id, nbr_dupl):
 	shuriken.angle = id * 120

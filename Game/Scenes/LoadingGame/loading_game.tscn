@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmrufk3sj2i3x"]
+
+[ext_resource type="Script" path="res://Game/Scenes/LoadingGame/Panel.gd" id="1_c6jrf"]
+[ext_resource type="Theme" uid="uid://dg5thi0mhx4m2" path="res://ressource/loading_bar.tres" id="2_jhw4a"]
+
+[sub_resource type="Gradient" id="Gradient_qkub6"]
+colors = PackedColorArray(0.370364, 0.370364, 0.370364, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xh0ey"]
+gradient = SubResource("Gradient_qkub6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1mhup"]
+texture = SubResource("GradientTexture2D_xh0ey")
+
+[node name="loading_game" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+offset_right = 1200.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_1mhup")
+script = ExtResource("1_c6jrf")
+
+[node name="loading_bar" type="ProgressBar" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_jhw4a")
+value = 50.0
+
+[node name="label_loading" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -110.0
+offset_right = 150.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="current_resource" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 40.0
+offset_right = 150.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "loading"
+horizontal_alignment = 1
+vertical_alignment = 1

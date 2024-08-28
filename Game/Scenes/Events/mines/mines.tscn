@@ -1,11 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://b632hyg1xrnmy"]
+[gd_scene load_steps=20 format=3 uid="uid://b632hyg1xrnmy"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Events/mines/mine.gd" id="1_2pr4b"]
-[ext_resource type="Script" path="res://Game/Scenes/Events/mines/mines.gd" id="1_ru1p3"]
 [ext_resource type="Script" path="res://Game/Scenes/Events/mines/mines_phldr.gd" id="1_wtm3s"]
-[ext_resource type="Texture2D" uid="uid://cn5htcx73fnlt" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Explosion/001.png" id="2_fk8u3"]
-[ext_resource type="Texture2D" uid="uid://fwlhmnm3hk3a" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Explosion/002.png" id="3_ax1ym"]
-[ext_resource type="Texture2D" uid="uid://cqnenuwrwda8g" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Explosion/003.png" id="4_qygnc"]
+[ext_resource type="Texture2D" uid="uid://cn5htcx73fnlt" path="res://Game/Services/001.png" id="2_fk8u3"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/mines/dp_10x_mines.gd" id="2_tp2mk"]
+[ext_resource type="Texture2D" uid="uid://fwlhmnm3hk3a" path="res://Game/Services/002.png" id="3_ax1ym"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/mines/dp_mines.gd" id="3_vuis8"]
+[ext_resource type="Texture2D" uid="uid://cqnenuwrwda8g" path="res://Game/Services/003.png" id="4_qygnc"]
 [ext_resource type="Texture2D" uid="uid://dsnd3cqebgyt3" path="res://Game/Ressources/Main_Effects/Mines/mine.png" id="5_132tk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6b4dj"]
@@ -74,28 +75,27 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmhtq"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e23yv"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xfwnw"]
 
 [node name="mines_phldr" type="Node"]
 script = ExtResource("1_wtm3s")
 
-[node name="mines" type="Node2D" parent="."]
-script = ExtResource("1_ru1p3")
+[node name="dp_10x_mines" type="Node2D" parent="."]
+script = ExtResource("2_tp2mk")
 
-[node name="mine" type="Area2D" parent="mines"]
+[node name="dp_mines" type="Node2D" parent="dp_10x_mines"]
+script = ExtResource("3_vuis8")
+
+[node name="mine" type="Area2D" parent="dp_10x_mines/dp_mines"]
 script = ExtResource("1_2pr4b")
 
-[node name="anim_mine" type="AnimatedSprite2D" parent="mines/mine"]
+[node name="anim_mine" type="AnimatedSprite2D" parent="dp_10x_mines/dp_mines/mine"]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_t8uft")
 animation = &"mine"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mines/mine"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dp_10x_mines/dp_mines/mine"]
 shape = SubResource("CircleShape2D_wmhtq")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="mines"]
-root_path = NodePath("../..")
-replication_config = SubResource("SceneReplicationConfig_e23yv")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="dp_10x_mines/dp_mines"]
+replication_config = SubResource("SceneReplicationConfig_xfwnw")

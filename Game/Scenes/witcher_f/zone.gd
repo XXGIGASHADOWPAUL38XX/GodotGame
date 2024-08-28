@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
 var modulate_bool = false
 
 var duration = 3
@@ -13,7 +12,6 @@ func _ready():
 		damage_ratio = 0.1
 		# ------------------------------------ #
 		
-		animation = $anim_zone
 		duration_timer = service_time.init_timer(self, duration)
 		
 		await super._ready()

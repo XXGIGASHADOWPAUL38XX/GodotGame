@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var throw_direction = Vector2.RIGHT
-var animation: AnimatedSprite2D
 var passive: CharacterBody2D
 var HUD
 var shadow_node
@@ -15,7 +14,6 @@ func _ready():
 		
 		await super._ready()
 		
-		animation = $anim_ninja_m_1
 		shadow_node = get_parent().get_node('animations').get_node('shadow')
 
 func _process(delta):

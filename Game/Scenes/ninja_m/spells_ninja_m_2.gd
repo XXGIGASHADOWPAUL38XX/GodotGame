@@ -5,7 +5,7 @@ var cd_spell2 = 0.01
 var spell2: AnimatedSprite2D
 var coltdown_spell2: Timer
 var HUD
-var animation
+
 var shadow_node
 var shadow_to_dash
 var collision_shape: CollisionPolygon2D
@@ -28,8 +28,6 @@ func active():
 	if is_multiplayer_authority():
 		var endpoint_dash = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 100)
 		
-		champion.set_attribute('state_damage', State.StateMovement.IMMOBILE)
-		
 		self.position = champion.position + ((endpoint_dash - champion.position) / 2)
 		self.rotation = (endpoint_dash - champion.position).angle()
 		self.show()
@@ -40,8 +38,7 @@ func active():
 		animation.play("default")
 		
 		champion.position = endpoint_dash
-		champion.set_attribute('state_movement', State.StateMovement.NULL)
-		
+			
 		await animation.animation_finished
 		
 		self.hide()

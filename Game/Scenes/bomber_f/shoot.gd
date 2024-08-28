@@ -4,7 +4,6 @@ const RANGE_MAX = 900
 
 var speed = 25
 var ennemy_in_range = []
-var animation
 
 var overall_spell
 
@@ -15,7 +14,6 @@ func _ready():
 		damage_ratio = 0.1
 		# ------------------------------------ #
 		
-		animation = $anim_shoot
 		overall_spell = get_parent()
 		
 		await super._ready()

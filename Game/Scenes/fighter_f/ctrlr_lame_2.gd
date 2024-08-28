@@ -4,11 +4,12 @@ func _ready():
 	if is_multiplayer_authority():
 		key = KEY_Z
 		coltdown_time = 6
+		
 		await super._ready()
 
 func active():
-	coltdown.start()
-	$dash.active()
+	super.active()
+	$dash.can_active()
 	await get_tree().create_timer(0.5).timeout
-	$dash.active()
+	$dash.can_active()
 

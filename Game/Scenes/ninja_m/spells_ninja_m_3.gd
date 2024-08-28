@@ -4,7 +4,7 @@ var speed = 20.0
 var throw_direction = Vector2.RIGHT
 var shadow_assigned
 
-var animation
+
 
 func _ready():	
 	if is_multiplayer_authority():
@@ -13,8 +13,7 @@ func _ready():
 		damage_ratio = 0.125
 		# ------------------------------------ #
 		
-		animation = $anim_ninja_m_3
-		
+			
 		await super._ready()
 		
 		self.hide()

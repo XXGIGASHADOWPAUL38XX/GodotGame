@@ -1,11 +1,10 @@
 extends IActive
 
 var key_ennemy_marked
-var animation
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation = $anim_bubbles
 	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +17,7 @@ func active(target_position):
 
 	self.show()
 	
-	while !ServiceSpell.is_close_to(champion, self, 3):
+	while !ServiceSpell.is_close_to(champion, self, 10):
 		var direction = champion.position - self.position
 		var velocity = direction.normalized() * speed
 		

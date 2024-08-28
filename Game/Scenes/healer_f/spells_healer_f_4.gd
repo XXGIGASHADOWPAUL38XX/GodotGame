@@ -1,7 +1,5 @@
 extends IDamagingSpell
 
-var animation: AnimatedSprite2D
-
 var healing_base
 var key_champion_marked
 
@@ -14,8 +12,7 @@ func _ready():
 		
 		CONF_DETECT_WITH = ServiceScenes.alliesNode + ServiceScenes.ennemiesNode
 		
-		animation = $anim_healer_f_4
-		
+			
 		await super._ready()
 			
 func _process(_delta):

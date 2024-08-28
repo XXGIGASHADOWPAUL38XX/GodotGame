@@ -15,7 +15,11 @@ var multip_sync: MultiplayerSynchronizer
 
 var spells_placeholder
 
+var animation: AnimatedSprite2D
+
 func _ready():
+	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+	ServiceScenes.entites.append(self)
 	spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
@@ -27,7 +31,7 @@ func _ready():
 
 func hitted(spell):
 	last_spell_hitting = spell
-	last_ennemy_hitting = spell.get_parent().get_parent()
+	last_ennemy_hitting = spell.champion
 	
 	for fc in func_hitted:
 		fc.call()
@@ -38,15 +42,17 @@ func hit(): #FAIRE LES DEGATS
 		fc.call()
 
 func set_multiplayer_properties():
+	if animation == null:
+		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	multip_sync = self.get_parent().get_node("MultiplayerSynchronizer")
 	
-	var animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	var anim_path = self.name + "/" + animation.name
 	
 	multip_sync.replication_config.add_property(self.name + ":visible")
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
+	multip_sync.replication_config.add_property(self.name + ":scale")
 	
 	multip_sync.replication_config.add_property(anim_path + ":animation")
 	multip_sync.replication_config.add_property(anim_path + ":modulate")
@@ -61,6 +67,12 @@ func spells_placeholder_f(node: Node = self):
 		
 	return null
 
+func new_round():
+	pass
+
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
+
+func _exit_tree():
+	Servrpc.recently_freed_nodepaths.append(self.get_path())

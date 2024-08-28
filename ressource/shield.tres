@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bvu0egsqn6n2i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2umpj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.784314)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s75p0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.588864, 0.152777, 0.4)
+corner_detail = 6
+
+[resource]
+default_font_size = 15
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 15
+ProgressBar/styles/background = SubResource("StyleBoxFlat_2umpj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_s75p0")

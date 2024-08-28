@@ -13,7 +13,7 @@ func _ready():
 		
 		await await_resource_loaded(func(): return self.spells_placeholder != null)
 		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
-''
+
 func spells_placeholder_f(node: Node = self):
 	if node is IPlaceholderSpells:
 		spells_placeholder = node

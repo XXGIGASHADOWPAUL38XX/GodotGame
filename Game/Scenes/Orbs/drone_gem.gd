@@ -3,7 +3,6 @@ extends CharacterBody2D
 var cd = 2.0
 var coltdown: Timer
 
-var center_object: Node2D
 var distance: float = 45.0  # Distance from center_object
 var rotation_speed: float = 2  
 var current_angle: float = 0.0

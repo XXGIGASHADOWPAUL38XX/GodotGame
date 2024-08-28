@@ -43,7 +43,7 @@ func portal_entered(node_body, portal_emit, portal_to_send):
 
 func portal_exited(node_body, current_portal, other_portal):
 	if dict_champ_portal.get(node_body) == false:
-		dict_champ_portal[node_body] =  true
+		dict_champ_portal[node_body] = true
 
 func tp_to_portal(champion, animation_portal, portal_to_send):
 	animation_portal.animation_finished.disconnect(tp_to_portal)

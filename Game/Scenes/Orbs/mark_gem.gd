@@ -1,6 +1,5 @@
 extends IDamagingCollision
 
-var animation
 var collision_shape
 
 var augment: int = 0
@@ -13,21 +12,36 @@ var cd_explode = 8.0
 
 var modulate_bool: bool = false
 
+var duplicator
+var key_ennemy_marked
+
 func _ready():
 	if is_multiplayer_authority():
-		animation = $red_orb_passive
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 4.0
+		damage_ratio = 0.1
+		# ------------------------------------ #
+		
 		collision_shape = $CollisionShape2D
+		
+		COLLISION_ON_SPECIFIC_ANIM = true
+		animation.animation_changed.connect(func():
+			collision_shape.disabled = animation.animation == "explode"
+		)
+		
+		duplicator = get_parent()
+		
 		await super._ready()
 		
 		coltdown_stay = service_time.init_timer(self, cd_stay)
 		coltdown_explode = service_time.init_timer(self, cd_explode)
-		coltdown_stay.timeout.connect(
-			func(): 
-				augment = 0
-				self.hide()
+		coltdown_stay.timeout.connect(func(): 
+			augment = 0
+			self.hide()
 		)
 		
 		animation.frame_changed.connect(func(): collision_shape.disabled = animation.frame != MAX_AUGMENT)
+		ServiceScenes.championNode.func_hitted.append(Callable(self, 'active'))
 
 func _process(delta):
 	if is_multiplayer_authority():
@@ -40,16 +54,19 @@ func _process(delta):
 func active():
 	if is_multiplayer_authority() && coltdown_explode.time_left == 0:
 		self.show()
-		coltdown_stay.start()
 		
 		if augment < MAX_AUGMENT:
 			augment += 1
 			animation.frame = augment
 			coltdown_stay.start()
 		else:
-			Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), self, 'explode', [])
+			Servrpc.send_to_id(key_ennemy_marked.get_multiplayer_authority(), self, 'explode', [])
 			coltdown_explode.start()
 
 func explode():
-	pass
-#	champion.take_damage(5, State.StateMovement.NULL)
+	augment = 0
+	self.hide()
+#	champion.take_damage(5, State.StateAction.NULL)
+
+func post_dp_script(id, nbr_dupl):
+	key_ennemy_marked = duplicator.ennemies_sorted()[id - 1]

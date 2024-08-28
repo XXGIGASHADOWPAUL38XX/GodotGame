@@ -7,4 +7,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	$orange_orb_active.active()
+	super.active()
+	$orange_orb_active.can_active()

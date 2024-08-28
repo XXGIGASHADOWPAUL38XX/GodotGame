@@ -1,14 +1,13 @@
-extends "res://Game/Interface/ICollision.gd"
+extends ICollision
 
 var player # INSTANCIE LORS DE LA DUPLICATION
-var animation
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $special_healer_f_anim
+		await super._ready()
+		
 		animation.animation_finished.connect(stop_spell)
 		CONF_DETECT_WITH = ServiceScenes.alliesNode
-		await super._ready()
 			
 func _process(_delta):
 	if self.visible:
@@ -18,7 +17,7 @@ func spell_purge_allies():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
 		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.4]
 	)
-	player.state_movement = State.StateMovement.NULL
+	player.remove_all_states('states_action')
 	animation.play('default')
 	
 	self.modulate.a = 0.5

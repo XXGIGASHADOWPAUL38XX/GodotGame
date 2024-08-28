@@ -1,10 +1,5 @@
 extends IActive
 
-var spell2: AnimatedSprite2D
-var coltdown_spell: Timer
-var HUD
-var animation
-
 func _ready():
 	if is_multiplayer_authority():
 		await super._ready()

@@ -2,13 +2,14 @@ extends IDamagingSpell
 
 var speed = 8
 var rotate_speed = 25
-var animation: AnimatedSprite2D
+
 
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0
 		damage_ratio = 0.2
+		immobile_while_active = true
 		# ------------------------------------ #
 		
 		await super._ready()
@@ -21,7 +22,6 @@ func _process(_delta):
 			self.position = champion.position
 
 func active():
-	champion.state_movement = State.StateMovement.IMMOBILE
 	self.show()
 
 	animation.play()
@@ -32,5 +32,3 @@ func active():
 
 	animation.stop()
 	self.hide()
-	champion.state_movement = State.StateMovement.NULL
-	

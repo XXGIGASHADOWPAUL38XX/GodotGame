@@ -1,19 +1,17 @@
-extends Area2D
-
-var service_time = preload("res://Game/Services/service_time.gd").new()
-var cd = 12.0
-var coltdown: Timer
+extends IActive
 
 var collision_shape
-var ring_border_active_ratio = 0.2 # ratio du collisionshape qui compte pour la 
+var ring_border_active_ratio = 0.3 # ratio du collisionshape qui compte pour la 
 # suppression d'un spell, permet de pas supprimer un spell au centre du spell et
 # de seulement supprimer ceux sur les côtés
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	collision_shape = $CollisionShape2D
-	coltdown = service_time.init_timer(self, cd) 
-	self.area_entered.connect(_on_area_entered)
+	if is_multiplayer_authority():
+		collision_shape = $CollisionShape2D
+		self.area_entered.connect(Callable(self, '_on_area_entered'))
+		
+		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,6 +26,8 @@ func active():
 		
 func _on_area_entered(spell: Area2D):
 	if self.visible && spell is IDamagingSpell && is_on_border(spell):
+		spell_controller.get_inactive_anim_block().can_active(spell)
+		
 		Servrpc.send_to_id(spell.get_parent().get_parent().get_multiplayer_authority(), 
 			self, "hide_spell", [spell]
 		)

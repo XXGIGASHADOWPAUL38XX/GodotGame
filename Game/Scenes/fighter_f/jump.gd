@@ -1,13 +1,16 @@
 extends IDamagingSpell
 
 var speed = 20.0
-var animation: AnimatedSprite2D
+
 
 func _ready():	
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 9.0
 		damage_ratio = 0.2
+		
+		state_action = State.StateAction.STUNNED
+		state_duration = 0.75
 		# ------------------------------------ #
 		
 		await super._ready()

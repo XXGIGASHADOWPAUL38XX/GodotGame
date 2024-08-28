@@ -1,15 +1,15 @@
 extends IPhysicalSpell
 
 var champion
-var animation: AnimatedSprite2D
+var animation
 var passive
 
 var timer_rock_stay: Timer
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_tank_m_3
 		champion = ServiceScenes.championNode
+		animation = $anim_tank_m_3
 		
 		await super._ready()
 		animation.animation_finished.connect(func(obj): collision())

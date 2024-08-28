@@ -1,11 +1,14 @@
-[gd_scene load_steps=55 format=3 uid="uid://dpcvbwqik5lfg"]
+[gd_scene load_steps=70 format=3 uid="uid://dpcvbwqik5lfg"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_1.gd" id="1_ewxjy"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_phldr.gd" id="1_ltmo8"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_ninja_m_1.gd" id="2_f6ghp"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_aa_ninja_m.gd" id="2_kgxlw"]
 [ext_resource type="Texture2D" uid="uid://s8gyx3yf0jsl" path="res://Game/Ressources/Heros/ninja_m/spell1_mark.png" id="2_p8p0w"]
 [ext_resource type="Texture2D" uid="uid://cx3plhegy442n" path="res://Game/Ressources/Heros/ninja_m/spell2_dash.png" id="3_3nsr2"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_2.gd" id="3_cbpgb"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/aa_ninja_m.gd" id="3_mdg1u"]
+[ext_resource type="Texture2D" uid="uid://cs4q61ycd23y8" path="res://Game/Ressources/Heros/ninja_m/aa.png" id="4_r4fn8"]
 [ext_resource type="Texture2D" uid="uid://doif5rhl644s6" path="res://Game/Ressources/Heros/ninja_m/spell1_shadow.png" id="5_akc0j"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_3.gd" id="5_oxk5b"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/shadow.gd" id="6_02gk0"]
@@ -20,6 +23,75 @@
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spell_ninja_m_4.gd" id="16_clbn1"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/shuriken_m_4.gd" id="16_ut5nh"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/shadow_m_4.gd" id="17_h6foa"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_special_ninja_m.gd" id="21_amwjv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0xx1"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(0, 0, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvv36"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(592, 0, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfhgy"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(1184, 0, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x2u8"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(1776, 0, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvi7"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(0, 606, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e08vu"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(592, 606, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35k1t"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(1184, 606, 592, 606)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6170p"]
+atlas = ExtResource("4_r4fn8")
+region = Rect2(1776, 606, 592, 606)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4dwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0xx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvv36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfhgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x2u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhvi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e08vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35k1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6170p")
+}],
+"loop": false,
+"name": &"default",
+"speed": 50.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8e3j6"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ipvf1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3kam"]
 atlas = ExtResource("2_p8p0w")
@@ -215,7 +287,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pq0cc")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -223,70 +295,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qae1d"]
 radius = 33.1361
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kiee5"]
-properties/0/path = NodePath("spells_ninja_m_1:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("spells_ninja_m_1:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("spells_ninja_m_2:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("spells_ninja_m_2:visible")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("spells_ninja_m_2:scale")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("spells_ninja_m_2:rotation")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("spells_ninja_m_3:position")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath("spells_ninja_m_3:visible")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath("spells_ninja_m_3:rotation")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("spells_ninja_m_2/anim_ninja_m_2:frame")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("spells_ninja_m_3/anim_ninja_m_3:frame")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("spells_ninja_m_1:visible")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("spells_ninja_m_2/CollisionShape2D:scale")
-properties/12/spawn = true
-properties/12/replication_mode = 1
-properties/13/path = NodePath("spells_ninja_m_2/CollisionShape2D:position")
-properties/13/spawn = true
-properties/13/replication_mode = 1
-properties/14/path = NodePath("special_ninja_m:visible")
-properties/14/spawn = true
-properties/14/replication_mode = 1
-properties/15/path = NodePath("special_ninja_m:position")
-properties/15/spawn = true
-properties/15/replication_mode = 1
-properties/16/path = NodePath("special_ninja_m:modulate")
-properties/16/spawn = true
-properties/16/replication_mode = 1
-properties/17/path = NodePath("special_ninja_m/special_ninja_m_anim:frame")
-properties/17/spawn = true
-properties/17/replication_mode = 1
-properties/18/path = NodePath("special_ninja_m/special_ninja_m_anim:animation")
-properties/18/spawn = true
-properties/18/replication_mode = 1
-properties/19/path = NodePath("special_ninja_m:rotation")
-properties/19/spawn = true
-properties/19/replication_mode = 1
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lxc8j"]
 
 [node name="spells_ninja_m_phldr" type="Node"]
 script = ExtResource("1_ltmo8")
+
+[node name="ctrlr_aa_ninja_m" type="Node2D" parent="."]
+script = ExtResource("2_kgxlw")
+
+[node name="aa_ninja_m" type="Area2D" parent="ctrlr_aa_ninja_m"]
+visible = false
+scale = Vector2(0.08, 0.08)
+script = ExtResource("3_mdg1u")
+
+[node name="anim_aa" type="AnimatedSprite2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
+sprite_frames = SubResource("SpriteFrames_x4dwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
+shape = SubResource("CircleShape2D_8e3j6")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_aa_ninja_m"]
+replication_config = SubResource("SceneReplicationConfig_ipvf1")
 
 [node name="ctrlr_ninja_m_1" type="Node2D" parent="."]
 script = ExtResource("2_f6ghp")
@@ -389,16 +418,19 @@ shape = SubResource("CircleShape2D_csjvn")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_ninja_m_4/dp_ninja_m_4/spell_ninja_m_4"]
 replication_config = SubResource("SceneReplicationConfig_r4mqb")
 
-[node name="special_ninja_m" type="Area2D" parent="."]
+[node name="ctrlr_special_ninja_m" type="Node2D" parent="."]
+script = ExtResource("21_amwjv")
+
+[node name="special_ninja_m" type="Area2D" parent="ctrlr_special_ninja_m"]
 visible = false
 script = ExtResource("8_4s33l")
 
-[node name="special_ninja_m_anim" type="AnimatedSprite2D" parent="special_ninja_m"]
+[node name="special_ninja_m_anim" type="AnimatedSprite2D" parent="ctrlr_special_ninja_m/special_ninja_m"]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_yb6j8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="special_ninja_m"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ninja_m/special_ninja_m"]
 shape = SubResource("CircleShape2D_qae1d")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_kiee5")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_ninja_m"]
+replication_config = SubResource("SceneReplicationConfig_lxc8j")

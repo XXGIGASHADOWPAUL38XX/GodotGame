@@ -1,8 +1,9 @@
 [gd_scene load_steps=32 format=3 uid="uid://wosyot0o6c3g"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_crystal_phldr.gd" id="1_hgcyp"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_crystal.gd" id="1_rfwrm"]
 [ext_resource type="Texture2D" uid="uid://drk3bc8oxtshk" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Crystal Knight/Crystal Knight.png" id="2_r7c8y"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_6ekif"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_dlt6c"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/attack_crystal.gd" id="4_racyk"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_1bvdf"]
 
@@ -42,21 +43,17 @@ region = Rect2(141, 0, 64, 75)
 atlas = ExtResource("2_r7c8y")
 region = Rect2(205, 0, 64, 75)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_60mg2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw3xc"]
 atlas = ExtResource("2_r7c8y")
-region = Rect2(15, 0, 64, 76)
+region = Rect2(0, 545, 96, 109)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_psjg4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojnio"]
 atlas = ExtResource("2_r7c8y")
-region = Rect2(79, 0, 64, 76)
+region = Rect2(192, 545, 96, 109)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kl6uh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_80ihx"]
 atlas = ExtResource("2_r7c8y")
-region = Rect2(143, 0, 64, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_goai3"]
-atlas = ExtResource("2_r7c8y")
-region = Rect2(207, 0, 64, 76)
+region = Rect2(288, 545, 96, 109)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vy63b"]
 animations = [{
@@ -99,20 +96,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_60mg2")
+"texture": SubResource("AtlasTexture_xw3xc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_psjg4")
+"texture": SubResource("AtlasTexture_ojnio")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kl6uh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_goai3")
+"texture": SubResource("AtlasTexture_80ihx")
 }],
-"loop": true,
+"loop": false,
 "name": &"die",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnhiu"]
@@ -185,11 +179,9 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_isunt"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fco3k"]
-properties/0/path = NodePath(".:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
-[node name="boss_crystal" type="Node2D"]
+[node name="boss_crystal_phldr" type="Node"]
+script = ExtResource("1_hgcyp")
 
 [node name="boss_crystal" type="CharacterBody2D" parent="."]
 script = ExtResource("1_rfwrm")
@@ -197,22 +189,17 @@ script = ExtResource("1_rfwrm")
 [node name="anim_boos_crystal" type="AnimatedSprite2D" parent="boss_crystal"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vy63b")
-animation = &"die"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss_crystal"]
 shape = SubResource("CircleShape2D_nnhiu")
 
-[node name="health_bar" type="ProgressBar" parent="boss_crystal"]
-offset_right = 90.0
-offset_bottom = 10.0
-theme = ExtResource("3_6ekif")
-value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="pgbars" parent="boss_crystal" instance=ExtResource("4_dlt6c")]
 
-[node name="spells" type="Node" parent="boss_crystal"]
+[node name="spells" type="Node2D" parent="boss_crystal"]
 
 [node name="attack_crystal" type="Area2D" parent="boss_crystal/spells"]
+visible = false
 position = Vector2(90, 0)
 scale = Vector2(3, 3)
 script = ExtResource("4_racyk")

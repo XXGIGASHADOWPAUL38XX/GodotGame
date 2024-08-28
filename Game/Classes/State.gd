@@ -1,6 +1,6 @@
 extends Node
 
-enum StateMovement {
+enum StateAction {
 	NULL,
 	IMMOBILE,
 	STUNNED,

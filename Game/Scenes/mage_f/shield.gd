@@ -30,14 +30,15 @@ func set_shield(value_shield, time):
 		coltdown.timeout.connect(shield_expired)
 		coltdown.start()
 		set_value(value_shield)
-		ServiceScenes.championNode.state_shielded = State.StateShielded.SHIELDED
+		
+		ServiceScenes.championNode.add_state(self, 'states_shielded', State.StateShielded.SHIELDED)
 
 func set_value(value_shield):
 	self.size.x = value_shield * (health_bar.size.x / health_bar.max_value) + MIN_SIZE_SHIELD
 
 func shield_expired():
 	self.size.x = MIN_SIZE_SHIELD
-	ServiceScenes.championNode.state_shielded = State.StateShielded.NULL
+	ServiceScenes.championNode.remove_state(self, 'states_shielded')
 
 func remaining_damage(incoming_damage):
 	if incoming_damage >= self.size.x:

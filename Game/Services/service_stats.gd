@@ -23,7 +23,7 @@ func set_attributes(heros):
 	heros.set('speed_base', stats.get('speed'))
 	update_stats_final(heros)
 
-	heros.get_node('health_bar').max_value = stats.health
+	heros.health_bar.max_value = stats.health
 	
 func update_stats_local(heros, stat: String, value, update_mode=UpdateMode.UpdateMode.REPLACE):
 	if update_mode == UpdateMode.UpdateMode.ADD:

@@ -1,7 +1,5 @@
 extends IActive
 
-var animation
-
 var timer_sphere: Timer
 var timer_sphere_duration: float = 4
 
@@ -23,7 +21,6 @@ var current_angle: float:
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_sphere
 		overall_spell = self.get_parent()
 		
 		timer_sphere = service_time.init_timer(self, timer_sphere_duration)
@@ -51,6 +48,6 @@ func active():
 	timer_sphere.start()
 
 func launch_missile():
-	overall_spell.missile.active()
+	overall_spell.missile.can_active()
 	if timer_sphere.time_left >= timer_missile_duration:
 		timer_missile.start()

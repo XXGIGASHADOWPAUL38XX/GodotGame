@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var speed = 10.0
-var animation: AnimatedSprite2D
 
 func _ready():
 	if is_multiplayer_authority():
@@ -12,8 +11,7 @@ func _ready():
 		
 		await super._ready()
 
-		animation = $anim_charge
-		
+			
 		self.body_entered.connect(func(obj): if obj.visible && obj in spells_placeholder.rocks:
 			self.hide()
 			spells_placeholder.explode.explode()

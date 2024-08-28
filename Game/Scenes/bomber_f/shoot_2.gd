@@ -2,7 +2,6 @@ extends IDamagingSpell
 
 var speed = 20.0
 var angle_incl_start = -30
-var animation
 
 func _ready():
 	if is_multiplayer_authority():
@@ -27,4 +26,4 @@ func active(main_mector):
 		
 	self.hide()
 	
-	spells_placeholder.get_inactive_bomb().active(self.position)
+	spells_placeholder.get_inactive_bomb().can_active(self.position)

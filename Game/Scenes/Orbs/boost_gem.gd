@@ -17,7 +17,7 @@ func _ready():
 				augment = 0
 		)
 		
-		await self._ready()
+		await super._ready()
 		
 func active():
 	if is_multiplayer_authority():

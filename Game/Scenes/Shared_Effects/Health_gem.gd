@@ -5,7 +5,6 @@ const MARGIN_SPAWN_X = 600
 const MARGIN_SPAWN_Y = 400
 
 var timer_spawn
-var animation
 var modulate_bool: bool = false
 
 var healing_base
@@ -17,7 +16,6 @@ func _ready():
 		healing_base = 5.0
 		# ------------------------------------ #
 		
-		animation = $health_gem_anim
 		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

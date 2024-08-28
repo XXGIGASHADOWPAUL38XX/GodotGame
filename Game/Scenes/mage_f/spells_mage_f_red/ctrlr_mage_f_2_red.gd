@@ -13,8 +13,8 @@ func _ready():
 		cond_spells.append(Callable(self, 'launch_spell_cond'))	
 
 func active():
-	coltdown.start()
-	spell.active()
+	super.active()
+	spell.can_active()
 
 func launch_spell_cond():
 	return ServiceScenes.championNode.orb_kind == spell.orb_kind

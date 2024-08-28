@@ -1,9 +1,10 @@
 extends ICollision
 
-var speed = 15
+var speed = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await super._ready()
 	pass # Replace with function body.
 
 
@@ -11,10 +12,12 @@ func _ready():
 func _process(delta):
 	pass
 	
-func dropped(heros):
+func dropped(monster_gem, heros):
+	self.position = monster_gem.position
+	
 	self.show()
-	while not ServiceSpell.is_close_to(self, heros, 15):
-		self.global_position += (heros.position - self.global_position).normalized() * speed
+	while not ServiceSpell.is_close_to(self, heros, speed):
+		self.position += (heros.position - self.global_position).normalized() * speed
 		await get_tree().create_timer(0.01).timeout
 		
 	self.hide()

@@ -4,34 +4,18 @@ class_name IControllerHoldable
 
 var timer_key_release_cd
 var timer_key_release = Timer.new()
-var key_released_bool = false
+var key_pressed_bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		super._ready()
+		await super._ready()
 
 func _input(event):
-	if is_multiplayer_authority() && event is InputEventKey && event.scancode == key:
+	if is_multiplayer_authority() && event is InputEventKey && event.keycode == key:
 		if event.is_pressed():
 			can_active()
-		elif event.is_released() && timer_key_release.time_left != 0:
-			stop_spell()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#if is_multiplayer_authority() && cond_spells.all(func(c: Callable): return c.call()):
-		#if Input.is_key_pressed(key):
-			#if coltdown.time_left == 0:
-				#timer_key_release = service_time.init_timer(self, timer_key_release_cd)
-				#timer_key_release.timeout.connect(stop_spell)
-				#timer_key_release.start()
-				#key_released_bool = true
-				#
-				#coltdown.start()
-				#self.active()
-				#
-		#elif key_released_bool == true:
+		#elif event.is_released() && timer_key_release.time_left != 0:
 			#stop_spell()
 
 func can_active():
@@ -39,16 +23,20 @@ func can_active():
 		timer_key_release = service_time.init_timer(self, timer_key_release_cd)
 		timer_key_release.timeout.connect(stop_spell)
 		timer_key_release.start()
-		key_released_bool = true
+		key_pressed_bool = true
 		
-		coltdown.start()
 		self.active()
 
 func active():
-	pass
+	coltdown.start()
+	ServiceScenes.championNode.add_state(self, 'states_damage', State.StateDamage.IMMUNE, timer_key_release_cd)
+	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE, timer_key_release_cd)
 
 func stop_spell():
 	if timer_key_release.timeout.is_connected(stop_spell):
 		timer_key_release.timeout.disconnect(stop_spell)
 	
-	key_released_bool = false
+	key_pressed_bool = false
+	
+	ServiceScenes.championNode.remove_state(self, 'states_damage')
+	ServiceScenes.championNode.remove_state(self, 'states_action')

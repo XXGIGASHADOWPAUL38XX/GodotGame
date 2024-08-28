@@ -32,7 +32,9 @@ func _ready():
 		if dp_node != null && child.name == dp_node.name:
 			duplication_performed = true
 			if spells_placeholder != null:
-				await await_resource_loaded(func(): return !child in dp_parent.get_children())
+				await await_resource_loaded(func(): 
+					return (child == null || !child.is_visible_in_tree()) && spells_placeholder.duplication_phldrs != null
+				)
 				spells_placeholder.duplication_node_performed()
 	)
 		
@@ -55,6 +57,7 @@ func duplicate_obj(id):
 	if dp_object.has_method('post_dp_script') && is_multiplayer_authority():
 		dp_object.post_dp_script(id, dp_number)
 		 
+		
 func spells_placeholder_f(node: Node = self):
 	if node is IPlaceholderSpells:
 		spells_placeholder = node

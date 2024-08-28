@@ -1,6 +1,6 @@
 extends IDamagingSpell
  
-var animation: AnimatedSprite2D
+
 
 var HUD: Control
 
@@ -20,8 +20,7 @@ func _ready():
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		animation = $anim_orbs_mage_f_4 as AnimatedSprite2D
-		
+			
 		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

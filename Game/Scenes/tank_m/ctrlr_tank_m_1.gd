@@ -13,5 +13,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
-	spell.active()
+	super.active()
+	spell.can_active()

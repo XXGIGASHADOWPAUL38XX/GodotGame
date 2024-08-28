@@ -10,9 +10,9 @@ func move(character, animation, speed):
 	character.direction = (target_position_mvmt - character.position).normalized()
 	character.velocity = character.direction * speed
 	
-	if (character.state_movement == State.StateMovement.SLOWED):
+	if (character.curr_state_action == State.StateAction.SLOWED):
 		character.velocity *= 0.5
-	elif (character.state_movement == State.StateMovement.STUNNED or character.state_movement == State.StateMovement.IMMOBILE):
+	elif (character.curr_state_action == State.StateAction.STUNNED or character.curr_state_action == State.StateAction.IMMOBILE):
 		character.velocity *= 0
 	
 	character.move_and_collide(character.velocity)

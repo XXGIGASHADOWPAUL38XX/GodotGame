@@ -13,7 +13,7 @@ func _ready():
 	ServiceScenes.HUD = self
 	champion = ServiceScenes.championNode
 	camera = ServiceScenes.getCamera()
-	champion_health = champion.get_node("health_bar")
+	champion_health = champion.health_bar
 	
 	spells = $Panel/HBoxContainer/HUD/HBoxContainer
 	
@@ -30,7 +30,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	health_bar.value = champion_health.value
-	
 	self.position = Vector2(camera.offset.x, camera.offset.y + ((get_window().size.y - $Panel.size.y) / 2))
 	
 func get_stats():

@@ -1,6 +1,6 @@
 extends ICollision
 
-var animation: AnimatedSprite2D
+
 var collision
 
 var modulate_bool = false
@@ -11,7 +11,6 @@ var duration_timer: Timer
 func _ready():
 	if is_multiplayer_authority():
 		self.modulate.a = 0.3
-		animation = $anim_zone_ult
 		collision = $CollisionShape2D # UTILISE PAR LES CUBES S4 ! LAISSER
 		duration_timer = service_time.init_timer(self, duration)
 			

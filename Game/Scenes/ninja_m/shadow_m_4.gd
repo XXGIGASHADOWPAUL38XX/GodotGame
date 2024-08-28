@@ -1,12 +1,10 @@
 extends ICollision
 
-var animation
 var is_shadow = true
 
 func _ready():
 	if is_multiplayer_authority():
-		animation = $shadow_anim
-		super._ready()
+			super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

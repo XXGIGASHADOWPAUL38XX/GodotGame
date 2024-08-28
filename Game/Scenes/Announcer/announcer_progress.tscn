@@ -67,25 +67,20 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_8413b"]
-colors = PackedColorArray(0, 0, 0, 1, 0.340339, 0.340339, 0.340339, 1)
+[sub_resource type="Gradient" id="Gradient_evwcc"]
+colors = PackedColorArray(0.99483, 0.82791, 0.707743, 1, 0.976666, 0.943804, 0.833441, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cgwhc"]
-gradient = SubResource("Gradient_8413b")
-width = 1100
-height = 100
-fill_to = Vector2(1, 0.0434783)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_44i56"]
+gradient = SubResource("Gradient_evwcc")
 
-[sub_resource type="Gradient" id="Gradient_mryxu"]
-colors = PackedColorArray(0.969137, 0.969137, 0.969137, 1, 1, 0.925626, 0.661948, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fhs1l"]
+texture = SubResource("GradientTexture1D_44i56")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1vhbv"]
-gradient = SubResource("Gradient_mryxu")
-width = 1100
-height = 100
+[sub_resource type="Theme" id="Theme_e6enc"]
+ProgressBar/styles/background = null
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_fhs1l")
 
 [node name="announcer_progress" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,7 +117,6 @@ grow_vertical = 2
 custom_minimum_size = Vector2(1000, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
-text = "CACA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -133,13 +127,14 @@ theme_override_font_sizes/font_size = 45
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Progress" type="TextureProgressBar" parent="Panel"]
+[node name="Progress" type="ProgressBar" parent="Panel"]
 modulate = Color(1, 1, 1, 0.533333)
 custom_minimum_size = Vector2(1100, 100)
 offset_left = -550.0
 offset_top = -40.0
 offset_right = 550.0
 offset_bottom = 60.0
-value = 100.0
-texture_under = SubResource("GradientTexture2D_cgwhc")
-texture_progress = SubResource("GradientTexture2D_1vhbv")
+theme = SubResource("Theme_e6enc")
+max_value = 0.75
+value = 0.35
+show_percentage = false

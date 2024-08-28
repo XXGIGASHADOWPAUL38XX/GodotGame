@@ -1,17 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://c84jgd1hrw27x"]
+[gd_scene load_steps=20 format=3 uid="uid://c84jgd1hrw27x"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/mage_f.gd" id="1_sybsp"]
 [ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="2_2ipmp"]
 [ext_resource type="PackedScene" uid="uid://srarkkpwqkkt" path="res://Game/Scenes/mage_f/spells_mage_f.tscn" id="3_hss6p"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="4_o3c3r"]
-[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="7_jh4ai"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d73ip"]
-bg_color = Color(1, 0.827451, 0.568627, 1)
-skew = Vector2(0.2, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq6ii"]
 atlas = ExtResource("2_2ipmp")
@@ -121,9 +116,6 @@ animations = [{
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_uhn6w"]
-properties/0/path = NodePath(".:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [node name="mage_f" type="Node2D"]
 
@@ -134,46 +126,13 @@ script = ExtResource("1_sybsp")
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_cawle")
 
-[node name="spells_mage_f" parent="mage_f" instance=ExtResource("3_hss6p")]
+[node name="pgbars" parent="mage_f" instance=ExtResource("4_pmvq1")]
 
-[node name="shield" type="ProgressBar" parent="mage_f"]
-visible = false
-offset_left = 76.0
-offset_top = -14.0
-offset_right = 80.0
-offset_bottom = -4.0
-theme = ExtResource("4_o3c3r")
-theme_override_styles/fill = SubResource("StyleBoxFlat_d73ip")
-max_value = 10.0
-value = 10.0
-show_percentage = false
-script = ExtResource("7_jh4ai")
+[node name="spells_mage_f" parent="mage_f" instance=ExtResource("3_hss6p")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mage_f"]
 sprite_frames = SubResource("SpriteFrames_pvuku")
 animation = &"walk_up"
-
-[node name="health_bar" type="ProgressBar" parent="mage_f"]
-top_level = true
-custom_minimum_size = Vector2(75, 10)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.5
-offset_top = -5.0
-offset_right = 37.5
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-theme = ExtResource("4_o3c3r")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 11
-max_value = 150.0
-value = 150.0
-show_percentage = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uhn6w")

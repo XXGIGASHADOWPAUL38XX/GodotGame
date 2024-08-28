@@ -8,4 +8,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	$zone.active()
+	super.active()
+	$zone.can_active()

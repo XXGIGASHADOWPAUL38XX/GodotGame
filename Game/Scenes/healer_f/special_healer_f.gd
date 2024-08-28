@@ -1,50 +1,43 @@
-extends Area2D
+extends IActive
 
-var cd_spell = 3.0
-var coltdown_spell: Timer
-var HUD
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var duplicator
+var player # INSTANCIE LORS DE LA DUPLICATION
 
 func _ready():
 	if is_multiplayer_authority():
-		coltdown_spell = service_time.init_timer(self, cd_spell)
+		await super._ready()
 		
-		var index = 1
-		for ally in ServiceScenes.alliesNode:
-			Servrpc.any(self, 'duplicate_spell', [ally, index])
-			index += 1
-			
+		animation.animation_finished.connect(stop_spell)
+		duplicator = self.get_parent()
+		
 func _process(_delta):
-	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_D) && coltdown_spell.time_left == 0:
-			coltdown_spell.start()
-			spell_launch()
+	if self.visible:
+		self.global_position = player.position
 			
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell, 4)
-			
-func spell_launch():
-	for spell in get_parent().get_children().filter(func(obj): return obj.name.begins_with('special_healer_f_R')):
-		spell.spell_purge_allies()
-		
-func duplicate_spell(node, index):
-	var MULTIPSYNC = get_parent().get_node('MultiplayerSynchronizer')
-	var spell_duplicated = self.duplicate()
-	spell_duplicated.set_multiplayer_authority(self.get_multiplayer_authority())
+func active():
+	Servrpc.send_to_id(player.get_multiplayer_authority(), ServiceStats, 
+		'update_stats_local', [player, 'speed_bonus_ratio', player.speed_bonus_ratio + 0.4]
+	)
+	player.remove_all_states('states_action')
+	animation.play('default')
 	
-	spell_duplicated.set_name(self.name + '_R' + str(index))
-	spell_duplicated.set_script(preload("res://Game/Scenes/healer_f/special_healer_f_dp.gd"))
-	
-	get_parent().add_child.call_deferred(spell_duplicated)
-	spell_duplicated.player = node
-	
-	await get_tree().create_timer(1).timeout
-	
-	MULTIPSYNC.replication_config.add_property(spell_duplicated.name + ":position")
-	MULTIPSYNC.replication_config.add_property(spell_duplicated.name + ":visible")
-	MULTIPSYNC.replication_config.add_property(spell_duplicated.name + ":modulate")
-#	MULTIPSYNC.replication_config.add_property(spell_duplicated.name + "/spells_healer_f_4_anim:frame")
+	self.modulate.a = 0.5
+	self.global_position = player.position
+	self.show()
 
+	await get_tree().create_timer(1.5).timeout
+	Servrpc.send_to_id(player.get_multiplayer_authority(), ServiceStats, 
+		'update_stats_local', [player, 'speed_bonus_ratio', player.speed_bonus_ratio - 0.4]
+	)
+	
+func stop_spell():
+	for i in range(10):
+		self.global_position = player.position
+		self.modulate.a -= 0.05
+		await get_tree().create_timer(0.02).timeout
 
+	self.hide()
+	
+func post_dp_script(dp_id, dp_number):
+	player = duplicator.allies_sorted()[dp_id - 1]
+	

@@ -19,8 +19,6 @@ func active():
 	)
 	if hits.size() > 1:
 		coltdown.start()
-		spell_zone.active()
-		champion.state_movement = State.StateMovement.IMMOBILE
-		await hits.map(func(hit): await hit.active())
-		
-		champion.state_movement = State.StateMovement.NULL
+		spell_zone.can_active()
+		await hits.map(func(hit): await hit.can_active())
+

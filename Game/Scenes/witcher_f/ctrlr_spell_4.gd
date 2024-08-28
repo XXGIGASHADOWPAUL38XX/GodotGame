@@ -19,5 +19,6 @@ func _ready():
 		)
 
 func active():
-	zone_ult.active()
-	cubes.map(func(c): c.active())
+	super.active()
+	zone_ult.can_active()
+	cubes.map(func(c): c.can_active())

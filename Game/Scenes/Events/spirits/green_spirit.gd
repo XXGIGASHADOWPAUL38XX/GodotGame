@@ -5,7 +5,6 @@ const MARGIN_SPAWN_Y = 400
 
 var timer_spawn = Timer.new()
 var timer_explode = Timer.new()
-var animation
 
 var base_position_spawn
 var direction_vector
@@ -22,7 +21,6 @@ func _ready():
 		healing_base = 3.0
 		# ------------------------------------ #
 		
-		animation = $green_spirit_anim as AnimatedSprite2D
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -30,10 +28,10 @@ func _ready():
 		timer_spawn.start()
 		timer_spawn.timeout.connect(spawn)
 		
+		await super._ready()
+		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
-		
-		await super._ready()		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

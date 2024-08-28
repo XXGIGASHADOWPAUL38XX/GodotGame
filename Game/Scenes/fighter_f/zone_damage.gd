@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation
 var base_scale
 
 @export var bonus_damage_count: float
@@ -16,7 +15,6 @@ func _ready():
 		bonus_damage_count_ratio
 		# ------------------------------------ #
 		
-		animation = $anim_zone_damage
 		base_scale = self.scale
 		
 		super._ready()

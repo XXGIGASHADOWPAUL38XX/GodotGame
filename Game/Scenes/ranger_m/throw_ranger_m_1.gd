@@ -2,7 +2,6 @@ extends IDamagingSpell
 
 var speed = 20.0
 var throw_direction = Vector2.RIGHT
-var animation
 var delay
 
 func _ready():

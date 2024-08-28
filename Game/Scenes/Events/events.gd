@@ -3,7 +3,7 @@ extends Control
 var actual_round = 0
 var local_won_rounds = 0
 
-var LIST_EVENTS = ['lasers', 'spirits', 'stones', 'explosions', 'mines']
+var LIST_EVENTS = ['lasers', 'lasers', 'lasers', 'lasers', 'lasers']
 var all_events = []
 var current_event
 
@@ -24,10 +24,8 @@ func new_round(victory: bool):
 	styleBox.border_color = Color.BLUE if victory else Color.RED
 	$Events.get_node("Event" + str(actual_round)).add_theme_stylebox_override('panel', styleBox)
 	
-	var test = $Events.get_node("Event1") as Panel
-	
 	new_event()
-
+	
 func new_event():
 	while all_events.size() == 0:
 		await get_tree().create_timer(0).timeout
@@ -43,7 +41,7 @@ func new_event():
 	var new_event_scene = load("res://Game/Scenes/Events/" + current_event + "/"  + current_event + ".tscn").instantiate()
 	new_event_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
 	
-	ServiceScenes.main_scene.add_child(new_event_scene)
+	ServiceScenes.main_scene.add_child.call_deferred(new_event_scene)
 
 func display_events():
 	for i in range(5):

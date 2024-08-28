@@ -1,5 +1,11 @@
 extends Node
 
+var recently_freed_nodepaths: Array:
+	get:
+		if recently_freed_nodepaths.size() > 5:
+			recently_freed_nodepaths.remove_at(0)
+		return recently_freed_nodepaths
+
 func all_remotes(node, f, args:Array):
 	args = convert_args_to_nodepaths(args)
 	rpc('f_rpc', f, node.get_path(), args)
@@ -22,6 +28,10 @@ func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 		await get_tree().create_timer(retry_interval).timeout
 		node = get_node(path as String)
 		retry_instances -= 1
+		
+	# SI LE NODE A ETE SUPPRIME RECEMMENT POUR L'AUTORITHE A APPELLEE DEPUIS L'AUTHORITE B
+	if retry_instances == 0 && recently_freed_nodepaths.any(func(rfn): return rfn == path):
+		return
 	
 	node.callv(f, args)
 

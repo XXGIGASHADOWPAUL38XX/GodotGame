@@ -15,5 +15,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
-	rock.active()
+	super.active()
+	rock.can_active()

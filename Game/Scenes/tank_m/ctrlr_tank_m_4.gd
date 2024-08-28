@@ -15,6 +15,6 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
-	charge.active()
-	zone.active()
+	super.active()
+	charge.can_active()
+	zone.can_active()

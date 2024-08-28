@@ -11,7 +11,7 @@ var champion
 func _ready():
 	if is_multiplayer_authority():
 		key = KEY_A
-		coltdown_time = 5
+		coltdown_time = 6
 		
 		champion = ServiceScenes.championNode
 		zone = $zone
@@ -28,18 +28,19 @@ func _ready():
 		await super._ready()
 
 func active():
+	super.active()
 	if first_activation:
-		champion.state_movement = State.StateMovement.IMMOBILE
-		zone.active()
-		anim_champ_leap.active()
+		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+		zone.can_active()
+		anim_champ_leap.can_active()
 		champion.leap()
 		
 		zone_timer.start()
 		return 
 		
-	coltdown.start()
+	
 	zone.end_spell()
-	await jump.active()
-	champion.state_movement = State.StateMovement.NULL
+	await jump.can_active()
+	champion.remove_state(self, 'states_action')
 	
 	first_activation = true

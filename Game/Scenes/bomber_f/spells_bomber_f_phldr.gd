@@ -13,7 +13,6 @@ func _ready():
 	
 	all_shoots = get_all_shoots()
 	all_bombs = get_all_bombs(dp_10x_bomb)
-	print(all_bombs)
 
 # -------------- FUNCTIONS BOMBS ---------------
 func get_all_bombs(bomb_parent):

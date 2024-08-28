@@ -16,14 +16,13 @@ func _ready():
 	cond_spells.append(Callable(self, 'launch_spell_cond_2'))
 
 func active():
+	super.active()
 	if get_current_orb().number_orb == all_orbs().size():
-		coltdown.start()
+		var matching_orb_s_2 = get_matching_orb_s_2()
+		matching_orb_s_2.activation_f4()
+		get_current_orb().can_active(matching_orb_s_2)
 		
-	var matching_orb_s_2 = get_matching_orb_s_2()
-	matching_orb_s_2.activation_f4()
-	get_current_orb().active(matching_orb_s_2)
-	
-	increment_current_orb()
+		increment_current_orb()
 	
 func increment_current_orb():
 	dp_node.current_orb = (dp_node.current_orb % 4) + 1

@@ -28,13 +28,12 @@ func add_multiplayer_properties(duplicated_node: Node2D):
 		func(obj): return obj.name.begins_with('anim')
 	)[0]
 	
-	var MULTIPSYNC = $MutliplayerSynchronizer
+	var MULTIPSYNC = $MultiplayerSynchronizer
 	
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":position")
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":scale")
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":visible")
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + ":modulate")
-
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + "/" + animation.name + ":animation")
 	MULTIPSYNC.replication_config.add_property(duplicated_node.name + "/" + animation.name + ":frame")
 	

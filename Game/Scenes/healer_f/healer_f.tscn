@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bextir323eu6a"]
+[gd_scene load_steps=20 format=3 uid="uid://bextir323eu6a"]
 
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/healer_f.gd" id="1_1as2g"]
 [ext_resource type="Texture2D" uid="uid://cwmv8wmndmw27" path="res://ressource/rpgsprites1/healer_f.png" id="2_gse2o"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_j6trk"]
 [ext_resource type="PackedScene" uid="uid://c3co6236ljth3" path="res://Game/Scenes/healer_f/spells_healer_f.tscn" id="3_yps1v"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="5_excqm"]
-[ext_resource type="Script" path="res://Game/Scenes/mage_f/shield.gd" id="6_fh3wg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pedre"]
 atlas = ExtResource("2_gse2o")
@@ -115,11 +114,6 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f71vj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_melyx"]
-bg_color = Color(1, 0.827451, 0.568627, 1)
-skew = Vector2(0.2, 0)
-corner_radius_top_left = 2
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ge07w"]
 
 [node name="healer_f" type="Node2D"]
@@ -134,29 +128,9 @@ animation = &"walk_up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="healer_f"]
 shape = SubResource("RectangleShape2D_f71vj")
 
+[node name="pgbars" parent="healer_f" instance=ExtResource("3_j6trk")]
+
 [node name="spells_healer_f" parent="healer_f" instance=ExtResource("3_yps1v")]
-
-[node name="health_bar" type="ProgressBar" parent="healer_f"]
-top_level = true
-offset_right = 75.0
-offset_bottom = 10.0
-theme = ExtResource("5_excqm")
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 11
-max_value = 150.0
-value = 150.0
-show_percentage = false
-
-[node name="shield" type="ProgressBar" parent="healer_f"]
-visible = false
-offset_left = 76.0
-offset_top = -14.0
-offset_right = 80.0
-offset_bottom = -4.0
-theme = ExtResource("5_excqm")
-theme_override_styles/fill = SubResource("StyleBoxFlat_melyx")
-show_percentage = false
-script = ExtResource("6_fh3wg")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ge07w")

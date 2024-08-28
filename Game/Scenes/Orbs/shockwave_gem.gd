@@ -8,6 +8,7 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
 		damage_ratio = 0.0
+		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
 		await super._ready()
@@ -18,7 +19,7 @@ func active():
 		coltdown_wave = service_time.init_timer(self, cd_wave)
 		coltdown_wave.start()
 		
-		self.global_position = ServiceScenes.championNode.global_position
+		self.position = ServiceScenes.championNode.position
 		self.scale = Vector2(0.6, 0.6)
 		self.modulate.a = 0.5
 		self.show()

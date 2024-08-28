@@ -11,6 +11,6 @@ func _ready():
 		duplicated_spells = $dp_spell_2.get_children()
 
 func active():
-	coltdown.start()
-	duplicated_spells.map(func(ds): ds.active())
+	super.active()
+	duplicated_spells.map(func(ds): ds.can_active())
 

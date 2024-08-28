@@ -16,8 +16,8 @@ func _ready():
 		await super._ready()
 
 func active():
-	coltdown.start()
+	super.active()
 	
 	shadow.hide()
-	await shuriken.active()
-	shadow.active(shuriken)
+	await shuriken.can_active()
+	shadow.can_active(shuriken)

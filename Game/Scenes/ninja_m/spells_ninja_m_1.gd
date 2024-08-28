@@ -1,7 +1,6 @@
 extends IDamagingSpell
 
 var throw_direction = Vector2.RIGHT
-var animation: AnimatedSprite2D
 
 func _ready():
 	if is_multiplayer_authority():
@@ -10,8 +9,7 @@ func _ready():
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		animation = $shuriken_anim
-		
+			
 		await super._ready()
 
 func _process(delta):

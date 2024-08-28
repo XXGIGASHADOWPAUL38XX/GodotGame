@@ -6,17 +6,11 @@ class_name IDamagingCollision
 # si on ne veut pas utilser on surcharge output_damage_f()
 @export var damage_base: float
 @export var damage_ratio: float
-@export var state: State.StateMovement = State.StateMovement.NULL
-
-var retrigger = false
+@export var state: State.StateAction = State.StateAction.NULL
 
 var output_damage = Callable(output_damage_f)
 
 func _ready():
-	self.visibility_changed.connect(
-		func(): self.get_node("CollisionShape2D").disabled = !self.visible
-	)
-	
 	await super._ready()
 	self.func_on_entity_entered.append(Callable(self, 'collision'))
 
@@ -25,15 +19,12 @@ func collision():
 		send_spell()
 
 func send_spell():
-	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), player_hitted, 
-		'hitted', [self]
-	) # heros hitted BY ennemy spell
+	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), player_hitted, 'hitted', [self]) # heros hitted BY ennemy spell
 
 	if retrigger:
-		var sp = class_spell.get_spell(self.name)
-		spells_retrigger[player_hitted] = service_time.init_timer(self, sp.retrigger)
-		spells_retrigger[player_hitted].start()
-		spells_retrigger[player_hitted].timeout.connect(collision)
+		retrigger_timer = service_time.init_timer(self, retrigger_time)
+		retrigger_timer.start()
+		retrigger_timer.timeout.connect(collision)
 
 # champion -> champion hitting (self champion of spell)
 # champion_hitted -> champion hitted, passed while calling the callable in IEntity

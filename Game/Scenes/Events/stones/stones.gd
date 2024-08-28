@@ -6,7 +6,7 @@ var name_callable: Callable = func dp_callable_name(id):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# VALUES TO OVERRIDE #
-	dp_number = 20
+	dp_number = 10
 	dp_callable_name = name_callable
 	dp_node = $stone
 	

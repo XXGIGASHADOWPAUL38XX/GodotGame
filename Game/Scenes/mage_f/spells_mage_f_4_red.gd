@@ -2,12 +2,8 @@ extends IDamagingSpell
 
 var speed = 20.0
 var cd = 8.0
-var animation: AnimatedSprite2D
 var target_position = Vector2.ZERO
 var coltdown = Timer
-var HUD
-var coltdown_spell4
-var cd_spell4 = 2.0
 
 const orb_kind = MageOrb.OrbKind.RED
 
@@ -20,14 +16,6 @@ func _ready():
 		
 		await super._ready()
 		self.hide()
-		
-		animation = $Spells_mage_ult
-		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
-		
-
-func _process(_delta):
-	if is_multiplayer_authority() && orb_kind == champion.orb_kind:
-		pass
 
 func active():
 	self.position = get_global_mouse_position()

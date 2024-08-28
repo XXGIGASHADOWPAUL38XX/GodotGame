@@ -10,11 +10,20 @@ var ignore_multiconf_debug = false
 
 var spell_controller: IControllerKeyPressed
 var spells_placeholder: IPlaceholderSpells
+var immobile_while_active: bool
+
+var animation
+
+@export var is_ready: bool = false
 
 @export var champion: IEntity
 
 func _ready():
+	Servrpc.any(ServiceScenes.loading_game, 'append', [self])
+	
 	self.process_mode = Node.PROCESS_MODE_DISABLED
+	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+	ServiceScenes.loading_game.actives.append(self)
 	
 	spell_controller_f()
 	spells_placeholder_f()
@@ -24,32 +33,38 @@ func _ready():
 		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	
-	
 	# IMPORTANT, PERMET D'EVITER UN BUG OU LE SPELL DE DUPLICATION DE BASE EST 
 	# SUPPRIME PENDANT LA FONCTION SUIVANTE, CE QUI CAUSE UNE ERREUR, ON NE DOIT
 	# PAS DECLENCHER LA FONCTION SUIVANTE DANS CE CAS
+	
 	Servrpc.any(self, 'champion_hitting', [])
 
 	if !ignore_multiconf_debug:
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 
-		#multip_sync.replication_config.get_properties().filter(func(p): return get_prpty_name(p) == self.name).map(func(p): 
-			#if !str(p).ends_with(":position"):
-				#multip_sync.replication_config.property_set_replication_mode(p, SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE)
-		#)
-		
 	self.process_mode = Node.PROCESS_MODE_INHERIT
+	is_ready = true
+
+func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
+	if immobile_while_active:
+		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+		
+	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
+	if immobile_while_active:
+		champion.remove_state(self, 'states_action')
 
 func set_multiplayer_properties():
-	var animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+	if animation == null:
+		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	var anim_path = self.name + "/" + animation.name
 	
-	multip_sync = self.get_node(multip_sync_path) as MultiplayerSynchronizer	
+	multip_sync = self.get_node(multip_sync_path) as MultiplayerSynchronizer
 	multip_sync.replication_config.add_property(self.name + ":visible")
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
 	multip_sync.replication_config.add_property(self.name + ":scale")
+	multip_sync.replication_config.add_property(self.name + ":is_ready")
 	
 	multip_sync.replication_config.add_property(anim_path + ":animation")
 	multip_sync.replication_config.add_property(anim_path + ":frame")
@@ -85,8 +100,5 @@ func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 
-func get_prpty_name(input_string: String) -> String:
-	var substrings = input_string.split("/", false)
-	substrings = substrings[0].split(":", false)
-
-	return substrings[0]
+func _exit_tree():
+	Servrpc.recently_freed_nodepaths.append(self.get_path())

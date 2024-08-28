@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem.gd" id="1_i8oys"]
 [ext_resource type="Texture2D" uid="uid://cdkyc0kydqejn" path="res://Game/Ressources/Main_Effects/Metal Monster/sheet-metal-monster-lila.png" id="2_qf8ie"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monster_gem.gd" id="3_eykrh"]
-[ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="3_lr2xw"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/attack.gd" id="4_hlxa2"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_fh2xh"]
+[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="5_xt7gg"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/gem_dropped.gd" id="6_4cucp"]
 [ext_resource type="Texture2D" uid="uid://c4b173pl4s018" path="res://Game/Ressources/Main_Effects/Gems/Odd Gem 265.png" id="7_g3res"]
 
@@ -300,6 +300,8 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_aygg7"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gflg6"]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3tolk"]
 atlas = ExtResource("7_g3res")
 region = Rect2(0, 0, 128, 128)
@@ -310,16 +312,14 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3tolk")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vio0o"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rvej4"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gflg6"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qpckn"]
 
 [node name="monsters_gem_phldr" type="Node"]
 script = ExtResource("1_2wahi")
@@ -340,24 +340,7 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="monsters_gem/monster_gem"]
 shape = SubResource("CircleShape2D_0euvo")
 
-[node name="health_bar" type="ProgressBar" parent="monsters_gem/monster_gem"]
-custom_minimum_size = Vector2(90, 10)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -5.0
-offset_right = 45.0
-offset_bottom = 5.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-theme = ExtResource("3_lr2xw")
-value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
+[node name="pgbars" parent="monsters_gem/monster_gem" instance=ExtResource("5_xt7gg")]
 
 [node name="spells" type="Node2D" parent="monsters_gem/monster_gem"]
 
@@ -376,21 +359,22 @@ polygon = PackedVector2Array(-30.3333, -42.3333, 6.5, -32.5, 20.5, -16, 23.5, 0,
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="monsters_gem/monster_gem/spells"]
 replication_config = SubResource("SceneReplicationConfig_aygg7")
 
-[node name="objects" type="Node2D" parent="monsters_gem/monster_gem"]
-
-[node name="gem_dropped" type="Area2D" parent="monsters_gem/monster_gem/objects"]
-visible = false
-scale = Vector2(0.4, 0.4)
-script = ExtResource("6_4cucp")
-
-[node name="gem_dropped_anim" type="AnimatedSprite2D" parent="monsters_gem/monster_gem/objects/gem_dropped"]
-sprite_frames = SubResource("SpriteFrames_6mxik")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="monsters_gem/monster_gem/objects/gem_dropped"]
-shape = SubResource("CircleShape2D_vio0o")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="monsters_gem/monster_gem/objects"]
-replication_config = SubResource("SceneReplicationConfig_rvej4")
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="monsters_gem"]
 replication_config = SubResource("SceneReplicationConfig_gflg6")
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="gem_dropped" type="Area2D" parent="objects"]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.25, 0.25)
+script = ExtResource("6_4cucp")
+
+[node name="gem_dropped_anim" type="AnimatedSprite2D" parent="objects/gem_dropped"]
+sprite_frames = SubResource("SpriteFrames_6mxik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="objects/gem_dropped"]
+shape = SubResource("CircleShape2D_vio0o")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="objects"]
+replication_config = SubResource("SceneReplicationConfig_qpckn")

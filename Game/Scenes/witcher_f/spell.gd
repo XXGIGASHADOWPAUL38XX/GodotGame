@@ -1,6 +1,5 @@
 extends IDamagingSpell
 
-var animation 
 var collision_shape
 var base_size
 var base_scale
@@ -12,8 +11,10 @@ func _ready():
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		animation = $anim_spell
 		collision_shape = $CollisionShape2D
+		
+		animation.animation = 'pre'
+		COLLISION_ON_SPECIFIC_ANIM = true
 		
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height
@@ -31,6 +32,9 @@ func active(cube, active_cube):
 	
 	#self.modulate.a = 0
 	self.show()
+	
+	await get_tree().create_timer(0.4).timeout
+	animation.animation = 'damage'
 	
 	animation.play()
 	

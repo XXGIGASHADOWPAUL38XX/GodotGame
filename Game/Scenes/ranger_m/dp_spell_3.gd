@@ -18,4 +18,5 @@ func _process(delta):
 	pass
 
 func ennemies_of_current():
-	return ServiceScenes.ennemiesNode if is_multiplayer_authority() else ServiceScenes.alliesNode
+	var champion = ServiceScenes.get_player_from_property('id', get_multiplayer_authority()).node
+	return ServiceScenes.ennemiesNode if ServiceScenes.is_on_same_team(champion, ServiceScenes.championNode) else ServiceScenes.alliesNode

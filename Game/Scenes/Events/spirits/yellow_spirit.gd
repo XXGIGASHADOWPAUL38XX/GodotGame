@@ -1,11 +1,10 @@
-extends "res://Game/Interface/ICollision.gd"
+extends ICollision
 
 const MARGIN_SPAWN_X = 600
 const MARGIN_SPAWN_Y = 400
 
 var timer_spawn = Timer.new()
 var timer_explode = Timer.new()
-var animation
 
 var base_position_spawn
 var direction_vector
@@ -17,7 +16,6 @@ func _ready():
 	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
 	if is_multiplayer_authority():
-		animation = $yellow_spirit_anim
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -25,10 +23,10 @@ func _ready():
 		timer_spawn.start()
 		timer_spawn.timeout.connect(spawn)
 		
+		await super._ready()
+		
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
-		
-		await super._ready()
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
