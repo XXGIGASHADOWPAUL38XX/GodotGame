@@ -2,7 +2,8 @@ extends Node2D
 var camera
 
 func _ready():
-	camera = ServiceScenes.getCamera()
+	ServiceScenes.end_screen_scene = self
+	camera = ServiceScenes.camera
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

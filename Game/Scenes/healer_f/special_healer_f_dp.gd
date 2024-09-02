@@ -15,7 +15,7 @@ func _process(_delta):
 			
 func spell_purge_allies():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.4]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.4]
 	)
 	player.remove_all_states('states_action')
 	animation.play('default')
@@ -26,7 +26,7 @@ func spell_purge_allies():
 
 	await get_tree().create_timer(1.5).timeout
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.4]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.4]
 	)
 	
 func stop_spell():

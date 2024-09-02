@@ -2,12 +2,12 @@ extends IControllerKeyPressed
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_Z
+		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 6
 			
 		await super._ready()
 
 func active():
-	super.active()
-	$spell_warrior_m_2.can_active()
+	await super.active()
+	$spell_warrior_m_2.active()
 

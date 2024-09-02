@@ -6,7 +6,7 @@ var special_dashes
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_D
+		key = ServiceSettings.keys_values['key_special']
 		coltdown_time = 7
 		timer_key_release_cd = 10
 		
@@ -16,8 +16,8 @@ func _ready():
 		special_dashes = $dp_special_dash.get_children().filter(func(lame): return lame is IActive)
 
 func active():
-	super.active()
-	special_lame.can_active()
+	await super.active()
+	special_lame.active()
 
 func stop_spell():
 	super.stop_spell()

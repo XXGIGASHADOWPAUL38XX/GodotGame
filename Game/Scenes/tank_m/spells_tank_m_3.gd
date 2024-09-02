@@ -2,7 +2,6 @@ extends IPhysicalSpell
 
 var champion
 var passive
-var animation
 
 func _ready():
 	if is_multiplayer_authority():

@@ -5,8 +5,6 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		#!!
-		await ServiceEvents.await_event(func f(): return champion != null)
 		func_on_spell_entered.append(Callable(spell_controller.cube_special, 'active'))
 
 func _process(_delta):

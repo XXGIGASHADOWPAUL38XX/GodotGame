@@ -1,6 +1,5 @@
 extends IPhysicalSpell
 
-var animation
 var display_stones: Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -12,11 +11,10 @@ func _ready():
 		
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
-		animation = $anim_stone
 		cshape = $CollisionShape2D
-		animation.animation_finished.connect(collision)
-		
 		await super._ready()
+		
+		animation.animation_finished.connect(collision)
 		
 		launch_timer()
 

@@ -4,7 +4,7 @@ var anim_orb_hide
 var orb
 
 func _ready():
-	key = KEY_A
+	key = ServiceSettings.keys_values['key_spell_1']
 	coltdown_time = 4
 	
 	anim_orb_hide = $anim_orb_hide
@@ -13,6 +13,6 @@ func _ready():
 	await super._ready()
 			
 func active():
-	super.active()
-	orb.can_active()
+	await super.active()
+	orb.active()
 	

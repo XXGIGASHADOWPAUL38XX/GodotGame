@@ -3,7 +3,6 @@ extends ICollision
 var speed = 20.0
 var modulate_bool: bool = false
  
-
 func _ready():
 	#!!
 	CONF_DETECT_WITH = ServiceScenes.alliesNode
@@ -30,11 +29,11 @@ func active():
 
 func boost_zone_entered():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
 	)
 	
 func boost_zone_exited():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
 	)
 

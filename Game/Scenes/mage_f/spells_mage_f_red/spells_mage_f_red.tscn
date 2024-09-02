@@ -79,10 +79,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_mvhmj"]
 radius = 20.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mu3kj"]
-atlas = ExtResource("6_ai4sl")
-region = Rect2(0, 0, 792, 787)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkae8"]
 atlas = ExtResource("6_ai4sl")
 region = Rect2(792, 0, 792, 787)
@@ -111,12 +107,13 @@ region = Rect2(1584, 787, 792, 787)
 atlas = ExtResource("6_ai4sl")
 region = Rect2(2376, 787, 792, 787)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_esag1"]
+atlas = ExtResource("6_ai4sl")
+region = Rect2(0, 0, 792, 787)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hor1e"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mu3kj")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jkae8")
 }, {
@@ -139,8 +136,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_g1uq2")
 }],
 "loop": false,
-"name": &"default",
+"name": &"damage",
 "speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esag1")
+}],
+"loop": false,
+"name": &"pre",
+"speed": 5.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jcm45"]
@@ -183,8 +188,7 @@ shape = SubResource("CircleShape2D_mvhmj")
 [node name="Spells_mage_ult" type="AnimatedSprite2D" parent="ctrlr_mage_f_4_red/spell_mage_f_4_red"]
 position = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_hor1e")
-frame = 7
-frame_progress = 0.710828
+animation = &"damage"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_4_red"]
 replication_config = SubResource("SceneReplicationConfig_jcm45")

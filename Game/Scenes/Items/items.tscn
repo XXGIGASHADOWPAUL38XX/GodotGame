@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cxm4wlo8erofd" path="res://Game/Scenes/Items/ItemList/Shockwave.tscn" id="2_ml1ol"]
 [ext_resource type="Script" path="res://Game/Scenes/Items/HBoxContainer.gd" id="3_eienc"]
 [ext_resource type="Theme" uid="uid://cya286hi2pqfq" path="res://Game/Themes/Themes/theme_items.tres" id="3_enfao"]
-[ext_resource type="Texture2D" uid="uid://c4b173pl4s018" path="res://Game/Ressources/Main_Effects/Gems/Odd Gem 265.png" id="4_h1wwb"]
-[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Main_Effects/Gems - Copie/health_gem.png" id="5_bg8it"]
-[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Main_Effects/Gems - Copie/armor_gem.png" id="6_31x7x"]
-[ext_resource type="Texture2D" uid="uid://b6oado23skq37" path="res://Game/Ressources/Main_Effects/Gems - Copie/speed_gem.png" id="7_ohh76"]
-[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Main_Effects/Gems - Copie/attack_gem.png" id="8_0i1jj"]
+[ext_resource type="Texture2D" uid="uid://dsg3ath487qeb" path="res://Game/Ressources/Gems/base_gem.png" id="4_uh8nm"]
+[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Gems/health_gem.png" id="5_6owwt"]
+[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Gems/armor_gem.png" id="6_7ketu"]
+[ext_resource type="Texture2D" uid="uid://b6oado23skq37" path="res://Game/Ressources/Gems/speed_gem.png" id="7_f4he1"]
+[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Gems/attack_gem.png" id="8_5qfbe"]
 [ext_resource type="PackedScene" uid="uid://c1fd2buup7fuj" path="res://Game/Scenes/Items/ItemList/Drone.tscn" id="9_d1x7c"]
 [ext_resource type="PackedScene" uid="uid://uyerc8q0eu0w" path="res://Game/Scenes/Items/ItemList/Earthquake.tscn" id="10_eq45g"]
 [ext_resource type="PackedScene" uid="uid://c28ftqavo5eb" path="res://Game/Scenes/Items/ItemList/Slice.tscn" id="11_suaja"]
@@ -34,15 +34,9 @@ script = ExtResource("1_l8xfo")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 z_index = -1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -425.0
-offset_top = -293.5
-offset_right = 425.0
-offset_bottom = 293.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -73,16 +67,19 @@ script = ExtResource("3_eienc")
 [node name="Damage" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+toggle_mode = true
 text = "DAMAGE"
 
-[node name="Fight" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
+[node name="Utility" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-text = "FIGHT"
+toggle_mode = true
+text = "UTILITY"
 
 [node name="Durability" type="Button" parent="PanelContainer/VBoxContainer/Menu/HBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+toggle_mode = true
 text = "DURABILITY"
 
 [node name="Orbs" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
@@ -117,7 +114,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 45.0
 offset_bottom = 45.0
-texture = ExtResource("4_h1wwb")
+texture = ExtResource("4_uh8nm")
 expand_mode = 1
 
 [node name="number" type="Label" parent="PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel"]
@@ -143,7 +140,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 45.0
 offset_bottom = 45.0
-texture_normal = ExtResource("5_bg8it")
+texture_normal = ExtResource("5_6owwt")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -170,7 +167,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 45.0
 offset_bottom = 45.0
-texture_normal = ExtResource("6_31x7x")
+texture_normal = ExtResource("6_7ketu")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -197,7 +194,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 45.0
 offset_bottom = 45.0
-texture_normal = ExtResource("7_ohh76")
+texture_normal = ExtResource("7_f4he1")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -224,7 +221,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 45.0
 offset_bottom = 45.0
-texture_normal = ExtResource("8_0i1jj")
+texture_normal = ExtResource("8_5qfbe")
 ignore_texture_size = true
 stretch_mode = 0
 

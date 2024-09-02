@@ -2,7 +2,6 @@ extends IPhysical
 
 var collision_shape
 var champion
-var animation
 
 var duration = 3
 var duration_timer: Timer
@@ -10,7 +9,6 @@ var duration_timer: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		animation = $anim_cube
 		collision_shape = $CollisionShape2D
 		
 		champion = ServiceScenes.championNode

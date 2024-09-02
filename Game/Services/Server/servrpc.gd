@@ -21,7 +21,7 @@ func any(node, f, args:Array):
 @rpc("any_peer")
 func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 	args = convert_args_to_nodes(args)
-	
+		
 	var node = get_node(path as String)
 	
 	while node == null && retry_instances > 0:
@@ -56,7 +56,7 @@ func send_to_ennemies(node, f, args):
 	
 func convert_args_to_nodepaths(args):
 	for i in range(args.size()):
-		if args[i] is Node2D:
+		if args[i] is Node:
 			args[i] = args[i].get_path()
 		elif args[i] is Array:
 			args[i] = convert_args_to_nodepaths(args[i].duplicate())

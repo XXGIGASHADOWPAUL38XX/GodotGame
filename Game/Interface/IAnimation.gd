@@ -37,7 +37,7 @@ func spell_controller_f(node: Node = self):
 
 func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
 	if immobile_while_active:
-		ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+		ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.CONCENTRATE)
 		
 	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
 	if immobile_while_active:

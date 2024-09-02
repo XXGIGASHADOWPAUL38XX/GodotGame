@@ -2,22 +2,27 @@ extends CharacterBody2D
 
 class_name IPhysical
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
+var resource_awaiter = ResourceAwaiter.new()
+
 var spells_placeholder
 
 var multip_sync: MultiplayerSynchronizer
 var multip_sync_path: NodePath = "./../MultiplayerSynchronizer"
 var ignore_multiconf_debug: bool = false
 
+var animation
+
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_DISABLED
+	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	
 	#spell_controller_f()
 	spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	if spells_placeholder != null:
-		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		await resource_awaiter.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 		
 	
@@ -51,7 +56,4 @@ func spells_placeholder_f(node: Node = self):
 		return spells_placeholder_f(node.get_parent())
 		
 	return null
-	
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while c.get_object() != null && !c.call():
-		await c.get_object().get_tree().create_timer(retry_timeout).timeout
+

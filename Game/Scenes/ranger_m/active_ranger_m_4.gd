@@ -23,10 +23,7 @@ func _ready():
 
 func _process(_delta):
 	if is_multiplayer_authority():
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell4, 4)
+		pass
 	
 func active():
 	self.show()

@@ -1,0 +1,204 @@
+[gd_scene load_steps=10 format=3 uid="uid://c48uy2yhpu4fa"]
+
+[ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="1_7sndh"]
+[ext_resource type="Script" path="res://Game/Scenes/Login/login.gd" id="1_onfxi"]
+
+[sub_resource type="Gradient" id="Gradient_36h0a"]
+offsets = PackedFloat32Array(0, 0.813725)
+colors = PackedColorArray(0, 0, 0, 0.705882, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kfcwg"]
+gradient = SubResource("Gradient_36h0a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1beg"]
+texture = SubResource("GradientTexture1D_kfcwg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prfgy"]
+bg_color = Color(0.337255, 0.690196, 0.380392, 0.588235)
+
+[sub_resource type="Gradient" id="Gradient_ltx1a"]
+offsets = PackedFloat32Array(0.254902, 0.985294)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.705882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l36to"]
+gradient = SubResource("Gradient_ltx1a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4eov4"]
+texture = SubResource("GradientTexture1D_l36to")
+
+[node name="Login" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_onfxi")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.294118)
+show_behind_parent = true
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7sndh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainerLeft" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_k1beg")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="Main" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 30
+
+[node name="Username" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/Username"]
+layout_mode = 2
+text = "Username :"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/Username"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "trgelectro"
+alignment = 1
+
+[node name="Password" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/Password"]
+layout_mode = 2
+text = "Password :"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/Password"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Ginetelectro8!"
+alignment = 1
+secret = true
+
+[node name="PasswordConfirm" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/PasswordConfirm"]
+layout_mode = 2
+text = "Password confirmation :"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/PasswordConfirm"]
+layout_mode = 2
+size_flags_vertical = 3
+secret = true
+
+[node name="Constraints_Login" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="FieldsRequired" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Login"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+text = "All fileds are required"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/MarginContainer/Main/Constraints_Login"]
+layout_mode = 2
+theme_override_constants/margin_top = 90
+
+[node name="Constraints_Signup" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="LengthGt7" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.585062, 0.585062, 0.585062, 1)
+text = "Password's length should be greater or equal to 8 :"
+
+[node name="SpecialCharacter" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+text = "Password should contain one or several special character"
+
+[node name="Number" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+text = "Password should contain one or several special number"
+
+[node name="LowerUpper" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+text = "Password should contain both lowercases and uppercases"
+
+[node name="PasswordsSimilar" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.585062, 0.585062, 0.585062, 1)
+text = "Both passwords are required and should be similar"
+
+[node name="LoginSignupChoice" type="HBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Login" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_prfgy")
+text = "Login"
+
+[node name="Signup" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Signup"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Validate" type="Button" parent="HBoxContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+disabled = true
+text = "Validate"
+
+[node name="PanelContainerRigth" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_4eov4")
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/Main/Validate" to="." method="_on_validate_pressed"]

@@ -34,7 +34,6 @@ func _ready():
 	if COLLISION_ON_BORDER_ONLY:
 		collision_conditions.append(Callable(self, 'is_on_border'))
 	
-	#!! - Faire fonctionner avec tous les noms
 	await super._ready()
 	gestion_collision()
 	
@@ -53,7 +52,7 @@ func _ready():
 func is_an_ennemy():
 	return CONF_DETECT_WITH.find(object_hitted) != -1
 
-func is_on_border(spell):
+func is_on_border():
 	var collision_shape = self.get_node("CollisionShape2D")
 	return object_hitted.position.distance_to(champion.position) >= collision_shape.shape.radius * (1 - collision_border_ratio)
 

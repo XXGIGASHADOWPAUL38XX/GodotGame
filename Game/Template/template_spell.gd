@@ -6,7 +6,7 @@ var throw_direction = Vector2.RIGHT
 var cd_spell = 3.0
 var spell: AnimatedSprite2D
 var coltdown_spell: Timer
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 var coltdown_display_spell
 
 func _ready():
@@ -20,7 +20,7 @@ func _ready():
 func _process(delta):
 	coltdown_display_spell.bindTo(coltdown_spell)
 	
-	if Input.is_key_pressed(KEY_A) && coltdown_spell.time_left == 0:
+	if Input.is_key_pressed(ServiceSettings.keys_values['key_spell_1']) && coltdown_spell.time_left == 0:
 		coltdown_spell.start()
 		spell_function()
 		

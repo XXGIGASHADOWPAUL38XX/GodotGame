@@ -4,6 +4,7 @@ var collision_shape
 var ring_border_active_ratio = 0.3 # ratio du collisionshape qui compte pour la 
 # suppression d'un spell, permet de pas supprimer un spell au centre du spell et
 # de seulement supprimer ceux sur les côtés
+var block_duration = 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,12 +22,12 @@ func _process(delta: float) -> void:
 
 func active():
 	self.show()
-	await get_tree().create_timer(15).timeout
+	await get_tree().create_timer(block_duration).timeout
 	self.hide()
 		
 func _on_area_entered(spell: Area2D):
 	if self.visible && spell is IDamagingSpell && is_on_border(spell):
-		spell_controller.get_inactive_anim_block().can_active(spell)
+		spell_controller.get_inactive_anim_block().active(spell)
 		
 		Servrpc.send_to_id(spell.get_parent().get_parent().get_multiplayer_authority(), 
 			self, "hide_spell", [spell]

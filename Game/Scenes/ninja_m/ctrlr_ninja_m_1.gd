@@ -7,7 +7,7 @@ var shadow
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_A
+		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 5
 		
 		shuriken = $spell_ninja_m_1/shuriken_m_1
@@ -16,8 +16,8 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()
-	
+	await super.active()
 	shadow.hide()
-	await shuriken.can_active()
-	shadow.can_active(shuriken)
+	await shuriken.active()
+	shadow.active(shuriken)
+	

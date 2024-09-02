@@ -2,11 +2,11 @@ extends IControllerKeyPressed
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_F
+		key = ServiceSettings.keys_values['key_active_item']
 		coltdown_time = 12
 		await super._ready()
 
 func active():
-	super.active()
-	$green_orb_active.can_active()
+	await super.active()
+	$green_orb_active.active()
 	

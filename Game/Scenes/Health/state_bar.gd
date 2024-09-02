@@ -4,7 +4,7 @@ var pgbars
 
 var mapping_state_color = {
 	State.StateAction.STUNNED: Color.DIM_GRAY,
-	State.StateAction.IMMOBILE: Color.ORANGE
+	State.StateAction.CONCENTRATE: Color.ORANGE
 }
 
 var current_state_bar: Timer

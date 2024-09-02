@@ -3,12 +3,13 @@ extends Control
 var actual_round = 0
 var local_won_rounds = 0
 
-var LIST_EVENTS = ['lasers', 'lasers', 'lasers', 'lasers', 'lasers']
+var LIST_EVENTS = ['explosions', 'lasers', 'mines', 'spirits', 'stones']
 var all_events = []
 var current_event
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ServiceScenes.events_scene = self
 	if is_multiplayer_authority():
 		display_events()
 		Servrpc.any(self, 'new_event', [])
@@ -32,7 +33,7 @@ func new_event():
 	
 	if actual_round != 0:
 		var scene_to_delete = ServiceScenes.main_scene.get_children().filter(
-			func(obj): return obj.name == current_event
+			func(obj): return obj.name == current_event + "_phldr"
 		)[0]
 		scene_to_delete.queue_free()
 		ServiceScenes.main_scene.remove_child(scene_to_delete)

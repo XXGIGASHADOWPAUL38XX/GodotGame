@@ -12,15 +12,15 @@ func _ready():
 		# ------------------------------------ #
 		
 		collision_shape = $CollisionShape2D
-		
-		animation.animation = 'pre'
 		COLLISION_ON_SPECIFIC_ANIM = true
 		
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height
 		
 		await super._ready()
-
+		
+		animation.animation = 'pre'
+		
 func _process(delta):
 	if is_multiplayer_authority():
 		pass
@@ -49,3 +49,5 @@ func active(cube, active_cube):
 		await get_tree().create_timer(0).timeout
 		
 	self.hide()
+	animation.animation = 'pre'
+	

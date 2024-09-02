@@ -13,7 +13,7 @@ var HUD: Control
 var number_orb: int
 
 var angle: float
-var spread_speed: float = 2.5
+var spread_speed: float = 10
 var throw_speed: float = 15
 var comeback_speed: float = 6
 
@@ -25,8 +25,8 @@ const orb_kind = MageOrb.OrbKind.BLUE
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING spell #
-		damage_base = 6.0
-		damage_ratio = 0.2
+		damage_base = 3.0
+		damage_ratio = 0.1
 		# ------------------------------------ #
 		
 		duplicator = self.get_parent()
@@ -39,11 +39,6 @@ func _process(delta):
 	if is_multiplayer_authority() && champion.orb_kind == orb_kind:
 		if should_rotate_champ:
 			rotate_arround_champ(delta)
-			
-		#if (HUD == null):
-			#HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		#else:
-			#HUD.bindTo(coltdown_spell_2, 2)
 
 func post_dp_script(id, nbr_dupl):
 	self.number_orb = id
@@ -57,7 +52,7 @@ func active():
 	var direction = (get_global_mouse_position() - position).normalized()
 
 	self.show()
-	spell.play()	
+	spell.play()
 	
 	# SEPARE
 	for i in range(10):

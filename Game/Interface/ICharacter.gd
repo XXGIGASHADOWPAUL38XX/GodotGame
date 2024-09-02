@@ -36,6 +36,9 @@ var curr_state_action: SingleState = SingleState.new(State.StateAction.NULL, nul
 		curr_state_action = value
 		if curr_state_action.state in state_bar.mapping_state_color.keys():
 			state_bar.init_state_bar(curr_state_action)
+		elif curr_state_action.state == State.StateAction.NULL && state_bar.visible:
+			state_bar.hide()
+			state_bar.value = 0
 		
 var curr_state_damage: SingleState = SingleState.new(State.StateDamage.NULL, null)
 var curr_state_shielded: SingleState = SingleState.new(State.StateShielded.NULL, null)
@@ -86,7 +89,7 @@ func _ready():
 		self.new_round()
 
 		await super._ready()
-		func_hitted.append(Callable(self, 'take_damage')) #!!
+		func_hitted.append(Callable(self, 'take_damage'))
 		
 func new_round():
 	health_bar.value = health_bar.max_value
@@ -109,10 +112,6 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(state_bar_path + ":visible")
 	multip_sync.replication_config.add_property(state_bar_path + ":value")
 	multip_sync.replication_config.add_property(state_bar_path + ":max_value")
-
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while c.get_object() != null && !c.call():
-		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 
 func add_state(origin, state_kind, state_value, state_duration=999):
 	var dict_state_kind = self.get(state_kind)

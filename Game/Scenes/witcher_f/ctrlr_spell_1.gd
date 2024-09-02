@@ -6,24 +6,24 @@ var cube_file: Array = []
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_A
+		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 3
 		
 		dp_cube_s1 = $dp_cube_1
 		await super._ready()
 
 func active():
-	super.active()
 	var cube
 	var inactive_cubes = get_inactive_cubes(cubes_s1())
 	
 	if inactive_cubes.size() == 0:
 		cube = get_last_cube_s1()
+		await super.active()
 	else:
 		cube = inactive_cubes[0]
 		cube_file.append(cube)
 		
-	cube.can_active()
+	cube.active()
 	
 	inactive_cubes = get_inactive_cubes(cubes_s1())
 	if inactive_cubes.size() == 0:

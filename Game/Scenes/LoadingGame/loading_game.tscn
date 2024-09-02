@@ -19,7 +19,6 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 1200.0
 offset_bottom = 680.0

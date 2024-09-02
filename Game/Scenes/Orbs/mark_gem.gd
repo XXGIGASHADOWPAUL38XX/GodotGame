@@ -23,15 +23,14 @@ func _ready():
 		# ------------------------------------ #
 		
 		collision_shape = $CollisionShape2D
+		duplicator = get_parent()
+		
+		await super._ready()
 		
 		COLLISION_ON_SPECIFIC_ANIM = true
 		animation.animation_changed.connect(func():
 			collision_shape.disabled = animation.animation == "explode"
 		)
-		
-		duplicator = get_parent()
-		
-		await super._ready()
 		
 		coltdown_stay = service_time.init_timer(self, cd_stay)
 		coltdown_explode = service_time.init_timer(self, cd_explode)

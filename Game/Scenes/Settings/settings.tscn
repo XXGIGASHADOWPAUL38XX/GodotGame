@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfblqxmwdpjl8"]
+
+[ext_resource type="Texture2D" uid="uid://c3mtv0gvii2qq" path="res://Game/Ressources/UI/1v1/bg.png" id="1_47e0a"]
+[ext_resource type="Script" path="res://Game/Scenes/Settings/settings.gd" id="1_bamaj"]
+[ext_resource type="Script" path="res://Game/Scenes/Settings/dp_settings_keyvalue.gd" id="2_o15jc"]
+[ext_resource type="Script" path="res://Game/Scenes/Settings/settings_keyvalue.gd" id="3_178mt"]
+[ext_resource type="Texture2D" uid="uid://bw3ngwv6tdobn" path="res://Game/Ressources/UI/Settings/border_key.png" id="4_n41en"]
+[ext_resource type="Texture2D" uid="uid://lm7s5kg4y83f" path="res://Game/Ressources/UI/Settings/border_key_hflip.png" id="5_obcr5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wo4w8"]
+texture = ExtResource("1_47e0a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8rr3f"]
+texture = ExtResource("4_n41en")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsiqs"]
+texture = ExtResource("5_obcr5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_237w2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.00285182, 0.24818, 0.473298, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchor_right = 0.747
+anchor_bottom = 0.794
+offset_right = 0.599976
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bamaj")
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = -50
+
+[node name="PanelContainer" type="PanelContainer" parent="margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wo4w8")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="dp_settings_keyvalue" type="Node2D" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+script = ExtResource("2_o15jc")
+
+[node name="settings_keyvalue" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("3_178mt")
+
+[node name="key" type="PanelContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_8rr3f")
+
+[node name="Label" type="Label" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue/key"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "aaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="value" type="PanelContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_tsiqs")
+
+[node name="Label" type="Label" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue/value"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "aaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue/value/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Label" type="Label" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Camera sensibility"
+
+[node name="HSlider" type="HSlider" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 2.0
+theme_override_styles/slider = SubResource("StyleBoxFlat_237w2")
+value = 50.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue/value/Label/Button" to="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer/settings_keyvalue" method="_on_button_pressed"]

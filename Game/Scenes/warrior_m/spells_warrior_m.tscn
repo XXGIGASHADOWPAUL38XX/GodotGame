@@ -1,6 +1,6 @@
 [gd_scene load_steps=98 format=3 uid="uid://bbboj25fy4156"]
 
-[ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_1.gd" id="1_a7hb2"]
+[ext_resource type="Script" path="res://Game/Scenes/warrior_m/ctrlr_warrior_m_1.gd" id="1_a7hb2"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_phldr.gd" id="1_tx2c2"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_2.gd" id="2_4hj36"]
 [ext_resource type="Texture2D" uid="uid://cayfrx6f0lj7t" path="res://Game/Ressources/Heros/warrior_m/spell1_warrior.png" id="2_22daa"]
@@ -650,7 +650,6 @@ shape = SubResource("CircleShape2D_p7h5i")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ctrlr_special_warrior_m/special_warrior_m"]
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_dt6cl")
-animation = &"explode"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_warrior_m"]
 replication_config = SubResource("SceneReplicationConfig_qq8po")

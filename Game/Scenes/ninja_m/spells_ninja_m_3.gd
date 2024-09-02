@@ -4,9 +4,7 @@ var speed = 20.0
 var throw_direction = Vector2.RIGHT
 var shadow_assigned
 
-
-
-func _ready():	
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
@@ -38,7 +36,7 @@ func active(main_vector):
 	shadow_assigned.position += main_vector
 
 func post_dp_script(id, nbr_dupl):
-	await await_resource_loaded(func(): return self.spells_placeholder != null && spells_placeholder.shadows.size() == 4)
+	await resource_awaiter.await_resource_loaded(func(): return self.spells_placeholder != null && spells_placeholder.shadows.size() == 4)
 	
 	shadow_assigned = spells_placeholder.shadows[id - 1]
 	

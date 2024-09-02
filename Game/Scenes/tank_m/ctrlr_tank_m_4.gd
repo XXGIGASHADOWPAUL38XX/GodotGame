@@ -6,7 +6,7 @@ var zone
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_SPACE
+		key = ServiceSettings.keys_values['key_ultimate']
 		coltdown_time = 14
 		
 		charge = $charge
@@ -15,6 +15,6 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()
-	charge.can_active()
-	zone.can_active()
+	await super.active()
+	charge.active()
+	zone.active()

@@ -5,7 +5,7 @@ var champion
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_SPACE
+		key = ServiceSettings.keys_values['key_ultimate']
 		coltdown_time = 11
 		spell_zone = $zone_warrior_m_4
 		
@@ -19,6 +19,6 @@ func active():
 	)
 	if hits.size() > 1:
 		coltdown.start()
-		spell_zone.can_active()
-		await hits.map(func(hit): await hit.can_active())
+		spell_zone.active()
+		await hits.map(func(hit): await hit.active())
 

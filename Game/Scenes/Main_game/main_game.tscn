@@ -1,197 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://n752femkjdpy"]
+[gd_scene load_steps=13 format=3 uid="uid://n752femkjdpy"]
 
-[ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="1_yr6oh"]
+[ext_resource type="Script" path="res://Game/Scenes/Main_game/main_game.gd" id="1_kjt31"]
 [ext_resource type="Texture2D" uid="uid://bbro6vr2aiyqc" path="res://Game/Ressources/Background/arena.jpg" id="2_t431i"]
+[ext_resource type="PackedScene" uid="uid://bx6lcl70djs31" path="res://Game/Scenes/Settings/settings_ingame.tscn" id="2_tb50y"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/Camera.gd" id="3_x461s"]
 [ext_resource type="PackedScene" uid="uid://0of8jyqcwuhn" path="res://Game/Scenes/Texte/texte.tscn" id="4_kvyx1"]
 [ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="5_vcx51"]
 [ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="6_oityy"]
 [ext_resource type="Texture2D" uid="uid://cdogv2bexjcyn" path="res://Game/Ressources/TileSet/Tilemap/tileset_legacy.png" id="7_y23q0"]
 [ext_resource type="Texture2D" uid="uid://bt2wqu747w7qw" path="res://Game/Ressources/TileSet/Dungeon tileset.png" id="8_fq3du"]
-
-[sub_resource type="GDScript" id="GDScript_vapeg"]
-script/source = "extends Node2D
-
-var player_scene
-var class_hero = preload(\"res://Game/Classes/Hero/Hero.gd\").new()
-var service_time = preload(\"res://Game/Services/service_time.gd\").new()
-
-var ennemy_spells = []
-
-var	node_heros
-
-var list_effects
-var shared_effects
-
-var round = 1
-signal wait_sync_complete(result)
-
-func _ready():
-	after_ready()
-	
-func after_ready():
-	pass
-	ServiceScenes.main_scene = self
-	
-	var champions = ServiceScenes.get_players()
-	var champions_node_scenes = []
-		
-	for i in range(champions.size()):
-		var champion = champions[i]
-		player_scene = ResourceLoader.load_threaded_get(champion.nodePath).instantiate()
-		player_scene.set_multiplayer_authority(champion.id)
-		node_heros = player_scene.get_node(champion.name as NodePath)
-		
-		if champion.id == Server.get_actual_player():
-			node_heros.position = Vector2(200 + (200 * i), 200 + (140 * i))
-			#$Camera.offset = node_heros.position
-		
-		ServiceScenes.set_player_node(champion, node_heros)
-		champions_node_scenes.append(player_scene)
-	
-	ServiceScenes.set_global_players()
-		
-	for champions_scenes in champions_node_scenes:
-		self.add_child(champions_scenes)
-	
-	 #---------------------- AJOUT DES SCENES SECONDAIRES ---------------------------------
-
-	var items_scene = preload(\"res://Game/Scenes/Items/items.tscn\").instantiate()
-	self.add_child(items_scene)
-	
-	var events_scene = preload(\"res://Game/Scenes/Events/events.tscn\").instantiate()
-	events_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
-	self.add_child(events_scene)
-
-	var stats_scene = preload(\"res://Game/Scenes/Stats_Heros/stats_heros.tscn\").instantiate()
-	self.add_child(stats_scene)
-	
-	var mini_map = preload(\"res://Game/Scenes/MiniMap/mini_map.tscn\").instantiate()
-	self.add_child(mini_map)
-	
-	var shared_effects = preload(\"res://Game/Scenes/Shared_Effects/shared_effects.tscn\").instantiate()
-	shared_effects.set_multiplayer_authority(Server.get_first_player_connected_id())
-	self.add_child(shared_effects)
-	
-	var end_screen = preload(\"res://Game/Scenes/End_Screen/end_screen.tscn\").instantiate()
-	self.add_child(end_screen)
-	
-	if ServiceScenes.champion.id == Server.get_first_player_connected_id():
-		ServiceRounds.init_first_round()
-	
-	# ------------------------------------------------------------------------------------- #
-
-func _process(delta):
-	pass
-
-"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xaue"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(0, 72, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgco5"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(32, 72, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rn2qw"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(64, 72, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ixo4b"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(0, 108, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwudx"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(32, 108, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hmx8o"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(64, 108, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ih8ra"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(0, 36, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f618q"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(32, 36, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4vyt"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(64, 36, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eua3t"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(0, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfq3o"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(32, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tdiey"]
-atlas = ExtResource("1_yr6oh")
-region = Rect2(64, 0, 32, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vwmx6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8xaue")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgco5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rn2qw")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ixo4b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwudx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hmx8o")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ih8ra")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f618q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q4vyt")
-}],
-"loop": true,
-"name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eua3t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfq3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tdiey")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 5.0
-}]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0q5jt"]
 texture = ExtResource("7_y23q0")
@@ -1464,19 +1281,13 @@ sources/0 = SubResource("TileSetAtlasSource_0q5jt")
 sources/1 = SubResource("TileSetAtlasSource_6rtr2")
 
 [node name="main_game" type="Node2D"]
-script = SubResource("GDScript_vapeg")
+script = ExtResource("1_kjt31")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(298, -61)
-sprite_frames = SubResource("SpriteFrames_vwmx6")
-animation = &"walk_down"
+[node name="Settings_ingame" parent="." instance=ExtResource("2_tb50y")]
+z_index = 1
 
-[node name="Label" type="Label" parent="."]
-offset_left = 500.0
-offset_top = 30.0
-offset_right = 700.0
-offset_bottom = 53.0
-horizontal_alignment = 1
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("3_x461s")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.176471)
@@ -1485,9 +1296,6 @@ offset_top = -331.0
 offset_right = 2846.0
 offset_bottom = 1649.0
 texture = ExtResource("2_t431i")
-
-[node name="Camera" type="Camera2D" parent="."]
-script = ExtResource("3_x461s")
 
 [node name="texte" parent="." instance=ExtResource("4_kvyx1")]
 

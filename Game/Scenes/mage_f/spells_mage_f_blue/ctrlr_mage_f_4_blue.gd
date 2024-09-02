@@ -4,7 +4,7 @@ var dp_node: IDuplication
 var dp_node_spell_2
 
 func _ready():
-	key = KEY_SPACE
+	key = ServiceSettings.keys_values['key_ultimate']
 	coltdown_time = 12
 	
 	dp_node_spell_2 = get_parent().get_node("ctrlr_mage_f_2_blue").get_node('dp_mage_f_2_blue')
@@ -16,13 +16,14 @@ func _ready():
 	cond_spells.append(Callable(self, 'launch_spell_cond_2'))
 
 func active():
-	super.active()
+	var matching_orb_s_2 = get_matching_orb_s_2()
+	matching_orb_s_2.activation_f4()
+	get_current_orb().active(matching_orb_s_2)
+	
 	if get_current_orb().number_orb == all_orbs().size():
-		var matching_orb_s_2 = get_matching_orb_s_2()
-		matching_orb_s_2.activation_f4()
-		get_current_orb().can_active(matching_orb_s_2)
+		await super.active()
 		
-		increment_current_orb()
+	increment_current_orb()
 	
 func increment_current_orb():
 	dp_node.current_orb = (dp_node.current_orb % 4) + 1

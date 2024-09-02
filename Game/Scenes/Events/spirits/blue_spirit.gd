@@ -12,9 +12,9 @@ var modulate_bool: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-	
 	if is_multiplayer_authority():
+		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		print(CONF_DETECT_WITH)
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -82,11 +82,11 @@ func activate():
 func entity_entered(player):
 	super.entity_entered(player)
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
 	)
 	
 func entity_exited(player):
 	super.entity_exited(player)
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats_local', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
 	)

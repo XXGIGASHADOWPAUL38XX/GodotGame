@@ -7,7 +7,7 @@ var ennemies_marked: Array:
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_Z
+		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 6
 		cast_time = ServiceSpell.animation_duration($dash/anim_ninja_m_2)
 		
@@ -24,8 +24,8 @@ func _ready():
 		)
 
 func active():
-	super.active()
-	dash.can_active()
+	await super.active()
+	dash.active()
 	
 
 func reset(is_champion=false):

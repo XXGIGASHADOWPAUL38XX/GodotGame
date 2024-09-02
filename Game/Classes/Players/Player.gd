@@ -1,6 +1,7 @@
 class_name Player
 
 var id: int
+var db_id: int
 var name: String
 var team: Team
 var node: Node2D
@@ -8,6 +9,7 @@ var nodePath: String
 
 func _init(id: int, name: String, team: Team, node=null) -> void:
 	self.id = id
+	self.db_id = Server.player_db_id
 	self.name = name
 	self.team = team
 	self.node = node

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Game/Scenes/Items/ItemList/Shockwave.gd" id="1_0ufkh"]
 [ext_resource type="Theme" uid="uid://cya286hi2pqfq" path="res://Game/Themes/Themes/theme_items.tres" id="1_gry6y"]
-[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Main_Effects/Gems - Copie/health_gem.png" id="2_1jstr"]
-[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Main_Effects/Gems - Copie/attack_gem.png" id="3_ndeyp"]
-[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Main_Effects/Gems - Copie/armor_gem.png" id="4_whbo6"]
-[ext_resource type="Texture2D" uid="uid://xk3nhan0fjjm" path="res://Game/Ressources/Main_Effects/Gems - Copie/shockwave_gem.png" id="5_j0nec"]
+[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Gems/health_gem.png" id="2_1jstr"]
+[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Gems/attack_gem.png" id="3_ndeyp"]
+[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Gems/armor_gem.png" id="4_whbo6"]
+[ext_resource type="Texture2D" uid="uid://xk3nhan0fjjm" path="res://Game/Ressources/Gems/shockwave_gem.png" id="5_j0nec"]
 
 [node name="Shockwave" type="Control"]
 layout_mode = 3

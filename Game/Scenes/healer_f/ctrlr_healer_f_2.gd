@@ -1,11 +1,11 @@
 extends IControllerKeyPressed
 
 func _ready():
-	key = KEY_Z
+	key = ServiceSettings.keys_values['key_spell_2']
 	coltdown_time = 6
 	await super._ready()
 
 func active():
-	super.active()
-	$spells_healer_f_2.can_active()
+	await super.active()
+	$spells_healer_f_2.active()
 

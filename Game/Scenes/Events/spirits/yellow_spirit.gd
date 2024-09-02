@@ -81,6 +81,6 @@ func activate():
 	
 func spirit_entered():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(),
-		player_hitted.get_node('shield'), 'set_shield', [15, 5]
+		player_hitted.shield, 'set_shield', [15, 5]
 	)
 	await visibility_changed

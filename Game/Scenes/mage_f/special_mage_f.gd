@@ -5,8 +5,6 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		#!!
-		await ServiceEvents.await_event(func f(): return champion != null)
 		func_on_spell_entered.append(Callable(self, 'dash'))
 
 func _process(_delta):

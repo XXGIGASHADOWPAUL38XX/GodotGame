@@ -11,7 +11,7 @@ var mark_number: int:
 		mark_number_value_changed(mark_number)
 
 func _ready():
-	key = KEY_SPACE
+	key = ServiceSettings.keys_values['key_ultimate']
 	coltdown_time = 12
 	
 	cond_spells.append(Callable(self, 'can_launch_spell'))
@@ -24,7 +24,7 @@ func _ready():
 	anim_pre_spell.animation_finished.connect(Callable(active_spell, 'active'))
 
 func active():
-	anim_pre_spell.can_active()
+	anim_pre_spell.active()
 	active_spell.position = anim_pre_spell.position
 	mark_number -= 1
 

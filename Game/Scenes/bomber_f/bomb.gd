@@ -29,7 +29,6 @@ func _ready():
 		)
 		
 
-
 func _process(delta):
 	if is_multiplayer_authority():
 		if self.visible && animation.animation == "default":

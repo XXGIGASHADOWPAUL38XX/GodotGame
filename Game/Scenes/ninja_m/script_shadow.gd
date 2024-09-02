@@ -1,6 +1,6 @@
 extends Node
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 var coltdown_shadow_staying = 4.0
 var MULTIPSYNC
 # Called when the node enters the scene tree for the first time.

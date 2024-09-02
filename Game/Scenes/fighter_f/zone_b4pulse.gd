@@ -1,6 +1,5 @@
 extends IActive
 
-
 var cshape
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +23,7 @@ func active(mouse_position):
 	animation.play()
 	self.show()
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(spell_controller.cast_time).timeout
 	
-	spell_controller.pulse.can_active(mouse_position)
+	spell_controller.pulse.active(mouse_position)
 	

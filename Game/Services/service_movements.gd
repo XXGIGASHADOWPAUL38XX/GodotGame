@@ -12,7 +12,7 @@ func move(character, animation, speed):
 	
 	if (character.curr_state_action == State.StateAction.SLOWED):
 		character.velocity *= 0.5
-	elif (character.curr_state_action == State.StateAction.STUNNED or character.curr_state_action == State.StateAction.IMMOBILE):
+	elif (character.curr_state_action == State.StateAction.STUNNED or character.curr_state_action == State.StateAction.CONCENTRATE):
 		character.velocity *= 0
 	
 	character.move_and_collide(character.velocity)

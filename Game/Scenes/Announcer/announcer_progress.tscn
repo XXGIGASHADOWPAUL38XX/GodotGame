@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1s0e5qoch8ux"]
+[gd_scene load_steps=17 format=3 uid="uid://1s0e5qoch8ux"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Announcer/announcer_progress.gd" id="1_jh8pu"]
 [ext_resource type="Texture2D" uid="uid://c003sork28mp3" path="res://Game/Ressources/GameState/announcer_animation/f1.png" id="2_tcb86"]
@@ -67,6 +67,8 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a5lot"]
+
 [sub_resource type="Gradient" id="Gradient_evwcc"]
 colors = PackedColorArray(0.99483, 0.82791, 0.707743, 1, 0.976666, 0.943804, 0.833441, 1)
 
@@ -82,47 +84,48 @@ ProgressBar/styles/fill = SubResource("StyleBoxTexture_fhs1l")
 
 [node name="announcer_progress" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_jh8pu")
 
 [node name="Panel" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -200)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_aghep")
 frame = 7
 frame_progress = 1.0
 
-[node name="HBox" type="HBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(1200, 100)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1477.0
-offset_top = -160.5
-offset_right = -273.0
-offset_bottom = -60.5
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CenterContainer" type="PanelContainer" parent="Panel"]
+offset_left = -547.0
+offset_top = -47.0
+offset_right = 503.0
+offset_bottom = 62.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a5lot")
 
-[node name="Announce" type="Label" parent="Panel/HBox"]
-custom_minimum_size = Vector2(1000, 100)
+[node name="HBox" type="HBoxContainer" parent="Panel/CenterContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Announce" type="Label" parent="Panel/CenterContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 13.0
 theme_override_font_sizes/font_size = 45
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Time" type="Label" parent="Panel/HBox"]
-custom_minimum_size = Vector2(200, 100)
+[node name="Time" type="Label" parent="Panel/CenterContainer/HBox"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 45
 horizontal_alignment = 1
 vertical_alignment = 1
