@@ -18,6 +18,7 @@ signal wait_sync_complete(result)
 
 func _ready():
 	ResourceLoader.load_threaded_request(MENU_SCENE_PATH)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	ServiceScenes.main_scene = self
 	
 	var champions = ServiceScenes.get_players()

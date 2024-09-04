@@ -30,6 +30,7 @@ func _ready():
 		await resource_awaiter.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 		
+	await get_tree().create_timer(0.5).timeout
 	Servrpc.any(self, 'set_multiplayer_properties', [])
 
 func hitted(spell):

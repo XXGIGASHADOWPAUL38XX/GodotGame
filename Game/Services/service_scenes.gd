@@ -3,6 +3,8 @@ extends Node
 # OBJECTS PLAYERS
 var players
 var champion
+var allies
+var ennemies
 
 # NODES PLAYERS
 var championNode
@@ -49,10 +51,12 @@ func get_players():
 	return players
 	
 func set_global_players():
-	champion = players.filter(
-		func(obj):
-			return obj.id == Server.get_client_id()
-	)[0]
+	champion = players.filter(func(obj): return obj.id == Server.get_client_id())[0]
+	
+	allies = players.filter(func(obj): return obj.team.id == champion.team.id)
+	
+	ennemies = players.filter(func(obj): return obj.team.id != champion.team.id)
+		
 	championNode = champion.node
 	
 	alliesNode += players.filter(func(obj): return obj.is_ally()).map(
@@ -67,10 +71,7 @@ func set_global_players():
 	allEnnemiesNode += ennemiesNode
 	
 func getPlayerByName(player_name):
-	var player = players.filter(
-		func(obj):
-			return obj.name == player_name
-	)[0]
+	var player = players.filter(func(obj): return obj.name == player_name)[0]
 
 func getMainScene():
 	return main_scene

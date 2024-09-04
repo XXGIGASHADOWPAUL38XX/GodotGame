@@ -2,6 +2,8 @@ extends PanelContainer
 
 @onready var logo = $MarginContainer/logo
 
+var modulate_bool: bool = false
+
 var logo_mapping = {
 	'play_1v1': preload("res://Game/Ressources/UI/Menu/logo_1v1.png"),
 	'play_2v2': preload("res://Game/Ressources/UI/Menu/logo_2v2.png"),
@@ -15,7 +17,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 	
 func get_current_mode():
 	return ServiceScenes.menu_scene.game_mode_phldr.current_plhdr

@@ -2,7 +2,6 @@ extends IActive
 
 const OFFSET_Y = 60
 
-
 var mark_overall_node
 
 var cd_target = 10.0
@@ -37,7 +36,7 @@ func _process(delta):
 		if target_timer.time_left == 0:
 			self.hide()
 		elif target_timer.time_left < 2.5:
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 		else:
 			self.show()
 

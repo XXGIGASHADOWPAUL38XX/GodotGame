@@ -18,8 +18,8 @@ func _ready():
 
 func active():
 	await super.active()
-	var destination_point = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 400)
-	var main_vector = destination_point - self.position
+	var destination_point = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 320)
+	var main_vector = destination_point - champion.position
 	
 	spell_1.active(destination_point, main_vector)
 	await get_tree().create_timer(0.25).timeout

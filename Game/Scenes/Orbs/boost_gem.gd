@@ -41,9 +41,9 @@ func active():
 			ServiceScenes.championNode.modulate = Color.ORANGE
 
 func add_stats():
-	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", 1, UpdateMode.UpdateMode.ADD)
-	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", 1, UpdateMode.UpdateMode.ADD)
+	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", 1)
+	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", 1)
 
 func remove_stats():
-	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", -augment, UpdateMode.UpdateMode.ADD)
-	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", -augment, UpdateMode.UpdateMode.ADD)
+	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", -augment)
+	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", -augment)

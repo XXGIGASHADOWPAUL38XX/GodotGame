@@ -1,7 +1,7 @@
 extends IDamagingSpell
  
 var distance_to_champion: float = 35.0
-var rotation_sp2_speed: float = 1.2
+var rotation_sp2_speed: float = 10
 var rotation_sp4_speed: float = 2 
 var current_angle: float = 0.0
 var delta_estimated: float = 0.0167
@@ -15,7 +15,6 @@ var number_orb: int
 var angle: float
 var spread_speed: float = 10
 var throw_speed: float = 15
-var comeback_speed: float = 6
 
 var should_rotate_champ: bool = false
 
@@ -70,6 +69,7 @@ func active():
 		
 	# COME BACK
 	while !ServiceSpell.is_close_to(self, champion, 30):
+		var comeback_speed = (self.position.distance_to(champion.position) / 20)
 		self.position += (champion.position - self.position).normalized() * comeback_speed
 		await get_tree().create_timer(0).timeout
 		

@@ -39,8 +39,8 @@ func launch_timer():
 
 func pre_fall():
 	self.global_position = Vector2(
-		randf_range(0, get_window().size.x * 2),
-		randf_range(0, get_window().size.y * 2)
+		randf_range(0, ServiceWindow.scene_size.x * 2),
+		randf_range(0, ServiceWindow.scene_size.y * 2)
 	)
 	
 	self.modulate.a = 1

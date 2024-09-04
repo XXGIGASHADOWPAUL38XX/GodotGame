@@ -3,7 +3,7 @@ extends Control
 var actual_round = 0
 var local_won_rounds = 0
 
-var LIST_EVENTS = ['explosions', 'lasers', 'mines', 'spirits', 'stones']
+var LIST_EVENTS = ['spirits', 'spirits', 'spirits', 'spirits', 'spirits']
 var all_events = []
 var current_event
 

@@ -21,7 +21,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
-		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 		
 		if self.visible: 
 			$CollisionShape2D.disabled = animation.frame + 1 >= NUMBER_FRAMES
@@ -36,8 +36,8 @@ func spawn():
 	animation.animation = 'default'
 	self.modulate.a = 1
 	self.position = Vector2(
-		randf_range(MARGIN_SPAWN_X, get_window().size.x - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, get_window().size.y - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, ServiceWindow.scene_size.x - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, ServiceWindow.scene_size.y - MARGIN_SPAWN_Y))
 	self.show()
 
 func take_damage(variant1=null, variant2=null):

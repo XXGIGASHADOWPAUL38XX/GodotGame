@@ -10,6 +10,10 @@ enum login_signup {
 	SIGNUP,
 }
 
+var color_validate = Color(0.6, 1, 0.7, 0.4)
+var color_selected = Color(0.5, 0.5, 0.5, 0.5)
+var color_not_selected = Color(0, 0, 0, 0.5)
+
 @onready var constraints_login_node = $HBoxContainer/MarginContainer/Main/Constraints_Login
 @onready var constraints_signup_node = $HBoxContainer/MarginContainer/Main/Constraints_Signup
 var constraints_node
@@ -51,6 +55,14 @@ func _ready():
 	)
 	
 	var buttons_login_signup = login_signup_choice.get_children()
+	
+	#!!
+	buttons_login_signup.map(func(button2):
+		var color = color_selected if button2.name.to_upper() == login_signup.keys().filter(func(key): 
+			return login_signup[key] == submit_type)[0] else color_not_selected
+		button2.get_theme_stylebox("normal", "Button").bg_color = color
+	)
+	
 	buttons_login_signup.map(func(button: Button): 
 		button.pressed.connect(func():
 			submit_type = login_signup[login_signup.keys().filter(func(s): return button.name.to_upper() == s)[0]]
@@ -62,7 +74,7 @@ func _ready():
 			$HBoxContainer/MarginContainer/Main/Constraints_Signup.visible = submit_type == login_signup.SIGNUP
 			
 			buttons_login_signup.map(func(button2):
-				var color = Color(0.6, 1, 0.7, 0.4) if button == button2 else Color(0, 0, 0, 0.5)
+				var color = color_selected if button == button2 else color_not_selected
 				button2.get_theme_stylebox("normal", "Button").bg_color = color
 			)
 		)
@@ -78,6 +90,8 @@ func check_constraints():
 		
 		return valid
 	).all(func(c): return c)
+	
+	validate.get_theme_stylebox("normal", "Button").bg_color = color_validate if !validate.disabled else color_not_selected
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

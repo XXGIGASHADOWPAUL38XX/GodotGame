@@ -49,7 +49,7 @@ func _ready():
 	health_bar.max_value = champion_health.max_value
 	health_bar.value = champion_health.max_value
 	
-	champion_profile.texture = load("res://Game/Ressources/Heros/icons/" 
+	champion_profile.texture = load("res://Game/Ressources/Heros/hud_icons/" 
 	+ ServiceScenes.champion.name + ".png")
 
 	get_texture_spells()
@@ -90,7 +90,7 @@ func bind_to(coltdown, key_value:int):
 	spell.value = coltdown.time_left / coltdown.wait_time * 100
 
 func get_texture_spells():
-	for i in range(spells.get_children().size()):
+	for i in range(spells.get_children().size() - 2):
 		var progressBar = spells.get_child(i) as ProgressBar
 		var styleBox = StyleBoxTexture.new()
 		

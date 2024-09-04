@@ -79,6 +79,13 @@ size_flags_horizontal = 3
 theme = ExtResource("2_t438b")
 text = "PLAY"
 
+[node name="Cancel" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_t438b")
+text = "Cancel"
+
 [node name="Champions" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -89,3 +96,4 @@ text = "GO TO CHAMPIONS"
 layout_mode = 2
 
 [connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

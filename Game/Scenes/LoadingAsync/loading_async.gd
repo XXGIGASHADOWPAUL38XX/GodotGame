@@ -2,6 +2,7 @@ extends Control
 
 var service_time = ServiceTime.new()
 var current_loadings: Dictionary = {}
+var resource_awaiter = ResourceAwaiter.new()
 
 var label_loading_base_text = "Loading"
 var dots_after_label_loading: int = 0:
@@ -19,6 +20,7 @@ var delay_increment_dot: float = 0.2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ServiceScenes.loading_async = self
+	
 	timer_increment_dot = service_time.init_timer(self, delay_increment_dot)
 	
 	timer_increment_dot.timeout.connect(func():
@@ -54,3 +56,7 @@ func remove_loading(key):
 		self.hide()
 	else:
 		label_resource_loading.text = current_loadings.values()[0]
+
+func check_if_loading(scene_child):
+	if current_loadings.values().size() != 0:
+		scene_child.modulate = Color.DIM_GRAY

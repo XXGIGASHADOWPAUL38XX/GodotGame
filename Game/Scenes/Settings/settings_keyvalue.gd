@@ -14,8 +14,6 @@ signal key_pressed(keycode: int)
 @onready var value_label = $value/Label
 @onready var value_button = $value/Label/Button
 
-@onready var is_ready = true
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -23,11 +21,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if button_modulate:
-		modulate_bool = await ServiceSpell.modulate_obj(value_button, modulate_bool, 0, 1, 0.02)
+		modulate_bool = ServiceSpell.modulate_obj(value_button, modulate_bool, 0, 1, 0.02)
 
 func post_dp_script(id, dp_number):
-	await resource_awaiter.await_resource_loaded(func(): return is_ready)
-	
 	duplicator = get_parent().get_node("dp_settings_keyvalue")
 	key = duplicator.keys_values.keys()[id - 1]
 	value = duplicator.keys_values[key]

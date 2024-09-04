@@ -1,18 +1,17 @@
 extends IPhysicalSpell
 
-var champion
 var passive
 
 var timer_rock_stay: Timer
 
 func _ready():
 	if is_multiplayer_authority():
-		champion = ServiceScenes.championNode
-		
+		# DEFINITION VARIABLES IPHYSICALSPELL #
+		damage_base = 5.0
+		# ------------------------------------ #
 		await super._ready()
-		animation.animation_finished.connect(func(obj): collision())
 		timer_rock_stay = service_time.init_timer(self, 3)
-		timer_rock_stay.timeout.connect(func(): self.hide)
+		timer_rock_stay.timeout.connect(disappear)
 
 func _process(_delta):
 	if is_multiplayer_authority():
@@ -26,7 +25,13 @@ func active():
 	await animation.animation_finished
 	timer_rock_stay.start()
 	
+func disappear():
+	for i in range(10):
+		self.modulate.a -= 0.1
+		await get_tree().create_timer(0.01).timeout
+		
+	self.hide()
+	self.modulate.a = 1
 	
-
 
 

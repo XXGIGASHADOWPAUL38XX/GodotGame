@@ -11,9 +11,10 @@ var immobile_while_active: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if !ignore_multiconf_debug:
-		spell_controller_f()
-		Servrpc.any(self, 'set_multiplayer_properties', [])
+	if is_multiplayer_authority():
+		if !ignore_multiconf_debug:
+			spell_controller_f()
+			Servrpc.any(self, 'set_multiplayer_properties', [])
 
 func set_multiplayer_properties():
 	multip_sync = self.get_node(multip_sync_path)

@@ -36,6 +36,7 @@ MageOrb="*res://Game/Scenes/mage_f/orb_kind.gd"
 ServiceRounds="*res://Game/Services/service_rounds.gd"
 Database="*res://Game/Database/database.gd"
 ServiceSettings="*res://Game/Services/service_settings.gd"
+ServiceWindow="*res://Game/Services/service_window.gd"
 
 [debug]
 
@@ -45,6 +46,7 @@ gdscript/warnings/enable=false
 
 window/size/viewport_width=1200
 window/size/viewport_height=680
+window/size/resizable=false
 
 [dotnet]
 

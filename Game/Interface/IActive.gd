@@ -16,7 +16,6 @@ var animation
 var resource_awaiter = ResourceAwaiter.new()
 
 @export var is_ready: bool = false
-
 @export var champion: IEntity
 
 func _ready():
@@ -59,6 +58,12 @@ func set_multiplayer_properties():
 	var anim_path = self.name + "/" + animation.name
 	
 	multip_sync = self.get_node(multip_sync_path) as MultiplayerSynchronizer
+
+	if multip_sync.replication_config.has_property(self.name + ":visible"):
+		multip_sync.replication_config.get_properties().map(func(prop):
+			multip_sync.replication_config.remove_property(prop)
+		)
+	
 	multip_sync.replication_config.add_property(self.name + ":visible")
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")

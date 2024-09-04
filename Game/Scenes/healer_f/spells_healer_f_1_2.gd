@@ -19,8 +19,7 @@ func _process(_delta):
 		pass
 
 func active(destination_point, main_vector):
-	self.position = champion.position + ServiceSpell.set_in_front_mouse_incl(champion, 
-		destination_point, 30, deg_arc * 1.5)
+	self.position = champion.position + ServiceSpell.set_in_front_mouse_incl(champion, destination_point, 30, deg_arc * 1.5)
 	self.modulate.a = 1
 	
 	var direction = main_vector.rotated(deg_to_rad(deg_arc))

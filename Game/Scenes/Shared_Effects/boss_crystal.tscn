@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_crystal_phldr.gd" id="1_hgcyp"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_crystal.gd" id="1_rfwrm"]
 [ext_resource type="Texture2D" uid="uid://drk3bc8oxtshk" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Crystal Knight/Crystal Knight.png" id="2_r7c8y"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_dlt6c"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_dlt6c"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/attack_crystal.gd" id="4_racyk"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_1bvdf"]
 

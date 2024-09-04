@@ -28,11 +28,12 @@ func _process(delta):
 		#time.text = str(ceil(timer.time_left))
 	
 func set_announce(announce, time, relative=false, time_implicit=false): #RELATIVE = RELATIVE TO ONE SPECIFIC PLAYER 
+	if timer.timeout.is_connected(hide_announcer):
+		timer.timeout.disconnect(hide_announcer)
+	
 	timer = service_time.init_timer(self, time)
 	timer.start()
-	timer.timeout.connect(func():
-		hide_announcer()
-	)
+	timer.timeout.connect(hide_announcer)
 	panel.play("default")
 	
 	announcer.text = announce + ' '
@@ -50,5 +51,4 @@ func show_announcer():
 
 func hide_announcer():
 	emit_signal('anncounce_timeout')
-		
 	self.hide()

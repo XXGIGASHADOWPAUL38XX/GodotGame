@@ -6,3 +6,4 @@ var id: int
 func _init(id: int) -> void:
 	self.id = id
 	self.round_won = 0
+

@@ -5,7 +5,9 @@ class_name ICollision
 var func_on_entity_entered: Array[Callable]
 var func_on_entity_exited: Array[Callable]
 
-var object_hitted
+var object_entered
+var object_exited
+
 var player_hitted
 var ennemies_in = []
 var spells_retrigger = {}
@@ -38,23 +40,25 @@ func _ready():
 	gestion_collision()
 	
 	self.body_entered.connect(func(obj): 
-		object_hitted = obj
-		if collision_conditions.all(func(c: Callable): return c.call()):
+		object_entered = obj
+		if collision_conditions.all(func(c: Callable): return c.call(object_entered)):
 			ennemies_in.append(obj)
 			entity_entered(obj)
 	)
 	self.body_exited.connect(func(obj): 
-		if collision_conditions.all(func(c: Callable): return c.call()):
+		object_exited = obj
+		if collision_conditions.all(func(c: Callable): return c.call(object_exited)):
 			ennemies_in.remove_at(ennemies_in.find(obj))
 			entity_exited(obj)
 	)
 	
-func is_an_ennemy():
-	return CONF_DETECT_WITH.find(object_hitted) != -1
+func is_an_ennemy(obj):
+	return CONF_DETECT_WITH.find(obj) != -1
 
-func is_on_border():
+func is_on_border(obj):
 	var collision_shape = self.get_node("CollisionShape2D")
-	return object_hitted.position.distance_to(champion.position) >= collision_shape.shape.radius * (1 - collision_border_ratio)
+	return obj.position.distance_to(champion.position
+		) >= collision_shape.shape.radius * self.scale.x * (1 - collision_border_ratio)
 
 func gestion_collision():
 	var collision_shape = self.get_node("CollisionShape2D")

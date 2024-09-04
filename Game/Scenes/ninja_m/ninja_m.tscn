@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ninja_m.gd" id="1_176nu"]
 [ext_resource type="Texture2D" uid="uid://dl83g4n8u8hot" path="res://ressource/rpgsprites1/ninja_m.png" id="2_v242r"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_eglqf"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="3_eglqf"]
 [ext_resource type="PackedScene" uid="uid://dpcvbwqik5lfg" path="res://Game/Scenes/ninja_m/spells_ninja_m.tscn" id="6_e6mmi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6pgvu"]

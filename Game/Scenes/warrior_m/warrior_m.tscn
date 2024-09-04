@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/warrior_m.gd" id="1_pil80"]
 [ext_resource type="Texture2D" uid="uid://csrv5wg2rrt5i" path="res://ressource/rpgsprites1/warrior_m.png" id="2_04sja"]
 [ext_resource type="PackedScene" uid="uid://bbboj25fy4156" path="res://Game/Scenes/warrior_m/spells_warrior_m.tscn" id="3_lhuqc"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_rlcn6"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_rlcn6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa7up"]
 atlas = ExtResource("2_04sja")

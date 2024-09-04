@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:
 		self.position = champion_assigned.position
-		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool, 0.25, 0.5)
+		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool, 0.25, 0.5)
 			
 func active():
 	self.show()

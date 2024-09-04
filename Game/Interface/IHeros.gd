@@ -47,8 +47,6 @@ func take_damage():
 		await get_tree().create_timer(0.15).timeout
 
 func check_if_allies_dead():
-	await multip_sync.synchronized
-
 	if ServiceScenes.alliesNode.all(func(ally): return ally.health_bar.value == 0):
 		ServiceRounds.new_round_global(self)
 

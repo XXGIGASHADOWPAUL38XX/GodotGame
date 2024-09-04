@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
-		self.position = Vector2(get_window().size.x, get_window().size.y)
+		self.position = Vector2(ServiceWindow.scene_size.x, ServiceWindow.scene_size.y)
 		
 		await super._ready()
 
@@ -16,14 +16,14 @@ func attack_back():
 	pass
 
 func die(heros_dealing_dmg):
-	super.die(heros_dealing_dmg)
 	ServiceAnnounce.set_announce(
 		heros_dealing_dmg.name + 'has defeated the crystal boss',
 		'res://Game/Ressources/Heros/icons/' + heros_dealing_dmg.name + '.png',
 		'res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Crystal Knight/logo.png'
 	)
 	
-	await multip_sync.synchronized
+	super.die(heros_dealing_dmg)
+	
 	get_parent().queue_free()
 
 func bonus(heros_dealing_dmg):

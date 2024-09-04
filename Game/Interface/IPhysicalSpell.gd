@@ -11,14 +11,34 @@ var cshape
 
 @export var damage_base: float
 var output_damage = Callable(output_damage_f)
+@export var champion: IEntity
+
+@export var state_action: State.StateAction = State.StateAction.NULL
+@export var state_duration: float = 1.0
 
 var CONF_DETECT_WITH
 
 func _ready():
 	await super._ready()
+	Servrpc.any(self, 'champion_hitting', [])
 	
 	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
-	self.visibility_changed.connect(func(): get_node('CollisionShape2D').disabled = !self.visible)
+	gestion_collision()
+	
+
+func gestion_collision():
+	self.get_node("CollisionShape2D").disabled = !self.visible
+	self.visibility_changed.connect(func(): if not self.visible:
+		self.get_node("CollisionShape2D").disabled = true
+	)
+	
+	self.animation.frame_changed.connect(func(): 
+		if animation.frame == animation.sprite_frames.get_frame_count(animation.animation) - 1 and self.visible:
+			self.get_node("CollisionShape2D").disabled = false
+			collision()
+		else:
+			self.get_node("CollisionShape2D").disabled = true
+	)
 
 func on_hit(ennemy): #FAIRE LES DEGATS
 	player_hitted = ennemy
@@ -35,10 +55,19 @@ func _on_body_entered(heros: Node2D):
 
 func collision():
 	for player in CONF_DETECT_WITH:
-		if self.visible && player.visible && self.global_position.distance_to(player.position) < (cshape.shape.radius * 2):
+		if self.visible && player.visible && self.global_position.distance_to(player.position) < (
+			self.get_node("CollisionShape2D").shape.radius * 2):
 			send_damage(player)
 
 func send_damage(player):
 	Servrpc.send_to_id(player.get_multiplayer_authority(), player, 'hitted', [self]) # heros hitted BY ennemy spell
 	self.on_hit(player)
 
+func champion_hitting(node: Node = self):
+	if node is IEntity:
+		champion = node
+		return null
+	if node.get_parent() != null:
+		return champion_hitting(node.get_parent())
+		
+	return null

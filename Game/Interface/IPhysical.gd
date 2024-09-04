@@ -31,7 +31,6 @@ func _ready():
 		
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
-
 func set_multiplayer_properties():
 	var animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	var anim_path = self.name + "/" + animation.name

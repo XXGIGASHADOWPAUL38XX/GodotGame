@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxrr1eijthugr"]
+[gd_scene load_steps=8 format=3 uid="uid://2uxlklxg4h51"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Health/health.gd" id="1_ntddm"]
 [ext_resource type="Theme" uid="uid://b3kqqqrhuonft" path="res://ressource/health_bar.tres" id="2_jph32"]

@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_special']
 		coltdown_time = 8
-		timer_key_release_cd = 0.75
+		timer_key_release_cd = 1.25
 		
 		await super._ready()
 	
@@ -16,10 +16,9 @@ func _ready():
 func active():
 	await super.active()
 	specials.map(func(s): 
-		if !key_pressed_bool:
-			return
+		#if !key_pressed_bool:
+			#return
 			
 		s.active()
-		await get_tree().create_timer(0.16).timeout
 	)
 

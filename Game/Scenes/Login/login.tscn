@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c48uy2yhpu4fa"]
+[gd_scene load_steps=12 format=3 uid="uid://c48uy2yhpu4fa"]
 
 [ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="1_7sndh"]
 [ext_resource type="Script" path="res://Game/Scenes/Login/login.gd" id="1_onfxi"]
@@ -13,8 +13,11 @@ gradient = SubResource("Gradient_36h0a")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1beg"]
 texture = SubResource("GradientTexture1D_kfcwg")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prfgy"]
-bg_color = Color(0.337255, 0.690196, 0.380392, 0.588235)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrmkp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl30n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5toj"]
 
 [sub_resource type="Gradient" id="Gradient_ltx1a"]
 offsets = PackedFloat32Array(0.254902, 0.985294)
@@ -178,13 +181,14 @@ theme_override_constants/separation = 0
 [node name="Login" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_prfgy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yrmkp")
 text = "Login"
 
 [node name="Signup" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Signup"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tl30n")
+text = "Submit"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/Main"]
 layout_mode = 2
@@ -193,7 +197,7 @@ theme_override_constants/margin_top = 20
 [node name="Validate" type="Button" parent="HBoxContainer/MarginContainer/Main"]
 layout_mode = 2
 size_flags_vertical = 3
-disabled = true
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5toj")
 text = "Validate"
 
 [node name="PanelContainerRigth" type="PanelContainer" parent="HBoxContainer"]

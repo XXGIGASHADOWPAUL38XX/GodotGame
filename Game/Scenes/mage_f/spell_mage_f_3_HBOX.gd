@@ -34,11 +34,9 @@ func can_active():
 	active()
 
 func active():
-	print(spell3_elements)
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 
-		return sorted_slots.find(slot) != sorted_slots.size() - 1
+		return slot != sorted_slots[sorted_slots.size() - 1]
 	)
-	print(next_possible_slots)
 
 	champion.update_orb_kind(sorted_slots[0])
 	animate_texture(spell3_elements[champion.orb_kind])

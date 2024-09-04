@@ -17,16 +17,21 @@ func _ready():
 		
 		await super._ready()
 		
-		dash.func_on_entity_entered.append(Callable(self, 'reset').bind(true))
-		dash.area_entered.connect(func(area): if area in spells_placeholder.shadows:
-			reset()
-			area.has_been_dashed_to()
+		dash.area_entered.connect(func(area): 
+			if area in spells_placeholder.shadows:
+				reset()
+				area.has_been_dashed_to()
+				spells_placeholder.marks.map(func(mark):
+					mark.show_on_shadow_entered()
+				)
+			elif area in spells_placeholder.marks:
+				reset()
+				area.hide_on_dash()
 		)
 
 func active():
 	await super.active()
 	dash.active()
-	
 
 func reset(is_champion=false):
 	if is_champion:

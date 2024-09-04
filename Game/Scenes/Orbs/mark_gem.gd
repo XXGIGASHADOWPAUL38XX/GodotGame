@@ -3,7 +3,6 @@ extends IDamagingCollision
 var collision_shape
 
 var augment: int = 0
-const MAX_AUGMENT = 3
 
 var coltdown_stay = Timer.new()
 var cd_stay = 3.0
@@ -39,7 +38,9 @@ func _ready():
 			self.hide()
 		)
 		
-		animation.frame_changed.connect(func(): collision_shape.disabled = animation.frame != MAX_AUGMENT)
+		animation.frame_changed.connect(func(): 
+			collision_shape.disabled = animation.frame != animation.sprite_frames.get_frame_count(animation.animation)
+		)
 		ServiceScenes.championNode.func_hitted.append(Callable(self, 'active'))
 
 func _process(delta):
@@ -48,13 +49,13 @@ func _process(delta):
 			self.position = champion.position
 	
 		if self.visible:
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 
 func active():
 	if is_multiplayer_authority() && coltdown_explode.time_left == 0:
 		self.show()
 		
-		if augment < MAX_AUGMENT:
+		if augment < animation.sprite_frames.get_frame_count(animation.animation):
 			augment += 1
 			animation.frame = augment
 			coltdown_stay.start()

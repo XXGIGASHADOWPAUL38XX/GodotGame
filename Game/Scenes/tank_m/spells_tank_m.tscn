@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bdlmf4ux4n4pm"]
+[gd_scene load_steps=85 format=3 uid="uid://bdlmf4ux4n4pm"]
 
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m.gd" id="1_gc2tw"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spells_tank_m_1.gd" id="1_v41x7"]
@@ -21,11 +21,13 @@
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/spell4_charge.gd" id="9_t35db"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_tank_m_4.gd" id="11_7pbcp"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/special_tank_m.gd" id="13_t75lh"]
-[ext_resource type="Texture2D" uid="uid://oe1cqtur2dnj" path="res://Game/Ressources/Heros/tank_m/special_charge.png" id="14_klvca"]
 [ext_resource type="Texture2D" uid="uid://edcref8u2bdm" path="res://Game/Ressources/Heros/tank_m/special_shield.png" id="15_ei068"]
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/ctrlr_special_tank_m.gd" id="21_85vo5"]
+[ext_resource type="Script" path="res://Game/Scenes/tank_m/push_tank_m.gd" id="24_1olmu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ubnvs"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dxmdv"]
+radius = 62.5
+height = 575.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2r3f"]
 atlas = ExtResource("4_c1xar")
@@ -108,7 +110,7 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_unsbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txiln"]
-size = Vector2(84, 156)
+size = Vector2(38, 108)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6fdfj"]
 atlas = ExtResource("2_gt2pn")
@@ -128,35 +130,70 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5pojr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fgk12"]
-radius = 66.3702
+radius = 53.0094
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kv7k6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc0fi"]
 atlas = ExtResource("4_kmjpx")
-region = Rect2(0, 0, 1189, 1171)
+region = Rect2(0, 0, 1404, 1395)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_njmpx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_10wdp"]
 atlas = ExtResource("4_kmjpx")
-region = Rect2(1189, 0, 1189, 1171)
+region = Rect2(1404, 0, 1404, 1395)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hmtox"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjlum"]
 atlas = ExtResource("4_kmjpx")
-region = Rect2(2378, 0, 1189, 1171)
+region = Rect2(2808, 0, 1404, 1395)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cj3oo"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(4212, 0, 1404, 1395)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf20p"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(0, 1395, 1404, 1395)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtvtq"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(1404, 1395, 1404, 1395)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7su36"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(2808, 1395, 1404, 1395)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7hb7"]
+atlas = ExtResource("4_kmjpx")
+region = Rect2(4212, 1395, 1404, 1395)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqm0v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kv7k6")
+"texture": SubResource("AtlasTexture_rc0fi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_njmpx")
+"texture": SubResource("AtlasTexture_10wdp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hmtox")
+"texture": SubResource("AtlasTexture_rjlum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cj3oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf20p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtvtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7su36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7hb7")
 }],
 "loop": true,
 "name": &"default",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g8hjf"]
@@ -309,15 +346,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kye3g"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prp72"]
+size = Vector2(20, 87)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_bfhoh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yxwp8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_phhi8"]
-atlas = ExtResource("14_klvca")
-region = Rect2(0, 0, 689, 1583)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61uem"]
 atlas = ExtResource("15_ei068")
@@ -327,14 +359,6 @@ region = Rect2(0, 0, 1240, 1323)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_phhi8")
-}],
-"loop": true,
-"name": &"dash",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_61uem")
 }],
 "loop": true,
@@ -342,85 +366,28 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oekkq"]
-properties/0/path = NodePath("spells_tank_m_1:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("spells_tank_m_1:visible")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("spells_tank_m_2:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("spells_tank_m_2:visible")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("spells_tank_m_2/anim_tank_m_2:frame")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("rock_tank_m_3:position")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("rock_tank_m_3:visible")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath("rock_tank_m_3/anim_tank_m_3:frame")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath("spells_exp_tank_m_3:position")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("spells_exp_tank_m_3:visible")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("spells_exp_tank_m_3:scale")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("spells_exp_tank_m_3:modulate")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("spells_exp_tank_m_3/anim_exp_tank_m_3:frame")
-properties/12/spawn = true
-properties/12/replication_mode = 1
-properties/13/path = NodePath("spells_tank_m_4:position")
-properties/13/spawn = true
-properties/13/replication_mode = 1
-properties/14/path = NodePath("spells_tank_m_4:visible")
-properties/14/spawn = true
-properties/14/replication_mode = 1
-properties/15/path = NodePath("animations/spell4_charge:frame")
-properties/15/spawn = true
-properties/15/replication_mode = 1
-properties/16/path = NodePath("animations/spell4_charge:position")
-properties/16/spawn = true
-properties/16/replication_mode = 1
-properties/17/path = NodePath("animations/spell4_charge:visible")
-properties/17/spawn = true
-properties/17/replication_mode = 1
-properties/18/path = NodePath("spells_tank_m_1:rotation")
-properties/18/spawn = true
-properties/18/replication_mode = 1
-properties/19/path = NodePath("spells_tank_m_4:rotation")
-properties/19/spawn = true
-properties/19/replication_mode = 1
-properties/20/path = NodePath("special_tank_m:modulate")
-properties/20/spawn = true
-properties/20/replication_mode = 1
-properties/21/path = NodePath("special_tank_m:visible")
-properties/21/spawn = true
-properties/21/replication_mode = 1
-properties/22/path = NodePath("special_tank_m:position")
-properties/22/spawn = true
-properties/22/replication_mode = 1
-properties/23/path = NodePath("special_tank_m/special_tank_m_anim:animation")
-properties/23/spawn = true
-properties/23/replication_mode = 1
-properties/24/path = NodePath("special_tank_m/special_tank_m_anim:frame")
-properties/24/spawn = true
-properties/24/replication_mode = 1
-properties/25/path = NodePath("special_tank_m:rotation")
-properties/25/spawn = true
-properties/25/replication_mode = 1
+[sub_resource type="CircleShape2D" id="CircleShape2D_olsyu"]
+radius = 565.685
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wacot"]
+atlas = ExtResource("8_ext40")
+region = Rect2(0, 0, 360, 1124)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yhgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wacot")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njc7s"]
+size = Vector2(22, 80)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_11awy"]
 
 [node name="spells_tank_m_phldr" type="Node"]
 script = ExtResource("1_gc2tw")
@@ -434,7 +401,7 @@ scale = Vector2(0.08, 0.08)
 script = ExtResource("3_txguk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_tank_m/aa_tank_m"]
-shape = SubResource("CircleShape2D_ubnvs")
+shape = SubResource("CapsuleShape2D_dxmdv")
 
 [node name="aa_anim" type="AnimatedSprite2D" parent="ctrlr_aa_tank_m/aa_tank_m"]
 sprite_frames = SubResource("SpriteFrames_sy5s0")
@@ -450,7 +417,6 @@ visible = false
 script = ExtResource("1_v41x7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_tank_m_1/spell_tank_m_1"]
-position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_txiln")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
@@ -474,6 +440,8 @@ shape = SubResource("CircleShape2D_fgk12")
 [node name="anim_tank_m_2" type="AnimatedSprite2D" parent="ctrlr_tank_m_2/spell_tank_m_2"]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_qqm0v")
+frame = 6
+frame_progress = 0.699265
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_tank_m_2"]
 replication_config = SubResource("SceneReplicationConfig_g8hjf")
@@ -535,7 +503,8 @@ frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_tank_m_4/zone"]
-shape = SubResource("CircleShape2D_kye3g")
+position = Vector2(-150, 2)
+shape = SubResource("RectangleShape2D_prp72")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_tank_m_4"]
 replication_config = SubResource("SceneReplicationConfig_bfhoh")
@@ -543,18 +512,28 @@ replication_config = SubResource("SceneReplicationConfig_bfhoh")
 [node name="ctrlr_special_tank_m" type="Node2D" parent="."]
 script = ExtResource("21_85vo5")
 
-[node name="special_tank_m" type="Area2D" parent="ctrlr_special_tank_m"]
+[node name="counter_tank_m" type="Area2D" parent="ctrlr_special_tank_m"]
 visible = false
+scale = Vector2(0.05, 0.05)
 script = ExtResource("13_t75lh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_tank_m/special_tank_m"]
-shape = SubResource("CircleShape2D_yxwp8")
-
-[node name="special_tank_m_anim" type="AnimatedSprite2D" parent="ctrlr_special_tank_m/special_tank_m"]
-scale = Vector2(0.05, 0.05)
+[node name="anim_counter" type="AnimatedSprite2D" parent="ctrlr_special_tank_m/counter_tank_m"]
 sprite_frames = SubResource("SpriteFrames_xjxe7")
-animation = &"dash"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_tank_m/counter_tank_m"]
+shape = SubResource("CircleShape2D_olsyu")
+
+[node name="push_tank_m" type="Area2D" parent="ctrlr_special_tank_m"]
+visible = false
+script = ExtResource("24_1olmu")
+
+[node name="anim_push" type="AnimatedSprite2D" parent="ctrlr_special_tank_m/push_tank_m"]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_6yhgv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_tank_m/push_tank_m"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_njc7s")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_tank_m"]
-root_path = NodePath("../..")
-replication_config = SubResource("SceneReplicationConfig_oekkq")
+replication_config = SubResource("SceneReplicationConfig_11awy")

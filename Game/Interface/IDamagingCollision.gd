@@ -9,14 +9,19 @@ class_name IDamagingCollision
 @export var state: State.StateAction = State.StateAction.NULL
 
 var output_damage = Callable(output_damage_f)
+var func_on_collision: Array[Callable]
 
 func _ready():
-	await super._ready()
-	self.func_on_entity_entered.append(Callable(self, 'collision'))
+	if is_multiplayer_authority():
+		await super._ready()
+		self.func_on_entity_entered.append(Callable(self, 'collision'))
 
 func collision():
 	if self.visible && ennemies_in.find(player_hitted) != -1:
 		send_spell()
+		for fc in func_on_collision:
+			var node = fc.get_object()
+			fc.call()
 
 func send_spell():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), player_hitted, 'hitted', [self]) # heros hitted BY ennemy spell

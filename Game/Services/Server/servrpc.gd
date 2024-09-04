@@ -15,10 +15,9 @@ func remote_only(id, node, f, args:Array):
 	rpc_id(id, 'f_rpc', f, node.get_path(), args)
 	
 func any(node, f, args:Array):
-	node.callv(f, args)
 	all_remotes(node, f, args)
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 	args = convert_args_to_nodes(args)
 		
@@ -36,16 +35,10 @@ func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
 	node.callv(f, args)
 
 func send_to_multi_auth(node, f, args:Array):
-	if node.is_multiplayer_authority(): 
-		node.callv(f, args)
-	else: 
-		remote_only(node.get_multiplayer_authority(), node, f, args)
+	remote_only(node.get_multiplayer_authority(), node, f, args)
 
 func send_to_id(id, node, f, args):
-	if id == ServiceScenes.champion.id:
-		node.callv(f, args)
-	else:
-		remote_only(id, node, f, args)
+	remote_only(id, node, f, args)
 
 func send_to_ally(node, f, args):
 	remote_only(ServiceScenes.ally.id, node, f, args)

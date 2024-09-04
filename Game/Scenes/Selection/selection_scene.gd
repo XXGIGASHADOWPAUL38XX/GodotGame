@@ -20,6 +20,7 @@ var players = []
 var time_label = Timer.new()
 
 func _ready():
+	ResourceLoader.load_threaded_request(MAIN_GAME_SCENE_PATH)
 	for champion in champions.get_children():
 		champion.mouse_entered.connect(_button_hovered.bind(champion))
 		champion.mouse_exited.connect(_button_unhovered.bind(champion))
@@ -95,7 +96,6 @@ func display_champion(champion_name, team_client_sender, player_client_sender):
 
 func pre_launch_game():
 	ServiceScenes.set_players(players)
-	ResourceLoader.load_threaded_request(MAIN_GAME_SCENE_PATH)
 	
 	for champion in ServiceScenes.get_players():
 		ResourceLoader.load_threaded_request(champion.nodePath)

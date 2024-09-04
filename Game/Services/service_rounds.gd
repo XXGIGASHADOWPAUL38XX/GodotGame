@@ -6,8 +6,6 @@ func init_first_round():
 	add_random_boss()
 	
 func new_round_global(champion_killed):
-	await champion_killed.multip_sync.synchronized
-	
 	add_random_boss()
 	Servrpc.any(self, "new_round_local", [champion_killed])
 	
@@ -19,15 +17,16 @@ func new_round_local(champion_killed):
 	ServiceScenes.championNode.set_multiplayer_authority(Server.get_client_id() - 1)
 	
 	ServiceScenes.end_screen_scene.end_game(is_victory)
-	ServiceScenes.events_scene.new_round(is_victory)
 	
 	await get_tree().create_timer(5).timeout
 	
-	ServiceScenes.championNode.set_multiplayer_authority(Server.get_client_id())
-	
-	if ServiceScenes.players.filter(func(obj): obj.team.round_won == 3).size() != 0:
+	if ServiceScenes.players.any(func(obj): return obj.team.round_won == 3):
 		last_round_ended(ServiceScenes.championNode)
 		return
+		
+	ServiceScenes.events_scene.new_round(is_victory)
+		
+	ServiceScenes.championNode.set_multiplayer_authority(Server.get_client_id())
 	
 	ServiceScenes.entites.map(func(entity):
 		if entity != null && entity.is_multiplayer_authority():

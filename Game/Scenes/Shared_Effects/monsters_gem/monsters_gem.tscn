@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/monster_gem.gd" id="3_eykrh"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/attack.gd" id="4_hlxa2"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_fh2xh"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="5_xt7gg"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="5_xt7gg"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/monsters_gem/gem_dropped.gd" id="6_4cucp"]
 [ext_resource type="Texture2D" uid="uid://dsg3ath487qeb" path="res://Game/Ressources/Gems/base_gem.png" id="9_f56gs"]
 

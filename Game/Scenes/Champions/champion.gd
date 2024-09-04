@@ -7,7 +7,6 @@ var duplicator
 
 @onready var champion_vbox = $MarginContainer/champion_vbox
 @onready var name_label = $MarginContainer/champion_vbox/HBoxContainer/Label
-@onready var is_ready = true
 
 var stats_hboxs
 
@@ -37,7 +36,6 @@ func post_dp_script(id, dp_number):
 	duplicator = self.get_parent().get_node("dp_champion_box")
 	champion = duplicator.all_heros[id - 1]
 	
-	await resource_awaiter.await_resource_loaded(func(): return is_ready)
 	display()
 
 func display():

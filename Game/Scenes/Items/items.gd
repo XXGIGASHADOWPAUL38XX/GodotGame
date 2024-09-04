@@ -35,9 +35,9 @@ func _ready():
 		var label_number = panel.get_node("number")
 		label_number.text = str(0)
 		
-		panel.mouse_entered.connect(mouse_panel.bind(panel))
-		panel.mouse_exited.connect(mouse_panel.bind(panel))
-		panel.mouse_entered.connect(displayStats.bind(item_class.get(orb.name)))
+		orb.mouse_entered.connect(mouse_panel.bind(panel))
+		orb.mouse_exited.connect(mouse_panel.bind(panel))
+		orb.mouse_entered.connect(displayStats.bind(item_class.get(orb.name)))
 		orb.pressed.connect(orb_gained.bind(orb.name, label_number))
 
 func get_all_textureButton(node: Control):

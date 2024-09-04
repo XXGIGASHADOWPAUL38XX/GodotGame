@@ -14,7 +14,6 @@ var modulate_bool: bool = false
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
-		print(CONF_DETECT_WITH)
 		var direction = randi_range(0, 1)
 		direction_vector = Vector2(direction, (direction + 1) % 2)
 		
@@ -27,12 +26,15 @@ func _ready():
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
 		
+		func_on_entity_entered.append(Callable(self, 'boost_speed'))
+		func_on_entity_exited.append(Callable(self, 'end_boost_speed'))
+		
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
 		if animation.animation == 'special':
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 			self.rotate(delta)
 		else:
 			self.position += direction_vector
@@ -47,8 +49,9 @@ func spawn():
 	self.rotation = 0.0
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, (ServiceWindow.scene_size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (ServiceWindow.scene_size.y * 2) - MARGIN_SPAWN_Y)
+	)
 	
 	self.position = base_position_spawn
 	self.show()
@@ -79,14 +82,12 @@ func activate():
 	await get_tree().create_timer(5).timeout
 	await die_animation()
 	
-func entity_entered(player):
-	super.entity_entered(player)
+func boost_speed():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio + 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', 0.6]
 	)
 	
-func entity_exited(player):
-	super.entity_exited(player)
+func end_boost_speed():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats', [player_hitted, 'speed_bonus_ratio', player_hitted.speed_bonus_ratio - 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', -0.6]
 	)

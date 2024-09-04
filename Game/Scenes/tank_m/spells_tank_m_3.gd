@@ -1,6 +1,5 @@
 extends IPhysicalSpell
 
-var champion
 var passive
 
 func _ready():

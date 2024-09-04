@@ -64,7 +64,7 @@ func push_ennemy_ca(node, champion_to_push, push_strength, retry_instance): #AT 
 		var push_point = node.position + ((champion_to_push.position - node.position).normalized() * (width))
 		var position_differencial = push_point - champion_to_push.position
 		
-		if !(champ_dist_to_center > width):
+		if champ_dist_to_center < width:
 			champion_to_push.position = champion_to_push.position + position_differencial
 			
 		await get_tree().create_timer(0.02).timeout

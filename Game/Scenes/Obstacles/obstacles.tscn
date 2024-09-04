@@ -8,7 +8,7 @@
 [node name="Map" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.47451)
 offset_right = 2400.0
-offset_bottom = 1367.0
+offset_bottom = 1360.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_d45mv")

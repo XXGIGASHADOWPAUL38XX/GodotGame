@@ -45,18 +45,18 @@ func _ready():
 func duplicate_obj(id):
 	var dp_object: Node = dp_node.duplicate()
 	dp_object.set_multiplayer_authority(dp_node.get_multiplayer_authority())
-	dp_object.set_name(dp_callable_name.call(dp_id))
+	dp_object.set_name(dp_callable_name.call(id))
 	dp_object.set_script(dp_script)
+	dp_object.set_meta("dp_id", id)
+	
+	await dp_node.tree_exited
 	
 	dp_parent.add_child.call_deferred(dp_object)
 	
-	dp_object.set_meta("dp_id", dp_id)
-	
-	await dp_object.tree_entered
+	await get_tree().process_frame
 	
 	if dp_object.has_method('post_dp_script') && is_multiplayer_authority():
 		dp_object.post_dp_script(id, dp_number)
-		 
 		
 func spells_placeholder_f(node: Node = self):
 	if node is IPlaceholderSpells:

@@ -5,7 +5,7 @@ var name_callable: Callable = func dp_callable_name(id):
 	
 func _ready():
 	# VALUES TO OVERRIDE #
-	dp_number = 9
+	dp_number = 8
 	dp_callable_name = name_callable
 	dp_node = $special_ranger_m
 	await super._ready()
