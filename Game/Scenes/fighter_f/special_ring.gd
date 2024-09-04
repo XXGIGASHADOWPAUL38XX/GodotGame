@@ -5,8 +5,6 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		#!!
-		await ServiceEvents.await_event(func f(): return champion != null)
 		func_on_spell_entered.append(Callable(self, 'special_pulse'))
 		
 func _process(_delta):
@@ -32,4 +30,4 @@ func stop_spell():
 	self.hide()
 		
 func special_pulse():
-	spell_controller.special_pulse.can_active()
+	spell_controller.special_pulse.active()

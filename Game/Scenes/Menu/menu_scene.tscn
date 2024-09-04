@@ -1,54 +1,65 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvw2hrgl1bkux"]
+[gd_scene load_steps=29 format=3 uid="uid://cvw2hrgl1bkux"]
 
-[ext_resource type="Theme" uid="uid://c0bn8dcgtia2h" path="res://Game/Themes/Themes/theme.tres" id="1_10hiu"]
-[ext_resource type="Texture2D" uid="uid://bej53x6o8lwg3" path="res://Game/Ressources/attente.png" id="2_d3d41"]
-[ext_resource type="Texture2D" uid="uid://l32u41wkcta3" path="res://Game/Ressources/queue.png" id="3_s4kg3"]
-[ext_resource type="Texture2D" uid="uid://wxinrepubin8" path="res://Game/Ressources/Queue/players_logo_loading.png" id="4_s4xts"]
+[ext_resource type="Theme" uid="uid://c0bn8dcgtia2h" path="res://Game/Themes/Themes/theme_left_menu.tres" id="1_10hiu"]
+[ext_resource type="Texture2D" uid="uid://bgt5pc3xn0d6o" path="res://Game/Ressources/UI/Profile/quit_button.png" id="3_5frtu"]
+[ext_resource type="Texture2D" uid="uid://bjd07f2wgifgd" path="res://Game/Ressources/UI/Menu/profile.png" id="3_nmq5y"]
+[ext_resource type="Texture2D" uid="uid://bjbt2rvilu6cc" path="res://Game/Ressources/UI/Menu/top.png" id="3_uvk3c"]
+[ext_resource type="Script" path="res://Game/Scenes/Menu/current_queue.gd" id="5_bdana"]
 [ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="5_rhj3p"]
+[ext_resource type="PackedScene" uid="uid://dpk53hsmpf8gm" path="res://Game/Scenes/GameModePlaceholder/game_mode_phldr.tscn" id="6_8k0qm"]
+[ext_resource type="Texture2D" uid="uid://drdmkf1vb3ge6" path="res://Game/Ressources/UI/Profile/Queue_players/qp1.png" id="6_cttc8"]
+[ext_resource type="Texture2D" uid="uid://bgc48lgnln5w" path="res://Game/Ressources/UI/Menu/logout.png" id="6_lfyha"]
+[ext_resource type="Texture2D" uid="uid://ceppdctchr0ko" path="res://Game/Ressources/UI/Menu/logo_bg.png" id="7_cq0sc"]
+[ext_resource type="Script" path="res://Game/Scenes/Menu/current_state.gd" id="7_o3a1m"]
+[ext_resource type="Texture2D" uid="uid://bpwuoq23a2stw" path="res://Game/Ressources/UI/Profile/Queue_players/qp2.png" id="7_rt7jh"]
+[ext_resource type="Texture2D" uid="uid://c80m4pv5n5lhy" path="res://Game/Ressources/UI/Profile/profile_bg.png" id="7_t6k02"]
+[ext_resource type="Texture2D" uid="uid://dn7t5km41owg" path="res://Game/Ressources/UI/Menu/logo_1v1.png" id="7_trb8r"]
+[ext_resource type="Texture2D" uid="uid://dhldvk2j2w1qx" path="res://Game/Ressources/UI/Profile/Queue_players/qp3.png" id="8_xxtu5"]
+[ext_resource type="Texture2D" uid="uid://otif6jpaafww" path="res://Game/Ressources/UI/Profile/Queue_players/qp4.png" id="9_ucimu"]
+[ext_resource type="Texture2D" uid="uid://djtfp6dsq7bjj" path="res://Game/Ressources/UI/Profile/Queue_players/qp5.png" id="10_n8f2s"]
 
 [sub_resource type="GDScript" id="GDScript_5pvo6"]
-script/source = "extends Node
+script/source = "extends Control
 
 var modulation = 0
 var players_needed_for_match: int = 4
 
 const SELECTION_SCENE_PATH = \"res://Game/Scenes/Selection/selection_scene.tscn\"
+const LOGIN_SCENE_PATH = \"res://Game/Scenes/Login/login.tscn\"
+
+@onready var current_state = $VBoxContainer2/Main/VBoxContainer/current_state
+@onready var types = $VBoxContainer/Main/MarginType/PanelType/HBoxType
+@onready var game_mode_phldr = $VBoxContainer/Main/game_mode_phldr
+@onready var queue_panel = $CenterContainer/current_queue
 
 func _ready():
-	hide_queue()
+	ServiceScenes.menu_scene = self
 	ResourceLoader.load_threaded_request(SELECTION_SCENE_PATH)
+	ResourceLoader.load_threaded_request(LOGIN_SCENE_PATH)
+	
+	update_type()
+	
+	types.get_children().map(func(button: Button):
+		button.pressed.connect(func():
+			game_mode_phldr.new_placeholder(button.name)
+			update_type()
+		)
+		
+		#button.mouse_entered.connect(func():
+			#button.get_theme_stylebox(\"hover\", \"Button\").texture.set_current_frame(0)
+		#)
+	)
 
 func _process(delta):
 	if Server.get_connected_clients().size() == players_needed_for_match:
 		match_up()
 
-	if ($Queue.visible):
-		$Queue/QueueAnimation.rotate(delta)
-		$QueuePlayers/QueuePAnimation.frame = Server.get_connected_clients().size()
-		modulate($QueuePlayers/QueuePAnimation)
-
-func _on_play_1v1_pressed():
-	players_needed_for_match = 2
-	play()
-
-func _on_play_2v2_pressed():
-	players_needed_for_match = 4
-	play()
+	#if (queue.visible):
+		#queue.get_theme_stylebox(\"panel\", \"PanelContainer\").texture.set_current_frame(Server.get_connected_clients().size())
+		#modulate(queue)
 	
 func play():
 	ServiceScenes.CONFIG_NB_PLAYERS_GAME = players_needed_for_match
-	await Server.createClient()
-	show_queue()
-	
-func hide_queue():
-	$TextureRect.hide()
-	$Queue.hide()
-	$QueuePlayers.hide()
-
-func show_queue():
-	$TextureRect.show()
-	$Queue.show()
-	$QueuePlayers.show()
 
 func match_up():
 	var selection_scene = ResourceLoader.load_threaded_get(SELECTION_SCENE_PATH).instantiate()
@@ -63,154 +74,328 @@ func modulate(obj):
 
 	obj.self_modulate.a += modulation
 
+func update_type():
+	$VBoxContainer2/Label.text = game_mode_phldr.current_plhdr.name
+	current_state.update_logo(game_mode_phldr.current_plhdr.name)
 
+func _on_play_1v1_pressed():
+	players_needed_for_match = 2
 
+func _on_play_2v2_pressed():
+	players_needed_for_match = 4
+
+func _on_profile_button_pressed():
+	pass # Replace with function body.
+
+func _on_signout_button_pressed():
+	Server.player_db_id = null
+	
+	var login_scene = ResourceLoader.load_threaded_get(LOGIN_SCENE_PATH).instantiate()
+	ServiceScenes.root_scene.add_child(login_scene)
+	self.queue_free()
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ew45d"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 0, 519, 526)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4wmoy"]
+texture = ExtResource("7_cq0sc")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gvc3l"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 526, 519, 526)
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_uo2jp"]
+frames = 5
+frame_0/texture = ExtResource("6_cttc8")
+frame_1/texture = ExtResource("7_rt7jh")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("8_xxtu5")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("9_ucimu")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("10_n8f2s")
+frame_4/duration = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5jo0"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 1052, 519, 526)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvsm6"]
+texture = SubResource("AnimatedTexture_uo2jp")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cqqyu"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 0, 1128, 531)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v65ac"]
+texture = ExtResource("7_cq0sc")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6rd1m"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 531, 1128, 531)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4kc8"]
+texture = ExtResource("7_trb8r")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i7kot"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 1062, 1128, 531)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rskll"]
+bg_color = Color(0, 0.0156863, 0.054902, 0.470588)
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_276y5"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 1593, 1128, 531)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sna5d"]
+texture = ExtResource("7_t6k02")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_df1m2"]
-atlas = ExtResource("4_s4xts")
-region = Rect2(0, 2124, 1128, 531)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8l6dt"]
+texture = ExtResource("3_uvk3c")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1ik80"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ew45d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gvc3l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5jo0")
-}],
-"loop": false,
-"name": &"1v1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cqqyu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6rd1m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i7kot")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_276y5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_df1m2")
-}],
-"loop": false,
-"name": &"2v2",
-"speed": 5.0
-}]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3324k"]
+texture = ExtResource("3_5frtu")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bo3i7"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdjg6"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l0lhi"]
-
-[node name="menu_scene" type="Node"]
+[node name="menu_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1200.0
+offset_bottom = 680.0
 script = SubResource("GDScript_5pvo6")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.439216)
+modulate = Color(1, 1, 1, 0.588235)
 show_behind_parent = true
 z_index = -1
-offset_right = 1280.0
-offset_bottom = 720.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_rhj3p")
+expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 65)
-offset_left = 37.0
-offset_top = 33.0
-offset_right = 187.0
-offset_bottom = 83.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="current_queue" type="PanelContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(110, 60)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.24
+theme_override_styles/panel = SubResource("StyleBoxTexture_4wmoy")
+script = ExtResource("5_bdana")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/current_queue"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="queue" type="Panel" parent="CenterContainer/current_queue/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kvsm6")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.5
+
+[node name="margin" type="MarginContainer" parent="VBoxContainer2/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="current_state" type="PanelContainer" parent="VBoxContainer2/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.24
+theme_override_styles/panel = SubResource("StyleBoxTexture_v65ac")
+script = ExtResource("7_o3a1m")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/Main/VBoxContainer/current_state"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="logo" type="Panel" parent="VBoxContainer2/Main/VBoxContainer/current_state/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_p4kc8")
+
+[node name="margin" type="MarginContainer" parent="VBoxContainer2/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.7
+
+[node name="margin2" type="MarginContainer" parent="VBoxContainer2/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Play_1v1" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 65)
+[node name="PanelHeader" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rskll")
+
+[node name="MarginHeader" type="MarginContainer" parent="VBoxContainer/PanelHeader"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxHeader" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Profile" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_sna5d")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer"]
+layout_mode = 2
+
+[node name="profile_button" type="TextureButton" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_nmq5y")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_styles/panel = SubResource("StyleBoxTexture_8l6dt")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Exit" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_3324k")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="signout_button" type="TextureButton" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_lfyha")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Main" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.5
+
+[node name="MarginType" type="MarginContainer" parent="VBoxContainer/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = -30
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelType" type="PanelContainer" parent="VBoxContainer/Main/MarginType"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jdjg6")
+
+[node name="HBoxType" type="VBoxContainer" parent="VBoxContainer/Main/MarginType/PanelType"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Play_1v1" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
+layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_10hiu")
 text = "PLAY (1V1)"
 
-[node name="Play_2v2" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 65)
+[node name="Play_2v2" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_10hiu")
 text = "PLAY (2V2)"
 
-[node name="Champions" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 65)
+[node name="Champions" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_10hiu")
 text = "CHAMPIONS"
 
-[node name="Settings" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(200, 65)
+[node name="Settings" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("1_10hiu")
 text = "SETTINGS"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 510.0
-offset_top = 292.0
-offset_right = 640.0
-offset_bottom = 362.0
-texture = ExtResource("2_d3d41")
-expand_mode = 1
+[node name="game_mode_phldr" parent="VBoxContainer/Main" instance=ExtResource("6_8k0qm")]
+layout_mode = 2
+size_flags_stretch_ratio = 3.0
 
-[node name="QueuePlayers" type="CharacterBody2D" parent="."]
-position = Vector2(580, 460)
-
-[node name="QueuePAnimation" type="AnimatedSprite2D" parent="QueuePlayers"]
-scale = Vector2(0.093449, 0.093156)
-sprite_frames = SubResource("SpriteFrames_1ik80")
-animation = &"2v2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="QueuePlayers"]
-shape = SubResource("CircleShape2D_bo3i7")
-
-[node name="Queue" type="CharacterBody2D" parent="."]
-
-[node name="QueueAnimation" type="Sprite2D" parent="Queue"]
-position = Vector2(575, 327.5)
-scale = Vector2(0.140753, 0.133278)
-texture = ExtResource("3_s4kg3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Queue"]
-shape = SubResource("CircleShape2D_l0lhi")
-
-[connection signal="pressed" from="HBoxContainer/Play_1v1" to="." method="_on_play_1v1_pressed"]
-[connection signal="pressed" from="HBoxContainer/Play_2v2" to="." method="_on_play_2v2_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer/profile_button" to="." method="_on_profile_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer/signout_button" to="." method="_on_signout_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main/MarginType/PanelType/HBoxType/Play_1v1" to="." method="_on_play_1v1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main/MarginType/PanelType/HBoxType/Play_2v2" to="." method="_on_play_2v2_pressed"]

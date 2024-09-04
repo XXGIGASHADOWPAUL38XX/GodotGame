@@ -47,13 +47,13 @@ func die(heros_dealing_dmg):
 		self.hide()
 	)
 	
+	Servrpc.any(self, 'queue_free', [])
+	
 func attack_back():
 	if (self.last_ennemy_hitting.position - self.global_position).x > 0:
 		self.scale.x = 1
 	else:
 		self.scale.x = -1
-		
-	await multip_sync.synchronized
 		
 	animation.animation = 'attack'
 	animation.play()

@@ -5,8 +5,6 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		#!!
-		await ServiceEvents.await_event(func f(): return champion != null)
 		func_on_spell_entered.append(Callable(self, 'special_dashes'))
 
 func _process(_delta):
@@ -32,7 +30,7 @@ func stop_spell():
 	self.hide()
 
 func special_dashes():
-	spell_controller.special_dashes.map(func(lame): lame.can_active())
+	spell_controller.special_dashes.map(func(lame): lame.active())
 	
 	await get_tree().create_timer(0.5).timeout
 	var closest_lame = spell_controller.special_dashes.reduce(func(a, b): return a if a.position.distance_to(

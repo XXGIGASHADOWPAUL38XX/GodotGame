@@ -28,11 +28,11 @@ func _process(delta):
 		if target_timer.time_left == 0:
 			self.hide()
 		elif target_timer.time_left < 2.5:
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 		else:
 			self.show()
 
-#		if Input.is_key_pressed(KEY_E) && coltdown_spell3.time_left == 0 && animation.frame > 0:
+#		if Input.is_key_pressed(ServiceSettings.keys_values['key_spell_3']) && coltdown_spell3.time_left == 0 && animation.frame > 0:
 #			coltdown_spell3.start()
 #			active()
 			

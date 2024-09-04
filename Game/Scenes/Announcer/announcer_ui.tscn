@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnfybpb3e3tr6"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Announcer/announcer_ui.gd" id="1_u8si4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a3hen"]
+
+[sub_resource type="Gradient" id="Gradient_nq057"]
+offsets = PackedFloat32Array(0, 0.514706, 1)
+colors = PackedColorArray(0.486275, 0, 0, 0, 0.607843, 0, 0, 0.607843, 0.486275, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s8gpm"]
+gradient = SubResource("Gradient_nq057")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j17q8"]
+texture = SubResource("GradientTexture1D_s8gpm")
+
+[sub_resource type="Gradient" id="Gradient_afhpw"]
+offsets = PackedFloat32Array(0.137255, 0.470588, 0.583333, 0.877451)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.588235, 0, 0, 0, 0.588235, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v2hpd"]
+gradient = SubResource("Gradient_afhpw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gijep"]
+texture = SubResource("GradientTexture1D_v2hpd")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ksgbf"]
+gradient = SubResource("Gradient_nq057")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hfyh"]
+texture = SubResource("GradientTexture1D_ksgbf")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgpjh"]
+
+[node name="announcer_ui" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u8si4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a3hen")
+
+[node name="TopBar" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxTexture_j17q8")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_gijep")
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomBar" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxTexture_4hfyh")
+
+[node name="Bottom" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pgpjh")

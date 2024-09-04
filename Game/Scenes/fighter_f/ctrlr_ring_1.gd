@@ -1,7 +1,9 @@
 extends IControllerKeyPressed
 
 var first_activation = true
+
 var zone_timer: Timer
+var zone_duration = 2
 
 var zone
 var jump
@@ -10,15 +12,16 @@ var champion
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_A
+		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 6
+		cast_time = zone_duration
 		
 		champion = ServiceScenes.championNode
 		zone = $zone
 		jump = $jump
 		anim_champ_leap = $anim_champ_leap
 		
-		zone_timer = service_time.init_timer(self, 2)
+		zone_timer = service_time.init_timer(self, zone_duration)
 		zone_timer.timeout.connect(func(): 
 			if first_activation:
 				first_activation = false
@@ -28,19 +31,16 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()
+	await super.active()
 	if first_activation:
-		champion.add_state(self, 'states_action', State.StateAction.IMMOBILE)
-		zone.can_active()
-		anim_champ_leap.can_active()
+		zone.active()
+		anim_champ_leap.active()
 		champion.leap()
 		
 		zone_timer.start()
 		return 
 		
-	
+	await jump.active()
 	zone.end_spell()
-	await jump.can_active()
-	champion.remove_state(self, 'states_action')
 	
 	first_activation = true

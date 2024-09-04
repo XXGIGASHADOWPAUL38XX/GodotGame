@@ -10,11 +10,11 @@ func _ready():
 		# ------------------------------------ #
 		
 		await super._ready()
-
-			
+		
 		self.body_entered.connect(func(obj): if obj.visible && obj in spells_placeholder.rocks:
 			self.hide()
 			spells_placeholder.explode.explode()
+			spell_controller.zone.disappear()
 		)
 
 func _process(_delta):

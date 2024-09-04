@@ -19,7 +19,7 @@ func _ready():
 		damage_base = 6.0
 		damage_ratio = 0.2
 		# ------------------------------------ #
-		
+		 
 			
 		await super._ready()
 
@@ -27,10 +27,6 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority() && champion.orb_kind == orb_kind:
 		pass
-		#if (HUD == null):
-			#HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		#else:
-			#HUD.bindTo(coltdown, 4)
 
 func active(matching_orb_s_2):
 	self.position = matching_orb_s_2.position

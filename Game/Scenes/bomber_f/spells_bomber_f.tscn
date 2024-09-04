@@ -38,8 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://jr5cf1kmnkuu" path="res://Game/Services/007.png" id="30_l4xct"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cchmg"]
-radius = 94.0
-height = 1082.0
+radius = 74.9999
+height = 1100.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7o53"]
 atlas = ExtResource("4_n5b4j")
@@ -652,6 +652,7 @@ replication_config = SubResource("SceneReplicationConfig_gweiq")
 script = ExtResource("10_de5nn")
 
 [node name="stunning_bomb" type="Area2D" parent="ctrlr_spell_3"]
+visible = false
 scale = Vector2(0.08, 0.08)
 script = ExtResource("11_c6yfn")
 
@@ -689,6 +690,7 @@ replication_config = SubResource("SceneReplicationConfig_tsdvp")
 script = ExtResource("27_3mnbl")
 
 [node name="special" type="Area2D" parent="ctrlr_special"]
+visible = false
 script = ExtResource("28_gauvx")
 
 [node name="anim_special" type="AnimatedSprite2D" parent="ctrlr_special/special"]

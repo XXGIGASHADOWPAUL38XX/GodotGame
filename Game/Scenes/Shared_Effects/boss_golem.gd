@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_golem
 		collision_shape = $CollisionShape2D as CollisionShape2D
-		self.position = Vector2(get_window().size.x, get_window().size.y)
+		self.position = Vector2(ServiceWindow.scene_size.x, ServiceWindow.scene_size.y)
 		
 		await super._ready()
 
@@ -16,14 +16,14 @@ func attack_back():
 	pass
 
 func die(heros_dealing_dmg):
-	super.die(heros_dealing_dmg)
 	ServiceAnnounce.set_announce(
 		heros_dealing_dmg.name + 'has defeated the golem boss',
 		'res://Game/Ressources/Heros/icons/' + heros_dealing_dmg.name + '.png',
 		'res://Game/Ressources/Main_Effects/Boss/boss_golem/logo.png'
 	)
 	
-	await multip_sync.synchronized
+	super.die(heros_dealing_dmg)
+	
 	get_parent().queue_free()
 
 func bonus(heros_dealing_dmg):

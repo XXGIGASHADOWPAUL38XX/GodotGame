@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://0qpho00qmxtc"]
+
+[ext_resource type="Script" path="res://Game/Scenes/GameModePlaceholder/Play_2v2.gd" id="1_sfml2"]
+[ext_resource type="Theme" uid="uid://c0bn8dcgtia2h" path="res://Game/Themes/Themes/theme_left_menu.tres" id="1_ya2oe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k58we"]
+bg_color = Color(0, 0.0901961, 0.203922, 0.313726)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lp03m"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Play_2v2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -420.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfml2")
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="margin"]
+modulate = Color(1, 0.145911, 0.568701, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k58we")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PanelContainer" type="PanelContainer" parent="margin/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lp03m")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="margin/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="margin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_ya2oe")
+
+[node name="Play2" type="Button" parent="margin/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_ya2oe")

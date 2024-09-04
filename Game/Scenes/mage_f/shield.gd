@@ -1,6 +1,6 @@
 extends ProgressBar
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 
 var coltdown = Timer.new()
 var health_bar

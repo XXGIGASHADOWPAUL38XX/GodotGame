@@ -5,9 +5,7 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		#!!
-		await ServiceEvents.await_event(func f(): return champion != null)
-		func_on_spell_entered.append(Callable(self, 'dash'))
+		func_on_spell_entered.append(Callable(spell_controller.dash, 'active'))
 
 func _process(_delta):
 	if is_multiplayer_authority():
@@ -30,6 +28,3 @@ func stop_spell():
 		await get_tree().create_timer(0.0).timeout
 
 	self.hide()
-
-func dash():
-	champion.position += (get_global_mouse_position() - champion.position).normalized() * 50

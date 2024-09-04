@@ -185,7 +185,7 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h5jiu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6wskk"]
-radius = 19.0263
+radius = 434.613
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8imr"]
 atlas = ExtResource("4_s5ldc")
@@ -555,6 +555,8 @@ script = ExtResource("16_8okm5")
 
 [node name="special_lame" type="Area2D" parent="weapon_lames/ctrlr_special_lame"]
 visible = false
+modulate = Color(1, 1, 1, 0.662745)
+scale = Vector2(0.06, 0.06)
 script = ExtResource("17_2xj35")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_lames/ctrlr_special_lame/special_lame"]

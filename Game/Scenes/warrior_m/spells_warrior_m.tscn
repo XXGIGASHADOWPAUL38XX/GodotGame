@@ -1,6 +1,6 @@
-[gd_scene load_steps=98 format=3 uid="uid://bbboj25fy4156"]
+[gd_scene load_steps=102 format=3 uid="uid://bbboj25fy4156"]
 
-[ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_1.gd" id="1_a7hb2"]
+[ext_resource type="Script" path="res://Game/Scenes/warrior_m/ctrlr_warrior_m_1.gd" id="1_a7hb2"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_phldr.gd" id="1_tx2c2"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_2.gd" id="2_4hj36"]
 [ext_resource type="Texture2D" uid="uid://cayfrx6f0lj7t" path="res://Game/Ressources/Heros/warrior_m/spell1_warrior.png" id="2_22daa"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_4_hit.gd" id="13_3ehgl"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/spells_warrior_m_4_zone.gd" id="14_bg2mk"]
 [ext_resource type="Script" path="res://Game/Scenes/warrior_m/ctrlr_special_warrior_m.gd" id="22_ge3d4"]
+[ext_resource type="Script" path="res://Game/Scenes/warrior_m/explode.gd" id="26_pl8r5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hn68g"]
 radius = 23.7697
@@ -464,9 +465,6 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ahnmv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p7h5i"]
-radius = 12.3693
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_78tar"]
 atlas = ExtResource("10_tijcf")
 region = Rect2(0, 0, 909, 909)
@@ -493,6 +491,27 @@ animations = [{
 "name": &"explode",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7h5i"]
+radius = 448.764
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kfdq"]
+atlas = ExtResource("11_nnr0h")
+region = Rect2(0, 0, 838, 836)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xds2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kfdq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akj76"]
+radius = 416.667
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qq8po"]
 
@@ -640,17 +659,27 @@ replication_config = SubResource("SceneReplicationConfig_ahnmv")
 [node name="ctrlr_special_warrior_m" type="Node2D" parent="."]
 script = ExtResource("22_ge3d4")
 
-[node name="special_warrior_m" type="Area2D" parent="ctrlr_special_warrior_m"]
+[node name="counter" type="Area2D" parent="ctrlr_special_warrior_m"]
 visible = false
+scale = Vector2(0.06, 0.06)
 script = ExtResource("9_gixbk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_warrior_m/special_warrior_m"]
+[node name="anim_counter" type="AnimatedSprite2D" parent="ctrlr_special_warrior_m/counter"]
+sprite_frames = SubResource("SpriteFrames_dt6cl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_warrior_m/counter"]
 shape = SubResource("CircleShape2D_p7h5i")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ctrlr_special_warrior_m/special_warrior_m"]
+[node name="explode" type="Area2D" parent="ctrlr_special_warrior_m"]
+visible = false
 scale = Vector2(0.06, 0.06)
-sprite_frames = SubResource("SpriteFrames_dt6cl")
-animation = &"explode"
+script = ExtResource("26_pl8r5")
+
+[node name="anim_explode" type="AnimatedSprite2D" parent="ctrlr_special_warrior_m/explode"]
+sprite_frames = SubResource("SpriteFrames_5xds2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_warrior_m/explode"]
+shape = SubResource("CircleShape2D_akj76")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_warrior_m"]
 replication_config = SubResource("SceneReplicationConfig_qq8po")

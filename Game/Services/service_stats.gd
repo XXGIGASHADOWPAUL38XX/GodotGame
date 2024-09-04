@@ -25,11 +25,12 @@ func set_attributes(heros):
 
 	heros.health_bar.max_value = stats.health
 	
-func update_stats_local(heros, stat: String, value, update_mode=UpdateMode.UpdateMode.REPLACE):
-	if update_mode == UpdateMode.UpdateMode.ADD:
-		heros.set(stat, heros.get(stat) + value)
-	else:
+##!! LE REPLACE NE PEUT PAS FONCTIONNER AVEC RPC CAR LA VALEUR DU STAT AUTRE QUE FINAL N'EST PAS PARTAGEE
+func update_stats(heros, stat: String, value, update_mode=UpdateMode.UpdateMode.ADD):
+	if update_mode == UpdateMode.UpdateMode.REPLACE:
 		heros.set(stat, value)
+	else:
+		heros.set(stat, heros.get(stat) + value)
 		
 	update_stats_final(heros)
 	
@@ -48,4 +49,4 @@ func update_stats_final(heros):
 func update_stats_from_item(heros, item):
 	for property in item.get_property_list():
 		if (property.type == TYPE_FLOAT && item.get(property.name) != 0.0):
-			update_stats_local(heros, property.name, heros.get(property.name) + item.get(property.name))
+			update_stats(heros, property.name, heros.get(property.name) + item.get(property.name))

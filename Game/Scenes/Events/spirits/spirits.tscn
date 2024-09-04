@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dxdqv4awdrwwg"]
+[gd_scene load_steps=28 format=3 uid="uid://dxdqv4awdrwwg"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Events/spirits/blue_spirit.gd" id="1_4rbg7"]
 [ext_resource type="Script" path="res://Game/Scenes/Events/spirits/spirits_phldr.gd" id="1_g3d6b"]
@@ -122,64 +122,84 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hglr1"]
 radius = 57.4891
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7thbg"]
-properties/0/path = NodePath(".:process_mode")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8j7w5"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s8nwu"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_50lwy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1nskx"]
 
 [node name="spirits_phldr" type="Node"]
 script = ExtResource("1_g3d6b")
 
-[node name="blue_spirit" type="Area2D" parent="."]
-visible = false
-script = ExtResource("1_4rbg7")
+[node name="green_spirit" type="Node2D" parent="."]
 
-[node name="blue_spirit_anim" type="AnimatedSprite2D" parent="blue_spirit"]
-sprite_frames = SubResource("SpriteFrames_itpkd")
-animation = &"special"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_spirit"]
-shape = SubResource("CircleShape2D_hglr1")
-disabled = true
-
-[node name="red_spirit" type="Area2D" parent="."]
-visible = false
-modulate = Color(1, 0, 0, 1)
-script = ExtResource("4_duswc")
-
-[node name="red_spirit_anim" type="AnimatedSprite2D" parent="red_spirit"]
-sprite_frames = SubResource("SpriteFrames_itpkd")
-animation = &"special"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="red_spirit"]
-shape = SubResource("CircleShape2D_hglr1")
-disabled = true
-
-[node name="green_spirit" type="Area2D" parent="."]
+[node name="green_spirit" type="Area2D" parent="green_spirit"]
 visible = false
 modulate = Color(0, 1, 0, 1)
 script = ExtResource("5_m0r1d")
 
-[node name="green_spirit_anim" type="AnimatedSprite2D" parent="green_spirit"]
+[node name="green_spirit_anim" type="AnimatedSprite2D" parent="green_spirit/green_spirit"]
 sprite_frames = SubResource("SpriteFrames_itpkd")
 animation = &"special"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="green_spirit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="green_spirit/green_spirit"]
 shape = SubResource("CircleShape2D_hglr1")
 disabled = true
 
-[node name="yellow_spirit" type="Area2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="green_spirit"]
+replication_config = SubResource("SceneReplicationConfig_8j7w5")
+
+[node name="yellow_spirit" type="Node2D" parent="."]
+
+[node name="yellow_spirit" type="Area2D" parent="yellow_spirit"]
 visible = false
 modulate = Color(1, 1, 0, 1)
 script = ExtResource("6_kinuo")
 
-[node name="yellow_spirit_anim" type="AnimatedSprite2D" parent="yellow_spirit"]
+[node name="yellow_spirit_anim" type="AnimatedSprite2D" parent="yellow_spirit/yellow_spirit"]
 sprite_frames = SubResource("SpriteFrames_itpkd")
 animation = &"special"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="yellow_spirit"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="yellow_spirit/yellow_spirit"]
 shape = SubResource("CircleShape2D_hglr1")
 disabled = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_7thbg")
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="yellow_spirit"]
+replication_config = SubResource("SceneReplicationConfig_s8nwu")
+
+[node name="blue_spirit" type="Node2D" parent="."]
+
+[node name="blue_spirit" type="Area2D" parent="blue_spirit"]
+visible = false
+script = ExtResource("1_4rbg7")
+
+[node name="blue_spirit_anim" type="AnimatedSprite2D" parent="blue_spirit/blue_spirit"]
+sprite_frames = SubResource("SpriteFrames_itpkd")
+animation = &"special"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blue_spirit/blue_spirit"]
+shape = SubResource("CircleShape2D_hglr1")
+disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="blue_spirit"]
+replication_config = SubResource("SceneReplicationConfig_50lwy")
+
+[node name="red_spirit" type="Node2D" parent="."]
+
+[node name="red_spirit" type="Area2D" parent="red_spirit"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("4_duswc")
+
+[node name="red_spirit_anim" type="AnimatedSprite2D" parent="red_spirit/red_spirit"]
+sprite_frames = SubResource("SpriteFrames_itpkd")
+animation = &"special"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="red_spirit/red_spirit"]
+shape = SubResource("CircleShape2D_hglr1")
+disabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="red_spirit"]
+replication_config = SubResource("SceneReplicationConfig_1nskx")

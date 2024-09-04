@@ -10,8 +10,5 @@ func orb_additionnal_operations(orb_kind):
 		$spells_mage_f_blue/ctrlr_mage_f_2_blue/dp_mage_f_2_blue.get_children().filter(func(s): return s is IActive).map(
 			func(s): s.hide()
 		)
-		
-	if $ctrlr_mage_f_1.orb.visible:
-		$ctrlr_mage_f_1.anim_orb_hide.can_active()
 	
 	$ctrlr_mage_f_1.orb.hide()

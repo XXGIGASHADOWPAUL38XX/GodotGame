@@ -75,7 +75,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmhtq"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xfwnw"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ln5o2"]
 
 [node name="mines_phldr" type="Node"]
 script = ExtResource("1_wtm3s")
@@ -98,4 +98,4 @@ animation = &"mine"
 shape = SubResource("CircleShape2D_wmhtq")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="dp_10x_mines/dp_mines"]
-replication_config = SubResource("SceneReplicationConfig_xfwnw")
+replication_config = SubResource("SceneReplicationConfig_ln5o2")

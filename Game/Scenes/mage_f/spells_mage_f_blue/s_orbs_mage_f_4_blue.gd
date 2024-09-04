@@ -35,23 +35,17 @@ func _process(_delta):
 		
 		rotate_arround_champ()
 		
-		if Input.is_key_pressed(KEY_SPACE) && coltdown_spell4.time_left == 0:
-			if current_number_orb == fixed_number_orb:
-				spell_launch()
-								
-				if current_number_orb == MAX_NUMBER_ORB: 
-					current_number_orb = 0
-				
-				if main_dp_authority:
-					coltdown_spell4.start()
-					
-				current_number_orb += 1
-					
-		if main_dp_authority:
-			if (HUD == null):
-				HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-			else:
-				HUD.bindTo(coltdown_spell4, 4)
+		#if Input.is_key_pressedServiceSettings.keys_values['key_ultimate']E) && coltdown_spell4.time_left == 0:
+			#if current_number_orb == fixed_number_orb:
+				#spell_launch()
+								#
+				#if current_number_orb == MAX_NUMBER_ORB: 
+					#current_number_orb = 0
+				#
+				#if main_dp_authority:
+					#coltdown_spell4.start()
+					#
+				#current_number_orb += 1
 
 func spell_launch():
 	ready_to_launch = false

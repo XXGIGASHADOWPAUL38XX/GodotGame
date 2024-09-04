@@ -35,8 +35,8 @@ func take_damage():
 		
 	self.curr_state_action = curr_state_action
 	self.health_bar.value -= output_damage
-	if self.health_bar.value <= 0:
-		ServiceRounds.new_round_global(last_spell_hitting.champion)
+	
+	check_if_allies_dead()
 		
 	var color = Color.GREEN if output_damage < 0 else Color.RED
 			
@@ -45,6 +45,10 @@ func take_damage():
 		await get_tree().create_timer(0.15).timeout
 		self.modulate = Color.WHITE
 		await get_tree().create_timer(0.15).timeout
+
+func check_if_allies_dead():
+	if ServiceScenes.alliesNode.all(func(ally): return ally.health_bar.value == 0):
+		ServiceRounds.new_round_global(self)
 
 func set_multiplayer_properties():
 	super.set_multiplayer_properties()
@@ -65,7 +69,7 @@ func move():
 	
 	if (self.curr_state_action.state == State.StateAction.SLOWED):
 		self.velocity *= 0.5
-	elif (self.curr_state_action.state == State.StateAction.STUNNED or self.curr_state_action.state == State.StateAction.IMMOBILE):
+	elif (self.curr_state_action.state == State.StateAction.STUNNED or self.curr_state_action.state == State.StateAction.CONCENTRATE):
 		self.velocity *= 0
 	
 	self.move_and_collide(self.velocity)

@@ -7,11 +7,11 @@ var mark_overall_node
 func _ready():
 	# DEFINITION VARIABLES IDAMAGING SPELL #
 	damage_base = 5.0
-	damage_ratio = 0.8
+	damage_ratio = 0.08
 	# ------------------------------------ #
 		
 	mark_overall_node = get_parent()
-	allies_nodes = ServiceScenes.ennemiesNode ## EN REALITE C'EST LES ALLIES CAR LES MARQUES SONT SUR LES ENNEMIES (DONC ENNEMI D'ENNEMI)
+	allies_nodes = ServiceScenes.alliesNode
 	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

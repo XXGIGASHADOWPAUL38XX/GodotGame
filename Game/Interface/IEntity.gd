@@ -5,13 +5,16 @@ class_name IEntity
 var func_hitted: Array[Callable] = []
 var func_hit: Array[Callable] = []
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
+var resource_awaiter = ResourceAwaiter.new()
+
 var class_hero = preload("res://Game/Classes/Hero/Hero.gd").new()
 
 var last_ennemy_hitting
 var last_spell_hitting
 
 var multip_sync: MultiplayerSynchronizer
+var multip_sync_path: NodePath = "./../MultiplayerSynchronizer"
 
 var spells_placeholder
 
@@ -24,9 +27,10 @@ func _ready():
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	if spells_placeholder != null:
-		await await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		await resource_awaiter.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 		
+	await get_tree().create_timer(0.5).timeout
 	Servrpc.any(self, 'set_multiplayer_properties', [])
 
 func hitted(spell):
@@ -69,10 +73,6 @@ func spells_placeholder_f(node: Node = self):
 
 func new_round():
 	pass
-
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while c.get_object() != null && !c.call():
-		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 
 func _exit_tree():
 	Servrpc.recently_freed_nodepaths.append(self.get_path())

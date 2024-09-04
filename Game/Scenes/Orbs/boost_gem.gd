@@ -2,7 +2,7 @@ extends IAnimation
 
 var augment: int = 0
 const MAX_AUGMENT = 5
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 var item_class = preload("res://Game/Classes/Item/item.gd").new()
 
 var coltdown = Timer.new()
@@ -41,9 +41,9 @@ func active():
 			ServiceScenes.championNode.modulate = Color.ORANGE
 
 func add_stats():
-	ServiceStats.update_stats_local(ServiceScenes.championNode, "damage_bonus_flat", 1, UpdateMode.UpdateMode.ADD)
-	ServiceStats.update_stats_local(ServiceScenes.championNode, "armor_bonus_flat", 1, UpdateMode.UpdateMode.ADD)
+	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", 1)
+	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", 1)
 
 func remove_stats():
-	ServiceStats.update_stats_local(ServiceScenes.championNode, "damage_bonus_flat", -augment, UpdateMode.UpdateMode.ADD)
-	ServiceStats.update_stats_local(ServiceScenes.championNode, "armor_bonus_flat", -augment, UpdateMode.UpdateMode.ADD)
+	ServiceStats.update_stats(ServiceScenes.championNode, "damage_bonus_flat", -augment)
+	ServiceStats.update_stats(ServiceScenes.championNode, "armor_bonus_flat", -augment)

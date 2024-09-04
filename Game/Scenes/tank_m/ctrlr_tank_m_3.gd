@@ -6,7 +6,7 @@ var explode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_E
+		key = ServiceSettings.keys_values['key_spell_3']
 		coltdown_time = 6
 		
 		rock = $spells_tank_m_3/rock_tank_m_3
@@ -15,5 +15,5 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()
-	rock.can_active()
+	await super.active()
+	rock.active()

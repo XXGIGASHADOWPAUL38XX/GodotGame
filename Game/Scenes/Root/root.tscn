@@ -1,12 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctpaawjoa8axw"]
+[gd_scene load_steps=7 format=3 uid="uid://ctpaawjoa8axw"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Root/root.gd" id="1_fiqwc"]
-[ext_resource type="PackedScene" uid="uid://cvw2hrgl1bkux" path="res://Game/Scenes/Menu/menu_scene.tscn" id="1_qinty"]
+[ext_resource type="PackedScene" uid="uid://ctd6lq0p1n6sd" path="res://Game/Scenes/Announcer/announcer.tscn" id="3_4qvgi"]
 [ext_resource type="PackedScene" uid="uid://dmrufk3sj2i3x" path="res://Game/Scenes/LoadingGame/loading_game.tscn" id="3_etg41"]
+[ext_resource type="PackedScene" uid="uid://c48uy2yhpu4fa" path="res://Game/Scenes/Login/login.tscn" id="4_w8puy"]
+[ext_resource type="PackedScene" uid="uid://b6gopyhijag62" path="res://Game/Scenes/LoadingAsync/loading_async.tscn" id="5_dddd4"]
+[ext_resource type="PackedScene" uid="uid://bnfybpb3e3tr6" path="res://Game/Scenes/Announcer/announcer_ui.tscn" id="6_blejg"]
 
 [node name="Root" type="Node"]
 script = ExtResource("1_fiqwc")
 
-[node name="menu_scene" parent="." instance=ExtResource("1_qinty")]
+[node name="announcer_ui" parent="." instance=ExtResource("6_blejg")]
+
+[node name="announcer" parent="." instance=ExtResource("3_4qvgi")]
+visible = false
 
 [node name="loading_game" parent="." instance=ExtResource("3_etg41")]
+visible = false
+
+[node name="Login" parent="." instance=ExtResource("4_w8puy")]
+
+[node name="loading_async" parent="." instance=ExtResource("5_dddd4")]

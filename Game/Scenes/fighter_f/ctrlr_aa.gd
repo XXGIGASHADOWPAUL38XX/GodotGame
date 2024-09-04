@@ -6,8 +6,9 @@ func _ready():
 	await super._ready()
 			
 func active():
-	super.active()
-	$aa_lames_1.can_active()
+	await super.active()
+	$aa_lames_1.active()
 	await get_tree().create_timer(0.25).timeout
-	$aa_lames_2.can_active()
+	$aa_lames_2.active()
+	
 	

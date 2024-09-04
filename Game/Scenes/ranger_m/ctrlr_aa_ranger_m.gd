@@ -6,6 +6,6 @@ func _ready():
 	await super._ready()
 			
 func active():
-	super.active()
-	$aa_ranger_m.can_active()
+	await super.active()
+	$aa_ranger_m.active()
 	

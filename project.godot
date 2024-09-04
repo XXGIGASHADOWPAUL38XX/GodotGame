@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 ServiceSpell="*res://Game/Services/service_spell.gd"
-ServiceTime="*res://Game/Services/service_time.gd"
 ServiceScenes="*res://Game/Services/service_scenes.gd"
 ServiceHealth="*res://Game/Services/service_health.gd"
 State="*res://Game/Classes/State.gd"
@@ -35,6 +34,9 @@ UpdateMode="*res://Game/Classes/UpdateMode.gd"
 ServiceEvents="*res://Game/Services/service_events.gd"
 MageOrb="*res://Game/Scenes/mage_f/orb_kind.gd"
 ServiceRounds="*res://Game/Services/service_rounds.gd"
+Database="*res://Game/Database/database.gd"
+ServiceSettings="*res://Game/Services/service_settings.gd"
+ServiceWindow="*res://Game/Services/service_window.gd"
 
 [debug]
 
@@ -44,6 +46,7 @@ gdscript/warnings/enable=false
 
 window/size/viewport_width=1200
 window/size/viewport_height=680
+window/size/resizable=false
 
 [dotnet]
 

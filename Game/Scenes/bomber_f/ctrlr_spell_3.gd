@@ -2,10 +2,10 @@ extends IControllerKeyPressed
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_E
+		key = ServiceSettings.keys_values['key_spell_3']
 		coltdown_time = 6
 		await super._ready()
 
 func active():
-	super.active()
-	$stunning_bomb.can_active()
+	await super.active()
+	$stunning_bomb.active()

@@ -15,8 +15,8 @@ func active():
 	#var thread_2 = Thread.new()
 	
 	for i in range(target.animation.frame):
-		mark_explode.can_active(target.position)
-		bubble.can_active(target.position)
+		mark_explode.active(target.position)
+		bubble.active(target.position)
 		
 		#thread_1.start(Callable(mark_explode, 'active').bind(target.position))
 		#thread_2.start(Callable(bubble, 'active').bind(target.position))

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpk53hsmpf8gm"]
+
+[ext_resource type="Script" path="res://Game/Scenes/GameModePlaceholder/game_mode_phldr.gd" id="1_5nwoo"]
+[ext_resource type="PackedScene" uid="uid://dhlm7jsgn41if" path="res://Game/Scenes/GameModePlaceholder/Play_1v1.tscn" id="1_qq3jw"]
+[ext_resource type="PackedScene" uid="uid://0qpho00qmxtc" path="res://Game/Scenes/GameModePlaceholder/Play_2v2.tscn" id="2_vrr1x"]
+[ext_resource type="PackedScene" uid="uid://6o070r41tk7q" path="res://Game/Scenes/Champions/champions.tscn" id="4_t1hr6"]
+[ext_resource type="PackedScene" uid="uid://dfblqxmwdpjl8" path="res://Game/Scenes/Settings/settings.tscn" id="5_f22hi"]
+
+[node name="game_mode_phldr" type="Control"]
+layout_mode = 3
+anchor_right = 0.747
+anchor_bottom = 0.794
+offset_right = 0.599976
+offset_bottom = 0.0799561
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_5nwoo")
+
+[node name="Play_1v1" parent="." instance=ExtResource("1_qq3jw")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Play_2v2" parent="." instance=ExtResource("2_vrr1x")]
+visible = false
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Champions" parent="." instance=ExtResource("4_t1hr6")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Settings" parent="." instance=ExtResource("5_f22hi")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0

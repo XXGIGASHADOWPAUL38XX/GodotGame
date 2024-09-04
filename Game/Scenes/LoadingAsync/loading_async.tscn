@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6gopyhijag62"]
+
+[ext_resource type="Script" path="res://Game/Scenes/LoadingAsync/loading_async.gd" id="1_xeu7q"]
+[ext_resource type="Texture2D" uid="uid://bwiv4oymqb1nk" path="res://Game/Ressources/UI/Loading/loading_bg.png" id="2_g8ebt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t2udr"]
+texture = ExtResource("2_g8ebt")
+
+[node name="loading_async" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xeu7q")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t2udr")
+
+[node name="label_loading" type="Label" parent="CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 150
+
+[node name="resource_loading" type="Label" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1

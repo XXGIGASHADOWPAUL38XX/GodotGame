@@ -184,7 +184,7 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o0u7j"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_noxu3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c7qv3"]
 atlas = ExtResource("18_xfaay")
@@ -480,13 +480,6 @@ script = ExtResource("1_67fow")
 [node name="spells_healer_f_1_1" type="Area2D" parent="ctrlr_healer_f_1"]
 visible = false
 script = ExtResource("1_sskcw")
-damage_base = null
-damage_ratio = null
-state = null
-retrigger = null
-retrigger_time = null
-state_action = null
-state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_1"]
 shape = SubResource("CircleShape2D_ab7vm")
@@ -498,13 +491,6 @@ animation = &"aoe"
 [node name="spells_healer_f_1_2" type="Area2D" parent="ctrlr_healer_f_1"]
 visible = false
 script = ExtResource("5_43rjg")
-damage_base = null
-damage_ratio = null
-state = null
-retrigger = null
-retrigger_time = null
-state_action = null
-state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_1/spells_healer_f_1_2"]
 shape = SubResource("CircleShape2D_ab7vm")
@@ -522,13 +508,6 @@ script = ExtResource("4_ba2ns")
 [node name="spells_healer_f_2" type="Area2D" parent="ctrlr_healer_f_2"]
 visible = false
 script = ExtResource("3_ndysl")
-damage_base = null
-damage_ratio = null
-state = null
-retrigger = null
-retrigger_time = null
-state_action = null
-state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_2/spells_healer_f_2"]
 shape = SubResource("CircleShape2D_wylsp")
@@ -540,7 +519,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_healer_f_2"]
-replication_config = SubResource("SceneReplicationConfig_o0u7j")
+replication_config = SubResource("SceneReplicationConfig_noxu3")
 
 [node name="ctrlr_healer_f_3" type="Node2D" parent="."]
 script = ExtResource("7_wabr3")
@@ -570,13 +549,6 @@ script = ExtResource("9_inyhr")
 [node name="heal_f_4" type="Area2D" parent="ctrlr_healer_f_4/dp_healer_f_4"]
 visible = false
 script = ExtResource("5_en0gn")
-damage_base = null
-damage_ratio = null
-state = null
-retrigger = null
-retrigger_time = null
-state_action = null
-state_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_4/dp_healer_f_4/heal_f_4"]
 shape = SubResource("CircleShape2D_5elm7")
@@ -631,7 +603,6 @@ sprite_frames = SubResource("SpriteFrames_o6jlt")
 shape = SubResource("CircleShape2D_e14yy")
 
 [node name="sphere_regen" type="Area2D" parent="ctrlr_mark_passive/dp_mark_passive/mark_passive"]
-visible = false
 scale = Vector2(0.05, 0.05)
 script = ExtResource("38_a0q8d")
 

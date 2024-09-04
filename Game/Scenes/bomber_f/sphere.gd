@@ -48,6 +48,6 @@ func active():
 	timer_sphere.start()
 
 func launch_missile():
-	overall_spell.missile.can_active()
+	overall_spell.missile.active()
 	if timer_sphere.time_left >= timer_missile_duration:
 		timer_missile.start()

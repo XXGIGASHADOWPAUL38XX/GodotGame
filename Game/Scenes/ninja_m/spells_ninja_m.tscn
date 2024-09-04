@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dpcvbwqik5lfg"]
+[gd_scene load_steps=80 format=3 uid="uid://dpcvbwqik5lfg"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_1.gd" id="1_ewxjy"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_phldr.gd" id="1_ltmo8"]
@@ -24,6 +24,11 @@
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/shuriken_m_4.gd" id="16_ut5nh"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/shadow_m_4.gd" id="17_h6foa"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_special_ninja_m.gd" id="21_amwjv"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/dash.gd" id="24_1ye30"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_mark_ninja_m.gd" id="25_6swwq"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/dp_mark.gd" id="26_d4pg2"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/mark.gd" id="27_ro3pv"]
+[ext_resource type="Texture2D" uid="uid://bjufwqhn3kaxm" path="res://Game/Ressources/Heros/ninja_m/mark.png" id="28_mmvui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0xx1"]
 atlas = ExtResource("4_r4fn8")
@@ -89,7 +94,9 @@ animations = [{
 "speed": 50.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8e3j6"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10ip4"]
+radius = 87.5
+height = 350.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ipvf1"]
 
@@ -109,6 +116,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_srst2"]
+radius = 23.3452
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lqrr1"]
 atlas = ExtResource("5_akc0j")
@@ -126,6 +134,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_csjvn"]
+radius = 18.0278
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2ji81"]
 
@@ -217,39 +226,9 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1m4aj"]
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vlcy8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_r4mqb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wjmgp"]
-atlas = ExtResource("9_swmls")
-region = Rect2(0, 0, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ju378"]
-atlas = ExtResource("9_swmls")
-region = Rect2(1209, 0, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_miesp"]
-atlas = ExtResource("9_swmls")
-region = Rect2(2418, 0, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6gkx7"]
-atlas = ExtResource("9_swmls")
-region = Rect2(0, 816, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fnrrn"]
-atlas = ExtResource("9_swmls")
-region = Rect2(1209, 816, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_meyax"]
-atlas = ExtResource("9_swmls")
-region = Rect2(2418, 816, 1209, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rpf08"]
-atlas = ExtResource("9_swmls")
-region = Rect2(0, 1632, 1209, 816)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pq0cc"]
 atlas = ExtResource("10_w7amw")
@@ -257,32 +236,6 @@ region = Rect2(0, 0, 786, 786)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yb6j8"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wjmgp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ju378")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_miesp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6gkx7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fnrrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_meyax")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rpf08")
-}],
-"loop": true,
-"name": &"dash",
-"speed": 15.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pq0cc")
@@ -295,7 +248,86 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qae1d"]
 radius = 33.1361
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uditi"]
+atlas = ExtResource("9_swmls")
+region = Rect2(0, 0, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b70ig"]
+atlas = ExtResource("9_swmls")
+region = Rect2(1195, 0, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf44n"]
+atlas = ExtResource("9_swmls")
+region = Rect2(2390, 0, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj2bn"]
+atlas = ExtResource("9_swmls")
+region = Rect2(0, 816, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jrbx"]
+atlas = ExtResource("9_swmls")
+region = Rect2(1195, 816, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7ym"]
+atlas = ExtResource("9_swmls")
+region = Rect2(2390, 816, 1195, 816)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vgn7"]
+atlas = ExtResource("9_swmls")
+region = Rect2(0, 1632, 1195, 816)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgplh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uditi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b70ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf44n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj2bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jrbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h7ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vgn7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pqdf"]
+size = Vector2(763, 589)
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lxc8j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nekhb"]
+atlas = ExtResource("28_mmvui")
+region = Rect2(0, 0, 542, 556)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0hp7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nekhb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwakx"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycfkw"]
 
 [node name="spells_ninja_m_phldr" type="Node"]
 script = ExtResource("1_ltmo8")
@@ -305,14 +337,15 @@ script = ExtResource("2_kgxlw")
 
 [node name="aa_ninja_m" type="Area2D" parent="ctrlr_aa_ninja_m"]
 visible = false
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("3_mdg1u")
 
 [node name="anim_aa" type="AnimatedSprite2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
 sprite_frames = SubResource("SpriteFrames_x4dwk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
-shape = SubResource("CircleShape2D_8e3j6")
+position = Vector2(0, -12.5)
+shape = SubResource("CapsuleShape2D_10ip4")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_aa_ninja_m"]
 replication_config = SubResource("SceneReplicationConfig_ipvf1")
@@ -377,9 +410,11 @@ script = ExtResource("5_oxk5b")
 [node name="anim_ninja_m_3" type="AnimatedSprite2D" parent="ctrlr_ninja_m_3/dp_dashes_shadows/dash_shadow"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_o4sic")
+frame = 4
+frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_ninja_m_3/dp_dashes_shadows/dash_shadow"]
-shape = SubResource("CircleShape2D_1m4aj")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ctrlr_ninja_m_3/dp_dashes_shadows/dash_shadow"]
+polygon = PackedVector2Array(100, 0, -1, -11, -116, 0, -1, 10, 99, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_ninja_m_3/dp_dashes_shadows"]
 replication_config = SubResource("SceneReplicationConfig_vlcy8")
@@ -421,16 +456,50 @@ replication_config = SubResource("SceneReplicationConfig_r4mqb")
 [node name="ctrlr_special_ninja_m" type="Node2D" parent="."]
 script = ExtResource("21_amwjv")
 
-[node name="special_ninja_m" type="Area2D" parent="ctrlr_special_ninja_m"]
+[node name="counter" type="Area2D" parent="ctrlr_special_ninja_m"]
 visible = false
 script = ExtResource("8_4s33l")
 
-[node name="special_ninja_m_anim" type="AnimatedSprite2D" parent="ctrlr_special_ninja_m/special_ninja_m"]
+[node name="anim_counter" type="AnimatedSprite2D" parent="ctrlr_special_ninja_m/counter"]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_yb6j8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ninja_m/special_ninja_m"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ninja_m/counter"]
 shape = SubResource("CircleShape2D_qae1d")
+
+[node name="dash" type="Area2D" parent="ctrlr_special_ninja_m"]
+visible = false
+scale = Vector2(0.05, 0.05)
+script = ExtResource("24_1ye30")
+
+[node name="anim_dash" type="AnimatedSprite2D" parent="ctrlr_special_ninja_m/dash"]
+sprite_frames = SubResource("SpriteFrames_mgplh")
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ninja_m/dash"]
+position = Vector2(145.5, 10.5)
+shape = SubResource("RectangleShape2D_2pqdf")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_ninja_m"]
 replication_config = SubResource("SceneReplicationConfig_lxc8j")
+
+[node name="ctrlr_mark_ninja_m" type="Node2D" parent="."]
+script = ExtResource("25_6swwq")
+
+[node name="dp_mark" type="Node2D" parent="ctrlr_mark_ninja_m"]
+script = ExtResource("26_d4pg2")
+
+[node name="mark" type="Area2D" parent="ctrlr_mark_ninja_m/dp_mark"]
+visible = false
+script = ExtResource("27_ro3pv")
+
+[node name="anim_mark" type="AnimatedSprite2D" parent="ctrlr_mark_ninja_m/dp_mark/mark"]
+scale = Vector2(0.06, 0.06)
+sprite_frames = SubResource("SpriteFrames_w0hp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_mark_ninja_m/dp_mark/mark"]
+shape = SubResource("CircleShape2D_nwakx")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mark_ninja_m/dp_mark"]
+replication_config = SubResource("SceneReplicationConfig_ycfkw")

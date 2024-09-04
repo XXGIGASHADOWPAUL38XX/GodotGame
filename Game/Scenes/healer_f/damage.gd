@@ -12,13 +12,12 @@ func _ready():
 		
 		collision_shape = $CollisionShape2D
 		
+		await super._ready()
 				
 		animation.frame_changed.connect(func():
 			if animation.animation == "explode":
 				self.modulate.a == min(1, 1.2 - (animation.frame / 10))
 		)
-		
-		await super._ready()
 
 func active():
 	animation.animation = "default"

@@ -9,7 +9,7 @@ var current_angle: float = 0.0
 var missile
 var direction
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

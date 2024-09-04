@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/mage_f.gd" id="1_sybsp"]
 [ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="2_2ipmp"]
 [ext_resource type="PackedScene" uid="uid://srarkkpwqkkt" path="res://Game/Scenes/mage_f/spells_mage_f.tscn" id="3_hss6p"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)

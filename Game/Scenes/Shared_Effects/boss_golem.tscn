@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem.gd" id="1_iipq7"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/boss_golem_phldr.gd" id="1_ktsv5"]
 [ext_resource type="Texture2D" uid="uid://v6ins432o35e" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/Character_sheet.png" id="2_yip8k"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="4_21ask"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_21ask"]
 [ext_resource type="Texture2D" uid="uid://fklce4qylmdq" path="res://Game/Ressources/Main_Effects/Foozle_2DE0001_Pixel_Magic_Effects/Mecha-stone Golem 0.1/attack_sheet.png" id="5_4kiom"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/attack_golem.gd" id="5_beh7g"]
 

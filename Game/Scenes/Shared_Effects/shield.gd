@@ -12,12 +12,12 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:
 		self.position = champion_assigned.position
-		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool, 0.25, 0.5)
+		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool, 0.25, 0.5)
 			
 func active():
 	self.show()
 	champion_assigned.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
-	champion_assigned.add_state(self, 'states_action', State.StateAction.IMMOBILE)
+	champion_assigned.add_state(self, 'states_action', State.StateAction.CONCENTRATE)
 	
 	await get_tree().create_timer(duration).timeout
 	

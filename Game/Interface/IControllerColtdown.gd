@@ -5,7 +5,7 @@ class_name IControllerColtdown
 var coltdown_time
 var coltdown
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

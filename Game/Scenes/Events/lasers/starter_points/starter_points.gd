@@ -14,8 +14,8 @@ func _ready():
 		for i in range(ServiceScenes.rochers.size()):
 			Servrpc.any(self, 'add_starter_point', [ServiceScenes.rochers[i].global_position])
 		for i in range(1, 3 * 3): #ON COMMENCE A 1 POUR GARDER starter_point
-			var x = (i % 3) * get_window().size.x
-			var y = floor(i / 3) * get_window().size.y
+			var x = (i % 3) * ServiceWindow.scene_size.x
+			var y = floor(i / 3) * ServiceWindow.scene_size.y
 			Servrpc.any(self, 'add_starter_point', [Vector2(x, y)])
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

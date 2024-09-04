@@ -1,6 +1,5 @@
 extends IPhysicalSpell
 
-var animation
 var display_stones: Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -12,11 +11,10 @@ func _ready():
 		
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 	
-		animation = $anim_stone
 		cshape = $CollisionShape2D
-		animation.animation_finished.connect(collision)
-		
 		await super._ready()
+		
+		animation.animation_finished.connect(collision)
 		
 		launch_timer()
 
@@ -41,8 +39,8 @@ func launch_timer():
 
 func pre_fall():
 	self.global_position = Vector2(
-		randf_range(0, get_window().size.x * 2),
-		randf_range(0, get_window().size.y * 2)
+		randf_range(0, ServiceWindow.scene_size.x * 2),
+		randf_range(0, ServiceWindow.scene_size.y * 2)
 	)
 	
 	self.modulate.a = 1

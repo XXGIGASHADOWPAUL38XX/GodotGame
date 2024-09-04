@@ -1,6 +1,5 @@
 extends ICollision
 
-
 var collision
 
 var modulate_bool = false

@@ -6,9 +6,9 @@ var special_pulse
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_D
+		key = ServiceSettings.keys_values['key_special']
 		coltdown_time = 7
-		timer_key_release_cd = 10
+		timer_key_release_cd = 0.75
 		
 		await super._ready()
 		
@@ -16,8 +16,8 @@ func _ready():
 		special_pulse = $special_pulse
 
 func active():
-	super.active()
-	special_ring.can_active()
+	await super.active()
+	special_ring.active()
 
 func stop_spell():
 	super.stop_spell()

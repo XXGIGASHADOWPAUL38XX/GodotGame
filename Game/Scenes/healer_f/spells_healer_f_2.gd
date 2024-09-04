@@ -19,7 +19,7 @@ func _ready():
 
 func _process(_delta):
 	if is_multiplayer_authority():
-		modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool, 0.15, 0.4)
+		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool, 0.15, 0.4)
 		pass
 		
 func active():

@@ -1,7 +1,7 @@
 extends IDamagingSpell
  
 var distance_to_champion: float = 35.0
-var rotation_sp2_speed: float = 1.2
+var rotation_sp2_speed: float = 10
 var rotation_sp4_speed: float = 2 
 var current_angle: float = 0.0
 var delta_estimated: float = 0.0167
@@ -13,9 +13,8 @@ var HUD: Control
 var number_orb: int
 
 var angle: float
-var spread_speed: float = 2.5
+var spread_speed: float = 10
 var throw_speed: float = 15
-var comeback_speed: float = 6
 
 var should_rotate_champ: bool = false
 
@@ -25,8 +24,8 @@ const orb_kind = MageOrb.OrbKind.BLUE
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING spell #
-		damage_base = 6.0
-		damage_ratio = 0.2
+		damage_base = 3.0
+		damage_ratio = 0.1
 		# ------------------------------------ #
 		
 		duplicator = self.get_parent()
@@ -39,11 +38,6 @@ func _process(delta):
 	if is_multiplayer_authority() && champion.orb_kind == orb_kind:
 		if should_rotate_champ:
 			rotate_arround_champ(delta)
-			
-		#if (HUD == null):
-			#HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		#else:
-			#HUD.bindTo(coltdown_spell_2, 2)
 
 func post_dp_script(id, nbr_dupl):
 	self.number_orb = id
@@ -57,7 +51,7 @@ func active():
 	var direction = (get_global_mouse_position() - position).normalized()
 
 	self.show()
-	spell.play()	
+	spell.play()
 	
 	# SEPARE
 	for i in range(10):
@@ -75,6 +69,7 @@ func active():
 		
 	# COME BACK
 	while !ServiceSpell.is_close_to(self, champion, 30):
+		var comeback_speed = (self.position.distance_to(champion.position) / 20)
 		self.position += (champion.position - self.position).normalized() * comeback_speed
 		await get_tree().create_timer(0).timeout
 		

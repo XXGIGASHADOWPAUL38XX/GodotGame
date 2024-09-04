@@ -3,12 +3,12 @@ extends IControllerKeyPressed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_E
+		key = ServiceSettings.keys_values['key_spell_3']
 		coltdown_time = 6
 		
 		await super._ready()
 
 func active():
-	super.active()
-	$damage.can_active()
+	await super.active()
+	$damage.active()
 	

@@ -25,7 +25,7 @@ func distance_range_max(champion_position, mouse_position, distance_max):
 	var distance_max_value = (mouse_position - champion_position).normalized() * distance_max
 	return champion_position + distance_max_value
 
-func modulate_obj(node: Node2D, modulate_up: bool, modulate_min=0.5, modulate_max=1, modulate_spd=0.003):
+func modulate_obj(node: Node, modulate_up: bool, modulate_min=0.5, modulate_max=1, modulate_spd=0.005):
 	if node.modulate.a <= modulate_min:
 		modulate_up = true
 	elif node.modulate.a >= modulate_max:
@@ -64,10 +64,10 @@ func push_ennemy_ca(node, champion_to_push, push_strength, retry_instance): #AT 
 		var push_point = node.position + ((champion_to_push.position - node.position).normalized() * (width))
 		var position_differencial = push_point - champion_to_push.position
 		
-		if !(champ_dist_to_center > width):
+		if champ_dist_to_center < width:
 			champion_to_push.position = champion_to_push.position + position_differencial
 			
 		await get_tree().create_timer(0.02).timeout
 		
 func animation_duration(animation: AnimatedSprite2D):
-	return animation.sprite_frames.get_frame_count(animation.animation) / animation.speed_scale
+	return animation.sprite_frames.get_frame_count(animation.animation) / animation.sprite_frames.get_animation_speed(animation.animation)

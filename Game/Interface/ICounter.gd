@@ -10,16 +10,16 @@ var CONF_DETECT_WITH_SP
 var HAS_DMG_EFFECT = false
 
 func _ready():
-	if CONF_DETECT_WITH_SP == null:
-		CONF_DETECT_WITH_SP = ServiceScenes.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
-		CONF_DETECT_WITH_SP = CONF_DETECT_WITH_SP.reduce(func(a, b): return a + b)
-	
 	self.area_entered.connect(func(obj): 
 		if CONF_DETECT_WITH_SP.find(obj) != -1 && obj.visible:
 			spell_entered(obj)
 	)
 	
 	await super._ready()
+	
+	if CONF_DETECT_WITH_SP == null:
+		CONF_DETECT_WITH_SP = ServiceScenes.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
+		CONF_DETECT_WITH_SP = CONF_DETECT_WITH_SP.reduce(func(a, b): return a + b)
 
 func spell_entered(spell): #FAIRE LES DEGATS
 	spell_hitted = spell
@@ -29,7 +29,7 @@ func spell_entered(spell): #FAIRE LES DEGATS
 		
 func get_all_ennemies_spells(node):
 	var spells = []
-	if node is Area2D && node.name.begins_with('spell'):
+	if node is ICollision:
 		spells.append(node)
 	else:
 		for child in node.get_children():

@@ -26,11 +26,12 @@ func active(base_destination):
 	
 	var base_direction: Vector2 = (base_destination - base_position)
 	var distance_to_dstn_base = self.position.distance_to(base_destination)
+	var steps = ceil(self.position.distance_to(base_destination) / speed)
 	
 	self.show()
 	animation.play()
 	
-	while (self.position.distance_to(base_destination) >= speed):
+	for i in range(steps):
 		var perpendicular_point = base_position + (base_direction * ((self.position - base_position).dot(base_direction) / base_direction.length_squared()))
 		var current_distance_to_dstn = perpendicular_point.distance_to(base_destination)
 		var cross_calcul_rotation = deg_arc - (2 * deg_arc * (current_distance_to_dstn / distance_to_dstn_base))

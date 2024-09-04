@@ -3,37 +3,56 @@ extends Control
 var camera
 var announce_y_offset = 0
 
+@onready var label = $VBoxContainer/HBoxContainer/MarginContainer3/Panel_label/Label
+@onready var panel_logo_left = $VBoxContainer/HBoxContainer/Panel_left
+@onready var panel_logo_rigth = $VBoxContainer/HBoxContainer/Panel_right
+
+@onready var logo_left = $VBoxContainer/HBoxContainer/Panel_left/MarginContainer/Logo_left
+@onready var logo_right = $VBoxContainer/HBoxContainer/Panel_right/MarginContainer/Logo_right
+
+var ally_color = Color(0, 1, 1, 0.7)
+var ennemy_color = Color(1, 0, 0, 0.7)
+var neutral_color = Color(0.7, 0.7, 0.7, 0.7)
+
+var announce_queue = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	ServiceScenes.announcer_scene = self
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if camera == null:
-		camera = ServiceScenes.getCamera()
+		camera = ServiceScenes.camera
 	else:
 		self.position = Vector2(camera.offset.x, camera.offset.y + announce_y_offset)
 
-func set_announce(announce, logo_left, logo_right, champion=null): #RELATIVE = RELATIVE TO ONE SPECIFIC PLAYER 
+func set_announce(announce_text, logo_left_texture, logo_right_texture, champion=null): #RELATIVE = RELATIVE TO ONE SPECIFIC PLAYER 
+	var random_id = randf()
+	announce_queue[random_id] = Announce.new(announce_text, logo_left_texture, logo_right_texture, champion)
 	
-	position_announce()
+	if announce_queue.keys().size() == 1:
+		display_announce(random_id, announce_queue[random_id])
 	
-	$HBoxContainer/Label.text = announce
+func display_announce(random_id, announce: Announce):
+	label.text = announce.text
 	
-	if !(champion in ServiceScenes.players):
-		$HBoxContainer/Label.add_theme_color_override('font_color', Color.WHITE)
-	elif ServiceScenes.is_on_same_team(ServiceScenes.champion, champion):
-		$HBoxContainer/Label.add_theme_color_override('font_color', Color.BLUE)
+	if !(announce.champion in ServiceScenes.allPlayersNode):
+		panel_logo_left.modulate = neutral_color
+		panel_logo_rigth.modulate = neutral_color
 	else:
-		$HBoxContainer/Label.add_theme_color_override('font_color', Color.RED)
+		panel_logo_left.modulate = ally_color if ServiceScenes.is_on_same_team(ServiceScenes.championNode, announce.champion) else ennemy_color
+		panel_logo_rigth.modulate = ally_color if ServiceScenes.is_on_same_team(ServiceScenes.championNode, announce.champion) else ennemy_color
 
-	
-	$HBoxContainer/Logo_left.texture = load(logo_left)
-	$HBoxContainer/Logo_right.texture = load(logo_right)
+	logo_left.texture = load(announce.logo_left)
+	logo_right.texture = load(announce.logo_right)
 	show_announcer()
 	
-	await get_tree().create_timer(2).timeout
-	hide_announcer()
+	await get_tree().create_timer(1).timeout
+	await hide_announcer()
+	await get_tree().create_timer(0.2).timeout
+	
+	announce_done(random_id)
 	
 func show_announcer():
 	self.modulate.a = 0
@@ -49,13 +68,11 @@ func hide_announcer():
 		await get_tree().create_timer(0).timeout
 		
 	self.hide()
-	self.queue_free()
+
+func announce_done(random_id):
+	announce_queue.erase(random_id)
 	
-func position_announce():
-	var existing_announce = ServiceScenes.getMainScene().get_children().filter(
-		func(obj):
-			return obj.get_name().find('@announcer') != -1
-	)
-	
-	announce_y_offset = (existing_announce.size() - 1) * 50
+	if announce_queue.keys().size() != 0:
+		var next_announce_key = announce_queue.keys()[0]
+		display_announce(next_announce_key, announce_queue[next_announce_key])
 	

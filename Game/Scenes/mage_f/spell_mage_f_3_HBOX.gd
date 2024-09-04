@@ -2,7 +2,8 @@ extends HBoxContainer
 
 var multip_sync_path = "./../../MultiplayerSynchronizer"
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
+var resource_awaiter = ResourceAwaiter.new()
 
 var spell3_elements = {
 	MageOrb.OrbKind.GOLD: preload("res://Game/Ressources/Heros/mage_f/spell3_1_mage.png"),
@@ -16,7 +17,7 @@ var champion
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		await await_resource_loaded(func(): return ServiceScenes.championNode != null)
+		await resource_awaiter.await_resource_loaded(func(): return ServiceScenes.championNode != null)
 		
 		champion = ServiceScenes.championNode
 		sorted_slots = spell3_elements.keys()
@@ -34,7 +35,7 @@ func can_active():
 
 func active():
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 
-		return sorted_slots.find(slot) != sorted_slots.size() - 1
+		return slot != sorted_slots[sorted_slots.size() - 1]
 	)
 
 	champion.update_orb_kind(sorted_slots[0])

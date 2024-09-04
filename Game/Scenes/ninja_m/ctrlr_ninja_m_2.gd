@@ -7,7 +7,7 @@ var ennemies_marked: Array:
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_Z
+		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 6
 		cast_time = ServiceSpell.animation_duration($dash/anim_ninja_m_2)
 		
@@ -17,16 +17,21 @@ func _ready():
 		
 		await super._ready()
 		
-		dash.func_on_entity_entered.append(Callable(self, 'reset').bind(true))
-		dash.area_entered.connect(func(area): if area in spells_placeholder.shadows:
-			reset()
-			area.has_been_dashed_to()
+		dash.area_entered.connect(func(area): 
+			if area in spells_placeholder.shadows:
+				reset()
+				area.has_been_dashed_to()
+				spells_placeholder.marks.map(func(mark):
+					mark.show_on_shadow_entered()
+				)
+			elif area in spells_placeholder.marks:
+				reset()
+				area.hide_on_dash()
 		)
 
 func active():
-	super.active()
-	dash.can_active()
-	
+	await super.active()
+	dash.active()
 
 func reset(is_champion=false):
 	if is_champion:

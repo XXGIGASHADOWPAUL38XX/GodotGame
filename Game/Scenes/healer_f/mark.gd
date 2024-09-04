@@ -2,7 +2,6 @@ extends IActive
 
 const OFFSET_Y = 60
 
-
 var mark_overall_node
 
 var cd_target = 10.0
@@ -37,7 +36,7 @@ func _process(delta):
 		if target_timer.time_left == 0:
 			self.hide()
 		elif target_timer.time_left < 2.5:
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 		else:
 			self.show()
 
@@ -52,9 +51,9 @@ func send_to_local(player_hitted):
 
 func fully_completed_mark():
 	animation.frame = 0
-	mark_overall_node.sphere_regen.can_active()
+	mark_overall_node.sphere_regen.active()
 	Servrpc.send_to_multi_auth(key_ennemy_marked, 'stun', [key_ennemy_marked])
 	
 func stun(key_ennemy_marked):
-	key_ennemy_marked.add_state(self, 'states_action', State.StateAction.IMMOBILE, 0.75)
+	key_ennemy_marked.add_state(self, 'states_action', State.StateAction.CONCENTRATE, 0.75)
 

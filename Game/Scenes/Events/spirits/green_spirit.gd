@@ -10,15 +10,16 @@ var base_position_spawn
 var direction_vector
 var modulate_bool: bool = false
 
-var healing_base
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
 		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
 		
 		# DEFINITION VARIABLES IDAMAGING SPELL #
-		healing_base = 3.0
+		damage_base = -3.0
+		
+		retrigger = true
+		retrigger_time = 0.75
 		# ------------------------------------ #
 		
 		var direction = randi_range(0, 1)
@@ -37,7 +38,7 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority():
 		if animation.animation == 'special':
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 			self.rotate(delta)
 		else:
 			self.position += direction_vector
@@ -51,8 +52,8 @@ func spawn():
 	self.modulate.a = 1
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, (ServiceWindow.scene_size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (ServiceWindow.scene_size.y * 2) - MARGIN_SPAWN_Y))
 		
 	self.position = base_position_spawn
 	self.show()
@@ -82,6 +83,3 @@ func activate():
 	
 	await get_tree().create_timer(5).timeout
 	die_animation()
-
-func output_damage_f(champion_hitted):
-	return healing_base * -1

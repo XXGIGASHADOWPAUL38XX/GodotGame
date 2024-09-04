@@ -1,156 +1,319 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsrslssd2npjh"]
+[gd_scene load_steps=21 format=3 uid="uid://dsrslssd2npjh"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Selection/selection_scene.gd" id="1_iitgv"]
-[ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="2_0slvs"]
 [ext_resource type="Texture2D" uid="uid://d2lkmmh1b1aw5" path="res://Game/Ressources/test.png" id="2_soml8"]
 [ext_resource type="Texture2D" uid="uid://dhjinrei00osc" path="res://Game/Ressources/test_hover.png" id="3_ig8d2"]
-[ext_resource type="Texture2D" uid="uid://c8c8fsvp02jxd" path="res://Game/Ressources/Heros/icons_champ_select_2/mage_f.png" id="4_2g02x"]
-[ext_resource type="Texture2D" uid="uid://bqt5ji3me6qwp" path="res://Game/Ressources/Selection/empty_selected_champion.png" id="5_1ea3f"]
-[ext_resource type="Texture2D" uid="uid://xq8kx4aty1x4" path="res://Game/Ressources/Heros/icons_champ_select_2/ranger_m.png" id="5_jym07"]
+[ext_resource type="Texture2D" uid="uid://copfkmg1x1mce" path="res://Game/Ressources/Heros/cs_icons/empty.png" id="4_qw24y"]
+[ext_resource type="Texture2D" uid="uid://c8c8fsvp02jxd" path="res://Game/Ressources/Heros/selection_icons/mage_f.png" id="5_8mf75"]
 [ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="6_5uusl"]
-[ext_resource type="Texture2D" uid="uid://cmbb4gdack6ei" path="res://Game/Ressources/Heros/icons_champ_select_2/warrior_m.png" id="6_e7yvf"]
-[ext_resource type="Texture2D" uid="uid://25ob2ovp4x4j" path="res://Game/Ressources/Heros/icons_champ_select_2/ninja_m.png" id="7_c1sye"]
-[ext_resource type="Texture2D" uid="uid://cvwbrg68s4s76" path="res://Game/Ressources/Heros/icons_champ_select_2/healer_f.png" id="8_nbjai"]
-[ext_resource type="Texture2D" uid="uid://q3ojbo56f25m" path="res://Game/Ressources/Heros/icons_champ_select_2/tank_m.png" id="9_ilhmo"]
-[ext_resource type="Texture2D" uid="uid://ch2fjccudxr0" path="res://Game/Ressources/Heros/icons_champ_select_2/witcher_f.png" id="10_h4van"]
-[ext_resource type="Texture2D" uid="uid://ccu2etfcy862" path="res://Game/Ressources/Heros/icons_champ_select_2/bomber_f.png" id="11_c37rt"]
-[ext_resource type="Texture2D" uid="uid://bm5cy0k0ki0cb" path="res://Game/Ressources/Heros/icons_champ_select_2/fighter_f.png" id="12_bittn"]
+[ext_resource type="Texture2D" uid="uid://cmbb4gdack6ei" path="res://Game/Ressources/Heros/selection_icons/warrior_m.png" id="6_rn1s3"]
+[ext_resource type="Texture2D" uid="uid://xq8kx4aty1x4" path="res://Game/Ressources/Heros/selection_icons/ranger_m.png" id="7_b2dqr"]
+[ext_resource type="Texture2D" uid="uid://25ob2ovp4x4j" path="res://Game/Ressources/Heros/selection_icons/ninja_m.png" id="7_c1sye"]
+[ext_resource type="Texture2D" uid="uid://cvwbrg68s4s76" path="res://Game/Ressources/Heros/selection_icons/healer_f.png" id="8_nbjai"]
+[ext_resource type="Texture2D" uid="uid://q3ojbo56f25m" path="res://Game/Ressources/Heros/selection_icons/tank_m.png" id="9_ilhmo"]
+[ext_resource type="Texture2D" uid="uid://ch2fjccudxr0" path="res://Game/Ressources/Heros/selection_icons/witcher_f.png" id="10_h4van"]
+[ext_resource type="Texture2D" uid="uid://ccu2etfcy862" path="res://Game/Ressources/Heros/selection_icons/bomber_f.png" id="11_c37rt"]
+[ext_resource type="Texture2D" uid="uid://bm5cy0k0ki0cb" path="res://Game/Ressources/Heros/selection_icons/fighter_f.png" id="12_bittn"]
+[ext_resource type="Texture2D" uid="uid://q4jju20mqa86" path="res://Game/Ressources/Background/background2.png" id="15_0bn0d"]
 
-[node name="main" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy0re"]
+bg_color = Color(0.122252, 0.122252, 0.122252, 0.392157)
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td4sg"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnlav"]
+bg_color = Color(0, 0, 0, 0.117647)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7486"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8sud"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_iitgv")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.721569)
+modulate = Color(0.741176, 0.741176, 0.741176, 0.352941)
 show_behind_parent = true
-z_index = -1
-offset_top = 2.0
-offset_right = 1280.0
-offset_bottom = 722.0
-texture = ExtResource("2_0slvs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_0bn0d")
+expand_mode = 1
 
-[node name="Team_1" type="VBoxContainer" parent="."]
-offset_left = 50.0
-offset_top = 380.0
-offset_right = 410.0
-offset_bottom = 640.0
-theme_override_constants/separation = 20
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Player_1" type="TextureRect" parent="Team_1"]
-self_modulate = Color(0.121569, 0.121569, 0.121569, 0.301961)
-custom_minimum_size = Vector2(300, 120)
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_1ea3f")
-expand_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xy0re")
 
-[node name="Player_2" type="TextureRect" parent="Team_1"]
-self_modulate = Color(0.121569, 0.121569, 0.121569, 0.301961)
-custom_minimum_size = Vector2(300, 120)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-texture = ExtResource("5_1ea3f")
-expand_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Team_2" type="VBoxContainer" parent="."]
-offset_left = 800.0
-offset_top = 380.0
-offset_right = 1160.0
-offset_bottom = 640.0
-theme_override_constants/separation = 20
-
-[node name="Player_1" type="TextureRect" parent="Team_2"]
-self_modulate = Color(0.121569, 0.121569, 0.121569, 0.301961)
-custom_minimum_size = Vector2(300, 120)
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("5_1ea3f")
-expand_mode = 2
+size_flags_vertical = 3
 
-[node name="Player_2" type="TextureRect" parent="Team_2"]
-self_modulate = Color(0.121569, 0.121569, 0.121569, 0.301961)
-custom_minimum_size = Vector2(300, 120)
+[node name="announcer_progress" parent="VBoxContainer/PanelContainer/MarginContainer/CenterContainer" instance=ExtResource("6_5uusl")]
 layout_mode = 2
-texture = ExtResource("5_1ea3f")
-expand_mode = 2
+size_flags_horizontal = 1
 
-[node name="Champions" type="HBoxContainer" parent="."]
-offset_left = 400.0
-offset_top = 320.0
-offset_right = 874.0
-offset_bottom = 370.0
-
-[node name="mage_f" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("4_2g02x")
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="Team_1" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_td4sg")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+theme_override_constants/margin_top = 0
+
+[node name="Player_1" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_qw24y")
+expand_mode = 1
+
+[node name="Player_2" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_qw24y")
+expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+theme_override_styles/panel = SubResource("StyleBoxFlat_xnlav")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="Champions" type="GridContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/v_separation = 20
+columns = 6
+
+[node name="mage_f" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+layout_mode = 2
+texture_normal = ExtResource("5_8mf75")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="warrior_m" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="warrior_m" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
 layout_mode = 2
-texture_normal = ExtResource("6_e7yvf")
+texture_normal = ExtResource("6_rn1s3")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ranger_m" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="ranger_m" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
 layout_mode = 2
-texture_normal = ExtResource("5_jym07")
+texture_normal = ExtResource("7_b2dqr")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="ninja_m" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="ninja_m" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("7_c1sye")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="healer_f" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="healer_f" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("8_nbjai")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="tank_m" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="tank_m" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("9_ilhmo")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="witcher_f" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="witcher_f" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("10_h4van")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="bomber_f" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="bomber_f" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("11_c37rt")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="fighter_f" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(65, 0)
+[node name="fighter_f" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("12_bittn")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="random" type="TextureButton" parent="Champions"]
-custom_minimum_size = Vector2(60, 50)
+[node name="random" type="TextureButton" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/Champions"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 texture_normal = ExtResource("2_soml8")
 texture_hover = ExtResource("3_ig8d2")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="announcer_progress" parent="." instance=ExtResource("6_5uusl")]
-offset_left = 600.0
-offset_top = 300.0
-offset_right = 600.0
-offset_bottom = 300.0
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
 
-[connection signal="anncounce_timeout" from="announcer_progress" to="." method="_on_announcer_anncounce_timeout"]
+[node name="Team_2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7486")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Player_1" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_qw24y")
+expand_mode = 1
+flip_h = true
+
+[node name="Player_2" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_qw24y")
+expand_mode = 1
+flip_h = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+theme_override_constants/margin_top = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8sud")
+
+[connection signal="anncounce_timeout" from="VBoxContainer/PanelContainer/MarginContainer/CenterContainer/announcer_progress" to="." method="_on_announcer_anncounce_timeout"]

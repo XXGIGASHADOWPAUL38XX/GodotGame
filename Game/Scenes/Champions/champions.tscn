@@ -1,0 +1,325 @@
+[gd_scene load_steps=13 format=3 uid="uid://6o070r41tk7q"]
+
+[ext_resource type="Texture2D" uid="uid://c3mtv0gvii2qq" path="res://Game/Ressources/UI/1v1/bg.png" id="1_6hkwt"]
+[ext_resource type="Script" path="res://Game/Scenes/Champions/dp_champion_box.gd" id="2_q0w4v"]
+[ext_resource type="Texture2D" uid="uid://0vv3rlaurb4e" path="res://Game/Ressources/UI/Friends/friend_bg.png" id="3_u6nua"]
+[ext_resource type="Script" path="res://Game/Scenes/Champions/champion.gd" id="4_o34lr"]
+[ext_resource type="Texture2D" uid="uid://cqqyr13apibqb" path="res://Game/Ressources/UI/Champions/damage.png" id="5_k13l0"]
+[ext_resource type="Texture2D" uid="uid://bi0vwh4ep0cvf" path="res://Game/Ressources/UI/Champions/resistance.png" id="6_d87a8"]
+[ext_resource type="Texture2D" uid="uid://inb4a2s15vfv" path="res://Game/Ressources/UI/Champions/mobility.png" id="7_i30j7"]
+[ext_resource type="Texture2D" uid="uid://bqjtd08n1wab6" path="res://Game/Ressources/UI/Champions/utility.png" id="8_aec1r"]
+[ext_resource type="Texture2D" uid="uid://bejy2ttph4tc3" path="res://Game/Ressources/UI/Champions/controls.png" id="9_vqa18"]
+[ext_resource type="Texture2D" uid="uid://nohgrbak3bga" path="res://Game/Ressources/UI/Champions/difficulty.png" id="10_fuphu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_af5f7"]
+texture = ExtResource("1_6hkwt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxpw1"]
+texture = ExtResource("3_u6nua")
+
+[node name="Champions" type="Control"]
+layout_mode = 3
+anchor_right = 0.747
+anchor_bottom = 0.794
+offset_right = 0.599976
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = -50
+
+[node name="PanelContainer" type="PanelContainer" parent="margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_af5f7")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="margin/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="dp_champion_box" type="Node2D" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer"]
+script = ExtResource("2_q0w4v")
+
+[node name="champion" type="PanelContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_rxpw1")
+script = ExtResource("4_o34lr")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="champion_vbox" type="VBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 4.0
+text = "mage f"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="damage" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/damage/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("5_k13l0")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/damage"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/damage/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="resistance" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/resistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/resistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/resistance/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("6_d87a8")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/resistance"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/resistance/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="mobility" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/mobility"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/mobility"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/mobility/MarginContainer2"]
+modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("7_i30j7")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/mobility"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/mobility/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="utility" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/utility"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/utility"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/utility/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("8_aec1r")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/utility"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/utility/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="controls" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/controls/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("9_vqa18")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/controls/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="difficulty" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/difficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[node name="MarginContainer2" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/difficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/difficulty/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("10_fuphu")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/difficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 8
+
+[node name="stats_bars" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/ScrollContainer/GridContainer/champion/MarginContainer/champion_vbox/difficulty/margin"]
+layout_mode = 2
+theme_override_constants/separation = 10

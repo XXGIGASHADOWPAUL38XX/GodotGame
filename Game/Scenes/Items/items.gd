@@ -1,7 +1,8 @@
 extends Control
 
-var orbs_grid: GridContainer
-var items_container: VBoxContainer
+@onready var orbs_grid: GridContainer = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer
+@onready var items_container: VBoxContainer = $PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items
+@onready var number_orb = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel/number
 
 var item_class = preload("res://Game/Classes/Item/item.gd").new()
 var actif_class = preload("res://Game/Classes/Actifs/actifs.gd").new()
@@ -9,20 +10,20 @@ var actif
 
 var camera
 var key_p_pressed = false
-var mouse_l_pressed = false
 
 var orbs = []
 var items = []
-var number_orb
 var orb_dict: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ServiceScenes.items = self
-	camera = ServiceScenes.getCamera()
-	number_orb = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer/MarginContainer/general_orb_panel/number
-	orbs_grid = $PanelContainer/VBoxContainer/Orbs/Actifs/GridContainer as GridContainer
-	items_container = $PanelContainer/VBoxContainer/CenterContainer/ScrollContainer/Items
+	camera = ServiceScenes.camera
+	
+	self.visibility_changed.connect(func():
+		if self.visible:
+			ServiceScenes.main_scene.move_child(self, ServiceScenes.main_scene.get_child_count() - 1)
+	)
 	
 	number_orb_value(4)
 	
@@ -34,9 +35,9 @@ func _ready():
 		var label_number = panel.get_node("number")
 		label_number.text = str(0)
 		
-		panel.mouse_entered.connect(mouse_panel.bind(panel))
-		panel.mouse_exited.connect(mouse_panel.bind(panel))
-		panel.mouse_entered.connect(displayStats.bind(item_class.get(orb.name)))
+		orb.mouse_entered.connect(mouse_panel.bind(panel))
+		orb.mouse_exited.connect(mouse_panel.bind(panel))
+		orb.mouse_entered.connect(displayStats.bind(item_class.get(orb.name)))
 		orb.pressed.connect(orb_gained.bind(orb.name, label_number))
 
 func get_all_textureButton(node: Control):
@@ -80,49 +81,56 @@ func mouse_panel(panel):
 	panel.modulate = Color.WHITE
 
 func load_active(orb: Control):
-	var orb_texture_button = orb.get_node("GridContainer").get_node("MarginContainer").get_node("Panel5").get_child(0)
+	var orb_texture_button = orb.item_actif
 	
-	var champion = ServiceScenes.champion.name
 	ServiceOrbs.instanciate_orb(orb.get_name())
 	ServiceAnimations.set_animation(ServiceScenes.championNode, 'animation_upgraded')
-	ServiceAnnounce.set_announce(
-		champion + ' purchased orb active : ' + orb.get_name(),
-		'res://Game/Ressources/Heros/icons/' + champion  + '.png',
-		orb_texture_button.texture_normal.resource_path, champion
-	)
+	
+	for i in range(3):
+		ServiceAnnounce.set_announce(
+			ServiceScenes.championNode.name + ' purchased orb active : ' + orb.get_name(),
+			'res://Game/Ressources/Heros/icons/' + ServiceScenes.championNode.name  + '.png',
+			orb_texture_button.texture_normal.resource_path, ServiceScenes.championNode
+		)
+		
+		await get_tree().create_timer(0.4).timeout
 #	disable_actifs()
 
-
-
 func orb_gained(item_name, label_number):
-	if int(number_orb.text) > 0:
-		label_number.text = str(int(label_number.text) + 1)
-		number_orb_value(int(number_orb.text) - 1)
-		if orb_dict.has(item_name):
-			orb_dict[item_name] += 1
+	if int(number_orb.text) == 0:
+		return 
+		
+	label_number.text = str(int(label_number.text) + 1)
+	number_orb_value(int(number_orb.text) - 1)
+	
+	if orb_dict.has(item_name):
+		orb_dict[item_name] += 1
+	else:
+		orb_dict[item_name] = 1
+	
+	ServiceScenes.HUD.update_items(orb_dict)
+	update_status_items(item_name)
+		
+func item_bought(orb):
+	orb_dict[orb.item_actif.name] = 1
+	
+	for IItem in orb.items_container:
+		if orb_dict[IItem.name] == 1:
+			orb_dict.erase(IItem.name)
 		else:
-			orb_dict[item_name] = 1
-		
-		items.filter(func(IItem): return IItem.is_not_selected()).map(
-			func(IItem): IItem.status_texture_button(orb_dict))
-		item_stats(item_name)
-		
-func item_bought(item):
-	orb_dict = {}
+			orb_dict[IItem.name] -= 1
 	
-	items.filter(func(IItem): return IItem.is_not_selected()).map(
-		func(IItem): IItem.status_texture_button(orb_dict))
-	item_stats(item)
-	
+	ServiceScenes.HUD.update_items(orb_dict)
+	update_status_items(orb.item_actif.name)
 	var item_texture = items_container.get_children().filter(
-		func(x): return x.get_name().to_lower() == item.to_lower())[0]
+		func(x): return x.get_name().to_lower() == orb.name.to_lower())[0]
 		
 	load_active(item_texture)
 	
 func item_stats(item_name):
 	var item = item_class.get(item_name)
 	ServiceStats.update_stats_from_item(ServiceScenes.championNode, item)
-	get_parent().get_node('stats_heros').update_stats_local()
+	ServiceScenes.HUD.display_stats()
 
 func on_click_passive_rpc(orb, champion, id):
 	var passive_orb = load("res://Game/Scenes/Orbs_passive/" + orb + "_passive.tscn").instantiate()
@@ -136,4 +144,7 @@ func number_orb_value(number):
 		obj.get_parent().modulate = Color.DARK_GRAY if int(number_orb.text) == 0 else Color.WHITE
 	)
 
-
+func update_status_items(item_name):
+	items.filter(func(IItem): return IItem.is_not_selected()).map(
+		func(IItem): IItem.status_texture_button(orb_dict))
+	item_stats(item_name)

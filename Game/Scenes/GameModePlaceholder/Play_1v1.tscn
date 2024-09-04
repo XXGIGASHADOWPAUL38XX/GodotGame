@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhlm7jsgn41if"]
+
+[ext_resource type="Script" path="res://Game/Scenes/GameModePlaceholder/Play_1v1.gd" id="1_82ini"]
+[ext_resource type="Texture2D" uid="uid://bupclca5pbjdk" path="res://Game/Ressources/UI/1v1/1v1.png" id="2_e8eml"]
+[ext_resource type="Texture2D" uid="uid://c3mtv0gvii2qq" path="res://Game/Ressources/UI/1v1/bg.png" id="2_grb43"]
+[ext_resource type="Theme" uid="uid://ditl685qhac42" path="res://Game/Themes/Themes/theme_menu.tres" id="2_t438b"]
+[ext_resource type="PackedScene" uid="uid://c03hfjgc365a5" path="res://Game/Scenes/Friends/friend_list.tscn" id="5_fpjcj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ob4rj"]
+texture = ExtResource("2_grb43")
+
+[node name="Play_1v1" type="Control"]
+layout_mode = 3
+anchor_right = 0.497
+anchor_bottom = 0.794
+offset_right = 300.6
+offset_bottom = 0.0799561
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_82ini")
+
+[node name="margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = -50
+
+[node name="PanelContainer" type="PanelContainer" parent="margin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ob4rj")
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.25
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="TextureRect" type="TextureRect" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_e8eml")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_t438b")
+text = "PLAY"
+
+[node name="Cancel" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_t438b")
+text = "Cancel"
+
+[node name="Champions" type="Button" parent="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_t438b")
+text = "GO TO CHAMPIONS"
+
+[node name="friend_list" parent="margin/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_fpjcj")]
+layout_mode = 2
+
+[connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

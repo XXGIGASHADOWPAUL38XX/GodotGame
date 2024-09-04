@@ -1,9 +1,10 @@
 extends Node
-var end_screen = preload("res://Game/Scenes/End_Screen/end_screen.tscn").instantiate()
 
 # OBJECTS PLAYERS
 var players
 var champion
+var allies
+var ennemies
 
 # NODES PLAYERS
 var championNode
@@ -18,7 +19,16 @@ var allEnnemiesNode = [] # INCLUDE MONSTERS AND OBJECTS
 # REFERENCES TO SCENES
 var root_scene
 var loading_game
+var loading_async
 var main_scene
+var menu_scene
+var settings_scene
+var settings_scene_cvalue
+var announcer_scene
+var end_screen_scene
+var events_scene
+
+var announcer_ui
 var HUD
 var items
 var camera
@@ -41,10 +51,12 @@ func get_players():
 	return players
 	
 func set_global_players():
-	champion = players.filter(
-		func(obj):
-			return obj.id == Server.get_actual_player()
-	)[0]
+	champion = players.filter(func(obj): return obj.id == Server.get_client_id())[0]
+	
+	allies = players.filter(func(obj): return obj.team.id == champion.team.id)
+	
+	ennemies = players.filter(func(obj): return obj.team.id != champion.team.id)
+		
 	championNode = champion.node
 	
 	alliesNode += players.filter(func(obj): return obj.is_ally()).map(
@@ -57,15 +69,9 @@ func set_global_players():
 		
 	allPlayersNode = alliesNode + ennemiesNode
 	allEnnemiesNode += ennemiesNode
-
-func getAllPlayersNodes():
-	return allPlayersNode
 	
 func getPlayerByName(player_name):
-	var player = players.filter(
-		func(obj):
-			return obj.name == player_name
-	)[0]
+	var player = players.filter(func(obj): return obj.name == player_name)[0]
 
 func getMainScene():
 	return main_scene
@@ -73,12 +79,6 @@ func getMainScene():
 func setMainScene(scene):
 	main_scene = scene
 
-func getCamera():
-	return camera
-	
-func setCamera(cam):
-	camera = cam
-	
 func getSENode():
 	return SENode
 	
@@ -97,14 +97,6 @@ func get_property_from_player(player_node, property):
 			return player.node == player_node
 	)[0].get(property)
 
-func end_game(node):
-	##!!
-	node.add_child(end_screen)
-	node.get_parent().get_parent().get_node(Server.get_opponent()).add_child(end_screen)
-	
-	node.get_node('end_screen').end_game(false)
-	node.get_parent().get_parent().get_node(Server.get_opponent()).end_game(true)
-	
 func is_on_same_team(champion_1, champion_2):
 	var team_champion_1 = alliesNode if champion_1 in alliesNode else ennemiesNode
 	return champion_2 in team_champion_1

@@ -5,7 +5,7 @@ var cubes
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_SPACE
+		key = ServiceSettings.keys_values['key_ultimate']
 		coltdown_time = 13
 		
 		zone_ult = $zone_ult
@@ -19,6 +19,6 @@ func _ready():
 		)
 
 func active():
-	super.active()
-	zone_ult.can_active()
-	cubes.map(func(c): c.can_active())
+	await super.active()
+	zone_ult.active()
+	cubes.map(func(c): c.active())

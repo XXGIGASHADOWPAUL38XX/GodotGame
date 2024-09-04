@@ -1,4 +1,4 @@
-extends Node
+class_name ServiceTime
 
 func init_timer(root, coltdown):
 	var timer := Timer.new()

@@ -5,16 +5,8 @@ func _ready():
 		self.modulate.a = 0
 		await super._ready()
 		
-		func_on_spell_entered.append(Callable(self, 'explode'))
+		func_on_spell_entered.append(Callable(spell_controller.explode, 'active'))
 		
-		animation.animation = 'default'
-					
-		animation.scale = Vector2(0.06, 0.06)
-		animation.animation_changed.connect(func() : 
-			HAS_DMG_EFFECT = animation.animation == 'explode'
-			self.modulate = 1 if animation.animation == 'explode' else 0
-		)
-
 func _process(_delta):
 	if is_multiplayer_authority() && self.visible:
 		self.rotate(deg_to_rad(1))
@@ -33,12 +25,3 @@ func stop_spell():
 		await get_tree().create_timer(0.0).timeout
 
 	self.hide()
-
-func explode():
-	animation.play('explode')
-	for i in range(15):
-		animation.scale += Vector2(0.01, 0.01)
-		await get_tree().create_timer(0.01).timeout
-	
-	animation.scale = Vector2(0.06, 0.06)
-	animation.play('default')

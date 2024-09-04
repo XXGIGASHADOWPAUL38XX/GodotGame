@@ -2,7 +2,7 @@ extends Node
 
 enum StateAction {
 	NULL,
-	IMMOBILE,
+	CONCENTRATE,
 	STUNNED,
 	SLOWED,
 }

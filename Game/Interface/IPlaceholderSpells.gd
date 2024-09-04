@@ -7,16 +7,21 @@ var duplication_phldrs
 var ready_to_load_spell: bool = false
 var spells_dependencies_ready: bool = false
 
+var resource_awaiter = ResourceAwaiter.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	duplication_phldrs = get_duplication_phldrs()
+	duplication_phldrs.map(func(d_phldrs): d_phldrs.duplication_performed.connect(
+		Callable(self, 'duplication_node_performed'))
+	)
 	
 	# PERMET D'ATTENDRE QUE LES SORTS SOIENT DUPLIQUEES
 	if duplication_phldrs.size() == 0:
 		ready_to_load_spell = true
 	
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
-	await await_resource_loaded(func(): return self.ready_to_load_spell)
+	await resource_awaiter.await_resource_loaded(func(): return self.ready_to_load_spell)
 	# ----------------- RESSOURCE LOADER : DUPLICATED SPELLS ----------------- #
 
 	all_actives = get_all_actives()
@@ -47,8 +52,4 @@ func get_duplication_phldrs(parent=self):
 func duplication_node_performed():
 	if (duplication_phldrs.all(func(d) : return d == null || d.duplication_performed)):
 		ready_to_load_spell = true
-
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while c.get_object() != null && !c.call():
-		await c.get_object().get_tree().create_timer(retry_timeout).timeout
 

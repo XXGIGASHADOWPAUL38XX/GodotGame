@@ -43,6 +43,7 @@ func get_inactive_bomb():
 
 # -------------- FUNCTIONS SHOOTS ---------------
 func get_all_shoots():
-	#!!
-	return all_actives.filter(func(a): return a.name.begins_with("shoot"))
+	return [$ctrlr_spell_1/dp_shoot_1, $ctrlr_spell_4/dp_spell_4].map(func(shoot_parent):
+		return shoot_parent.get_children().filter(func(child): return child is IActive)
+	).reduce(func(a, b): return a + b)
 

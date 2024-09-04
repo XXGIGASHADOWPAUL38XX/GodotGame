@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://ditl685qhac42"]
+
+[ext_resource type="Texture2D" uid="uid://cocp87d3itegn" path="res://Game/Ressources/UI/Buttons/Normal/centered.png" id="1_bpe3m"]
+[ext_resource type="Texture2D" uid="uid://dheldq7exkgwh" path="res://Game/Ressources/UI/Buttons/Clicked/centered_1.png" id="1_dke3s"]
+[ext_resource type="Texture2D" uid="uid://b7c8yvbb0mrju" path="res://Game/Ressources/UI/Buttons/Clicked/centered_2.png" id="2_wta54"]
+[ext_resource type="Texture2D" uid="uid://rf7r12bikpfr" path="res://Game/Ressources/UI/Buttons/Clicked/centered_3.png" id="3_iiwr1"]
+[ext_resource type="Texture2D" uid="uid://62odp3uph3ew" path="res://Game/Ressources/UI/Buttons/Hover/hover_centered.png" id="4_esrdi"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_divuk"]
+frames = 3
+speed_scale = 8.0
+frame_0/texture = ExtResource("1_dke3s")
+frame_1/texture = ExtResource("2_wta54")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("3_iiwr1")
+frame_2/duration = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5hmi5"]
+texture = SubResource("AnimatedTexture_divuk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2uwvd"]
+texture = ExtResource("4_esrdi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itr7q"]
+texture = ExtResource("1_bpe3m")
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxTexture_5hmi5")
+Button/styles/hover = SubResource("StyleBoxTexture_2uwvd")
+Button/styles/normal = SubResource("StyleBoxTexture_itr7q")

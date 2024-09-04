@@ -11,7 +11,7 @@ var timer_visible_cd = 3
 
 func _ready():
 	if is_multiplayer_authority():
-		key = KEY_E
+		key = ServiceSettings.keys_values['key_spell_3']
 		coltdown_time = 6
 		cast_time = 0.25
 		
@@ -29,7 +29,6 @@ func _ready():
 		await super._ready()
 
 func active():
-	super.active()
 	if first_activation:
 		dash_first.can_active_first()
 		dash_back.can_active_first()
@@ -39,7 +38,7 @@ func active():
 	else:
 		dash_first.can_active_back()
 		dash_back.can_active_back()
+		await super.active()
 		
-		
-	anim_dash.can_active()
+	anim_dash.active()
 	pass

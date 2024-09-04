@@ -19,14 +19,7 @@ func _ready():
 
 func _process(delta):
 	if is_multiplayer_authority():
-		if Input.is_key_pressed(KEY_SPACE) && coltdown_spell4.time_left == 0:
-			coltdown_spell4.start()
-			spell4_marks()
-			
-		if (HUD == null):
-			HUD = ServiceScenes.getMainScene().get_node('stats_heros')
-		else:
-			HUD.bindTo(coltdown_spell4, 4)
+		pass
 
 func spell4_marks():
 	for i in range (1, 4): #1, 2, 3

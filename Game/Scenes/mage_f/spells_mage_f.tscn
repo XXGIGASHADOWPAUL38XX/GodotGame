@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://srarkkpwqkkt"]
+[gd_scene load_steps=79 format=3 uid="uid://srarkkpwqkkt"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_1_blue.gd" id="1_8i1aq"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f.gd" id="1_r6idw"]
@@ -22,8 +22,11 @@
 [ext_resource type="Texture2D" uid="uid://c3forur6ur58v" path="res://Game/Ressources/Heros/mage_f/spellC_mage.png" id="9_u5k0v"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/ctrlr_special_mage_f.gd" id="15_btxxl"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/ctrlr_spell_mage_f_3.gd" id="17_4526p"]
+[ext_resource type="Texture2D" uid="uid://dw4wro76xf358" path="res://Game/Ressources/Heros/mage_f/dash.png" id="23_8strt"]
+[ext_resource type="Script" path="res://Game/Scenes/mage_f/dash.gd" id="23_uqpge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ewonb"]
+radius = 120.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vp0xh"]
 atlas = ExtResource("4_c35rs")
@@ -378,6 +381,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yxx2"]
+atlas = ExtResource("23_8strt")
+region = Rect2(0, 0, 715, 723)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34qlt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yxx2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_j3opq"]
 
 [node name="spells_mage_f_phldr" type="Node"]
@@ -481,16 +499,23 @@ replication_config = SubResource("SceneReplicationConfig_6iccr")
 [node name="ctrlr_special_mage_f" type="Node2D" parent="."]
 script = ExtResource("15_btxxl")
 
-[node name="special_mage_f" type="Area2D" parent="ctrlr_special_mage_f"]
+[node name="counter_mage_f" type="Area2D" parent="ctrlr_special_mage_f"]
 visible = false
 script = ExtResource("8_gdqfx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_mage_f/special_mage_f"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_mage_f/counter_mage_f"]
 shape = SubResource("CircleShape2D_r4kpa")
 
-[node name="special_mage_f_anim" type="AnimatedSprite2D" parent="ctrlr_special_mage_f/special_mage_f"]
+[node name="special_mage_f_anim" type="AnimatedSprite2D" parent="ctrlr_special_mage_f/counter_mage_f"]
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_b2avf")
+
+[node name="dash" type="AnimatedSprite2D" parent="ctrlr_special_mage_f"]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_34qlt")
+script = ExtResource("23_uqpge")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_mage_f"]
 replication_config = SubResource("SceneReplicationConfig_j3opq")

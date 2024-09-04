@@ -26,4 +26,4 @@ func active(main_mector):
 		
 	self.hide()
 	
-	spells_placeholder.get_inactive_bomb().can_active(self.position)
+	spells_placeholder.get_inactive_bomb().active(self.position)

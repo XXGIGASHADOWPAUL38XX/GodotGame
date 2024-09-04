@@ -32,7 +32,7 @@ func _ready():
 func _process(delta):
 	if is_multiplayer_authority():
 		if animation.animation == 'special':
-			modulate_bool = await ServiceSpell.modulate_obj(self, modulate_bool)
+			modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
 			self.rotate(delta)
 		else:
 			self.position += direction_vector
@@ -47,8 +47,8 @@ func spawn():
 	self.rotation = 0.0
 	
 	base_position_spawn = Vector2(
-		randf_range(MARGIN_SPAWN_X, (get_window().size.x * 2) - MARGIN_SPAWN_X), 
-		randf_range(MARGIN_SPAWN_Y, (get_window().size.y * 2) - MARGIN_SPAWN_Y))
+		randf_range(MARGIN_SPAWN_X, (ServiceWindow.scene_size.x * 2) - MARGIN_SPAWN_X), 
+		randf_range(MARGIN_SPAWN_Y, (ServiceWindow.scene_size.y * 2) - MARGIN_SPAWN_Y))
 	
 	self.position = base_position_spawn
 	self.show()
@@ -81,6 +81,6 @@ func activate():
 	
 func spirit_entered():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(),
-		player_hitted.get_node('shield'), 'set_shield', [15, 5]
+		player_hitted.shield, 'set_shield', [15, 5]
 	)
 	await visibility_changed

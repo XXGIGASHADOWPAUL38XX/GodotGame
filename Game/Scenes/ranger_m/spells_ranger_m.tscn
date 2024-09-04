@@ -218,6 +218,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_84cpr"]
+radius = 53.3667
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jcgp5"]
 
@@ -363,7 +364,8 @@ animations = [{
 script/source = "extends IDamagingCollision
 
 var speed = 20.0
-var pos_offset
+var angle
+var delay = 0
 
 var distance: float = 25  # Distance from center_object
 var rotation_speed: float = 2  # Adjust as needed
@@ -371,9 +373,12 @@ var current_angle: float = 0.0
 var direction
 var is_launched = false
 
-func _ready():	
+func _ready():
 	if is_multiplayer_authority():
-		pos_offset = Vector2.ZERO
+		# DEFINITION VARIABLES IDAMAGING SPELL #
+		damage_base = 2.0
+		damage_ratio = 0.04
+		# ------------------------------------ #
 		
 		super._ready()
 
@@ -381,11 +386,13 @@ func _process(delta):
 	if is_multiplayer_authority():
 		if self.visible && !is_launched:
 			current_angle += rotation_speed * delta
-			direction = Vector2(cos(current_angle), sin(current_angle))
+			direction = Vector2(cos(current_angle), sin(current_angle)).rotated(deg_to_rad(angle))
 			self.position = ServiceScenes.championNode.position + (direction * distance)
 
 func active():
 	self.show()
+	await get_tree().create_timer(delay).timeout
+	
 	is_launched = true
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 35)
 
@@ -400,10 +407,12 @@ func active():
 	is_launched = false
 
 func post_dp_script(id, dp_number):
-	pos_offset = Vector2(20, 0).rotated(deg_to_rad((id - 1) * 45))
+	angle = (id - 1) * 45
+	delay = (spell_controller.timer_key_release_cd / dp_number) * (id - 1)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w02b2"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6b0rr"]
 atlas = ExtResource("12_pel6n")
@@ -420,7 +429,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ey5ca"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_impwt"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lycg8"]
 
@@ -431,6 +440,7 @@ script = ExtResource("1_6u13a")
 script = ExtResource("2_dmlhs")
 
 [node name="aa_ranger_m" type="Area2D" parent="ctrlr_aa_ranger_m"]
+visible = false
 scale = Vector2(0.025, 0.025)
 script = ExtResource("3_e3eg8")
 
@@ -491,6 +501,8 @@ replication_config = SubResource("SceneReplicationConfig_q85fj")
 
 [node name="dash_ranger_m_2" type="Area2D" parent="spells_ranger_m_2"]
 visible = false
+modulate = Color(1, 1, 1, 0.588235)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("7_5qduj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spells_ranger_m_2/dash_ranger_m_2"]
@@ -519,6 +531,7 @@ script = ExtResource("11_wljp2")
 [node name="target" type="Node2D" parent="spells_ranger_m_3/dp_spell_3/spell_3"]
 
 [node name="target" type="Area2D" parent="spells_ranger_m_3/dp_spell_3/spell_3/target"]
+visible = false
 modulate = Color(1, 1, 1, 0.419608)
 scale = Vector2(0.06, 0.06)
 script = ExtResource("7_33elt")
@@ -539,6 +552,7 @@ replication_config = SubResource("SceneReplicationConfig_nnlms")
 [node name="mark_explode" type="Node2D" parent="spells_ranger_m_3/dp_spell_3/spell_3"]
 
 [node name="mark_explode" type="Area2D" parent="spells_ranger_m_3/dp_spell_3/spell_3/mark_explode"]
+visible = false
 scale = Vector2(0.01, 0.01)
 script = ExtResource("12_i76sh")
 
@@ -558,6 +572,7 @@ replication_config = SubResource("SceneReplicationConfig_3i7rd")
 [node name="bubble" type="Node2D" parent="spells_ranger_m_3/dp_spell_3/spell_3"]
 
 [node name="spells_3_bubbles" type="Area2D" parent="spells_ranger_m_3/dp_spell_3/spell_3/bubble"]
+visible = false
 scale = Vector2(0.25, 0.25)
 script = ExtResource("18_ee6hd")
 
@@ -611,6 +626,7 @@ script = ExtResource("11_yaltb")
 
 [node name="special_ranger_m" type="Area2D" parent="ctrlr_special_ranger_m/special_ranger_m"]
 visible = false
+scale = Vector2(0.8, 0.8)
 script = SubResource("GDScript_qwurn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_special_ranger_m/special_ranger_m/special_ranger_m"]
@@ -621,7 +637,7 @@ scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_hjepj")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_special_ranger_m/special_ranger_m"]
-replication_config = SubResource("SceneReplicationConfig_ey5ca")
+replication_config = SubResource("SceneReplicationConfig_impwt")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_lycg8")

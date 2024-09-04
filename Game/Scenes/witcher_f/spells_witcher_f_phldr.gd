@@ -7,8 +7,6 @@ var controller_laser
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await super._ready()
-	#!!
-	await get_tree().create_timer(0.1).timeout
 	
 	controller_laser = $ctrlr_lasers
 	all_cubes = get_all_cubes()

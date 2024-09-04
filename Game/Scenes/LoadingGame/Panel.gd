@@ -1,6 +1,6 @@
 extends Panel
 
-var service_time = preload("res://Game/Services/service_time.gd").new()
+var service_time = ServiceTime.new()
 
 var label_loading_base_text = "Loading"
 var dots_after_label_loading: int = 0:

@@ -22,7 +22,9 @@ func _process(_delta):
 		pass
 		
 func active():
-	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), spell_controller.zone.get_radius())
+	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 
+		spell_controller.zone.get_radius() * spell_controller.zone.scale.x
+	)
 	champion.position = self.position
 	self.show()
 	animation.play()

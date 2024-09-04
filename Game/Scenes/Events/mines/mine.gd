@@ -21,8 +21,8 @@ func _ready():
 		self.scale = Vector2(0.5, 0.5) 
 		
 		self.global_position = Vector2(
-			randi_range(0, get_window().size.x * 2),
-			randi_range(0, get_window().size.y * 2)
+			randi_range(0, ServiceWindow.scene_size.x * 2),
+			randi_range(0, ServiceWindow.scene_size.y * 2)
 		)
 		
 		body_entered.connect(func(obj): hitted())

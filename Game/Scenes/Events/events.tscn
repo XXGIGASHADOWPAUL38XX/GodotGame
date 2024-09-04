@@ -9,127 +9,157 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4c8b"]
-border_width_top = 4
+bg_color = Color(0, 0, 0, 1)
 border_color = Color(0, 0, 0, 1)
 
 [node name="events" type="Control"]
 layout_mode = 3
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_htmbt")
 
 [node name="Events" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(250, 40)
-layout_mode = 2
-offset_left = -246.0
-offset_top = -325.0
-offset_right = 246.0
-offset_bottom = -265.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = -490.0
+offset_right = 400.0
+offset_bottom = -390.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
 [node name="Event1" type="Panel" parent="Events"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cskc")
 
 [node name="TextureRect" type="TextureRect" parent="Events/Event1"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 
 [node name="Margin" type="MarginContainer" parent="Events"]
 layout_mode = 2
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_bottom = 28
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Margin" type="Panel" parent="Events/Margin"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4c8b")
 
 [node name="Event2" type="Panel" parent="Events"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cskc")
 
 [node name="TextureRect" type="TextureRect" parent="Events/Event2"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 
 [node name="Margin2" type="MarginContainer" parent="Events"]
 layout_mode = 2
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_bottom = 28
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Margin" type="Panel" parent="Events/Margin2"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4c8b")
 
 [node name="Event3" type="Panel" parent="Events"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cskc")
 
 [node name="TextureRect" type="TextureRect" parent="Events/Event3"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 
 [node name="Margin3" type="MarginContainer" parent="Events"]
 layout_mode = 2
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_bottom = 28
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Margin" type="Panel" parent="Events/Margin3"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4c8b")
 
 [node name="Event4" type="Panel" parent="Events"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cskc")
 
 [node name="TextureRect" type="TextureRect" parent="Events/Event4"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
 
 [node name="Margin4" type="MarginContainer" parent="Events"]
 layout_mode = 2
-theme_override_constants/margin_top = 28
-theme_override_constants/margin_bottom = 28
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Margin" type="Panel" parent="Events/Margin4"]
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4c8b")
 
 [node name="Event5" type="Panel" parent="Events"]
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8cskc")
 
 [node name="TextureRect" type="TextureRect" parent="Events/Event5"]
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 61.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1

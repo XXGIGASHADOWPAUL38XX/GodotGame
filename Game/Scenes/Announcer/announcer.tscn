@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctd6lq0p1n6sd"]
+[gd_scene load_steps=7 format=3 uid="uid://ctd6lq0p1n6sd"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Announcer/announcer.gd" id="1_76alu"]
+[ext_resource type="Texture2D" uid="uid://dvjjlrqq4i22v" path="res://Game/Ressources/UI/Announce/logo.png" id="2_2x68b"]
+[ext_resource type="Texture2D" uid="uid://c04fijecnj26l" path="res://Game/Ressources/UI/Announce/bg_label.png" id="3_ffg4j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2eotv"]
+texture = ExtResource("2_2x68b")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iv8de"]
+texture = ExtResource("3_ffg4j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x80bn"]
+texture = ExtResource("2_2x68b")
 
 [node name="announcer" type="Control"]
 layout_mode = 3
@@ -15,36 +26,92 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_76alu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(900, 60)
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -250.0
-offset_right = 458.0
-offset_bottom = -190.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -600.0
+offset_top = -340.0
+offset_right = 600.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 
-[node name="Logo_left" type="TextureRect" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(900, 60)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel_left" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_2eotv")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel_left"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Logo_left" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel_left/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 expand_mode = 1
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(780, 60)
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel_label" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_iv8de")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer3/Panel_label"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Logo_right" type="TextureRect" parent="HBoxContainer"]
-custom_minimum_size = Vector2(60, 60)
+[node name="Panel_right" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_x80bn")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel_right"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Logo_right" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel_right/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 expand_mode = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.5
