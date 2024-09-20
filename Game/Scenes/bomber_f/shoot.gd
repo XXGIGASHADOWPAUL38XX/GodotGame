@@ -29,7 +29,7 @@ func active():
 		return
 		
 	var ennemy_to_shoot = ennemy_in_range[randi_range(0, ennemy_in_range.size() - 1)]
-	var direction = (ennemy_to_shoot.position - sphere.position).normalized()
+	var direction = (ennemy_to_shoot.position - sphere.position).normalized().rotated(deg_to_rad(randf_range(-5, 5)))
 	self.position = sphere.position + (direction.normalized() * 30)
 	self.rotation = direction.angle()
 

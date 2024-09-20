@@ -49,8 +49,8 @@ func _button_pressed(champion):
 func _process(_delta):
 	if (team_server == team_client && player_server == player_client):
 		champions.show()
-	#else:
-		#champions.hide()
+	else:
+		champions.hide()
 
 func lock_random_champion():
 	var available_champions = champions.get_children().filter(
@@ -72,8 +72,8 @@ func lock_champion(champion):
 func _on_announcer_anncounce_timeout():
 	if player_server > ServiceScenes.CONFIG_NB_PLAYERS_GAME / 2:
 		launch_game()
-#	else:
-#		lock_random_champion()
+	else:
+		lock_random_champion()
 
 func display_champion(champion_name, team_client_sender, player_client_sender):
 	var string_team = 'Team_' + str(team_client_sender)

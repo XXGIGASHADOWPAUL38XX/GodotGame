@@ -30,14 +30,14 @@ func _ready():
 
 func active():
 	if first_activation:
-		dash_first.can_active_first()
-		dash_back.can_active_first()
+		dash_first.active_first()
+		dash_back.active_first()
 		first_activation = false
 		timer_visible.start()
 	
 	else:
-		dash_first.can_active_back()
-		dash_back.can_active_back()
+		dash_first.active_back()
+		dash_back.active_back()
 		await super.active()
 		
 	anim_dash.active()

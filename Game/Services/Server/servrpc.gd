@@ -18,7 +18,7 @@ func any(node, f, args:Array):
 	all_remotes(node, f, args)
 
 @rpc("any_peer", "call_local")
-func f_rpc(f, path, args, retry_instances=3, retry_interval=0.05):
+func f_rpc(f, path, args, retry_instances=10, retry_interval=0.05):
 	args = convert_args_to_nodes(args)
 		
 	var node = get_node(path as String)

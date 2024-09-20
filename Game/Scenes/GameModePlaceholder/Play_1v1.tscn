@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhlm7jsgn41if"]
+[gd_scene load_steps=6 format=3 uid="uid://dhlm7jsgn41if"]
 
 [ext_resource type="Script" path="res://Game/Scenes/GameModePlaceholder/Play_1v1.gd" id="1_82ini"]
 [ext_resource type="Texture2D" uid="uid://bupclca5pbjdk" path="res://Game/Ressources/UI/1v1/1v1.png" id="2_e8eml"]
 [ext_resource type="Texture2D" uid="uid://c3mtv0gvii2qq" path="res://Game/Ressources/UI/1v1/bg.png" id="2_grb43"]
 [ext_resource type="Theme" uid="uid://ditl685qhac42" path="res://Game/Themes/Themes/theme_menu.tres" id="2_t438b"]
-[ext_resource type="PackedScene" uid="uid://c03hfjgc365a5" path="res://Game/Scenes/Friends/friend_list.tscn" id="5_fpjcj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ob4rj"]
 texture = ExtResource("2_grb43")
@@ -92,8 +91,9 @@ size_flags_horizontal = 3
 theme = ExtResource("2_t438b")
 text = "GO TO CHAMPIONS"
 
-[node name="friend_list" parent="margin/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_fpjcj")]
+[node name="Control" type="Control" parent="margin/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]

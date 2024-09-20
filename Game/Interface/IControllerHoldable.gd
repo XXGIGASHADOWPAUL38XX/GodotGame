@@ -15,8 +15,8 @@ func _input(event):
 	if is_multiplayer_authority() && event is InputEventKey && event.keycode == key:
 		if event.is_pressed():
 			can_active()
-		#elif event.is_released() && timer_key_release.time_left != 0:
-			#stop_spell()
+		elif event.is_released() && timer_key_release.time_left != 0:
+			stop_spell()
 
 func can_active():
 	if cond_spells.all(func(c: Callable): return c.call()):

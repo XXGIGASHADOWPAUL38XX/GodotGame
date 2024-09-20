@@ -9,7 +9,7 @@ var nodePath: String
 
 func _init(id: int, name: String, team: Team, node=null) -> void:
 	self.id = id
-	self.db_id = Server.player_db_id
+	self.db_id = Server.current_playerpeer["id"]
 	self.name = name
 	self.team = team
 	self.node = node

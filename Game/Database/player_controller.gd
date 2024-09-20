@@ -28,7 +28,7 @@ func login(username, password):
 	if player["password"] != hash_password(password):
 		return PlayerException.LoginException.PASSWORD_INCORRECT
 		
-	Server.player_db_id = player["id"]
+	Server.current_playerpeer = player
 	return player
 		
 func signup(username, password):

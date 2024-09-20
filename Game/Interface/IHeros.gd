@@ -5,14 +5,17 @@ class_name IHeros
 var target_position_mvmt = Vector2.ZERO
 var angle_mvmt
 
+const POSITION_OFFSET_SPAWN = 100
+
 func _ready():
 	await super._ready()
 	shield = $pgbars/shield
 		
-	if ServiceScenes.get_property_from_player(self, '.is_ally()') == true:
-		self.health_bar.modulate = Color.YELLOW
-	elif !is_multiplayer_authority():
-		self.health_bar.modulate = Color.RED
+	if !is_multiplayer_authority():
+		if ServiceScenes.is_on_same_team(self, ServiceScenes.championNode):
+			self.health_bar.modulate = Color.YELLOW
+		else:
+			self.health_bar.modulate = Color.RED
 		
 func _process(delta):
 	if is_multiplayer_authority():
@@ -87,3 +90,23 @@ func play_movement_animation(animation):
 		animation.play("walk_left")
 	else:
 		animation.play("walk_up")
+
+func new_round():
+	super.new_round()
+	var heros_number = ServiceScenes.players.map(func(player): return player.node).find(self)
+	
+	var corner = Vector2(
+		(ServiceWindow.scene_size.x * 2) * (heros_number % 2),
+		(ServiceWindow.scene_size.y * 2) * (floor(heros_number / 2))
+	)
+	
+	self.position = Vector2(
+		corner.x + POSITION_OFFSET_SPAWN if corner.x < ServiceWindow.scene_size.x else corner.x - POSITION_OFFSET_SPAWN,
+		corner.y + POSITION_OFFSET_SPAWN if corner.y < ServiceWindow.scene_size.y else corner.y - POSITION_OFFSET_SPAWN,
+	)
+	
+	ServiceScenes.camera.offset = self.position
+
+func spells_placeholder_f(node: Node = self):
+	var optionnal_placeholder = self.get_children().filter(func(child): return child is IPlaceholderSpells)
+	return null if optionnal_placeholder.size() == 0 else optionnal_placeholder[0]

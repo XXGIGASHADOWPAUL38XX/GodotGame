@@ -55,7 +55,7 @@ func duplicate_obj(id):
 	
 	await get_tree().process_frame
 	
-	if dp_object.has_method('post_dp_script') && is_multiplayer_authority():
+	if dp_object.has_method('post_dp_script') && (is_multiplayer_authority() || get_multiplayer_authority() == 1):
 		dp_object.post_dp_script(id, dp_number)
 		
 func spells_placeholder_f(node: Node = self):

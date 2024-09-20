@@ -87,9 +87,13 @@ func _ready():
 		state_bar = $pgbars/state_bar
 		ServiceStats.set_attributes(self)
 		self.new_round()
+		#await_take_damage()
 
 		await super._ready()
 		func_hitted.append(Callable(self, 'take_damage'))
+		
+func await_take_damage():
+	self.add_state(self, 'states_damage', State.StateDamage.IMMUNE, 0.5)
 		
 func new_round():
 	health_bar.value = health_bar.max_value

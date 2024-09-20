@@ -22,10 +22,10 @@ var witcher_f = Hero.new(120, 15, 15, 2)
 var bomber_f = Hero.new(120, 15, 15, 2)
 var fighter_f = Hero.new(120, 15, 15, 2)
 
-var monster_gem = Hero.new(200, 15, 15, 0)
+var monster_gem = Hero.new(120, 15, 15, 0)
 
-var boss_golem = Hero.new(50, 15, 15, 0)
-var boss_crystal = Hero.new(50, 15, 15, 0)
+var boss_golem = Hero.new(250, 15, 15, 0)
+var boss_crystal = Hero.new(250, 15, 15, 0)
 
 func get_heros(heros_name):
 	var regex = RegEx.new()

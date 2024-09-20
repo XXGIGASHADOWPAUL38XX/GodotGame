@@ -8,7 +8,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_special']
 		coltdown_time = 7
-		timer_key_release_cd = 10
+		timer_key_release_cd = 0.75
 		
 		counter = $counter
 		explode = $explode

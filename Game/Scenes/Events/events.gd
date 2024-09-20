@@ -3,7 +3,7 @@ extends Control
 var actual_round = 0
 var local_won_rounds = 0
 
-var LIST_EVENTS = ['spirits', 'spirits', 'spirits', 'spirits', 'spirits']
+var LIST_EVENTS = ['explosions', 'stones', 'lasers', 'mines', 'spirits']
 var all_events = []
 var current_event
 
@@ -40,7 +40,7 @@ func new_event():
 	
 	current_event = all_events[actual_round]
 	var new_event_scene = load("res://Game/Scenes/Events/" + current_event + "/"  + current_event + ".tscn").instantiate()
-	new_event_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
+	new_event_scene.set_multiplayer_authority(Server.get_first_player_connected_id(), true)
 	
 	ServiceScenes.main_scene.add_child.call_deferred(new_event_scene)
 

@@ -1,6 +1,7 @@
 extends Node
 
 var LIST_BOSSES = ['boss_golem', 'boss_crystal']
+var resource_awaiter = ResourceAwaiter.new()
 
 func init_first_round():
 	add_random_boss()
@@ -44,6 +45,8 @@ func add_random_boss():
 	Servrpc.any(self, 'add_random_boss_any', [current_boss])
 	
 func add_random_boss_any(current_boss):
+	await resource_awaiter.await_resource_loaded(func(): return ServiceScenes.main_scene != null)
+	
 	for boss in LIST_BOSSES:
 		if ServiceScenes.main_scene.has_node(boss + "_phldr"):
 			var old_boss_node = ServiceScenes.main_scene.get_node(boss + "_phldr")
@@ -51,5 +54,5 @@ func add_random_boss_any(current_boss):
 			await old_boss_node.tree_exited
 	
 	var current_boss_scene = load("res://Game/Scenes/Shared_Effects/" + current_boss + ".tscn").instantiate()
-	current_boss_scene.set_multiplayer_authority(Server.get_first_player_connected_id())
+	current_boss_scene.set_multiplayer_authority(Server.get_first_player_connected_id(), true)
 	ServiceScenes.main_scene.add_child(current_boss_scene)

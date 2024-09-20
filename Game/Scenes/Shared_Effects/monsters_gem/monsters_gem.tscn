@@ -321,7 +321,7 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qpckn"]
 
-[node name="monsters_gem_phldr" type="Node"]
+[node name="monsters_gem" type="Node"]
 script = ExtResource("1_2wahi")
 
 [node name="monsters_gem" type="Node2D" parent="."]

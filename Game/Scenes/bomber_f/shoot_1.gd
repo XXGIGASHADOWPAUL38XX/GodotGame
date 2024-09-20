@@ -20,7 +20,7 @@ func _ready():
 
 func active(main_mector):
 	await get_tree().create_timer(delay).timeout
-	self.position = champion.position + ServiceSpell.set_in_front_mouse_incl(self, get_global_mouse_position(), 40, angle_incl_start)
+	self.position = champion.position + (main_mector.normalized() * 40).rotated(deg_to_rad(angle_incl_start))
 	self.rotation = main_mector.angle()
 	self.show()
 

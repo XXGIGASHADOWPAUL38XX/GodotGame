@@ -12,10 +12,8 @@ func _process(delta):
 	pass
 
 func _on_play_pressed():
-	ServiceScenes.menu_scene.queue_panel.add_to_queue()
-	
-	ServiceScenes.menu_scene.play()
-	
+	ServiceScenes.menu_scene.queue_panel.add_to_queue_1v1()
+
 	play_button.hide()
 	cancel_button.show()
 	

@@ -23,7 +23,7 @@ var animation: AnimatedSprite2D
 func _ready():
 	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 	ServiceScenes.entites.append(self)
-	spells_placeholder_f()
+	spells_placeholder = spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
 	if spells_placeholder != null:
@@ -63,12 +63,6 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(anim_path + ":frame")
 
 func spells_placeholder_f(node: Node = self):
-	if node is IPlaceholderSpells:
-		spells_placeholder = node
-		return null
-	if node.get_parent() != null && node.get_parent() != ServiceScenes.main_scene:
-		return spells_placeholder_f(node.get_parent())
-		
 	return null
 
 func new_round():

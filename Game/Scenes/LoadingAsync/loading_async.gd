@@ -31,6 +31,7 @@ func _ready():
 	
 	self.visibility_changed.connect(func(): 
 		if self.visible:
+			ServiceScenes.root_scene.move_child(self, ServiceScenes.root_scene.get_child_count() - 1)
 			dots_after_label_loading = 1
 			timer_increment_dot.start()
 			ServiceScenes.root_scene.get_children().filter(func(scene): return scene != self).map(func(scene):

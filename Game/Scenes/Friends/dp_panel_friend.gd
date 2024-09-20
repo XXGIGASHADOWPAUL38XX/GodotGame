@@ -8,10 +8,10 @@ var name_callable: Callable = func dp_callable_name(id):
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ServiceScenes.loading_async.add_loading(self.name, "Chargement des stats des champions")
+	ServiceScenes.loading_async.add_loading(self.name, "Chargement de la liste d'amis")
 	duplication_performed.connect(func(): ServiceScenes.loading_async.remove_loading(self.name))
 	
-	friends = await player_controller.get_friends(Server.player_db_id)
+	friends = await player_controller.get_friends(Server.current_playerpeer["id"])
 	
 	# VALUES TO OVERRIDE #
 	dp_number = friends.size()

@@ -24,5 +24,6 @@ enum AnnounceKind {
 	NULL,
 	ERROR,
 	WARNING,
+	INFORMATION,
 	SUCCESS
 }

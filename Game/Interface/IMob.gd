@@ -68,4 +68,8 @@ func attack_back():
 func bonus(heros_dealing_dmg):
 	pass
 	
-	
+func spells_placeholder_f(node: Node = self):
+	if node is IPlaceholderSpells:
+		return node
+	if node.get_parent() != null && node.get_parent() != ServiceScenes.main_scene:
+		return spells_placeholder_f(node.get_parent())

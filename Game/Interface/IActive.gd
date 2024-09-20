@@ -15,14 +15,12 @@ var immobile_while_active: bool
 var animation
 var resource_awaiter = ResourceAwaiter.new()
 
-@export var is_ready: bool = false
 @export var champion: IEntity
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	self.z_index = 1
 	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
-	ServiceScenes.loading_game.actives.append(self)
 	
 	spell_controller_f()
 	spells_placeholder_f()
@@ -42,7 +40,6 @@ func _ready():
 		Servrpc.any(self, 'set_multiplayer_properties', [])
 
 	self.process_mode = Node.PROCESS_MODE_INHERIT
-	is_ready = true
 
 func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
 	if immobile_while_active:
@@ -69,7 +66,6 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
 	multip_sync.replication_config.add_property(self.name + ":scale")
-	multip_sync.replication_config.add_property(self.name + ":is_ready")
 	
 	multip_sync.replication_config.add_property(anim_path + ":animation")
 	multip_sync.replication_config.add_property(anim_path + ":frame")

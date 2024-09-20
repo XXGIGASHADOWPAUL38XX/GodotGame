@@ -12,6 +12,7 @@ var bars_color_mapper = {
 	AnnounceUI.AnnounceKind.NULL: Color(ALPHA_COLOR_BAR, ALPHA_COLOR_BAR, ALPHA_COLOR_BAR),
 	AnnounceUI.AnnounceKind.ERROR: Color(ALPHA_COLOR_BAR, 0, 0),
 	AnnounceUI.AnnounceKind.WARNING: Color(ALPHA_COLOR_BAR, ALPHA_COLOR_BAR, 0),
+	AnnounceUI.AnnounceKind.INFORMATION: Color(0, 0, ALPHA_COLOR_BAR),
 	AnnounceUI.AnnounceKind.SUCCESS: Color(0, ALPHA_COLOR_BAR, 0),
 }
 

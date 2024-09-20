@@ -64,6 +64,7 @@ func gestion_collision():
 	var collision_shape = self.get_node("CollisionShape2D")
 	
 	if COLLISION_ON_SPECIFIC_ANIM:
+		collision_shape.disabled = true
 		animation.animation_changed.connect(func(): collision_shape.disabled = (animation.animation != 'damage'))
 		self.visibility_changed.connect(func(): if !self.visible: collision_shape.disabled = true)
 	else:

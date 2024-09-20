@@ -6,8 +6,6 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 2
-		cast_time = 1
-		cast_kind = CastTime.Kind.BeforeActive
 		await super._ready()
 		
 		champion = ServiceScenes.championNode

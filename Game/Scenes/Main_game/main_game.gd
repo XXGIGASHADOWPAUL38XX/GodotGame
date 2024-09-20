@@ -30,19 +30,19 @@ func _ready():
 		player_scene.set_multiplayer_authority(champion.id)
 		node_heros = player_scene.get_node(champion.name as NodePath)
 		
-		if champion.id == Server.get_client_id():
-			node_heros.position = Vector2(200 + (200 * i), 200 + (140 * i))
-			#$Camera.offset = node_heros.position
-		
 		ServiceScenes.set_player_node(champion, node_heros)
 		champions_node_scenes.append(player_scene)
 	
 	ServiceScenes.set_global_players()
 		
+	 # --------------------------------- AJOUT DES SCENES ---------------------------------------
+
+	var teleporters = preload("res://Game/Scenes/Teleportation/teleportation.tscn").instantiate()
+	teleporters.set_multiplayer_authority(Server.get_first_player_connected_id())
+	self.add_child(teleporters)
+	
 	for champions_scenes in champions_node_scenes:
 		self.add_child(champions_scenes)
-	
-	 #---------------------- AJOUT DES SCENES SECONDAIRES ---------------------------------
 
 	var items_scene = preload("res://Game/Scenes/Items/items.tscn").instantiate()
 	self.add_child(items_scene)

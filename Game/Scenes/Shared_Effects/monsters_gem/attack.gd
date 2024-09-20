@@ -3,7 +3,7 @@ extends IDamagingCollision
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
-		damage_base = 6
+		damage_base = 3
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		

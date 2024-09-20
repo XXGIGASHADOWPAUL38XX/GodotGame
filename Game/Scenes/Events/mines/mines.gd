@@ -18,7 +18,7 @@ func add_mine():
 	mine.set_name("mine_R" + str(self.get_children().filter(
 		func(obj): return obj.name.begins_with('mine')
 	).size()))
-	mine.set_multiplayer_authority(Server.get_first_player_connected_id())
+	mine.set_multiplayer_authority(Server.get_first_player_connected_id(), true)
 	add_multiplayer_properties(mine)
 	
 	self.add_child(mine)

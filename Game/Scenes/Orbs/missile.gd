@@ -26,8 +26,8 @@ func shoot():
 		return
 		
 	var ennemy_to_shoot = ennemy_in_range[randi_range(0, ennemy_in_range.size() - 1)]
-	var direction = (ennemy_to_shoot.position - drone.position).normalized()
 	self.position = drone.position + ServiceSpell.set_in_front(drone, 30)
+	var direction = (ennemy_to_shoot.position - self.position).normalized().rotated(deg_to_rad(randf_range(-5, 5)))
 	self.rotation = direction.angle()
 
 	self.show()

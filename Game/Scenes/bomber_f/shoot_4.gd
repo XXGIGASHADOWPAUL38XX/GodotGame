@@ -7,8 +7,8 @@ var angle
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
-		damage_base = 5.0
-		damage_ratio = 0.15
+		damage_base = 2.0
+		damage_ratio = 0.03
 		# ------------------------------------ #
 		
 		await super._ready()

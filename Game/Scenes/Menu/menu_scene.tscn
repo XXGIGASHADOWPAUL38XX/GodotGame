@@ -22,7 +22,7 @@
 script/source = "extends Control
 
 var modulation = 0
-var players_needed_for_match: int = 4
+const players_needed_for_match: int = 4
 
 const SELECTION_SCENE_PATH = \"res://Game/Scenes/Selection/selection_scene.tscn\"
 const LOGIN_SCENE_PATH = \"res://Game/Scenes/Login/login.tscn\"
@@ -33,9 +33,26 @@ const LOGIN_SCENE_PATH = \"res://Game/Scenes/Login/login.tscn\"
 @onready var queue_panel = $CenterContainer/current_queue
 
 func _ready():
+	Server.createClient()
+	
 	ServiceScenes.menu_scene = self
 	ResourceLoader.load_threaded_request(SELECTION_SCENE_PATH)
 	ResourceLoader.load_threaded_request(LOGIN_SCENE_PATH)
+	
+	Server.new_player_connected.connect(func(peer_id):
+		if peer_id == Server.get_client_id():
+			return
+		ServiceScenes.announcer_ui.announce(
+			str(Server.get_playerpeer_id(peer_id).username) + \" just connected to the game\", AnnounceUI.AnnounceKind.INFORMATION
+		)
+	)
+	
+	Server.players_updated.connect(func(players):
+		if players.filter(func(p): 
+			return p.number_players_queue == ServiceScenes.CONFIG_NB_PLAYERS_GAME
+		).size() == ServiceScenes.CONFIG_NB_PLAYERS_GAME:
+			match_up()
+	)
 	
 	update_type()
 	
@@ -51,15 +68,13 @@ func _ready():
 	)
 
 func _process(delta):
-	if Server.get_connected_clients().size() == players_needed_for_match:
-		match_up()
+	pass
+	#if Server.get_connected_clients().size() == players_needed_for_match:
+		#match_up()
 
 	#if (queue.visible):
 		#queue.get_theme_stylebox(\"panel\", \"PanelContainer\").texture.set_current_frame(Server.get_connected_clients().size())
 		#modulate(queue)
-	
-func play():
-	ServiceScenes.CONFIG_NB_PLAYERS_GAME = players_needed_for_match
 
 func match_up():
 	var selection_scene = ResourceLoader.load_threaded_get(SELECTION_SCENE_PATH).instantiate()
@@ -79,10 +94,10 @@ func update_type():
 	current_state.update_logo(game_mode_phldr.current_plhdr.name)
 
 func _on_play_1v1_pressed():
-	players_needed_for_match = 2
+	ServiceScenes.CONFIG_NB_PLAYERS_GAME = Queue.QUEUE_KIND.MODE_1V1
 
 func _on_play_2v2_pressed():
-	players_needed_for_match = 4
+	ServiceScenes.CONFIG_NB_PLAYERS_GAME = Queue.QUEUE_KIND.MODE_2V2
 
 func _on_profile_button_pressed():
 	pass # Replace with function body.

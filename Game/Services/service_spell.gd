@@ -48,11 +48,14 @@ func push_ennemy_global(node, champion_to_push, push_strength, circular_algorith
 		)
 
 func push_ennemy(node, champion_to_push, push_strength, retry_instance): #AT RUNTIME, MULTIPLAYER_AUTHORITY IS ON ENNEMY VIA A RPC CALL
+	if not champion_to_push is IHeros:
+		return
+		
 	var old_position = node.position 
 	
 	for i in range(push_strength):
-		var position_differencial = champion_to_push.position - node.position
-		champion_to_push.position = node.position + position_differencial
+		var position_differencial = node.position - champion_to_push.position
+		champion_to_push.position += position_differencial
 		await get_tree().create_timer(0).timeout
 		
 func push_ennemy_ca(node, champion_to_push, push_strength, retry_instance): #AT RUNTIME, MULTIPLAYER_AUTHORITY IS ON ENNEMY VIA A RPC CALL

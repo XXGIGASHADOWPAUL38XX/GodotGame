@@ -109,6 +109,7 @@ script = ExtResource("1_opr66")
 script = ExtResource("2_qvioo")
 
 [node name="teleporter" type="Area2D" parent="teleporter"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(195, 333)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter/teleporter"]
@@ -120,6 +121,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_8jnlq")
 
 [node name="teleporter2" type="Area2D" parent="teleporter"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(700, 493)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter/teleporter2"]
@@ -134,6 +136,7 @@ shape = SubResource("CircleShape2D_8jnlq")
 script = ExtResource("2_qvioo")
 
 [node name="teleporter" type="Area2D" parent="teleporter2"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(1909, 208)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter2/teleporter"]
@@ -144,6 +147,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_8jnlq")
 
 [node name="teleporter2" type="Area2D" parent="teleporter2"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(1806, 610)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter2/teleporter2"]
@@ -158,6 +162,7 @@ shape = SubResource("CircleShape2D_8jnlq")
 script = ExtResource("2_qvioo")
 
 [node name="teleporter" type="Area2D" parent="teleporter3"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(463, 997)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter3/teleporter"]
@@ -169,6 +174,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_8jnlq")
 
 [node name="teleporter2" type="Area2D" parent="teleporter3"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(1017, 874)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter3/teleporter2"]
@@ -183,6 +189,7 @@ shape = SubResource("CircleShape2D_8jnlq")
 script = ExtResource("2_qvioo")
 
 [node name="teleporter" type="Area2D" parent="teleporter4"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(2147, 1190)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter4/teleporter"]
@@ -194,6 +201,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_8jnlq")
 
 [node name="teleporter2" type="Area2D" parent="teleporter4"]
+modulate = Color(1, 1, 1, 0.627451)
 position = Vector2(1753, 878)
 
 [node name="teleporter_anim" type="AnimatedSprite2D" parent="teleporter4/teleporter2"]
