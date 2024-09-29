@@ -43,7 +43,7 @@ func _ready():
 		if peer_id == Server.get_client_id():
 			return
 		ServiceScenes.announcer_ui.announce(
-			str(Server.get_playerpeer_id(peer_id).username) + \" just connected to the game\", AnnounceUI.AnnounceKind.INFORMATION
+			str(Server.get_ppeer_from_id(peer_id).username) + \" just connected to the game\", AnnounceUI.AnnounceKind.INFORMATION
 		)
 	)
 	

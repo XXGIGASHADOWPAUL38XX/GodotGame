@@ -89,7 +89,7 @@ func entity_exited(ennemy):
 		fc.call()
 
 func set_multiplayer_properties():
-	super.set_multiplayer_properties()
+	await super.set_multiplayer_properties()
 	multip_sync.replication_config.add_property(self.name + ":state_action")
 	multip_sync.replication_config.add_property(self.name + ":state_duration")
 		

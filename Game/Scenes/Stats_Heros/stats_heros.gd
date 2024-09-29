@@ -94,7 +94,7 @@ func get_texture_spells():
 		var progressBar = spells.get_child(i) as ProgressBar
 		var styleBox = StyleBoxTexture.new()
 		
-		var texture = load('res://Game/Ressources/Heros/icons_spells/' + ServiceScenes.champion.name 
+		var texture = load('res://Game/Ressources/Heros/hud_icons_spells/' + ServiceScenes.champion.name 
 			+ '/' + str(i) + '.png')
 		styleBox.texture = texture 
 		

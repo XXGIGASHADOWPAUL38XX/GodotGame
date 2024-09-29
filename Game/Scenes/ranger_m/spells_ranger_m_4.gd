@@ -11,17 +11,19 @@ var mark_number: int:
 		mark_number_value_changed(mark_number)
 
 func _ready():
-	key = ServiceSettings.keys_values['key_ultimate']
-	coltdown_time = 12
-	
-	cond_spells.append(Callable(self, 'can_launch_spell'))
-	await super._ready()
-	
-	anim_pre_spell = $anim_pre_spell as AnimatedSprite2D
-	anim_count = $anim_count
-	active_spell = $active_ranger_m_4
-	
-	anim_pre_spell.animation_finished.connect(Callable(active_spell, 'active'))
+	if is_multiplayer_authority():
+		key = ServiceSettings.keys_values['key_ultimate']
+		coltdown_time = 12
+		cast_time = 0.1
+		
+		cond_spells.append(Callable(self, 'can_launch_spell'))
+		await super._ready()
+		
+		anim_pre_spell = $anim_pre_spell as AnimatedSprite2D
+		anim_count = $anim_count
+		active_spell = $active_ranger_m_4
+		
+		anim_pre_spell.animation_finished.connect(Callable(active_spell, 'active'))
 
 func active():
 	anim_pre_spell.active()

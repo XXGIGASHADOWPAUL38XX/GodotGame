@@ -33,4 +33,3 @@ func update_orb_kind(orb_kind_update):
 	anim_orb_hide.animation = MageOrb.OrbKind.keys()[orb_kind]
 	
 	$spells_mage_f.orb_additionnal_operations(orb_kind)
-

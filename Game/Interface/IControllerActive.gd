@@ -31,5 +31,3 @@ func active():
 func can_active():
 	if is_multiplayer_authority() && cond_spells.all(func(c: Callable): return c.call()):
 		active()
-
-

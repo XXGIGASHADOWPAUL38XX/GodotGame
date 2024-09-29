@@ -34,6 +34,7 @@ var items
 var camera
 var SENode
 var rochers
+var naviguation_region
 
 # SPECIALS
 var entites = []

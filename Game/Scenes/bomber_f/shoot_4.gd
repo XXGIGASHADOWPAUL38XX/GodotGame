@@ -38,4 +38,3 @@ func post_dp_script(id, nbr_dupl):
 
 func push_ennemy():
 	ServiceSpell.push_ennemy_global(self, player_hitted, 8)
-

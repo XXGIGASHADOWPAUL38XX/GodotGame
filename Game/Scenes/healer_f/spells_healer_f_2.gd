@@ -33,6 +33,5 @@ func active():
 	
 func output_damage_f(champion_hitted):
 	if ServiceScenes.is_on_same_team(champion, champion_hitted):
-		print((healing_base + (damage_ratio * champion.damage_final)) * -1)
 		return (healing_base + (damage_ratio * champion.damage_final)) * -1
 	return damage_base + (damage_ratio * champion.damage_final) * (1 - (champion_hitted.armor_final / 100))

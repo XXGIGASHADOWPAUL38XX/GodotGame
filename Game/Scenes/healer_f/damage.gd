@@ -15,7 +15,7 @@ func _ready():
 		await super._ready()
 				
 		animation.frame_changed.connect(func():
-			if animation.animation == "explode":
+			if animation.animation == "damage":
 				self.modulate.a == min(1, 1.2 - (animation.frame / 10))
 		)
 
@@ -26,14 +26,12 @@ func active():
 	animation.play()
 	self.show()
 	
-	##!! remplacer par deuxième ligne quand animation faite
-	await get_tree().create_timer(0.5).timeout
-	#await animation.animation_finished
+	await animation.animation_finished
 	
 	explode()
 	
 func explode():
-	animation.animation = "explode"
+	animation.animation = "damage"
 	animation.play()
 	
 	await animation.animation_finished

@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://c3co6236ljth3"]
+[gd_scene load_steps=103 format=3 uid="uid://c3co6236ljth3"]
 
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/ctrlr_healer_f_1.gd" id="1_67fow"]
 [ext_resource type="Script" path="res://Game/Scenes/healer_f/spells_healer_f.gd" id="1_75utu"]
@@ -218,9 +218,25 @@ region = Rect2(0, 0, 640, 640)
 atlas = ExtResource("25_r3lr2")
 region = Rect2(0, 0, 640, 640)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ix1kn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_evqhf"]
 atlas = ExtResource("15_qen67")
-region = Rect2(0, 0, 524, 524)
+region = Rect2(0, 0, 592, 607)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xsa4"]
+atlas = ExtResource("15_qen67")
+region = Rect2(592, 0, 592, 607)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jw7c"]
+atlas = ExtResource("15_qen67")
+region = Rect2(1184, 0, 592, 607)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_814ev"]
+atlas = ExtResource("15_qen67")
+region = Rect2(1776, 0, 592, 607)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv0o8"]
+atlas = ExtResource("15_qen67")
+region = Rect2(2368, 0, 592, 607)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2hkr"]
 animations = [{
@@ -255,11 +271,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ix1kn")
+"texture": SubResource("AtlasTexture_evqhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xsa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jw7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_814ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv0o8")
 }],
 "loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bi77l"]
@@ -531,7 +559,8 @@ script = ExtResource("14_mwbt2")
 
 [node name="anim_damage" type="AnimatedSprite2D" parent="ctrlr_healer_f_3/damage"]
 sprite_frames = SubResource("SpriteFrames_m2hkr")
-animation = &"damage"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_healer_f_3/damage"]
 shape = SubResource("CircleShape2D_bi77l")
@@ -603,6 +632,7 @@ sprite_frames = SubResource("SpriteFrames_o6jlt")
 shape = SubResource("CircleShape2D_e14yy")
 
 [node name="sphere_regen" type="Area2D" parent="ctrlr_mark_passive/dp_mark_passive/mark_passive"]
+visible = false
 scale = Vector2(0.05, 0.05)
 script = ExtResource("38_a0q8d")
 

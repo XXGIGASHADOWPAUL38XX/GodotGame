@@ -43,4 +43,3 @@ func active():
 
 func stop_spell():
 	super.stop_spell()
-

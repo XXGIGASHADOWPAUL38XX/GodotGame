@@ -8,4 +8,3 @@ func _init(id: int) -> void:
 	self.id = id
 	self.username = null
 	self.number_players_queue = null
-

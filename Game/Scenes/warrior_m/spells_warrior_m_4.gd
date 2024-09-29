@@ -9,6 +9,9 @@ func _ready():
 		coltdown_time = 11
 		spell_zone = $zone_warrior_m_4
 		
+		cast_time = 0.1
+		cast_kind = CastTime.Kind.BeforeActive
+		
 		champion = ServiceScenes.championNode
 		
 		await super._ready()
@@ -21,4 +24,3 @@ func active():
 		coltdown.start()
 		spell_zone.active()
 		await hits.map(func(hit): await hit.active())
-

@@ -9,7 +9,8 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 6
-		
+		cast_time = 0.1
+			
 		champion = ServiceScenes.championNode
 		spell_1 = $spells_healer_f_1_1
 		spell_2 = $spells_healer_f_1_2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://df5rjqkj2erb"]
+[gd_scene load_steps=12 format=3 uid="uid://df5rjqkj2erb"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Main_game/main_game.gd" id="1_kjt31"]
 [ext_resource type="Texture2D" uid="uid://bbro6vr2aiyqc" path="res://Game/Ressources/Background/arena.jpg" id="2_t431i"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/Camera.gd" id="3_x461s"]
 [ext_resource type="PackedScene" uid="uid://0of8jyqcwuhn" path="res://Game/Scenes/Texte/texte.tscn" id="4_kvyx1"]
 [ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="5_vcx51"]
-[ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="6_oityy"]
 [ext_resource type="Texture2D" uid="uid://cdogv2bexjcyn" path="res://Game/Ressources/TileSet/Tilemap/tileset_legacy.png" id="7_y23q0"]
 [ext_resource type="Texture2D" uid="uid://bt2wqu747w7qw" path="res://Game/Ressources/TileSet/Dungeon tileset.png" id="8_fq3du"]
 
@@ -3835,5 +3834,3 @@ script = ExtResource("3_x461s")
 [node name="texte" parent="." instance=ExtResource("4_kvyx1")]
 
 [node name="announcer_progress" parent="." instance=ExtResource("5_vcx51")]
-
-[node name="obstacles" parent="." instance=ExtResource("6_oityy")]

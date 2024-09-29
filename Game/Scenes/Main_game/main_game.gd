@@ -76,4 +76,3 @@ func return_to_menu():
 
 func _process(delta):
 	pass
-

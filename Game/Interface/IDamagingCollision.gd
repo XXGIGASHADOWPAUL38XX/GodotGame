@@ -37,9 +37,8 @@ func output_damage_f(champion_hitted):
 	return damage_base
 	
 func set_multiplayer_properties():
-	super.set_multiplayer_properties()
+	await super.set_multiplayer_properties()
 		
 	multip_sync.replication_config.add_property(self.name + ":damage_base")
 	multip_sync.replication_config.add_property(self.name + ":damage_ratio")
 	multip_sync.replication_config.add_property(self.name + ":state")
-

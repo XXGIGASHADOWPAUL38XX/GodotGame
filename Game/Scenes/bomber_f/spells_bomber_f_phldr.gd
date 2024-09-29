@@ -46,4 +46,3 @@ func get_all_shoots():
 	return [$ctrlr_spell_1/dp_shoot_1, $ctrlr_spell_4/dp_spell_4].map(func(shoot_parent):
 		return shoot_parent.get_children().filter(func(child): return child is IActive)
 	).reduce(func(a, b): return a + b)
-

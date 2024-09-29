@@ -9,6 +9,16 @@ func get_player(username):
 	var value = await Database.request_http(url_function, method)
 	return value
 	
+func add_friend(player_to_add_name):
+	var url_function = '/rpc/add_friend_if_exists'
+	var method = HTTPClient.METHOD_POST
+	var data = json.stringify({
+		"player_to_add": player_to_add_name
+	})
+	
+	var value = await Database.request_http(url_function, method, data)
+	return value
+	
 func get_friends(player_id):
 	var url_function = '/rpc/get_friends_of_player'
 	var method = HTTPClient.METHOD_POST

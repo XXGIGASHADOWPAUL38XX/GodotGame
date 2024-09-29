@@ -9,8 +9,8 @@ var utility: int
 var controls: int
 var difficulty: int
 
-func _init(name: String, kind: HerosKind.Kind, damage: int, resistance: int, utility: int, 
-			mobility: int, controls: int, difficulty: int) -> void:
+func _init(name: String, kind: HerosKind.Kind, damage: int, resistance: int, mobility: int, 
+			utility: int, controls: int, difficulty: int) -> void:
 	self.name = name
 	self.kind = kind
 	self.damage = damage
@@ -19,4 +19,3 @@ func _init(name: String, kind: HerosKind.Kind, damage: int, resistance: int, uti
 	self.utility = utility
 	self.controls = controls
 	self.difficulty = difficulty
-

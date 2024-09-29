@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/witcher_f/witcher_f.gd" id="1_e0rno"]
 [ext_resource type="Texture2D" uid="uid://crxqdcayk4c00" path="res://ressource/rpgsprites1/townfolk1_f.png" id="1_hk4qp"]
 [ext_resource type="PackedScene" uid="uid://bysdh8s3xalfq" path="res://Game/Scenes/witcher_f/spells_witcher_f.tscn" id="2_errlb"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_3ff58"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="3_3ff58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewym3"]
 atlas = ExtResource("1_hk4qp")

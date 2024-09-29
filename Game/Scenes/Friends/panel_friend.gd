@@ -25,4 +25,5 @@ func post_dp_script(id, dp_number):
 	self.show()
 
 func _on_invite_button_pressed():
-	pass # Replace with function body.
+	Servrpc.send_to_id(Server.get_ppeer_id_from_name(friend["username"]), ServiceScenes.announcer_ui, 'announce', 
+	[str(Server.current_playerpeer.username) + " invited you into his game", AnnounceUI.AnnounceKind.INFORMATION])

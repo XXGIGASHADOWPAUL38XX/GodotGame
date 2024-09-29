@@ -42,4 +42,3 @@ func get_last_cube_s1():
 	
 	return last_cube_file
 	
-

@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://c03hfjgc365a5"]
+[gd_scene load_steps=12 format=3 uid="uid://c03hfjgc365a5"]
 
+[ext_resource type="Script" path="res://Game/Scenes/Friends/friend_list.gd" id="1_7wufj"]
 [ext_resource type="Texture2D" uid="uid://bneeyy64gbopu" path="res://Game/Ressources/UI/Friends/bg.png" id="1_e3u2p"]
 [ext_resource type="Script" path="res://Game/Scenes/Friends/dp_panel_friend.gd" id="1_tw0kg"]
 [ext_resource type="Texture2D" uid="uid://0vv3rlaurb4e" path="res://Game/Ressources/UI/Friends/friend_bg.png" id="2_mri1p"]
@@ -17,6 +18,9 @@ bg_color = Color(0, 0, 0, 1)
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcigo"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y4nkp"]
 texture = ExtResource("2_mri1p")
 
@@ -29,6 +33,7 @@ offset_bottom = 0.0799561
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+script = ExtResource("1_7wufj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(0, 0, 0, 0.509804)
@@ -52,6 +57,7 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -68,20 +74,51 @@ vertical_alignment = 1
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_ghx60")
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="add_friend" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
-texture = ExtResource("3_pp163")
-expand_mode = 1
+toggle_mode = true
+texture_normal = ExtResource("3_pp163")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="form_add_friend" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend"]
+layout_mode = 2
+
+[node name="friend_name" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_kcigo")
+
+[node name="confirm_add" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
@@ -131,4 +168,6 @@ texture_normal = ExtResource("3_pp163")
 ignore_texture_size = true
 stretch_mode = 0
 
+[connection signal="toggled" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/CenterContainer/add_friend" to="." method="_on_add_friend_toggled"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend/HBoxContainer/confirm_add" to="." method="_on_confirm_add_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/panel_friend/VBoxContainer/HBoxContainer/invite_button" to="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/panel_friend" method="_on_invite_button_pressed"]

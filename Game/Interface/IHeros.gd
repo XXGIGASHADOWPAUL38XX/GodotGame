@@ -2,13 +2,26 @@ extends ICharacter
 
 class_name IHeros
 
-var target_position_mvmt = Vector2.ZERO
+var path = []
 var angle_mvmt
+
+var map: RID
+var naviguation_region: RID
+var avoid_fpath = false
 
 const POSITION_OFFSET_SPAWN = 100
 
 func _ready():
 	await super._ready()
+	if is_multiplayer_authority():
+		map = NavigationServer2D.map_create()
+		NavigationServer2D.map_set_cell_size(map, speed_final)
+		NavigationServer2D.map_set_active(map, true)
+		naviguation_region = ServiceScenes.naviguation_region
+		NavigationServer2D.region_set_map(naviguation_region, map)
+		
+		NavigationServer2D.map_force_update(map)
+	
 	shield = $pgbars/shield
 		
 	if !is_multiplayer_authority():
@@ -54,7 +67,7 @@ func check_if_allies_dead():
 		ServiceRounds.new_round_global(self)
 
 func set_multiplayer_properties():
-	super.set_multiplayer_properties()
+	await super.set_multiplayer_properties()
 	var shld_bar_path = self.name + "/pgbars/shield"
 	
 	multip_sync.replication_config.add_property(shld_bar_path + ":position")
@@ -65,10 +78,16 @@ func set_multiplayer_properties():
 	
 func move():
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		target_position_mvmt = get_global_mouse_position()
+		path = NavigationServer2D.map_get_path(map, self.position, get_global_mouse_position(), true)
+		path.remove_at(0)
 		
-	self.direction = (target_position_mvmt - self.position).normalized()
-	self.velocity = self.direction * speed_final
+		avoid_fpath = true
+		
+	if path.size() > 0:
+		self.direction = (path[0] - self.position).normalized()
+		self.velocity = self.direction * speed_final
+	else:
+		self.velocity = Vector2.ZERO
 	
 	if (self.curr_state_action.state == State.StateAction.SLOWED):
 		self.velocity *= 0.5
@@ -76,9 +95,11 @@ func move():
 		self.velocity *= 0
 	
 	self.move_and_collide(self.velocity)
+	if path.size() > 0 && self.position.distance_to(path[0]) < speed_final:
+		path.remove_at(0)
 
 	play_movement_animation(animation)
-	#await get_tree().create_timer(0.05).timeout
+	#await get_tree().create_timer(0.05).timeout6
 	
 func play_movement_animation(animation):
 	angle_mvmt = rad_to_deg(self.direction.angle())

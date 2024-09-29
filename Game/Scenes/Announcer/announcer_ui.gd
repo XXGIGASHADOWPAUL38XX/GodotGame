@@ -1,6 +1,6 @@
 extends Control
 
-@onready var label = $VBoxContainer/PanelContainer/Label
+@onready var label = $VBoxContainer/PanelContainer/VBoxContainer/Label
 @onready var bars = [$VBoxContainer/TopBar, $VBoxContainer/BottomBar]
 
 var service_time = ServiceTime.new()
@@ -13,6 +13,7 @@ var bars_color_mapper = {
 	AnnounceUI.AnnounceKind.ERROR: Color(ALPHA_COLOR_BAR, 0, 0),
 	AnnounceUI.AnnounceKind.WARNING: Color(ALPHA_COLOR_BAR, ALPHA_COLOR_BAR, 0),
 	AnnounceUI.AnnounceKind.INFORMATION: Color(0, 0, ALPHA_COLOR_BAR),
+	AnnounceUI.AnnounceKind.CHOICE: Color(0, 0, ALPHA_COLOR_BAR),
 	AnnounceUI.AnnounceKind.SUCCESS: Color(0, ALPHA_COLOR_BAR, 0),
 }
 
@@ -34,19 +35,28 @@ func announce(announce_text, announce_kind=AnnounceUI.AnnounceKind.NULL, announc
 	)
 	
 	label.text = announce_text
-	duration_timer = service_time.init_timer(self, announce_duration)
-	duration_timer.timeout.connect(func():
-		for i in range(10):
-			self.modulate.a -= 0.1
-			await get_tree().create_timer(0).timeout
-			
-		self.hide()
-	)
-	duration_timer.start()
+	
+	if announce_kind != AnnounceUI.AnnounceKind.CHOICE:
+		duration_timer = service_time.init_timer(self, announce_duration)
+		duration_timer.timeout.connect(func():
+			await hide_announce()
+		)
+		duration_timer.start()
 	
 	self.show()
 	for i in range(10):
 		self.modulate.a += 0.1
 		await get_tree().create_timer(0).timeout
 	
-	
+func hide_announce():
+	for i in range(10):
+		self.modulate.a -= 0.1
+		await get_tree().create_timer(0).timeout
+		
+	self.hide()
+
+func _on_decline_pressed():
+	hide_announce()
+
+func _on_accept_pressed():
+	hide_announce()

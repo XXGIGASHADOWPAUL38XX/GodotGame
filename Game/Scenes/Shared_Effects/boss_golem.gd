@@ -18,7 +18,7 @@ func attack_back():
 func die(heros_dealing_dmg):
 	ServiceAnnounce.set_announce(
 		heros_dealing_dmg.name + 'has defeated the golem boss',
-		'res://Game/Ressources/Heros/icons/' + heros_dealing_dmg.name + '.png',
+		'res://Game/Ressources/Heros/hud_icons/' + heros_dealing_dmg.name + '.png',
 		'res://Game/Ressources/Main_Effects/Boss/boss_golem/logo.png'
 	)
 	

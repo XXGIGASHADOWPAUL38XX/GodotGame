@@ -38,7 +38,15 @@ func _ready():
 
 	if !ignore_multiconf_debug:
 		Servrpc.any(self, 'set_multiplayer_properties', [])
-
+		
+	# IMPORTANT, permet d'attendre que tous les 'set_multiplayer_properties' soient
+	# effectuées pour changer le mode en "onChange"
+	#await multip_sync.synchronized
+	#multip_sync.replication_config.get_properties().map(func(prop):
+		#multip_sync.replication_config.property_set_replication_mode(prop, SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE)
+	#)
+	
+	
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 func can_active(opt_param1=null, opt_param2=null, opt_param3=null):

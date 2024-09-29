@@ -41,13 +41,13 @@ func die(heros_dealing_dmg):
 	animation.play('die')
 	animation.animation_finished.connect(func():
 		for i in range(10):
-			self.modulate.a -= 26
-			await get_tree().create_timer(0).timeout
+			self.modulate.a -= 0.1
+			await get_tree().create_timer(0.05).timeout
 				
 		self.hide()
+		Servrpc.any(self, 'queue_free', [])
 	)
 	
-	Servrpc.any(self, 'queue_free', [])
 	
 func attack_back():
 	if (self.last_ennemy_hitting.position - self.global_position).x > 0:

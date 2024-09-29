@@ -22,4 +22,3 @@ func active():
 func stop_spell():
 	super.stop_spell()
 	counter.stop_spell()
-

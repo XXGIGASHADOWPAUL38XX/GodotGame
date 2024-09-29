@@ -78,10 +78,6 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lukyb"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tugvn"]
-atlas = ExtResource("8_djjs1")
-region = Rect2(0, 0, 105, 105)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbj0g"]
 atlas = ExtResource("9_uegv7")
 region = Rect2(0, 0, 489, 489)
@@ -178,16 +174,12 @@ region = Rect2(2934, 978, 489, 489)
 atlas = ExtResource("9_uegv7")
 region = Rect2(3423, 978, 489, 489)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tugvn"]
+atlas = ExtResource("8_djjs1")
+region = Rect2(0, 0, 105, 105)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_32clg"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tugvn")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gbj0g")
@@ -262,8 +254,16 @@ animations = [{
 "texture": SubResource("AtlasTexture_jyghn")
 }],
 "loop": false,
-"name": &"explode",
+"name": &"damage",
 "speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tugvn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l0ech"]
@@ -603,9 +603,7 @@ shape = SubResource("CircleShape2D_qksua")
 
 [node name="anim_bomb" type="AnimatedSprite2D" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb/bomb"]
 sprite_frames = SubResource("SpriteFrames_32clg")
-animation = &"explode"
-frame = 23
-frame_progress = 1.0
+animation = &"damage"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_spell_1/dp_10x_bomb/dp_bomb"]
 replication_config = SubResource("SceneReplicationConfig_l0ech")

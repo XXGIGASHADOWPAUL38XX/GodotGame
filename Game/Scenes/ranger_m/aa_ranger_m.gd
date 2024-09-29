@@ -29,4 +29,3 @@ func active():
 		await get_tree().create_timer(0).timeout
 
 	self.hide()
-

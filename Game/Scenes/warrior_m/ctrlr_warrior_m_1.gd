@@ -4,6 +4,9 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 4
+		
+		cast_time = 0.1
+		
 		await super._ready()
 			
 func active():

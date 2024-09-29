@@ -15,10 +15,8 @@ func _process(delta):
 			
 func active():
 	self.show()
-	champion_assigned.shield.set_shield(20, 30)
+	champion_assigned.shield.set_shield(20, 3)
 	
 	#!!
 	await get_tree().create_timer(5).timeout
 	self.hide()
-
-

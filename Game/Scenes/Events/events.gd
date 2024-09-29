@@ -58,4 +58,3 @@ func sync_events(all_events_server):
 	for i in range(all_events.size()):
 		$Events.get_node('Event' + str(i + 1)).get_node('TextureRect').texture = load(
 		"res://Game/Ressources/Events/" + all_events[i] + ".png")
-

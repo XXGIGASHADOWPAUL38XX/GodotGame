@@ -12,4 +12,3 @@ func active():
 	$dash.active()
 	await get_tree().create_timer(0.25).timeout
 	$dash.active()
-

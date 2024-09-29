@@ -17,4 +17,3 @@ func active():
 	$lame_1.active(base_destination)
 	await get_tree().create_timer(0.25).timeout
 	$lame_2.active(base_destination)
-

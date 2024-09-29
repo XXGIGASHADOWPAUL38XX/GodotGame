@@ -18,6 +18,7 @@ var champion
 func _ready():
 	if is_multiplayer_authority():
 		await resource_awaiter.await_resource_loaded(func(): return ServiceScenes.championNode != null)
+		print(6540)
 		
 		champion = ServiceScenes.championNode
 		sorted_slots = spell3_elements.keys()
@@ -27,7 +28,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_multiplayer_authority():
+	if is_multiplayer_authority() && champion != null:
 		self.position = champion.position + Vector2(-14, -10)
 
 func can_active():
@@ -59,10 +60,10 @@ func animate_texture(txtrRect: CompressedTexture2D):
 	animation_txtrRect.texture = txtrRect
 	champion.add_child(animation_txtrRect)
 	
-	animation_txtrRect.modulate.a = 0.6
-	for i in range(10):
-		animation_txtrRect.modulate.a -= 0.06
-		animation_txtrRect.size *= 1.025
+	animation_txtrRect.modulate.a = 1
+	for i in range(20):
+		animation_txtrRect.modulate.a -= 0.02
+		animation_txtrRect.size *= 1.05
 		await get_tree().create_timer(0.03).timeout
 		
 	animation_txtrRect.queue_free()
@@ -70,4 +71,3 @@ func animate_texture(txtrRect: CompressedTexture2D):
 func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
 	while c.get_object() != null && !c.call():
 		await c.get_object().get_tree().create_timer(retry_timeout).timeout
-

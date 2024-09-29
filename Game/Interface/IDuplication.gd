@@ -66,4 +66,3 @@ func spells_placeholder_f(node: Node = self):
 		return spells_placeholder_f(node.get_parent())
 		
 	return null
-

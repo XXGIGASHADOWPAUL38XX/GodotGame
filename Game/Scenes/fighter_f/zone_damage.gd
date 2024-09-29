@@ -45,7 +45,7 @@ func output_damage_f(champion_hitted):
 			1 - (champion_hitted.armor_final / 100))
 
 func set_multiplayer_properties():
-	super.set_multiplayer_properties()
+	await super.set_multiplayer_properties()
 	
 	multip_sync.replication_config.add_property(self.name + ":bonus_damage_count")
 	multip_sync.replication_config.add_property(self.name + ":bonus_damage_count_ratio")

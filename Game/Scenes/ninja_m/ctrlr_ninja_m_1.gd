@@ -9,6 +9,8 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 5
+		cast_time = 0.1
+		cast_kind = CastTime.Kind.BeforeActive
 		
 		shuriken = $spell_ninja_m_1/shuriken_m_1
 		shadow = $spell_ninja_m_1/shadow_m_1

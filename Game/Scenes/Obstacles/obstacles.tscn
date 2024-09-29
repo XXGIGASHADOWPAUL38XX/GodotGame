@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfex806d42y3f"]
+[gd_scene load_steps=5 format=3 uid="uid://dfex806d42y3f"]
 
 [ext_resource type="Texture2D" uid="uid://ciajh61jm4u44" path="res://Game/Ressources/Background/map.png" id="1_d45mv"]
 [ext_resource type="Script" path="res://Game/Scenes/Obstacles/Rochers.gd" id="2_hjf8y"]
+[ext_resource type="Script" path="res://Game/Scenes/Obstacles/NavigationRegion2D.gd" id="2_qcqdv"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qcx4x"]
+vertices = PackedVector2Array(1745, 1096, 1768, 1078, 1991, 1051, 2066, 1044, 2826, 1630, 1727, 1129, 759, 776, 770, 741, 1503, 704, 1534, 712, 1387, 877, 1316, 866, 2098, 885, 1634, 553, 1896, 496, 1973, 519, 2142, 866, 614, 1207, 997, 1187, 1085, 1230, 602, 1264, 1192, 1214, 1660, 1161, 1698, 1174, 1161, 1229, 513, 355, 892, 334, 934, 355, 331, 567, 483, 369, 1954, 1035, 1754, 1020, 1763, 1007, 2831, -311, 2290, 954, 2280, 907, 2063, 443, 2058, 403, 2243, 886, 1202, 232, 1225, 175, 1483, 167, 1496, 180, 1202, 233, 1473, 675, 769, 687, 2173, 865, 1638, 142, 1617, 104, 2006, 397, 1968, 395, 1942, 382, 959, 1117, 1614, 225, 1868, 459, 1594, 232, 2269, 982, 1619, 176, 1896, 418, 1881, 418, 1629, 1047, 1177, 1172, 1101, 186, 1045, 225, 1029, 194, 1460, 564, 648, 632, 1467, 95, 1483, 136, 1184, 159, 891, 292, 511, 340, 621, 810, 729, 807, 947, 1041, 559, 1195, 317, 624, 1464, 546, 1596, 643, 2006, 948, 1614, 682, 1978, 982, 1730, 978, 1464, 967, 1576, 707, 1426, 929, 1398, 904, 499, 311, 903, 251, 1155, 1136, 1551, 227, 1625, 529, 477, 276, 2190, 1003, 2177, 1030, 1589, 76, 1465, 544, 1473, 522, 1442, 1001, 1096, 1068, 1325, 1004, 1726, 1129, 417, 208, 1176, 279, 1536, 471, 1495, 496, 1684, 988, 1279, 937, 985, 1014, 1280, 891, 1040, 370, 1006, 372, 1624, 542, 1125, 314, 1084, 345, 406, 370, 317, 327, 278, 559, 175, 591, 279, 256, 1328, 877, 602, 802, 582, 788, 523, 1214, 460, 1231, 559, 760, 441, 1244, 156, 603, 717, 688, 260, 662, 540, 712, 242, 681, 2137, 1019, -340, 1644, 613, 635, 214, 675, 181, 687, 154, 684, 429, 1272, 467, 1330, 499, 1318, 526, 1324, 545, 1305, 1498, 66, -355, -311, 1536, 64, 993, 226, 305, 154, 267, 181, 142, 631, 438, 1327)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(25, 26, 27, 28, 29), PackedInt32Array(30, 2, 1, 31, 32), PackedInt32Array(33, 4, 34, 35), PackedInt32Array(36, 37, 33, 35, 38), PackedInt32Array(39, 40, 41, 42, 43), PackedInt32Array(44, 8, 7, 45), PackedInt32Array(36, 38, 46, 15), PackedInt32Array(47, 48, 33, 37, 49), PackedInt32Array(47, 49, 50, 51), PackedInt32Array(15, 46, 16), PackedInt32Array(52, 18, 17), PackedInt32Array(53, 54, 14, 13, 55), PackedInt32Array(56, 34, 4), PackedInt32Array(57, 47, 51, 58, 59, 53), PackedInt32Array(60, 22, 21, 61), PackedInt32Array(62, 63, 64), PackedInt32Array(65, 44, 45, 66), PackedInt32Array(67, 68, 41, 40, 69), PackedInt32Array(70, 26, 25, 71), PackedInt32Array(72, 73, 74, 52, 17, 75), PackedInt32Array(76, 28, 77, 65, 66), PackedInt32Array(78, 13, 12, 79, 80), PackedInt32Array(80, 79, 81, 82, 83, 84), PackedInt32Array(9, 84, 83, 85), PackedInt32Array(9, 85, 86, 10), PackedInt32Array(70, 71, 87, 88), PackedInt32Array(60, 61, 89), PackedInt32Array(81, 30, 32, 82), PackedInt32Array(53, 59, 54), PackedInt32Array(90, 55, 13, 91), PackedInt32Array(88, 87, 92), PackedInt32Array(93, 56, 4, 94), PackedInt32Array(33, 48, 95), PackedInt32Array(96, 77, 28, 97), PackedInt32Array(98, 60, 89, 99, 100), PackedInt32Array(23, 101, 5, 4), PackedInt32Array(88, 92, 102), PackedInt32Array(103, 43, 42, 90, 104, 105), PackedInt32Array(83, 82, 106), PackedInt32Array(83, 106, 60, 98), PackedInt32Array(107, 100, 99, 108), PackedInt32Array(109, 107, 108, 6), PackedInt32Array(110, 105, 97, 28, 111), PackedInt32Array(13, 112, 91), PackedInt32Array(90, 91, 104), PackedInt32Array(113, 103, 105, 114), PackedInt32Array(110, 114, 105), PackedInt32Array(27, 111, 28), PackedInt32Array(115, 29, 28), PackedInt32Array(116, 115, 28, 117), PackedInt32Array(116, 117, 118, 119), PackedInt32Array(10, 120, 11), PackedInt32Array(6, 11, 109), PackedInt32Array(6, 108, 74, 73), PackedInt32Array(121, 72, 75), PackedInt32Array(122, 121, 75, 123, 124), PackedInt32Array(125, 122, 124, 126), PackedInt32Array(119, 118, 127), PackedInt32Array(45, 128, 66), PackedInt32Array(129, 76, 130, 125, 126, 131), PackedInt32Array(3, 132, 94, 4), PackedInt32Array(23, 4, 133, 24), PackedInt32Array(76, 66, 134), PackedInt32Array(76, 134, 130), PackedInt32Array(135, 131, 126, 136), PackedInt32Array(137, 136, 126, 138, 133), PackedInt32Array(139, 140, 141, 133), PackedInt32Array(142, 20, 19, 141), PackedInt32Array(143, 67, 69, 144), PackedInt32Array(33, 95, 145), PackedInt32Array(144, 33, 145, 143), PackedInt32Array(144, 69, 62, 64), PackedInt32Array(144, 64, 146, 88, 102, 147), PackedInt32Array(144, 147, 148), PackedInt32Array(133, 144, 148, 119, 149), PackedInt32Array(19, 24, 133, 141), PackedInt32Array(150, 139, 133), PackedInt32Array(138, 150, 133), PackedInt32Array(149, 137, 133), PackedInt32Array(149, 119, 127)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-365, -321, 2841, -321, 2836, 1640, -350, 1655)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 30.0
 
 [node name="obstacles" type="Node2D"]
 
@@ -14,76 +22,167 @@ size_flags_vertical = 4
 texture = ExtResource("1_d45mv")
 expand_mode = 1
 
-[node name="Rochers" type="CharacterBody2D" parent="Map"]
-script = ExtResource("2_hjf8y")
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+navigation_polygon = SubResource("NavigationPolygon_qcx4x")
+script = ExtResource("2_qcqdv")
 
-[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D10" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1520.68, 232.199)
 rotation = -2.06817
 scale = Vector2(0.49546, 0.506241)
 skew = -0.0301037
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(148.875, 17.1672, 196.713, 45.3052, 276, 55, 291.524, 114.831, 261, 174, 192.477, 248.762, 123.448, 268.609, 49.3195, 269.699, 12.5098, 210.944, -60.9237, 159.829, -55.7062, 135.216, -8.35938, 73.9321, 124.025, 24.3125)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(303.866, 164.396)
 scale = Vector2(0.605329, 0.61435)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(3, 2, 177, 84, 272, 192, 272, 192, 307, 247, 325, 291, 327, 300, 293, 316, 172, 318, 34, 251, -25, 145, -43, 35)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D2" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(203.087, 502.731)
 scale = Vector2(0.610872, 0.593923)
-build_mode = 1
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-82, 217, -64, 181, -40, 163, 125, 112, 190, 121, 172, 194, 84, 255, 58, 282, 20, 274, -37, 293, -68, 290)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D3" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(594.585, 663.25)
 scale = Vector2(0.596264, 0.617647)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(84, -34, 200, 58, 276, 55, 277, 125, 261, 174, 218, 216, 48, 221, 21, 210, -10, 191, -44, 149, -71, 82, 40, -29)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D4" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1315.85, 875.054)
 scale = Vector2(0.601679, 0.608378)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D5" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1001.09, 185)
 scale = Vector2(0.591839, 0.635571)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-5, 80, 42, 40, 69, 88, 178, 16, 309, -23, 356, -7, 324, 68, 282, 137, 200, 190, 132, 239, 60, 276, 10, 279, -108, 253, -167, 225, -169, 170, -153, 116)
 
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D6" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1886, 424)
 rotation = -0.675878
 scale = Vector2(0.601679, 0.608378)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
 
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D7" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1754, 1009)
 rotation = 1.33203
 scale = Vector2(0.603625, 0.6196)
 skew = 0.0108062
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
 
-[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D8" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(983.873, 1024.67)
 scale = Vector2(0.598464, 0.613688)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(3, 2, 177, 84, 272, 192, 272, 192, 307, 247, 325, 291, 327, 300, 293, 316, 172, 318, 34, 251, -25, 145, -43, 35)
 
-[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D9" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(488, 1141)
 scale = Vector2(0.601846, 0.609895)
-build_mode = 1
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-82, 217, -64, 181, -40, 163, 66.4623, 136.089, 121.294, 106.576, 190, 121, 174.463, 191.836, 84, 255, 58, 282, 20, 274, -37, 293, -68, 290)
 
-[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D11" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(2169.62, 1037.81)
 rotation = -3.08279
 scale = Vector2(0.570372, 0.581452)
 skew = -0.00779867
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-21.2654, 76.67, -2.39819, 34.2513, 56.1895, 46.3683, 185.281, -4.13464, 309, -23, 356, -7, 324, 68, 281.644, 126.347, 129.505, 240.175, 60, 276, 10, 279, -108, 253, -167, 225, -183.858, 158.382, -157.719, 120.71)
 
-[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="Map/Rochers"]
+[node name="CollisionPolygon2D12" type="Polygon2D" parent="Map/NavigationRegion2D"]
+visible = false
 position = Vector2(1583.61, 522.303)
 rotation = 1.46922
 scale = Vector2(0.625221, 0.532237)
 skew = -0.00735915
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(42.9623, -52.2927, 58.6632, -65.5317, 193.913, 18.7166, 250.581, -2.84424, 276, 55, 277, 125, 261, 174, 218, 216, 48, 221, 21, 210, -10, 191, -44, 149, -71, 82, 24.056, -56.4482)
+
+[node name="Rochers" type="CharacterBody2D" parent="."]
+script = ExtResource("2_hjf8y")
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1525.68, 217.199)
+rotation = -2.06817
+scale = Vector2(0.4, 0.409)
+polygon = PackedVector2Array(148.875, 17.1672, 196.713, 45.3052, 276, 55, 291.524, 114.831, 261, 174, 192.477, 248.762, 123.448, 268.609, 49.3195, 269.699, 12.5098, 210.944, -60.9237, 159.829, -55.7062, 135.216, -8.35938, 73.9321, 124.025, 24.3125)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(315.866, 180.396)
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(3, 2, 177, 84, 272, 192, 272, 192, 307, 247, 325, 291, 327, 300, 293, 316, 172, 318, 34, 251, -25, 145, -43, 35)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(209.087, 532.731)
+scale = Vector2(0.45, 0.46)
+polygon = PackedVector2Array(-82, 217, -64, 181, -40, 163, 125, 112, 190, 121, 172, 194, 84, 255, 58, 282, 20, 274, -37, 293, -68, 290)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(600.585, 672.25)
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(84, -34, 200, 58, 276, 55, 277, 125, 261, 174, 218, 216, 48, 221, 21, 210, -10, 191, -44, 149, -71, 82, 40, -29)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1325.85, 893.054)
+scale = Vector2(0.45, 0.46)
+polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1001.09, 206)
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(-5, 80, 42, 40, 69, 88, 178, 16, 309, -23, 356, -7, 324, 68, 282, 137, 200, 190, 132, 239, 60, 276, 10, 279, -108, 253, -167, 225, -169, 170, -153, 116)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1895, 430)
+rotation = -0.675878
+scale = Vector2(0.45, 0.46)
+polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1745, 1017)
+rotation = 1.33203
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(-1, 7, 13, 19, 106, 20, 124, 58, 172, 100, 224, 153, 200, 190, 23, 195, -44, 97, -43, 35)
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(991.873, 1038.67)
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(3, 2, 177, 84, 272, 192, 272, 192, 307, 247, 325, 291, 327, 300, 293, 316, 172, 318, 34, 251, -25, 145, -43, 35)
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(493, 1172)
+scale = Vector2(0.45, 0.46)
+polygon = PackedVector2Array(-82, 217, -64, 181, -40, 163, 66.4623, 136.089, 121.294, 106.576, 190, 121, 174.463, 191.836, 84, 255, 58, 282, 20, 274, -37, 293, -68, 290)
+
+[node name="CollisionPolygon2D11" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(2169.62, 1025.81)
+rotation = -3.08279
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(-21.2654, 76.67, -2.39819, 34.2513, 56.1895, 46.3683, 185.281, -4.13464, 309, -23, 356, -7, 324, 68, 281.644, 126.347, 129.505, 240.175, 60, 276, 10, 279, -108, 253, -167, 225, -183.858, 158.382, -157.719, 120.71)
+
+[node name="CollisionPolygon2D12" type="CollisionPolygon2D" parent="Rochers"]
+position = Vector2(1582.61, 534.303)
+rotation = 1.46922
+scale = Vector2(0.5, 0.511)
+polygon = PackedVector2Array(51.2903, -40.3892, 194.13, 27.2942, 262.41, 15.1328, 286.137, 43.1204, 294.931, 108.41, 270.156, 160.734, 229.234, 198.035, 33.1881, 200.913, -10, 191, -44, 149, -83.1235, 77.501, 17.4172, -36.8682)

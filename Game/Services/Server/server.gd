@@ -5,7 +5,7 @@ var client = ENetMultiplayerPeer.new()
 var current_playerpeer
 
 const PORT = 9999
-var ADDRESS = '127.0.0.1'
+var ADDRESS = '86.202.211.76'
 var data = {}
 
 var connected_peer_ids = []
@@ -36,7 +36,7 @@ func add_player_character(player_id):
 	connected_peer_ids.append(player_id)
 	connected_players.append(PlayerPeer.new(player_id))
 	
-	await resource_awaiter.await_resource_loaded(func(): return get_playerpeer_id(player_id).username != null)
+	await resource_awaiter.await_resource_loaded(func(): return get_ppeer_from_id(player_id).username != null)
 	
 	new_player_connected.emit(player_id)
 
@@ -85,5 +85,8 @@ func update_playerpeer_id(id, attribute, value):
 	connected_players.filter(func(cp): return cp.id == id)[0].set(attribute, value)
 	players_updated.emit(connected_players)
 	
-func get_playerpeer_id(peer_id):
+func get_ppeer_from_id(peer_id):
 	return connected_players.filter(func(cp): return cp.id == peer_id)[0]
+
+func get_ppeer_id_from_name(username):
+	return connected_players.filter(func(cp): return cp.username == username)[0].id

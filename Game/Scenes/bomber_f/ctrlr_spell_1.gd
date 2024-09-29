@@ -7,6 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 5
+		cast_time = 0.1
 		champion = ServiceScenes.championNode
 		
 		await super._ready()
@@ -17,4 +18,3 @@ func active():
 	var main_vector = get_global_mouse_position() - champion.position
 		
 	shoots.map(func(s): s.active(main_vector))
-

@@ -99,7 +99,7 @@ func new_round():
 	health_bar.value = health_bar.max_value
 	
 func set_multiplayer_properties():
-	super.set_multiplayer_properties()
+	await super.set_multiplayer_properties()
 	var hlth_bar_path = self.name + "/pgbars/health_bar"
 	var state_bar_path = self.name + "/pgbars/state_bar"
 	

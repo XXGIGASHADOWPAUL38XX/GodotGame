@@ -9,4 +9,3 @@ func _ready():
 func active():
 	await super.active()
 	$shield_golem.active()
-

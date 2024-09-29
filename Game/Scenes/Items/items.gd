@@ -89,7 +89,7 @@ func load_active(orb: Control):
 	for i in range(3):
 		ServiceAnnounce.set_announce(
 			ServiceScenes.championNode.name + ' purchased orb active : ' + orb.get_name(),
-			'res://Game/Ressources/Heros/icons/' + ServiceScenes.championNode.name  + '.png',
+			'res://Game/Ressources/Heros/hud_icons/' + ServiceScenes.championNode.name  + '.png',
 			orb_texture_button.texture_normal.resource_path, ServiceScenes.championNode
 		)
 		

@@ -7,7 +7,8 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_ultimate']
 		coltdown_time = 13
-		
+		cast_time = 0.1
+				
 		zone_ult = $zone_ult
 		
 		await super._ready()

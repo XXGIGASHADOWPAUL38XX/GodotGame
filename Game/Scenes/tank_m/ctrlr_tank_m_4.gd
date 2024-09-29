@@ -8,6 +8,8 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_ultimate']
 		coltdown_time = 14
+		cast_time = 0.2
+		cast_kind = CastTime.Kind.BeforeActive
 		
 		charge = $charge
 		zone = $zone

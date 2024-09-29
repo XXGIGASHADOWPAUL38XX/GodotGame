@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dxlqqsgeeqtvw"]
+[gd_scene load_steps=29 format=3 uid="uid://dxlqqsgeeqtvw"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shared_effects.gd" id="1_voula"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/health_gem_phldr.gd" id="2_vn0h0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/Health_gem.gd" id="5_srjfy"]
 [ext_resource type="Texture2D" uid="uid://bulk53fl5muxq" path="res://Game/Ressources/Background/Gems/orb_gem.png" id="6_04pjl"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/orb_gem.gd" id="8_plmok"]
+[ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="9_57a4y"]
 [ext_resource type="PackedScene" uid="uid://bqyci8g30rwl" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem.tscn" id="9_jg1ya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76mgc"]
@@ -168,3 +169,5 @@ root_path = NodePath("../orb_gem")
 replication_config = SubResource("SceneReplicationConfig_rhoha")
 
 [node name="monsters_gem" parent="." instance=ExtResource("9_jg1ya")]
+
+[node name="obstacles" parent="." instance=ExtResource("9_57a4y")]
