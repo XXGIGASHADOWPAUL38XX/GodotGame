@@ -593,7 +593,7 @@ script = ExtResource("13_1kbg2")
 
 [node name="aa_ring" type="Area2D" parent="weapon_ring/ctrlr_aa_ring"]
 visible = false
-scale = Vector2(0.06, 0.06)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("14_up1ss")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="weapon_ring/ctrlr_aa_ring/aa_ring"]

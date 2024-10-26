@@ -1,7 +1,7 @@
 extends IDamagingSpell
 
 var distance_base: float = 30.0  # Distance from center_object
-var rotation_speed: float = 40  
+var rotation_speed: float = 20  
 var current_angle: float = 0.0
 var direction
 
@@ -10,8 +10,8 @@ var angle = 0
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
-		damage_base = 3.0
-		damage_ratio = 0.075
+		damage_base = 4.0
+		damage_ratio = 0.125
 		# ------------------------------------ #
 		
 		await super._ready()

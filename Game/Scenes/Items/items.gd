@@ -25,7 +25,7 @@ func _ready():
 			ServiceScenes.main_scene.move_child(self, ServiceScenes.main_scene.get_child_count() - 1)
 	)
 	
-	number_orb_value(4)
+	number_orb_value(2)
 	
 	orbs = get_all_textureButton(orbs_grid)
 	items = items_container.get_children()

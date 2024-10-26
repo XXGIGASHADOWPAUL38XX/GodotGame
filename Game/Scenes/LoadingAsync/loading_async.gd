@@ -46,10 +46,12 @@ func _ready():
 func add_loading(key, resource_loading=null):
 	if resource_loading != null && label_resource_loading.text == '':
 		label_resource_loading.text = resource_loading
-	
+		
 	current_loadings[key] = resource_loading
 	if !self.visible:
 		self.show()
+		
+	get_parent().move_child(self, get_parent().get_child_count() - 1)
 	
 func remove_loading(key):
 	current_loadings.erase(key)

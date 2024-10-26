@@ -36,8 +36,8 @@ func active():
 		timer_visible.start()
 	
 	else:
-		dash_first.active_back()
 		dash_back.active_back()
+		dash_first.active_back()
 		await super.active()
 		
 	anim_dash.active()

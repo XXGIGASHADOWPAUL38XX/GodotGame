@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6
-		damage_ratio = 0.115
+		damage_ratio = 0.125
 		# ------------------------------------ #
 		
 		await super._ready()

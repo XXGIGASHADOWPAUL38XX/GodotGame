@@ -27,7 +27,6 @@ func _process(delta):
 		self.position = Vector2(camera.offset.x, camera.offset.y)
 
 func set_announce(announce_text, logo_left_texture, logo_right_texture, champion=null): #RELATIVE = RELATIVE TO ONE SPECIFIC PLAYER 
-	print(123)
 	var random_id = randf()
 	announce_queue[random_id] = Announce.new(announce_text, logo_left_texture, logo_right_texture, champion)
 	
@@ -35,7 +34,6 @@ func set_announce(announce_text, logo_left_texture, logo_right_texture, champion
 		display_announce(random_id, announce_queue[random_id])
 	
 func display_announce(random_id, announce: Announce):
-	print(456)
 	label.text = announce.text
 	
 	if !(announce.champion in ServiceScenes.allPlayersNode):

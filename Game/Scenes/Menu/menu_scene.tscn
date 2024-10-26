@@ -21,6 +21,7 @@
 [sub_resource type="GDScript" id="GDScript_5pvo6"]
 script/source = "extends Control
 
+var player_controller = PlayerController.new()
 var modulation = 0
 const players_needed_for_match: int = 4
 
@@ -42,8 +43,10 @@ func _ready():
 	Server.new_player_connected.connect(func(peer_id):
 		if peer_id == Server.get_client_id():
 			return
+			
+		var player = await player_controller.get_player_by_sid(peer_id)
 		ServiceScenes.announcer_ui.announce(
-			str(Server.get_ppeer_from_id(peer_id).username) + \" just connected to the game\", AnnounceUI.AnnounceKind.INFORMATION
+			player[\"username\"] + \" just connected to the game\", AnnounceUI.AnnounceKind.INFORMATION
 		)
 	)
 	
@@ -103,7 +106,7 @@ func _on_profile_button_pressed():
 	pass # Replace with function body.
 
 func _on_signout_button_pressed():
-	Server.player_db_id = null
+	Server.removeClient()
 	
 	var login_scene = ResourceLoader.load_threaded_get(LOGIN_SCENE_PATH).instantiate()
 	ServiceScenes.root_scene.add_child(login_scene)

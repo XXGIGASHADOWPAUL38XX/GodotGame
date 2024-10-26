@@ -33,6 +33,7 @@ texture = SubResource("GradientTexture1D_ksgbf")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgpjh"]
 
 [node name="announcer_ui" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

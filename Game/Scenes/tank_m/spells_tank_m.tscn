@@ -396,8 +396,7 @@ script = ExtResource("1_gc2tw")
 script = ExtResource("2_ggjgq")
 
 [node name="aa_tank_m" type="Area2D" parent="ctrlr_aa_tank_m"]
-visible = false
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.12, 0.12)
 script = ExtResource("3_txguk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_tank_m/aa_tank_m"]

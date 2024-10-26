@@ -25,9 +25,7 @@ func active():
 		
 	cube.active()
 	
-	inactive_cubes = get_inactive_cubes(cubes_s1())
-	if inactive_cubes.size() == 0:
-		spells_placeholder.controller_laser.launch_lasers(cube)
+	spells_placeholder.controller_laser.launch_lasers(cube)
 
 # --------------------- CUBES FUNCTIONS --------------------------- #
 func get_inactive_cubes(cube_list):

@@ -7,8 +7,8 @@ var rotate_speed = 25
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
-		damage_base = 8.0
-		damage_ratio = 0.2
+		damage_base = 5.0
+		damage_ratio = 0.125
 		immobile_while_active = true
 		# ------------------------------------ #
 		

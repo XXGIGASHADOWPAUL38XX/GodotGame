@@ -18,7 +18,6 @@ var champion
 func _ready():
 	if is_multiplayer_authority():
 		await resource_awaiter.await_resource_loaded(func(): return ServiceScenes.championNode != null)
-		print(6540)
 		
 		champion = ServiceScenes.championNode
 		sorted_slots = spell3_elements.keys()

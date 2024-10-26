@@ -1,14 +1,35 @@
 class_name PlayerController
 
 var json = JSON.new()
+var database = Database.new()
 
 func get_player(username):
 	var url_function = '/players?username=eq.' + username
 	var method = HTTPClient.METHOD_GET
 	
-	var value = await Database.request_http(url_function, method)
+	var value = await database.request_http(url_function, method)
 	return value
 	
+func set_session_id(session_id):
+	var url_function = '/rpc/set_session_id'
+	var method = HTTPClient.METHOD_POST
+	var data = json.stringify({
+		"player_id": Server.current_dbplayer["id"],
+		"new_session_id": session_id
+	})
+	
+	var value = await database.request_http(url_function, method, data)
+	#rpc vers le server, 
+	return value
+	
+func get_player_by_sid(peer_id):
+	var url_function = '/players?session_id=eq.' + str(peer_id)
+	var method = HTTPClient.METHOD_GET
+	
+	var value = await database.request_http(url_function, method)
+	return value[0] # NE MARCHERA PAS TANT QUE ON PEUT SE CONNECTER PLUSIEURS FOIS AU MEME COMPTE
+	
+
 func add_friend(player_to_add_name):
 	var url_function = '/rpc/add_friend_if_exists'
 	var method = HTTPClient.METHOD_POST
@@ -16,7 +37,7 @@ func add_friend(player_to_add_name):
 		"player_to_add": player_to_add_name
 	})
 	
-	var value = await Database.request_http(url_function, method, data)
+	var value = await database.request_http(url_function, method, data)
 	return value
 	
 func get_friends(player_id):
@@ -26,7 +47,7 @@ func get_friends(player_id):
 		"entry_id": player_id
 	})
 	
-	var value = await Database.request_http(url_function, method, data)
+	var value = await database.request_http(url_function, method, data)
 	return value
 	
 func login(username, password):
@@ -38,7 +59,7 @@ func login(username, password):
 	if player["password"] != hash_password(password):
 		return PlayerException.LoginException.PASSWORD_INCORRECT
 		
-	Server.current_playerpeer = player
+	Server.current_dbplayer = player
 	return player
 		
 func signup(username, password):
@@ -55,7 +76,7 @@ func signup(username, password):
 		"password": hash_password(password)
 	})
 	
-	var value = await Database.request_http(url_function, method, data)
+	var value = await database.request_http(url_function, method, data)
 	return player
 
 func hash_password(password: String) -> String:

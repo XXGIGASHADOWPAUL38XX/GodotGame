@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 7
-		timer_key_release_cd = 0.75
+		timer_key_release_cd = 2
 		
 		spell = $spell_tank_m_2
 		
