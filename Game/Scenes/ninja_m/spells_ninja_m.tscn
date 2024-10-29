@@ -491,7 +491,6 @@ script = ExtResource("25_6swwq")
 script = ExtResource("26_d4pg2")
 
 [node name="mark" type="Area2D" parent="ctrlr_mark_ninja_m/dp_mark"]
-visible = false
 script = ExtResource("27_ro3pv")
 
 [node name="anim_mark" type="AnimatedSprite2D" parent="ctrlr_mark_ninja_m/dp_mark/mark"]

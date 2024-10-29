@@ -34,6 +34,6 @@ func boost_zone_entered():
 	
 func boost_zone_exited():
 	Servrpc.send_to_id(player_hitted.get_multiplayer_authority(), ServiceStats, 
-		'update_stats', [player_hitted, 'speed_bonus_ratio', 0.3]
+		'update_stats', [player_hitted, 'speed_bonus_ratio', -0.3]
 	)
 

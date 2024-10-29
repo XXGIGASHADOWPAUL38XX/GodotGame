@@ -9,7 +9,7 @@ var current_dbplayer
 var current_playerpeer
 
 const PORT = 9999
-var ADDRESS = '86.202.211.76'
+var ADDRESS = '127.0.0.1'
 var data = {}
 
 var connected_peer_ids = []

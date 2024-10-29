@@ -24,7 +24,7 @@ func _process(_delta):
 
 func active():
 	self.position = champion.position + ServiceSpell.set_in_front(champion, 10, base_angle)
-	self.throw_direction = (get_global_mouse_position() - self.position).rotated(deg_to_rad(base_angle))
+	self.throw_direction = (get_global_mouse_position() - champion.position).rotated(deg_to_rad(base_angle))
 	self.rotation = throw_direction.angle()
 	
 	self.show()

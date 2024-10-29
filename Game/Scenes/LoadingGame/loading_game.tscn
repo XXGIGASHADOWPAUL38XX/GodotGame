@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmrufk3sj2i3x"]
 
 [ext_resource type="Script" path="res://Game/Scenes/LoadingGame/Panel.gd" id="1_c6jrf"]
-[ext_resource type="Theme" uid="uid://dg5thi0mhx4m2" path="res://ressource/loading_bar.tres" id="2_jhw4a"]
+[ext_resource type="Theme" uid="uid://1mocrmcokpku" path="res://ressource/loading_bar.tres" id="2_jhw4a"]
 
 [sub_resource type="Gradient" id="Gradient_qkub6"]
 colors = PackedColorArray(0.370364, 0.370364, 0.370364, 1, 0, 0, 0, 1)
