@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxlqqsgeeqtvw"]
+[gd_scene load_steps=28 format=3 uid="uid://dxlqqsgeeqtvw"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/shared_effects.gd" id="1_voula"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/health_gem_phldr.gd" id="2_vn0h0"]
@@ -6,8 +6,6 @@
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/orb_gem_phldr.gd" id="5_8ogd8"]
 [ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/Health_gem.gd" id="5_srjfy"]
 [ext_resource type="Texture2D" uid="uid://bulk53fl5muxq" path="res://Game/Ressources/Background/Gems/orb_gem.png" id="6_04pjl"]
-[ext_resource type="Script" path="res://Game/Scenes/Shared_Effects/orb_gem.gd" id="8_plmok"]
-[ext_resource type="PackedScene" uid="uid://dfex806d42y3f" path="res://Game/Scenes/Obstacles/obstacles.tscn" id="9_57a4y"]
 [ext_resource type="PackedScene" uid="uid://bqyci8g30rwl" path="res://Game/Scenes/Shared_Effects/monsters_gem/monsters_gem.tscn" id="9_jg1ya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_76mgc"]
@@ -86,6 +84,72 @@ radius = 18.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2i2l4"]
 
+[sub_resource type="GDScript" id="GDScript_ucfsg"]
+script/source = "extends Area2D
+
+#extends \"res://Game/Interface/IReceiverObject.gd\"
+#
+#const NUMBER_FRAMES = 4
+#const MARGIN_SPAWN_X = 600
+#const MARGIN_SPAWN_Y = 400
+#
+#var timer_spawn
+#var animation
+#
+#var modulate_bool: bool = false
+#
+## Called when the node enters the scene tree for the first time.
+#func _ready():
+#	await super._ready()
+#	animation = $orb_gem_anim
+#	if is_multiplayer_authority():
+#		timer_spawn = service_time.init_timer(self, randf_range(5, 15))
+#		timer_spawn.start()
+#		timer_spawn.timeout.connect(spawn)
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	if animation.frame + 1 < NUMBER_FRAMES:
+#		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool)
+#
+#func spawn():
+#	ServiceAnnounce.set_announce(
+#		'An orb fragment has appeared',
+#		'res://Game/Ressources/Background/Gems/orb_gem_icon.png',
+#		'res://Game/Ressources/Background/Gems/orb_gem_icon.png'
+#	)
+#
+#	animation.animation = 'default'
+#	self.modulate.a = 1
+#	self.position = Vector2(
+#		randf_range(MARGIN_SPAWN_X, ServiceWindow.scene_size.x - MARGIN_SPAWN_X), 
+#		randf_range(MARGIN_SPAWN_Y, ServiceWindow.scene_size.y - MARGIN_SPAWN_Y))
+#	self.show()
+#
+#func take_damage():
+#	if (animation.frame + 1 < NUMBER_FRAMES):
+#		animation.frame += 1
+#	else:
+#		die_animation(last_ennemy_hitting)
+#		orb_upgrade()
+#
+#func die_animation(champion):
+#	for i in range(10):
+#		self.modulate.a -= 0.1
+#		await get_tree().create_timer(0.4).timeout
+#
+#	self.hide()
+#
+#	timer_spawn.start()
+#
+#func orb_upgrade():
+#	Servrpc.send_to_id(
+#		last_ennemy_hitting.get_multiplayer_authority(), 
+#		ServiceScenes.getMainScene().get_node('items'), 
+#		'orb_upgraded', []
+#	)
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3o0l8"]
 atlas = ExtResource("6_04pjl")
 region = Rect2(0, 0, 651, 585)
@@ -156,7 +220,7 @@ script = ExtResource("5_8ogd8")
 visible = false
 position = Vector2(-150, -150)
 scale = Vector2(0.08, 0.08)
-script = ExtResource("8_plmok")
+script = SubResource("GDScript_ucfsg")
 
 [node name="orb_gem_anim" type="AnimatedSprite2D" parent="orb_gem_phldr/orb_gem"]
 sprite_frames = SubResource("SpriteFrames_v53uq")
@@ -169,5 +233,3 @@ root_path = NodePath("../orb_gem")
 replication_config = SubResource("SceneReplicationConfig_rhoha")
 
 [node name="monsters_gem" parent="." instance=ExtResource("9_jg1ya")]
-
-[node name="obstacles" parent="." instance=ExtResource("9_57a4y")]

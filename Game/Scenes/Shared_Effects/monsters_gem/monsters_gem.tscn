@@ -333,9 +333,6 @@ script = ExtResource("3_eykrh")
 [node name="anim_monster_gem" type="AnimatedSprite2D" parent="monsters_gem/monster_gem"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_nnwl7")
-animation = &"die"
-frame = 10
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="monsters_gem/monster_gem"]
 shape = SubResource("CircleShape2D_0euvo")

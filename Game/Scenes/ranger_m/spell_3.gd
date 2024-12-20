@@ -3,13 +3,16 @@ extends Node2D
 var target
 var mark_explode
 var bubble
+var duplicator
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	duplicator = self.get_parent()
+	
 	target = $target/target
 	mark_explode = $mark_explode/mark_explode
 	bubble = $bubble/spells_3_bubbles
-
+	
 func active():
 	#var thread_1 = Thread.new()
 	#var thread_2 = Thread.new()
@@ -29,8 +32,5 @@ func active():
 		#thread_2.wait_to_finish()
 
 func post_dp_script(id, nbr_dupl):
-	target.key_ennemy_marked = ennemies_of_current()[id - 1]
-	bubble.key_ennemy_marked = ennemies_of_current()[id - 1]
-
-func ennemies_of_current():
-	return ServiceScenes.ennemiesNode if is_multiplayer_authority() else ServiceScenes.alliesNode
+	target.key_ennemy_marked = duplicator.marked_entities[id - 1]
+	bubble.key_ennemy_marked = duplicator.marked_entities[id - 1]

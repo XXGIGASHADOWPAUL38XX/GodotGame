@@ -7,9 +7,9 @@ func _ready():
 	if is_multiplayer_authority():
 		attack = $spells/attack_crystal
 		collision_shape = $CollisionShape2D as CollisionShape2D
-		self.position = Vector2(ServiceWindow.scene_size.x, ServiceWindow.scene_size.y)
+		self.position = Vector2(ServiceWindow.scene_size.x / 2, ServiceWindow.scene_size.y / 2)
 		
-		await super._ready()
+	await super._ready()
 
 func attack_back():
 	super.attack_back()
@@ -27,8 +27,8 @@ func die(heros_dealing_dmg):
 	get_parent().queue_free()
 
 func bonus(heros_dealing_dmg):
-	var allies_of_heros_dmg = ServiceScenes.alliesNode if ServiceScenes.is_on_same_team(
-	heros_dealing_dmg, ServiceScenes.championNode) else ServiceScenes.ennemiesNode
+	var allies_of_heros_dmg = ServiceScenes.entities.alliesNode if ServiceScenes.is_on_same_team(
+	heros_dealing_dmg, ServiceScenes.championNode) else ServiceScenes.entities.ennemiesNode
 	
 	allies_of_heros_dmg.map(func(ally): 
 		var scene_bonus = preload(SCENE_BONUS_PATH).duplicate().instantiate()

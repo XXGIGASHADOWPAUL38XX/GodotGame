@@ -6,9 +6,9 @@ var dp_mark
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await super._ready()
 	if is_multiplayer_authority():
 		dp_mark = $ctrlr_mark_ninja_m/dp_mark
-		await super._ready()
 		
 		shadows = get_all_shadows()
 		marks = get_all_marks()

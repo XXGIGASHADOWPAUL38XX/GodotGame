@@ -18,6 +18,6 @@ func _process(delta):
 	pass
 
 func champions_sorted():
-	var entities = ServiceScenes.ennemiesNode + ServiceScenes.alliesNode
+	var entities = ServiceScenes.entities.ennemiesNode + ServiceScenes.entities.alliesNode
 	entities.sort()
 	return entities

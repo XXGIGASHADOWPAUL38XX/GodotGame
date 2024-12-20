@@ -17,13 +17,16 @@ func _process(delta):
 	pass
 
 func active(mouse_position):
-	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, mouse_position, 30 + (cshape.shape.size.x / 2 * 0.1))
+	self.position = champion.position + ServiceSpell.set_in_front_mouse(
+		champion, mouse_position, (cshape.shape.size.x / 2 * self.scale.x)
+	)
 	self.rotation = (self.position - champion.position).angle()
 	
 	animation.play()
 	self.show()
 	
-	await get_tree().create_timer(spell_controller.cast_time).timeout
+	for i in range(10):
+		champion.modulate = Color(1, 1 - (i * 0.05), 1 - (i * 0.1))
+		await get_tree().create_timer(spell_controller.cast_time / 10).timeout
 	
-	spell_controller.pulse.active(mouse_position)
-	
+	champion.modulate = Color(1, 1, 1)

@@ -13,7 +13,7 @@ var modulate_bool: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	func_on_entity_entered.append(Callable(self, 'spirit_entered'))
-	CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+	CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 	
 	if is_multiplayer_authority():
 		var direction = randi_range(0, 1)

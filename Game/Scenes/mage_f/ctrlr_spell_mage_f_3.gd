@@ -9,3 +9,4 @@ func _ready():
 func active():
 	await super.active()
 	$spell_mage_f_3/spell_mage_f_3_HBOX.active()
+	spells_placeholder.ctrl_s_1.coltdown.stop()

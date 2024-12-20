@@ -15,28 +15,30 @@ var last_spell_hitting
 
 var multip_sync: MultiplayerSynchronizer
 var multip_sync_path: NodePath = "./../MultiplayerSynchronizer"
+var ignore_multiconf_debug = false
 
 var spells_placeholder
 
 var animation: AnimatedSprite2D
 
 func _ready():
-	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
-	ServiceScenes.entites.append(self)
-	spells_placeholder = spells_placeholder_f()
-	
-	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
-	if spells_placeholder != null:
-		await resource_awaiter.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
-	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
+	set_visibility()
+	if is_multiplayer_authority():
+		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+		spells_placeholder = spells_placeholder_f()
 		
-	await get_tree().create_timer(0.5).timeout
-	Servrpc.any(self, 'set_multiplayer_properties', [])
+		# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
+		if spells_placeholder != null:
+			await resource_awaiter.await_resource_loaded(func(): return spells_placeholder.spells_dependencies_ready)
+		# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
+			
+		await get_tree().create_timer(0.1).timeout ##!!
+		if !ignore_multiconf_debug:
+			Servrpc.any(self, 'set_multiplayer_properties', [])
 
 func hitted(spell):
 	last_spell_hitting = spell
 	last_ennemy_hitting = spell.champion
-	
 	for fc in func_hitted:
 		fc.call()
 
@@ -52,7 +54,6 @@ func set_multiplayer_properties():
 	
 	var anim_path = self.name + "/" + animation.name
 	
-	multip_sync.replication_config.add_property(self.name + ":visible")
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
@@ -67,6 +68,9 @@ func spells_placeholder_f(node: Node = self):
 
 func new_round():
 	pass
+
+func set_visibility():
+	self.hide()
 
 func _exit_tree():
 	Servrpc.recently_freed_nodepaths.append(self.get_path())

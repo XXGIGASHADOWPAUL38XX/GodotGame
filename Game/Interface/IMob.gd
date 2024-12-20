@@ -12,13 +12,17 @@ var attack_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if !ServiceNode.is_dp_base_node(self):
+		ServiceScenes.entities.entitiesNode.append(self)
+		
+	await super._ready()
+		
 	if is_multiplayer_authority():
 		self.func_hitted.append(Callable(self, 'attack_back'))
 		attack_timer = service_time.init_timer(self, cd_attack)
 		
-		await super._ready()
 		animation.play("default")
-		Servrpc.any(ServiceScenes, 'add_as_ennemy', [self])
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -48,7 +52,6 @@ func die(heros_dealing_dmg):
 		Servrpc.any(self, 'queue_free', [])
 	)
 	
-	
 func attack_back():
 	if (self.last_ennemy_hitting.position - self.global_position).x > 0:
 		self.scale.x = 1
@@ -73,3 +76,9 @@ func spells_placeholder_f(node: Node = self):
 		return node
 	if node.get_parent() != null && node.get_parent() != ServiceScenes.main_scene:
 		return spells_placeholder_f(node.get_parent())
+
+func _exit_tree():
+	ServiceScenes.entities.entitiesNode.erase(self)
+	for i in range(ServiceScenes.entities.entitiesNode.size()):
+		if not is_instance_valid(ServiceScenes.entities.entitiesNode[i]):
+			ServiceScenes.entities.entitiesNode.remove_at(i)

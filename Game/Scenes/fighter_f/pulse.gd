@@ -21,7 +21,7 @@ func active(mouse_position):
 	animation.play()
 	self.show()
 	
-	for i in range(15):
+	for i in range(13):
 		self.position += throw_direction * speed
 		await get_tree().create_timer(0).timeout
 	

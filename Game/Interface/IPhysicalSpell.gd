@@ -22,9 +22,12 @@ func _ready():
 	await super._ready()
 	Servrpc.any(self, 'champion_hitting', [])
 	
-	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
-	gestion_collision()
+	CONF_DETECT_WITH = [
+		ServiceScenes.entities.entitiesNode, 
+		ServiceScenes.entities.ennemiesNode
+	] if CONF_DETECT_WITH == null else CONF_DETECT_WITH
 	
+	gestion_collision()
 
 func gestion_collision():
 	self.get_node("CollisionShape2D").disabled = !self.visible
@@ -54,7 +57,7 @@ func _on_body_entered(heros: Node2D):
 	pass
 
 func collision():
-	for player in CONF_DETECT_WITH:
+	for player in CONF_DETECT_WITH.reduce(func(a, b): return a + b):
 		if self.visible && player.visible && self.global_position.distance_to(player.position) < (
 			self.get_node("CollisionShape2D").shape.radius * 2):
 			send_damage(player)

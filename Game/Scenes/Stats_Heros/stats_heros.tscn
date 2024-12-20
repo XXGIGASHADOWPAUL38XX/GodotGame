@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://mkqh0ub6lvcs"]
+[gd_scene load_steps=30 format=3 uid="uid://mkqh0ub6lvcs"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Stats_Heros/stats_heros.gd" id="1_s5hnq"]
 [ext_resource type="Texture2D" uid="uid://teiodepika4a" path="res://Game/Ressources/Heros/hud_icons/mage_f.png" id="1_x7c64"]
@@ -70,7 +70,14 @@ texture = ExtResource("6_t5yjy")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7rwkj"]
 texture = ExtResource("6_t5yjy")
 
+[sub_resource type="Gradient" id="Gradient_fhrn8"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i678w"]
+gradient = SubResource("Gradient_fhrn8")
+
 [node name="stats_heros" type="Control"]
+z_index = 5
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -158,7 +165,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TPB" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -169,7 +175,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_63e1q")
 show_percentage = false
 
 [node name="TPB2" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -179,7 +184,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_yd2hl")
 show_percentage = false
 
 [node name="TPB3" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -189,7 +193,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_yfui3")
 show_percentage = false
 
 [node name="TPB4" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -199,7 +202,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2h0v0")
 show_percentage = false
 
 [node name="TPB5" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -209,7 +211,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2cv6p")
 show_percentage = false
 
 [node name="TPB6" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -219,7 +220,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_biyhp")
 show_percentage = false
 
 [node name="TPB7" type="ProgressBar" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer/HUD/spells_hud"]
-z_index = 5
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -315,3 +315,13 @@ size_flags_vertical = 8
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-456, 191)
+scale = Vector2(13.8764, 3715.5)
+enabled = false
+energy = 2.0
+blend_mode = 1
+range_z_min = 0
+range_z_max = 4
+texture = SubResource("GradientTexture1D_i678w")

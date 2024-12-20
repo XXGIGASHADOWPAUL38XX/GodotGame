@@ -1,11 +1,21 @@
 extends Control
 
-@onready var play_button = $margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Play
-@onready var cancel_button = $margin/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Cancel
+@onready var play_button = $margin/Vbox/Play
+@onready var cancel_button = $margin/Vbox/Cancel
+@onready var gamemodes = $margin/Vbox/PanelContainer/MarginContainer/Vbox/Gamemodes
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var nb_players_game_mapping = {
+		$margin/Vbox/PanelContainer/MarginContainer/Vbox/Gamemodes/one_vs_one: 2,
+		$margin/Vbox/PanelContainer/MarginContainer/Vbox/Gamemodes/two_vs_two: 4,
+	}
+	
+	ServiceScenes.CONFIG_NB_PLAYERS_GAME = 2
+	
+	gamemodes.get_children().map(func(button):
+		button.pressed.connect(func(): ServiceScenes.CONFIG_NB_PLAYERS_GAME = nb_players_game_mapping[button])
+	)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

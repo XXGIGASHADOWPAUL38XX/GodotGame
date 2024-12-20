@@ -1,9 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://dsrslssd2npjh"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Selection/selection_scene.gd" id="1_iitgv"]
+[ext_resource type="Texture2D" uid="uid://bjtwcnbyrfp01" path="res://Game/Ressources/UI/Selection/bg.jpg" id="2_hluit"]
 [ext_resource type="Texture2D" uid="uid://d2lkmmh1b1aw5" path="res://Game/Ressources/test.png" id="2_soml8"]
 [ext_resource type="Texture2D" uid="uid://dhjinrei00osc" path="res://Game/Ressources/test_hover.png" id="3_ig8d2"]
-[ext_resource type="Texture2D" uid="uid://copfkmg1x1mce" path="res://Game/Ressources/Heros/cs_icons/empty.png" id="4_qw24y"]
+[ext_resource type="Texture2D" uid="uid://bm18mub08wb4r" path="res://Game/Ressources/UI/Selection/champ_placeholder.png" id="4_cn4m2"]
 [ext_resource type="Texture2D" uid="uid://c8c8fsvp02jxd" path="res://Game/Ressources/Heros/selection_icons/mage_f.png" id="5_8mf75"]
 [ext_resource type="PackedScene" uid="uid://1s0e5qoch8ux" path="res://Game/Scenes/Announcer/announcer_progress.tscn" id="6_5uusl"]
 [ext_resource type="Texture2D" uid="uid://cmbb4gdack6ei" path="res://Game/Ressources/Heros/selection_icons/warrior_m.png" id="6_rn1s3"]
@@ -14,32 +15,31 @@
 [ext_resource type="Texture2D" uid="uid://ch2fjccudxr0" path="res://Game/Ressources/Heros/selection_icons/witcher_f.png" id="10_h4van"]
 [ext_resource type="Texture2D" uid="uid://ccu2etfcy862" path="res://Game/Ressources/Heros/selection_icons/bomber_f.png" id="11_c37rt"]
 [ext_resource type="Texture2D" uid="uid://bm5cy0k0ki0cb" path="res://Game/Ressources/Heros/selection_icons/fighter_f.png" id="12_bittn"]
-[ext_resource type="Texture2D" uid="uid://q4jju20mqa86" path="res://Game/Ressources/Background/background2.png" id="15_0bn0d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xy0re"]
-bg_color = Color(0.122252, 0.122252, 0.122252, 0.392157)
+bg_color = Color(0.121569, 0.121569, 0.121569, 0.294118)
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td4sg"]
-bg_color = Color(0, 0, 0, 0.235294)
+bg_color = Color(0, 0, 0, 0.156863)
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnlav"]
-bg_color = Color(0, 0, 0, 0.117647)
+bg_color = Color(0, 0, 0, 0.27451)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7486"]
-bg_color = Color(0, 0, 0, 0.235294)
+bg_color = Color(0, 0, 0, 0.156863)
 corner_radius_top_left = 30
 corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8sud"]
-bg_color = Color(0, 0, 0, 0.235294)
+bg_color = Color(0, 0, 0, 0.156863)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 
@@ -53,7 +53,7 @@ grow_vertical = 2
 script = ExtResource("1_iitgv")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.741176, 0.741176, 0.741176, 0.352941)
+modulate = Color(0.646029, 0.646029, 0.646029, 0.756863)
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -61,8 +61,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_0bn0d")
-expand_mode = 1
+texture = ExtResource("2_hluit")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -116,37 +116,31 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_td4sg")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.4
-theme_override_constants/margin_top = 0
+theme_override_constants/separation = 10
 
 [node name="Player_1" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("4_qw24y")
+texture = ExtResource("4_cn4m2")
 expand_mode = 1
 
 [node name="Player_2" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("4_qw24y")
+texture = ExtResource("4_cn4m2")
 expand_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -168,6 +162,7 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 0
 
 [node name="Champions" type="GridContainer" parent="VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+modulate = Color(1, 1, 1, 0.54902)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -268,9 +263,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c7486")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer"]
 layout_mode = 2
@@ -280,27 +276,20 @@ theme_override_constants/separation = 10
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.4
 
 [node name="Player_1" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("4_qw24y")
+texture = ExtResource("4_cn4m2")
 expand_mode = 1
 flip_h = true
 
 [node name="Player_2" type="TextureRect" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("4_qw24y")
+texture = ExtResource("4_cn4m2")
 expand_mode = 1
 flip_h = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Team_2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.4
-theme_override_constants/margin_top = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

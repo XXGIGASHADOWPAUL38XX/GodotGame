@@ -15,6 +15,7 @@ func _ready():
 		cubes = $dp_cube_4.get_children().filter(func(c): return c is CharacterBody2D)
 		
 		zone_ult.duration_timer.timeout.connect(func():
+			await resource_awaiter.await_resource_loaded(func(): return !cubes.pick_random().is_launching_laser)
 			zone_ult.hide()
 			cubes.map(func(c): c.hide())
 		)

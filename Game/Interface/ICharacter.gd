@@ -34,7 +34,7 @@ var curr_state_action: SingleState = SingleState.new(State.StateAction.NULL, nul
 		return curr_state_action
 	set(value):
 		curr_state_action = value
-		if curr_state_action.state in state_bar.mapping_state_color.keys():
+		if state_bar != null && curr_state_action.state in state_bar.mapping_state_color.keys():
 			state_bar.init_state_bar(curr_state_action)
 		elif curr_state_action.state == State.StateAction.NULL && state_bar.visible:
 			state_bar.hide()
@@ -89,8 +89,9 @@ func _ready():
 		self.new_round()
 		#await_take_damage()
 
-		await super._ready()
 		func_hitted.append(Callable(self, 'take_damage'))
+		
+	await super._ready()
 		
 func await_take_damage():
 	self.add_state(self, 'states_damage', State.StateDamage.IMMUNE, 0.5)

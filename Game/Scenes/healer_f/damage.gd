@@ -13,10 +13,10 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		
 		await super._ready()
-				
-		animation.frame_changed.connect(func():
-			if animation.animation == "damage":
-				self.modulate.a == min(1, 1.2 - (animation.frame / 10))
+		
+		animation.animation = "default"
+		animation.animation_changed.connect(func():
+			self.scale = self.scale * 2.5 if animation.animation == "damage" else self.scale / 2.5
 		)
 
 func active():

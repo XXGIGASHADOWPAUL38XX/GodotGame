@@ -2,7 +2,7 @@ extends IDamagingSpell
 
 var RANGE_ANGLE_INCL = 30
 
-var speed = 10.0
+var speed = 11.0
 var angle_incl_start
 var delay
 
@@ -23,8 +23,9 @@ func active(main_mector):
 	self.position = champion.position + (main_mector.normalized() * 40).rotated(deg_to_rad(angle_incl_start))
 	self.rotation = main_mector.angle()
 	self.show()
+	animation.play()
 
-	for i in range(20):
+	for i in range(18):
 		self.position += (main_mector.normalized() * speed)
 		await get_tree().create_timer(0).timeout
 		

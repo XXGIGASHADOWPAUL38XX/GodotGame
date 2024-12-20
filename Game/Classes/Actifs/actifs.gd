@@ -27,13 +27,6 @@ enum ItemCategory {
 	DURABILITY,
 }
 
-func get_item(name):
-	var item = get(name)
-	if item is Item:
-		return Item
-	else:
-		return null
-
 func get_list_by_category(category: String):
 	return allItems.filter(func(obj):
 		return obj.category == ItemCategory.get(category.to_upper())

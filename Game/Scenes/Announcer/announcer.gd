@@ -36,7 +36,7 @@ func set_announce(announce_text, logo_left_texture, logo_right_texture, champion
 func display_announce(random_id, announce: Announce):
 	label.text = announce.text
 	
-	if !(announce.champion in ServiceScenes.allPlayersNode):
+	if !(announce.champion in ServiceScenes.entities.allPlayersNode):
 		panel_logo_left.modulate = neutral_color
 		panel_logo_rigth.modulate = neutral_color
 	else:

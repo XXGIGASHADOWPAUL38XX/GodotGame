@@ -11,7 +11,7 @@ var base_size_x
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
-		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 		
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 8.0

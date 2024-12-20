@@ -16,6 +16,6 @@ func _ready():
 
 func allies_sorted():
 	var champion = ServiceScenes.get_player_from_property('id', get_multiplayer_authority()).node
-	var allies = ServiceScenes.alliesNode if ServiceScenes.is_on_same_team(champion, ServiceScenes.championNode) else ServiceScenes.ennemiesNode
+	var allies = ServiceScenes.entities.alliesNode if ServiceScenes.is_on_same_team(champion, ServiceScenes.championNode) else ServiceScenes.entities.ennemiesNode
 	allies.sort()
 	return allies

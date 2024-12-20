@@ -7,7 +7,7 @@ var resource_awaiter = ResourceAwaiter.new()
 # VALUES TO OVERRIDE #
 var dp_number: int
 var dp_id: int = 1
-var dp_callable_name: Callable
+var dp_callable_name = func(id): return dp_node.name + "_R" + str(dp_id)
 var dp_node: Node
 var dp_parent
 var dp_script
@@ -21,6 +21,9 @@ signal duplication_performed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if dp_node.get("ignore_multiconf_debug") != null:
+		dp_node.ignore_multiconf_debug = true
+	
 	is_multiple_duplication = dp_node is IDuplication
 	is_child_mltp_duplication = get_parent() is IDuplication
 	if is_child_mltp_duplication:

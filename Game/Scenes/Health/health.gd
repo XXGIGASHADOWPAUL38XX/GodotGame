@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var health_bar
 var shield
@@ -9,6 +9,10 @@ func _ready():
 		attached_entity = attached_entity_f()
 		health_bar = $health_bar
 		shield = $shield
+		
+		attached_entity.visibility_changed.connect(func():
+			self.visible = attached_entity.visible
+		)
 
 func _process(_delta):
 	pass

@@ -27,7 +27,7 @@ func _process(_delta):
 	
 func active():
 	self.show()
-	animation.play("spell_4_pre_anim")
+	animation.play()
 	
 	await animation.animation_finished
 	self.hide()

@@ -21,8 +21,8 @@ texture = ExtResource("3_u6nua")
 layout_mode = 3
 anchor_right = 0.747
 anchor_bottom = 0.794
-offset_right = 0.599976
-offset_bottom = 0.0799561
+offset_right = -28.4
+offset_bottom = -88.92
 grow_horizontal = 2
 grow_vertical = 2
 

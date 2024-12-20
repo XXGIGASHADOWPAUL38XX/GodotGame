@@ -14,16 +14,17 @@ var color_validate = Color(0.6, 1, 0.7, 0.4)
 var color_selected = Color(0.5, 0.5, 0.5, 0.5)
 var color_not_selected = Color(0, 0, 0, 0.5)
 
-@onready var constraints_login_node = $HBoxContainer/MarginContainer/Main/Constraints_Login
-@onready var constraints_signup_node = $HBoxContainer/MarginContainer/Main/Constraints_Signup
+@onready var constraints_login_node = $PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Login
+@onready var constraints_signup_node = $PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup
+@onready var password_confirm_node = $PC/HBoxContainer/PanelContainer/MarginContainer/Main/PasswordConfirm
 var constraints_node
 
-@onready var validate = $HBoxContainer/MarginContainer/Main/Validate
+@onready var validate = $PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox/Validate
 
 @onready var form = {
-	'username': $HBoxContainer/MarginContainer/Main/Username/LineEdit,
-	'password': $HBoxContainer/MarginContainer/Main/Password/LineEdit,
-	'password_confirm': $HBoxContainer/MarginContainer/Main/PasswordConfirm/LineEdit,
+	'username': $PC/HBoxContainer/PanelContainer/MarginContainer/Main/Username/LineEdit,
+	'password': $PC/HBoxContainer/PanelContainer/MarginContainer/Main/Password/LineEdit,
+	'password_confirm': $PC/HBoxContainer/PanelContainer/MarginContainer/Main/PasswordConfirm/LineEdit,
 }
 
 var constraints_login = {
@@ -38,7 +39,7 @@ var constraints_signup = {
 	'PasswordsSimilar': Callable(self, 'passwords_similar')
 }
 
-@onready var login_signup_choice = $HBoxContainer/MarginContainer/Main/LoginSignupChoice
+@onready var login_signup_choice = $PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox/LoginSignupChoice
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -56,26 +57,24 @@ func _ready():
 	
 	var buttons_login_signup = login_signup_choice.get_children()
 	
-	#!!
-	buttons_login_signup.map(func(button2):
-		var color = color_selected if button2.name.to_upper() == login_signup.keys().filter(func(key): 
-			return login_signup[key] == submit_type)[0] else color_not_selected
-		button2.get_theme_stylebox("normal", "Button").bg_color = color
-	)
-	
-	buttons_login_signup.map(func(button: Button): 
-		button.pressed.connect(func():
-			submit_type = login_signup[login_signup.keys().filter(func(s): return button.name.to_upper() == s)[0]]
+	buttons_login_signup.map(func(button_pressed: Button): 
+		button_pressed.pressed.connect(func():
+			var previous_button = login_signup_choice.get_children().filter(func(b): return b != button_pressed)[0]
+			
+			submit_type = login_signup[login_signup.keys().filter(func(s): return button_pressed.name.to_upper() == s)[0]]
 			constraints_node = constraints_login_node if submit_type == login_signup.LOGIN else constraints_signup_node
 			check_constraints()
 			
-			$HBoxContainer/MarginContainer/Main/PasswordConfirm.modulate.a = 0 if submit_type == login_signup.LOGIN else 1
-			$HBoxContainer/MarginContainer/Main/Constraints_Login.visible = submit_type == login_signup.LOGIN
-			$HBoxContainer/MarginContainer/Main/Constraints_Signup.visible = submit_type == login_signup.SIGNUP
+			password_confirm_node.modulate.a = 0 if submit_type == login_signup.LOGIN else 1
+			constraints_login_node.visible = submit_type == login_signup.LOGIN
+			constraints_signup_node.visible = submit_type == login_signup.SIGNUP
 			
 			buttons_login_signup.map(func(button2):
-				var color = color_selected if button == button2 else color_not_selected
-				button2.get_theme_stylebox("normal", "Button").bg_color = color
+				var bg_color = color_selected if button_pressed == button2 else color_not_selected
+				button2.get_theme_stylebox("normal", "Button").bg_color = bg_color
+				
+				var font_color = Color.BLACK if button_pressed == button2 else Color.WHITE
+				button_pressed.add_theme_color_override('font color', font_color)
 			)
 		)
 	)

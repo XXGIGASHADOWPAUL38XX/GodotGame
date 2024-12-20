@@ -7,5 +7,6 @@ var keys_values = {
 	'key_special' = KEY_D,
 	'key_ultimate' = KEY_SPACE,
 	'key_active_boss' = KEY_R,
-	'key_active_item' = KEY_F
+	'key_active_item' = KEY_F,
+	'key_vision' = KEY_4
 }

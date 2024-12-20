@@ -24,7 +24,7 @@ var mapping_key_hud = {
 
 var item_plhdr_base_texture = preload('res://Game/Ressources/UI/HUD/item_bg.png')
 
-var mapping_texture_items = {
+var mapping_texture_items = { ##!!
 	'armor_gem': preload('res://Game/Ressources/Gems/armor_gem.png'),
 	'attack_gem': preload('res://Game/Ressources/Gems/attack_gem.png'),
 	'block_gem': preload('res://Game/Ressources/Gems/block_gem.png'),
@@ -35,8 +35,13 @@ var mapping_texture_items = {
 	'health_gem': preload('res://Game/Ressources/Gems/health_gem.png'),
 	'mark_gem': preload('res://Game/Ressources/Gems/mark_gem.png'),
 	'shockwave_gem': preload('res://Game/Ressources/Gems/shockwave_gem.png'),
-	'slash_gem': preload('res://Game/Ressources/Gems/slash_gem.png'),
-	'speed_gem': preload('res://Game/Ressources/Gems/speed_gem.png')
+	'slice_gem': preload('res://Game/Ressources/Gems/slice_gem.png'),
+	'speed_gem': preload('res://Game/Ressources/Gems/speed_gem.png'),
+	
+	'vision_square': preload('res://Game/Ressources/Vision/vision_square.png'),
+	'vision_radar': preload('res://Game/Ressources/Vision/vision_radar.png'),
+	'vision_blue': preload('res://Game/Ressources/Vision/vision_square.png'),
+	'vision_red': preload('res://Game/Ressources/Vision/vision_radar.png')
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -94,7 +99,7 @@ func get_texture_spells():
 		var progressBar = spells.get_child(i) as ProgressBar
 		var styleBox = StyleBoxTexture.new()
 		
-		var texture = load('res://Game/Ressources/Heros/hud_icons/' + ServiceScenes.champion.name 
+		var texture = load('res://Game/Ressources/Heros/icons_spells/' + ServiceScenes.champion.name 
 			+ '/' + str(i) + '.png')
 		styleBox.texture = texture 
 		

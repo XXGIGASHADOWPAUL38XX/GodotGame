@@ -12,8 +12,9 @@ var output_damage = Callable(output_damage_f)
 var func_on_collision: Array[Callable]
 
 func _ready():
+	await super._ready()
+	
 	if is_multiplayer_authority():
-		await super._ready()
 		self.func_on_entity_entered.append(Callable(self, 'collision'))
 
 func collision():

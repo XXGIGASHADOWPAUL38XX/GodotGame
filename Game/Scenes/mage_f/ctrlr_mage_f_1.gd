@@ -1,6 +1,7 @@
 extends IControllerKeyPressed
 
 var anim_orb_hide
+var spell_orb
 var orb
 
 func _ready():
@@ -8,11 +9,14 @@ func _ready():
 	coltdown_time = 4
 	
 	anim_orb_hide = $anim_orb_hide
-	orb = $spells_mage_f_1
+	spell_orb = $spells_mage_f_1
+	orb = $orb_mage_f_1
 	
 	await super._ready()
 			
 func active():
 	await super.active()
+	await spell_orb.active()
+	
 	orb.active()
 	

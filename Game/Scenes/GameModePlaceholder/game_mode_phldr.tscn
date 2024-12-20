@@ -10,14 +10,13 @@
 layout_mode = 3
 anchor_right = 0.747
 anchor_bottom = 0.794
-offset_right = 0.599976
-offset_bottom = 0.0799561
+offset_right = -28.4
+offset_bottom = -88.92
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_5nwoo")
 
-[node name="Play_1v1" parent="." instance=ExtResource("1_qq3jw")]
-visible = false
+[node name="Play" parent="." instance=ExtResource("1_qq3jw")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +25,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 
 [node name="Play_2v2" parent="." instance=ExtResource("2_vrr1x")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0

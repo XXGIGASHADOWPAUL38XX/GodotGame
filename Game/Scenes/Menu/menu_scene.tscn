@@ -1,22 +1,20 @@
-[gd_scene load_steps=29 format=3 uid="uid://cvw2hrgl1bkux"]
+[gd_scene load_steps=23 format=3 uid="uid://cvw2hrgl1bkux"]
 
-[ext_resource type="Theme" uid="uid://c0bn8dcgtia2h" path="res://Game/Themes/Themes/theme_left_menu.tres" id="1_10hiu"]
-[ext_resource type="Texture2D" uid="uid://bgt5pc3xn0d6o" path="res://Game/Ressources/UI/Profile/quit_button.png" id="3_5frtu"]
+[ext_resource type="Texture2D" uid="uid://jo8lms6natrp" path="res://Game/Ressources/UI/Menu/bg.png" id="1_sh5hc"]
 [ext_resource type="Texture2D" uid="uid://bjd07f2wgifgd" path="res://Game/Ressources/UI/Menu/profile.png" id="3_nmq5y"]
-[ext_resource type="Texture2D" uid="uid://bjbt2rvilu6cc" path="res://Game/Ressources/UI/Menu/top.png" id="3_uvk3c"]
 [ext_resource type="Script" path="res://Game/Scenes/Menu/current_queue.gd" id="5_bdana"]
-[ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="5_rhj3p"]
 [ext_resource type="PackedScene" uid="uid://dpk53hsmpf8gm" path="res://Game/Scenes/GameModePlaceholder/game_mode_phldr.tscn" id="6_8k0qm"]
 [ext_resource type="Texture2D" uid="uid://drdmkf1vb3ge6" path="res://Game/Ressources/UI/Profile/Queue_players/qp1.png" id="6_cttc8"]
 [ext_resource type="Texture2D" uid="uid://bgc48lgnln5w" path="res://Game/Ressources/UI/Menu/logout.png" id="6_lfyha"]
 [ext_resource type="Texture2D" uid="uid://ceppdctchr0ko" path="res://Game/Ressources/UI/Menu/logo_bg.png" id="7_cq0sc"]
-[ext_resource type="Script" path="res://Game/Scenes/Menu/current_state.gd" id="7_o3a1m"]
 [ext_resource type="Texture2D" uid="uid://bpwuoq23a2stw" path="res://Game/Ressources/UI/Profile/Queue_players/qp2.png" id="7_rt7jh"]
-[ext_resource type="Texture2D" uid="uid://c80m4pv5n5lhy" path="res://Game/Ressources/UI/Profile/profile_bg.png" id="7_t6k02"]
-[ext_resource type="Texture2D" uid="uid://dn7t5km41owg" path="res://Game/Ressources/UI/Menu/logo_1v1.png" id="7_trb8r"]
 [ext_resource type="Texture2D" uid="uid://dhldvk2j2w1qx" path="res://Game/Ressources/UI/Profile/Queue_players/qp3.png" id="8_xxtu5"]
 [ext_resource type="Texture2D" uid="uid://otif6jpaafww" path="res://Game/Ressources/UI/Profile/Queue_players/qp4.png" id="9_ucimu"]
 [ext_resource type="Texture2D" uid="uid://djtfp6dsq7bjj" path="res://Game/Ressources/UI/Profile/Queue_players/qp5.png" id="10_n8f2s"]
+[ext_resource type="Texture2D" uid="uid://bkhy52s2dx0k0" path="res://Game/Ressources/UI/Menu/logo_play.png" id="11_x012m"]
+[ext_resource type="Texture2D" uid="uid://epp76dnwpioj" path="res://Game/Ressources/UI/Menu/logo_champions.png" id="12_s8fp4"]
+[ext_resource type="Texture2D" uid="uid://3jssimlmtpib" path="res://Game/Ressources/UI/Menu/logo_settings.png" id="13_upnmp"]
+[ext_resource type="PackedScene" uid="uid://c03hfjgc365a5" path="res://Game/Scenes/Friends/friend_list.tscn" id="15_ub2jb"]
 
 [sub_resource type="GDScript" id="GDScript_5pvo6"]
 script/source = "extends Control
@@ -28,9 +26,8 @@ const players_needed_for_match: int = 4
 const SELECTION_SCENE_PATH = \"res://Game/Scenes/Selection/selection_scene.tscn\"
 const LOGIN_SCENE_PATH = \"res://Game/Scenes/Login/login.tscn\"
 
-@onready var current_state = $VBoxContainer2/Main/VBoxContainer/current_state
-@onready var types = $VBoxContainer/Main/MarginType/PanelType/HBoxType
-@onready var game_mode_phldr = $VBoxContainer/Main/game_mode_phldr
+@onready var types = $MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/HBoxType
+@onready var game_mode_phldr = $MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/game_mode_phldr
 @onready var queue_panel = $CenterContainer/current_queue
 
 func _ready():
@@ -51,18 +48,18 @@ func _ready():
 	)
 	
 	Server.players_updated.connect(func(players):
+		print(players.filter(func(p): return p.number_players_queue == ServiceScenes.CONFIG_NB_PLAYERS_GAME))
+		print(ServiceScenes.CONFIG_NB_PLAYERS_GAME)
+		
 		if players.filter(func(p): 
 			return p.number_players_queue == ServiceScenes.CONFIG_NB_PLAYERS_GAME
 		).size() == ServiceScenes.CONFIG_NB_PLAYERS_GAME:
 			match_up()
 	)
 	
-	update_type()
-	
-	types.get_children().map(func(button: Button):
+	types.get_children().filter(func(b): return b is Button).map(func(button: Button):
 		button.pressed.connect(func():
 			game_mode_phldr.new_placeholder(button.name)
-			update_type()
 		)
 		
 		#button.mouse_entered.connect(func():
@@ -91,10 +88,6 @@ func modulate(obj):
 		modulation = -0.01
 
 	obj.self_modulate.a += modulation
-
-func update_type():
-	$VBoxContainer2/Label.text = game_mode_phldr.current_plhdr.name
-	current_state.update_logo(game_mode_phldr.current_plhdr.name)
 
 func _on_play_1v1_pressed():
 	ServiceScenes.CONFIG_NB_PLAYERS_GAME = Queue.QUEUE_KIND.MODE_1V1
@@ -131,27 +124,21 @@ frame_4/duration = 1.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvsm6"]
 texture = SubResource("AnimatedTexture_uo2jp")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v65ac"]
-texture = ExtResource("7_cq0sc")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbaje"]
+bg_color = Color(0, 0, 0, 0.227451)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4kc8"]
-texture = ExtResource("7_trb8r")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uwwb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rskll"]
-bg_color = Color(0, 0.0156863, 0.054902, 0.470588)
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sna5d"]
-texture = ExtResource("7_t6k02")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8l6dt"]
-texture = ExtResource("3_uvk3c")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3324k"]
-texture = ExtResource("3_5frtu")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdjg6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uquhe"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="menu_scene" type="Control"]
 layout_mode = 3
@@ -161,7 +148,7 @@ offset_bottom = 680.0
 script = SubResource("GDScript_5pvo6")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.588235)
+modulate = Color(1, 1, 1, 0.623529)
 show_behind_parent = true
 z_index = -1
 layout_mode = 1
@@ -170,10 +157,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_rhj3p")
+texture = ExtResource("1_sh5hc")
 expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -183,7 +171,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="current_queue" type="PanelContainer" parent="CenterContainer"]
-visible = false
 custom_minimum_size = Vector2(110, 60)
 layout_mode = 2
 size_flags_vertical = 3
@@ -202,218 +189,173 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kvsm6")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-z_index = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="VBoxContainer2"]
+[node name="MarginHeader" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Main" type="HBoxContainer" parent="VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 4.5
-
-[node name="margin" type="MarginContainer" parent="VBoxContainer2/Main"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/Main"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
-
-[node name="current_state" type="PanelContainer" parent="VBoxContainer2/Main/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.24
-theme_override_styles/panel = SubResource("StyleBoxTexture_v65ac")
-script = ExtResource("7_o3a1m")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/Main/VBoxContainer/current_state"]
-layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="logo" type="Panel" parent="VBoxContainer2/Main/VBoxContainer/current_state/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_p4kc8")
-
-[node name="margin" type="MarginContainer" parent="VBoxContainer2/Main/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 1.7
-
-[node name="margin2" type="MarginContainer" parent="VBoxContainer2/Main"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="PanelHeader" type="PanelContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_rskll")
-
-[node name="MarginHeader" type="MarginContainer" parent="VBoxContainer/PanelHeader"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxHeader" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader"]
+[node name="HBoxHeader" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginHeader"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Profile" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_sna5d")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer"]
-layout_mode = 2
-
-[node name="profile_button" type="TextureButton" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("3_nmq5y")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/MarginContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
-theme_override_styles/panel = SubResource("StyleBoxTexture_8l6dt")
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Exit" type="PanelContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_3324k")
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
-
-[node name="signout_button" type="TextureButton" parent="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer"]
+[node name="signout_button" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginHeader/HBoxHeader"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("6_lfyha")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Main" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="Label" parent="MarginContainer/VBoxContainer/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 13.0
+theme_override_font_sizes/font_size = 30
+text = "SKILLS STARS"
+horizontal_alignment = 1
+
+[node name="profile_button" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginHeader/HBoxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_nmq5y")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.5
+size_flags_stretch_ratio = 6.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rbaje")
 
-[node name="MarginType" type="MarginContainer" parent="VBoxContainer/Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 18.0
+theme_override_font_sizes/font_size = 25
+text = "GAME"
+vertical_alignment = 1
+
+[node name="Button" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("11_x012m")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Button2" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("12_s8fp4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Button3" type="TextureButton" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("13_upnmp")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginType" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = -30
-theme_override_constants/margin_top = 10
+size_flags_stretch_ratio = 7.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="PanelType" type="PanelContainer" parent="VBoxContainer/Main/MarginType"]
+[node name="Main" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="HBoxType" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_jdjg6")
+theme_override_constants/separation = 5
 
-[node name="HBoxType" type="VBoxContainer" parent="VBoxContainer/Main/MarginType/PanelType"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="Play_1v1" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/HBoxType"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_10hiu")
-text = "PLAY (1V1)"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1uwwb")
+text = "PLAY"
 
-[node name="Play_2v2" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
+[node name="Champions" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/HBoxType"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_10hiu")
-text = "PLAY (2V2)"
-
-[node name="Champions" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("1_10hiu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1uwwb")
 text = "CHAMPIONS"
 
-[node name="Settings" type="Button" parent="VBoxContainer/Main/MarginType/PanelType/HBoxType"]
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/HBoxType"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_10hiu")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1uwwb")
 text = "SETTINGS"
 
-[node name="game_mode_phldr" parent="VBoxContainer/Main" instance=ExtResource("6_8k0qm")]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main/HBoxType"]
 layout_mode = 2
-size_flags_stretch_ratio = 3.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
 
-[connection signal="pressed" from="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Profile/MarginContainer/HBoxContainer/profile_button" to="." method="_on_profile_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/PanelHeader/MarginHeader/HBoxHeader/Exit/MarginContainer/HBoxContainer/signout_button" to="." method="_on_signout_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Main/MarginType/PanelType/HBoxType/Play_1v1" to="." method="_on_play_1v1_pressed"]
-[connection signal="pressed" from="VBoxContainer/Main/MarginType/PanelType/HBoxType/Play_2v2" to="." method="_on_play_2v2_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main"]
+custom_minimum_size = Vector2(3, 35)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uquhe")
+
+[node name="game_mode_phldr" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main" instance=ExtResource("6_8k0qm")]
+layout_mode = 2
+size_flags_stretch_ratio = 4.0
+
+[node name="friend_list" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginType/Main" instance=ExtResource("15_ub2jb")]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginHeader/HBoxHeader/signout_button" to="." method="_on_signout_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginHeader/HBoxHeader/profile_button" to="." method="_on_profile_button_pressed"]

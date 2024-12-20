@@ -5,9 +5,10 @@ var rotate_speed = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.modulate.a = 0.6
-	await super._ready()
-	champion = ServiceScenes.championNode
+	if is_multiplayer_authority():
+		self.modulate.a = 0.6
+		await super._ready()
+		champion = ServiceScenes.championNode
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

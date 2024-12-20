@@ -1,8 +1,8 @@
 extends Control
 
 var player_controller = PlayerController.new()
-@onready var form_add_friend = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend
-@onready var friend_name = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/form_add_friend/HBoxContainer/friend_name
+@onready var form_add_friend = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/form_add_friend
+@onready var friend_name = $PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/form_add_friend/friend_name
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

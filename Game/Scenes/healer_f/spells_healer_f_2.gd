@@ -8,18 +8,18 @@ func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 2.0
-		healing_base = 2.0
+		healing_base = 4.0
 		damage_ratio = 0.05
 		# ------------------------------------ #
 		
-		CONF_DETECT_WITH = ServiceScenes.alliesNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode]
 		
 			
 		await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():
-		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool, 0.15, 0.4)
+		modulate_bool = ServiceSpell.modulate_obj(self, modulate_bool, 0.4, 0.6)
 		pass
 		
 func active():

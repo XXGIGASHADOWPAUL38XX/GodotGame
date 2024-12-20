@@ -20,7 +20,7 @@ func _ready():
 
 func active():
 	var sphere = overall_spell.sphere
-	ennemy_in_range = ServiceScenes.ennemiesNode.filter(
+	ennemy_in_range = ServiceScenes.entities.ennemiesNode.filter(
 		func(ennemy):
 			return self.global_position.distance_to(ennemy.position) < RANGE_MAX
 	)

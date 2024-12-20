@@ -18,7 +18,7 @@ func _ready():
 	await super._ready()
 	
 	if CONF_DETECT_WITH_SP == null:
-		CONF_DETECT_WITH_SP = ServiceScenes.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
+		CONF_DETECT_WITH_SP = ServiceScenes.entities.ennemiesNode.map(func(obj): return get_all_ennemies_spells(obj))
 		CONF_DETECT_WITH_SP = CONF_DETECT_WITH_SP.reduce(func(a, b): return a + b)
 
 func spell_entered(spell): #FAIRE LES DEGATS

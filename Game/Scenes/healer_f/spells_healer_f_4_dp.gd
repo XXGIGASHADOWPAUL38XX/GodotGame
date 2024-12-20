@@ -6,7 +6,7 @@ var healing_base: float
 
 func _ready():
 #	self.hidden.connect(func(): self.position = Vector2(-1000, -1000))
-	CONF_DETECT_WITH = ServiceScenes.alliesNode + ServiceScenes.ennemiesNode
+	CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 	
 	# DEFINITION VARIABLES IDAMAGING SPELL #
 	damage_base = 8.0

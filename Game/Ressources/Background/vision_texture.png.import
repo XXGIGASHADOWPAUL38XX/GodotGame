@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fp850rpfx4ef"
-path="res://.godot/imported/slash_gem.png-1df56c9e04ff84a447fa1a5e4c4e8828.ctex"
+uid="uid://cbyp5iy7urpos"
+path="res://.godot/imported/vision_texture.png-42d79a4cc53447944065adb2bd4b58fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Game/Ressources/Gems/slash_gem.png"
-dest_files=["res://.godot/imported/slash_gem.png-1df56c9e04ff84a447fa1a5e4c4e8828.ctex"]
+source_file="res://Game/Ressources/Background/vision_texture.png"
+dest_files=["res://.godot/imported/vision_texture.png-42d79a4cc53447944065adb2bd4b58fb.ctex"]
 
 [params]
 

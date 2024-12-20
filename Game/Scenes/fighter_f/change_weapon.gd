@@ -6,7 +6,7 @@ func _ready():
 	if is_multiplayer_authority():
 		base_scale = self.scale
 		
-		super._ready()
+		await super._ready()
 
 func _process(_delta):
 	pass

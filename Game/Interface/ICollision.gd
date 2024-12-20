@@ -30,30 +30,37 @@ var retrigger_timer
 @export var state_duration: float = 1.0
 
 func _ready():
-	CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode if CONF_DETECT_WITH == null else CONF_DETECT_WITH
-	collision_conditions.append(Callable(self, 'is_an_ennemy'))
-	
-	if COLLISION_ON_BORDER_ONLY:
-		collision_conditions.append(Callable(self, 'is_on_border'))
-	
+	if is_multiplayer_authority():
+		CONF_DETECT_WITH = [
+			ServiceScenes.entities.entitiesNode, 
+			ServiceScenes.entities.ennemiesNode
+		] if CONF_DETECT_WITH == null else CONF_DETECT_WITH
+		
+		collision_conditions.append(Callable(self, 'is_an_ennemy'))
+		
+		if COLLISION_ON_BORDER_ONLY:
+			collision_conditions.append(Callable(self, 'is_on_border'))
+		
 	await super._ready()
-	gestion_collision()
 	
-	self.body_entered.connect(func(obj): 
-		object_entered = obj
-		if collision_conditions.all(func(c: Callable): return c.call(object_entered)):
-			ennemies_in.append(obj)
-			entity_entered(obj)
-	)
-	self.body_exited.connect(func(obj): 
-		object_exited = obj
-		if collision_conditions.all(func(c: Callable): return c.call(object_exited)):
-			ennemies_in.remove_at(ennemies_in.find(obj))
-			entity_exited(obj)
-	)
-	
+	if is_multiplayer_authority():
+		gestion_collision()
+		
+		self.body_entered.connect(func(obj): 
+			object_entered = obj
+			if collision_conditions.all(func(c: Callable): return c.call(object_entered)):
+				ennemies_in.append(obj)
+				entity_entered(obj)
+		)
+		self.body_exited.connect(func(obj): 
+			object_exited = obj
+			if collision_conditions.all(func(c: Callable): return c.call(object_exited)):
+				ennemies_in.remove_at(ennemies_in.find(obj))
+				entity_exited(obj)
+		)
+
 func is_an_ennemy(obj):
-	return CONF_DETECT_WITH.find(obj) != -1
+	return CONF_DETECT_WITH.reduce(func(a, b): return a + b).find(obj) != -1
 
 func is_on_border(obj):
 	var collision_shape = self.get_node("CollisionShape2D")

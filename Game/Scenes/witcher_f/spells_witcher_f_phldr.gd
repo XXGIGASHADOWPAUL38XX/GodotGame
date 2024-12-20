@@ -8,8 +8,9 @@ var controller_laser
 func _ready():
 	await super._ready()
 	
-	controller_laser = $ctrlr_lasers
-	all_cubes = get_all_cubes()
+	if is_multiplayer_authority():
+		controller_laser = $ctrlr_lasers
+		all_cubes = get_all_cubes()
 
 func get_all_cubes(parent=self):
 	var all_cubes = []

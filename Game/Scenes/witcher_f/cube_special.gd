@@ -10,7 +10,7 @@ func _ready():
 		champion = ServiceScenes.championNode
 			
 		collision_shape = $CollisionShape2D
-		self.visibility_changed.connect(func(): collision_shape.disabled == !self.visible)
+		self.visibility_changed.connect(func(): collision_shape.disabled = !self.visible)
 		await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

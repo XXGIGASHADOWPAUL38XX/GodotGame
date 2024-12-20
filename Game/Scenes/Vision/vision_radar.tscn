@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm5hpjrykohv8"]
+
+[ext_resource type="Texture2D" uid="uid://d2c4v30f5qh14" path="res://Game/Ressources/Vision/vision_radar_active.png" id="1_qw4yw"]
+[ext_resource type="Script" path="res://Game/Scenes/Vision/vision_radar_phldr.gd" id="1_seg3h"]
+[ext_resource type="Script" path="res://Game/Scenes/Vision/vision_radar.gd" id="2_ervat"]
+[ext_resource type="Script" path="res://Game/Scenes/Vision/dp_anim_display_entity.gd" id="3_66qqd"]
+[ext_resource type="Texture2D" uid="uid://qdfabg31r1uf" path="res://Game/Ressources/Vision/display_entity.png" id="4_5m6eo"]
+[ext_resource type="Script" path="res://Game/Scenes/Vision/anim_display_entity.gd" id="5_dfty7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx2cg"]
+atlas = ExtResource("1_qw4yw")
+region = Rect2(0, 0, 1186, 1186)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jh0mn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx2cg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4nel"]
+radius = 553.997
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjeyc"]
+atlas = ExtResource("4_5m6eo")
+region = Rect2(0, 0, 550, 550)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p2njo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjeyc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4ubkw"]
+
+[node name="vision_radar_phldr" type="Node2D"]
+script = ExtResource("1_seg3h")
+
+[node name="vision_radar" type="Area2D" parent="."]
+visible = false
+script = ExtResource("2_ervat")
+
+[node name="vision_radar_anim" type="AnimatedSprite2D" parent="vision_radar"]
+sprite_frames = SubResource("SpriteFrames_jh0mn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="vision_radar"]
+shape = SubResource("CircleShape2D_o4nel")
+
+[node name="dp_anim_display_entity" type="Node2D" parent="."]
+script = ExtResource("3_66qqd")
+
+[node name="anim_display_entity" type="AnimatedSprite2D" parent="dp_anim_display_entity"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_p2njo")
+script = ExtResource("5_dfty7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4ubkw")

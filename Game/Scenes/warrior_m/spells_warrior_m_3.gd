@@ -1,9 +1,9 @@
 extends IDamagingSpell
 
-var speed = 3
+var speed = 4
 
 
-func _ready():	
+func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 3.0

@@ -7,7 +7,7 @@ func _ready():
 		await super._ready()
 		
 		animation.animation_finished.connect(stop_spell)
-		CONF_DETECT_WITH = ServiceScenes.alliesNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode]
 			
 func _process(_delta):
 	if self.visible:

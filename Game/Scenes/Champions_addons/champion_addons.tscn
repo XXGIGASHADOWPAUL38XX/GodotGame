@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo74nwafy87te"]
+
+[ext_resource type="Texture2D" uid="uid://cbyp5iy7urpos" path="res://Game/Ressources/Background/vision_texture.png" id="1_o0m6j"]
+[ext_resource type="Script" path="res://Game/Scenes/Champions_addons/vision.gd" id="2_5uh7u"]
+[ext_resource type="Script" path="res://Game/Scenes/Champions_addons/vision_area.gd" id="3_yc210"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rokyg"]
+radius = 330.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yx7mb"]
+
+[node name="champion_addons" type="Node2D"]
+
+[node name="champion_vision" type="Node2D" parent="."]
+
+[node name="vision" type="PointLight2D" parent="champion_vision"]
+energy = 2.0
+range_z_min = 0
+range_z_max = 4
+texture = ExtResource("1_o0m6j")
+texture_scale = 2.0
+script = ExtResource("2_5uh7u")
+
+[node name="vision_area" type="Area2D" parent="champion_vision/vision"]
+script = ExtResource("3_yc210")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="champion_vision/vision/vision_area"]
+shape = SubResource("CircleShape2D_rokyg")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="champion_vision"]
+replication_config = SubResource("SceneReplicationConfig_yx7mb")

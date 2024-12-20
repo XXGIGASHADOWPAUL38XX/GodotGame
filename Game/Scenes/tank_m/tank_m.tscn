@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://8iu2t8oq1tyj"]
+[gd_scene load_steps=21 format=3 uid="uid://8iu2t8oq1tyj"]
 
 [ext_resource type="Script" path="res://Game/Scenes/tank_m/tank_m.gd" id="1_ruf22"]
 [ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="2_rhymi"]
 [ext_resource type="PackedScene" uid="uid://bdlmf4ux4n4pm" path="res://Game/Scenes/tank_m/spells_tank_m.tscn" id="3_1bhe6"]
+[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_alxxe"]
 [ext_resource type="Texture2D" uid="uid://c07ljnwklkls3" path="res://ressource/rpgsprites1/townfolk1_m.png" id="6_bccso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dayrp"]
@@ -133,6 +134,8 @@ shape = SubResource("RectangleShape2D_dayrp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="tank_m"]
 sprite_frames = SubResource("SpriteFrames_4it8n")
 animation = &"walk_down"
+
+[node name="champion_addons" parent="tank_m" instance=ExtResource("5_alxxe")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_pih2a")

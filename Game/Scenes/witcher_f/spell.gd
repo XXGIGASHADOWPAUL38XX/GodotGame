@@ -26,6 +26,9 @@ func _process(delta):
 		pass
 			
 func active(cube, active_cube):
+	cube.is_launching_laser = true
+	active_cube.is_launching_laser = true
+	
 	self.position = (cube.position + active_cube.position) / 2
 	self.rotation = (active_cube.position - cube.position).angle()
 	self.scale.x = (cube.position.distance_to(active_cube.position) / base_size)
@@ -50,4 +53,7 @@ func active(cube, active_cube):
 		
 	self.hide()
 	animation.animation = 'pre'
+	
+	cube.is_launching_laser = false
+	active_cube.is_launching_laser = false
 	

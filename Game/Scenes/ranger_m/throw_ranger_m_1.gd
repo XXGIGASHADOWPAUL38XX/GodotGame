@@ -19,8 +19,10 @@ func _ready():
 
 func active(main_mector):
 	await get_tree().create_timer(delay).timeout
+	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.CONCENTRATE, 0.05)
+	
 	self.position = champion.position + (main_mector.normalized() * 35)
-	self.position.y += randf_range(-30, 30)
+	self.position.y += randf_range(-10, 10)
 	self.rotation = main_mector.angle()
 	self.show()
 

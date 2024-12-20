@@ -13,9 +13,10 @@ func _ready():
 func active(target_position):
 	if is_multiplayer_authority():
 		self.position = target_position + ServiceSpell.set_random_pos(15)
-		self.scale = Vector2(0.02, 0.02)
+		self.scale = Vector2(0.05, 0.05)
 		self.modulate.a = 1
 		self.show()
+		self.animation.play()
 		
 		for i in range(8):
 			self.scale = self.scale * 1.03

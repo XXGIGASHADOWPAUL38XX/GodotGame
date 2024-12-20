@@ -44,7 +44,7 @@ func send_to_ally(node, f, args):
 	remote_only(ServiceScenes.ally.id, node, f, args)
 		
 func send_to_ennemies(node, f, args):
-	for ennemy in ServiceScenes.ennemiesNode:
+	for ennemy in ServiceScenes.entities.ennemiesNode:
 		remote_only(ennemy.get_multiplayer_authority(), node, f, args)
 	
 func convert_args_to_nodepaths(args):

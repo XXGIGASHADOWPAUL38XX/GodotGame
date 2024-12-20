@@ -7,7 +7,7 @@ func _ready():
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 		
 		await super._ready()
 		self.hide()

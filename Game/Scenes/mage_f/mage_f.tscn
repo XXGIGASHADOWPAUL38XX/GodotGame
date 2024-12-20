@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://c84jgd1hrw27x"]
+[gd_scene load_steps=21 format=3 uid="uid://c84jgd1hrw27x"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/mage_f.gd" id="1_sybsp"]
 [ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="2_2ipmp"]
 [ext_resource type="PackedScene" uid="uid://srarkkpwqkkt" path="res://Game/Scenes/mage_f/spells_mage_f.tscn" id="3_hss6p"]
 [ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
+[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_3ds7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)
@@ -133,6 +134,8 @@ shape = SubResource("RectangleShape2D_cawle")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mage_f"]
 sprite_frames = SubResource("SpriteFrames_pvuku")
 animation = &"walk_up"
+
+[node name="champion_addons" parent="mage_f" instance=ExtResource("5_3ds7w")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uhn6w")

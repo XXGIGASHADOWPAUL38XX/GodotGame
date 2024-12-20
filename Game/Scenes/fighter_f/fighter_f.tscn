@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cms7chmevsu5o"]
+[gd_scene load_steps=21 format=3 uid="uid://cms7chmevsu5o"]
 
 [ext_resource type="Script" path="res://Game/Scenes/fighter_f/fighter_f.gd" id="1_nkaku"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_7cx2v"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="3_7cx2v"]
 [ext_resource type="Texture2D" uid="uid://b1kuclyws4p8d" path="res://ressource/rpgsprites1/ninja_f.png" id="4_k1rsx"]
 [ext_resource type="PackedScene" uid="uid://bgb8y5bj2phxf" path="res://Game/Scenes/fighter_f/spells_fighter_f.tscn" id="5_f5xbf"]
+[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_uoerq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k8ahg"]
 
@@ -126,11 +127,13 @@ shape = SubResource("CapsuleShape2D_k8ahg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="fighter_f"]
 sprite_frames = SubResource("SpriteFrames_eeyju")
-animation = &"walk_up"
+animation = &"walk_right"
 
 [node name="pgbars" parent="fighter_f" instance=ExtResource("3_7cx2v")]
 
 [node name="spells_fighter_f" parent="fighter_f" instance=ExtResource("5_f5xbf")]
+
+[node name="champion_addons" parent="fighter_f" instance=ExtResource("5_uoerq")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4hfcm")

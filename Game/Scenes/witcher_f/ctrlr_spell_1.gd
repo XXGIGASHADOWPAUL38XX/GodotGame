@@ -1,6 +1,7 @@
 extends IControllerKeyPressed
 
 var dp_cube_s1: IDuplication
+var anim_pre_cube
 
 var cube_file: Array = []
 
@@ -8,22 +9,31 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_1']
 		coltdown_time = 3
+		cast_time = 0.15
+		cast_kind = CastTime.Kind.BeforeActive
 		
 		dp_cube_s1 = $dp_cube_1
+		anim_pre_cube = $anim_pre_cube
 		await super._ready()
 
 func active():
+	var base_position = get_global_mouse_position()
+	anim_pre_cube.active(base_position)
+	
 	var cube
 	var inactive_cubes = get_inactive_cubes(cubes_s1())
 	
 	if inactive_cubes.size() == 0:
 		cube = get_last_cube_s1()
-		await super.active()
 	else:
 		cube = inactive_cubes[0]
 		cube_file.append(cube)
 		
-	cube.active()
+	await super.active()
+	if inactive_cubes.size() != 0:
+		coltdown.stop()
+		
+	cube.active(base_position)
 	
 	spells_placeholder.controller_laser.launch_lasers(cube)
 

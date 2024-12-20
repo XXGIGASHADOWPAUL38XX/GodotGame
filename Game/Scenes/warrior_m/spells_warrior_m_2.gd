@@ -1,5 +1,7 @@
 extends IDamagingSpell
 
+var rotate_speed = 5
+
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
@@ -12,9 +14,13 @@ func _ready():
 		
 		animation = $Spells_warrior_anim_2
 
+func _process(delta):
+	if is_multiplayer_authority() && self.visible:
+		self.rotate(deg_to_rad(rotate_speed))
+
 func active():
-	
 	self.position = champion.position
+	self.rotation = 0
 	
 	self.show()
 	animation.play()

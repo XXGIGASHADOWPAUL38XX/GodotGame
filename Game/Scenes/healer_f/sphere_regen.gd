@@ -11,7 +11,7 @@ func _ready():
 	# ------------------------------------ #
 		
 	mark_overall_node = get_parent()
-	allies_nodes = ServiceScenes.alliesNode
+	allies_nodes = ServiceScenes.entities.alliesNode
 	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +22,7 @@ func active():
 	allies_nodes.shuffle()
 	
 	self.position = mark_overall_node.mark.position
-	var speed = 5
+	var speed = 8
 
 	self.show()
 	

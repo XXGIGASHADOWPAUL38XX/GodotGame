@@ -1,9 +1,8 @@
 extends IControllerKeyPressed
 
 var dash
-var ennemies_marked: Array:
-	get:
-		return ennemies_marked
+var anim_teleportation
+var ennemies_marked
 
 func _ready():
 	if is_multiplayer_authority():
@@ -12,8 +11,10 @@ func _ready():
 		cast_time = ServiceSpell.animation_duration($dash/anim_ninja_m_2)
 		
 		dash = $dash as IDamagingSpell
-		dash.CONF_DETECT_WITH = ServiceScenes.allEnnemiesNode
-		ennemies_marked = ServiceScenes.allEnnemiesNode
+		anim_teleportation = $anim_teleportation
+		
+		dash.CONF_DETECT_WITH = [ServiceScenes.entities.entitiesNode]
+		ennemies_marked = ServiceScenes.entities.entitiesNode
 		
 		await super._ready()
 		
@@ -31,6 +32,7 @@ func _ready():
 
 func active():
 	await super.active()
+	anim_teleportation.active()
 	dash.active()
 
 func reset(is_champion=false):

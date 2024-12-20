@@ -20,7 +20,7 @@ func _process(delta):
 	pass
 
 func active():
-	self.position = champion.position + ServiceSpell.set_in_front_mouse(self, get_global_mouse_position(), 30)
+	self.position = champion.position + ServiceSpell.set_in_front_mouse(self, get_global_mouse_position(), 15)
 	self.rotation = (get_global_mouse_position() - champion.position).angle()
 	
 	self.show()

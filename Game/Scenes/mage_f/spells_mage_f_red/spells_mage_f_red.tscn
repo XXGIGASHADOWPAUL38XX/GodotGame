@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7pgrycrx8w4w"]
+[gd_scene load_steps=27 format=3 uid="uid://c7pgrycrx8w4w"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_red/ctrlr_mage_f_2_red.gd" id="1_x8hl0"]
 [ext_resource type="Texture2D" uid="uid://d0vk5nqbr0pq1" path="res://Game/Ressources/Heros/mage_f/spell2_3_mage.png" id="4_0esoe"]
@@ -10,68 +10,54 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpiuj"]
 radius = 20.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40osg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nai22"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(40, 50, 796, 790)
+region = Rect2(25, 73, 69, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wjuef"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8w44"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(836, 50, 796, 790)
+region = Rect2(163, 73, 69, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7tc0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksp7p"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(1632, 50, 796, 790)
+region = Rect2(370, 73, 69, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wq0in"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjylh"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(40, 840, 796, 790)
+region = Rect2(577, 73, 69, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xjvr0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kchs"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(2428, 50, 796, 790)
+region = Rect2(715, 73, 69, 63)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4k4w2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw745"]
 atlas = ExtResource("4_0esoe")
-region = Rect2(836, 840, 796, 790)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tesax"]
-atlas = ExtResource("4_0esoe")
-region = Rect2(1632, 840, 796, 790)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fc6qg"]
-atlas = ExtResource("4_0esoe")
-region = Rect2(2428, 840, 796, 790)
+region = Rect2(853, 73, 69, 63)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ora47"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_40osg")
+"texture": SubResource("AtlasTexture_nai22")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wjuef")
+"texture": SubResource("AtlasTexture_j8w44")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7tc0")
+"texture": SubResource("AtlasTexture_ksp7p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wq0in")
+"texture": SubResource("AtlasTexture_gjylh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xjvr0")
+"texture": SubResource("AtlasTexture_1kchs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4k4w2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tesax")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fc6qg")
+"texture": SubResource("AtlasTexture_gw745")
 }],
 "loop": false,
 "name": &"spell2_explode",
-"speed": 25.0
+"speed": 20.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1ucvf"]
@@ -164,10 +150,9 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_wpiuj")
 
 [node name="Spells_mage_explode" type="AnimatedSprite2D" parent="ctrlr_mage_f_2_red/spell_mage_f_2_red"]
-scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_ora47")
 animation = &"spell2_explode"
-frame = 7
+frame = 5
 frame_progress = 1.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_2_red"]

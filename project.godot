@@ -29,13 +29,14 @@ Servrpc="*res://Game/Services/Server/servrpc.gd"
 ServiceAnimations="*res://Game/Services/service_animations.gd"
 ServiceAnnounce="*res://Game/Services/service_announce.gd"
 ServiceMovements="*res://Game/Services/service_movements.gd"
-ServiceOrbs="*res://Game/Services/service_orbs.gd"
 UpdateMode="*res://Game/Classes/UpdateMode.gd"
 ServiceEvents="*res://Game/Services/service_events.gd"
 MageOrb="*res://Game/Scenes/mage_f/orb_kind.gd"
 ServiceRounds="*res://Game/Services/service_rounds.gd"
 ServiceSettings="*res://Game/Services/service_settings.gd"
 ServiceWindow="*res://Game/Services/service_window.gd"
+ServiceNode="*res://Game/Services/service_node.gd"
+ServiceItems="*res://Game/Services/service_items.gd"
 
 [debug]
 
@@ -55,3 +56,7 @@ project/assembly_name="Game"
 
 2d_physics/layer_1="Champions"
 2d_physics/layer_2="Spells"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.314316, 0.314316, 0.314316, 1)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcmenkfg20a6a"]
+[gd_scene load_steps=21 format=3 uid="uid://bcmenkfg20a6a"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/ranger_m.gd" id="1_q6wg0"]
 [ext_resource type="Texture2D" uid="uid://kgepdx0arv71" path="res://ressource/rpgsprites1/ranger_m.png" id="2_2fh3v"]
-[ext_resource type="PackedScene" uid="uid://bxrr1eijthugr" path="res://Game/Scenes/Health/pgbars.tscn" id="3_7yts7"]
+[ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="3_7yts7"]
+[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_l3m54"]
 [ext_resource type="PackedScene" uid="uid://b2qkqfms18jkm" path="res://Game/Scenes/ranger_m/spells_ranger_m.tscn" id="6_t2n6e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5brpn"]
@@ -134,6 +135,8 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="pgbars" parent="ranger_m" instance=ExtResource("3_7yts7")]
 
 [node name="spells_ranger_m" parent="ranger_m" instance=ExtResource("6_t2n6e")]
+
+[node name="champion_addons" parent="ranger_m" instance=ExtResource("5_l3m54")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_a6nq1")

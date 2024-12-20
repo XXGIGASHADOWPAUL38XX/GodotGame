@@ -11,7 +11,7 @@ func new_round_global(champion_killed):
 	Servrpc.any(self, "new_round_local", [champion_killed])
 	
 func new_round_local(champion_killed):
-	var is_victory = !(champion_killed in ServiceScenes.alliesNode)
+	var is_victory = !(champion_killed in ServiceScenes.entities.alliesNode)
 	if is_victory:
 		increment_round_won()
 		
@@ -29,7 +29,7 @@ func new_round_local(champion_killed):
 		
 	ServiceScenes.championNode.set_multiplayer_authority(Server.get_client_id())
 	
-	ServiceScenes.entites.map(func(entity):
+	ServiceScenes.entities.entitiesNode.map(func(entity):
 		if entity != null && entity.is_multiplayer_authority():
 			entity.new_round()
 	)
@@ -55,4 +55,9 @@ func add_random_boss_any(current_boss):
 	
 	var current_boss_scene = load("res://Game/Scenes/Shared_Effects/" + current_boss + ".tscn").instantiate()
 	current_boss_scene.set_multiplayer_authority(Server.get_first_player_connected_id(), true)
+	
 	ServiceScenes.main_scene.add_child(current_boss_scene)
+	
+	
+	
+	

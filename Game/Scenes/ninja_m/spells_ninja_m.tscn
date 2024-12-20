@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://dpcvbwqik5lfg"]
+[gd_scene load_steps=81 format=3 uid="uid://dpcvbwqik5lfg"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_1.gd" id="1_ewxjy"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spells_ninja_m_phldr.gd" id="1_ltmo8"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_ninja_m_3.gd" id="10_1myip"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/dp_dashes_shadows.gd" id="10_4eaqm"]
 [ext_resource type="Texture2D" uid="uid://dp261tx26dwbu" path="res://Game/Ressources/Heros/ninja_m/spellC_counter.png" id="10_w7amw"]
+[ext_resource type="Script" path="res://Game/Scenes/ninja_m/anim_dash.gd" id="11_a1coj"]
+[ext_resource type="Texture2D" uid="uid://cwqg3365yn4ey" path="res://Game/Ressources/Heros/ninja_m/anim_dash.png" id="11_hunxn"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/ctrlr_ninja_m_4.gd" id="14_mhc1x"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/dp_ninja_m_4.gd" id="15_8re5e"]
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/spell_ninja_m_4.gd" id="16_clbn1"]
@@ -30,73 +32,52 @@
 [ext_resource type="Script" path="res://Game/Scenes/ninja_m/mark.gd" id="27_ro3pv"]
 [ext_resource type="Texture2D" uid="uid://bjufwqhn3kaxm" path="res://Game/Ressources/Heros/ninja_m/mark.png" id="28_mmvui"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0xx1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrnrw"]
 atlas = ExtResource("4_r4fn8")
-region = Rect2(0, 0, 592, 606)
+region = Rect2(0, 0, 860, 1034)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvv36"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkiqi"]
 atlas = ExtResource("4_r4fn8")
-region = Rect2(592, 0, 592, 606)
+region = Rect2(860, 0, 860, 1034)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfhgy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_11pd7"]
 atlas = ExtResource("4_r4fn8")
-region = Rect2(1184, 0, 592, 606)
+region = Rect2(1720, 0, 860, 1034)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1x2u8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_14jkc"]
 atlas = ExtResource("4_r4fn8")
-region = Rect2(1776, 0, 592, 606)
+region = Rect2(2580, 0, 860, 1034)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhvi7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8i0i"]
 atlas = ExtResource("4_r4fn8")
-region = Rect2(0, 606, 592, 606)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e08vu"]
-atlas = ExtResource("4_r4fn8")
-region = Rect2(592, 606, 592, 606)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_35k1t"]
-atlas = ExtResource("4_r4fn8")
-region = Rect2(1184, 606, 592, 606)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6170p"]
-atlas = ExtResource("4_r4fn8")
-region = Rect2(1776, 606, 592, 606)
+region = Rect2(3440, 0, 860, 1034)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x4dwk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o0xx1")
+"texture": SubResource("AtlasTexture_yrnrw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jvv36")
+"texture": SubResource("AtlasTexture_fkiqi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lfhgy")
+"texture": SubResource("AtlasTexture_11pd7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1x2u8")
+"texture": SubResource("AtlasTexture_14jkc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lhvi7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e08vu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_35k1t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6170p")
+"texture": SubResource("AtlasTexture_t8i0i")
 }],
 "loop": false,
 "name": &"default",
-"speed": 50.0
+"speed": 25.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10ip4"]
-radius = 87.5
-height = 350.0
+radius = 450.0
+height = 1175.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ipvf1"]
 
@@ -138,47 +119,65 @@ radius = 18.0278
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2ji81"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36mxo"]
-atlas = ExtResource("3_3nsr2")
-region = Rect2(0, 0, 1337, 226)
+[sub_resource type="AtlasTexture" id="AtlasTexture_02ux0"]
+atlas = ExtResource("11_hunxn")
+region = Rect2(0, 50, 951, 860)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oksp2"]
-atlas = ExtResource("3_3nsr2")
-region = Rect2(1337, 0, 1337, 226)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vabef"]
+atlas = ExtResource("11_hunxn")
+region = Rect2(951, 50, 951, 860)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_13vil"]
-atlas = ExtResource("3_3nsr2")
-region = Rect2(2674, 226, 1337, 226)
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifi10"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02ux0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vabef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02ux0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2xlp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_321n6"]
 atlas = ExtResource("3_3nsr2")
-region = Rect2(0, 226, 1337, 226)
+region = Rect2(0, 0, 1360, 226)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_234es"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jqq2"]
 atlas = ExtResource("3_3nsr2")
-region = Rect2(1337, 226, 1337, 226)
+region = Rect2(1360, 0, 1360, 226)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgdnb"]
+atlas = ExtResource("3_3nsr2")
+region = Rect2(0, 226, 1360, 226)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf0ik"]
+atlas = ExtResource("3_3nsr2")
+region = Rect2(1360, 226, 1360, 226)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6xban"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_36mxo")
+"texture": SubResource("AtlasTexture_321n6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oksp2")
+"texture": SubResource("AtlasTexture_0jqq2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_13vil")
+"texture": SubResource("AtlasTexture_fgdnb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j2xlp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_234es")
+"texture": SubResource("AtlasTexture_uf0ik")
 }],
 "loop": false,
 "name": &"default",
-"speed": 25.0
+"speed": 20.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2g7by"]
@@ -337,10 +336,11 @@ script = ExtResource("2_kgxlw")
 
 [node name="aa_ninja_m" type="Area2D" parent="ctrlr_aa_ninja_m"]
 visible = false
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.06, 0.06)
 script = ExtResource("3_mdg1u")
 
 [node name="anim_aa" type="AnimatedSprite2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
+scale = Vector2(1, 1.5)
 sprite_frames = SubResource("SpriteFrames_x4dwk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_aa_ninja_m/aa_ninja_m"]
@@ -383,13 +383,24 @@ replication_config = SubResource("SceneReplicationConfig_2ji81")
 [node name="ctrlr_ninja_m_2" type="Node2D" parent="."]
 script = ExtResource("7_x7b81")
 
+[node name="anim_teleportation" type="AnimatedSprite2D" parent="ctrlr_ninja_m_2"]
+visible = false
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_ifi10")
+frame = 2
+frame_progress = 1.0
+script = ExtResource("11_a1coj")
+
 [node name="dash" type="Area2D" parent="ctrlr_ninja_m_2"]
 visible = false
+scale = Vector2(0.5, 0.5)
 script = ExtResource("3_cbpgb")
 
 [node name="anim_ninja_m_2" type="AnimatedSprite2D" parent="ctrlr_ninja_m_2/dash"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_6xban")
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="ctrlr_ninja_m_2/dash"]
 polygon = PackedVector2Array(100, 0, -1, -11, -116, 0, -1, 10, 99, 0)
@@ -494,6 +505,7 @@ script = ExtResource("26_d4pg2")
 script = ExtResource("27_ro3pv")
 
 [node name="anim_mark" type="AnimatedSprite2D" parent="ctrlr_mark_ninja_m/dp_mark/mark"]
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_w0hp7")
 

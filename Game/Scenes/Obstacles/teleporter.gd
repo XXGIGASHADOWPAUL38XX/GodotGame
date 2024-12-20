@@ -20,7 +20,7 @@ func _ready():
 		portal_1.body_exited.connect(portal_exited.bind(portal_1, portal_2))
 		portal_2.body_exited.connect(portal_exited.bind(portal_2, portal_1))
 		
-		for player in ServiceScenes.allPlayersNode:
+		for player in ServiceScenes.entities.allPlayersNode:
 			dict_champ_portal[player] = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

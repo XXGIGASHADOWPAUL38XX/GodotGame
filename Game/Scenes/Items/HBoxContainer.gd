@@ -1,7 +1,6 @@
 extends HBoxContainer
 
 var main_node
-var item_class = ItemClass.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +17,13 @@ func on_click(toggled: bool, button: Button):
 	)
 	
 	if buttons_toggled.size() == 0:
-		ServiceScenes.items.items_container.get_children().map(func(item_container): item_container.show())
+		ServiceScenes.shop.items_container.get_children().map(func(item_container): item_container.show())
 		return
 		
-	var filtered_items = item_class.get_list_by_category(buttons_toggled)
+	##!!
+	#var filtered_items = item_class.get_list_by_category(buttons_toggled)
 	
-	ServiceScenes.items.items_container.get_children().map(func(item_container): 
-		item_container.visible = item_container.name.to_lower() in filtered_items
-	)
+	#ServiceScenes.shop.items_container.get_children().map(func(item_container): 
+		#item_container.visible = item_container.name.to_lower() in filtered_items
+	#)
 

@@ -1,7 +1,7 @@
 extends IDamagingSpell
 
 var speed = 8
-var rotate_speed = 25
+var rotate_speed = 20
 
 
 func _ready():
@@ -22,6 +22,7 @@ func _process(_delta):
 			self.position = champion.position
 
 func active():
+	champion.hide()
 	self.show()
 
 	animation.play()
@@ -32,3 +33,5 @@ func active():
 
 	animation.stop()
 	self.hide()
+	champion.show()
+	

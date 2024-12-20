@@ -13,4 +13,7 @@ func _process(delta):
 	super._process(delta)
 
 func leap():
-	pass
+	self.hide()
+	
+func fall_back():
+	self.show()

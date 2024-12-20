@@ -5,6 +5,7 @@ var champion
 
 var duration = 3
 var duration_timer: Timer
+var is_launching_laser: bool = false
 
 var angle
 var controller
@@ -34,5 +35,10 @@ func active():
 	
 	self.position = controller.zone_ult.position + (Vector2.UP * zone_ult_side_height).rotated(deg_to_rad(angle))
 	self.animation.play()
+	
+	self.modulate.a = 0
 	self.show()
+	for i in range(5):
+		self.modulate.a += 0.2
+		await get_tree().create_timer(0).timeout
 

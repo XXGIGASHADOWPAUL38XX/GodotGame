@@ -5,7 +5,7 @@ var modulate_bool: bool = false
  
 func _ready():
 	#!!
-	CONF_DETECT_WITH = ServiceScenes.alliesNode
+	CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode]
 	
 	if is_multiplayer_authority():
 		champion = ServiceScenes.championNode

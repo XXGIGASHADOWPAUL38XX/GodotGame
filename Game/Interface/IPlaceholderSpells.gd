@@ -26,7 +26,7 @@ func _ready():
 
 	all_actives = get_all_actives()
 	
-	# ON A MTN TOUS LES SORTS / ENTITES : ON VA POUVOIR ARRETER DE FAIRE ATTENDRE LE _ready() d'IActive / IEntity
+	# ON A MTN TOUS LES SORTS / entities : ON VA POUVOIR ARRETER DE FAIRE ATTENDRE LE _ready() d'IActive / IEntity
 	spells_dependencies_ready = true
 
 func get_all_actives(parent=self):
@@ -50,6 +50,6 @@ func get_duplication_phldrs(parent=self):
 	return duplication_phldrs
 
 func duplication_node_performed():
-	if (duplication_phldrs.all(func(d) : return d == null || d.duplication_performed)):
+	if (duplication_phldrs.all(func(d) : return d == null || d.duplication_ready)):
 		ready_to_load_spell = true
 

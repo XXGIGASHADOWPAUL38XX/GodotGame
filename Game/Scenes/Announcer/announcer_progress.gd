@@ -7,7 +7,7 @@ signal anncounce_timeout
 
 @onready var display_time = $Panel/CenterContainer/HBox/Time
 @onready var announcer = $Panel/CenterContainer/HBox/Announce
-@onready var progress = $Panel/Progress
+@onready var progress = $Panel/CenterContainer/Progress
 @onready var panel = $Panel
 
 # Called when the node enters the scene tree for the first time.

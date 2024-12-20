@@ -3,7 +3,7 @@ extends IControllerKeyPressed
 var first_activation = true
 
 var zone_timer: Timer
-var zone_duration = 2
+var zone_duration = 1
 
 var zone
 var jump
@@ -23,9 +23,8 @@ func _ready():
 		
 		zone_timer = service_time.init_timer(self, zone_duration)
 		zone_timer.timeout.connect(func(): 
-			if first_activation:
-				first_activation = false
-				active()
+			first_activation = false
+			active()
 		)
 		
 		await super._ready()
@@ -34,12 +33,12 @@ func active():
 	await super.active()
 	if first_activation:
 		zone.active()
-		anim_champ_leap.active()
-		champion.leap()
+		anim_champ_leap.leap()
 		
 		zone_timer.start()
 		return 
 		
+	anim_champ_leap.fall_back()
 	await jump.active()
 	zone.end_spell()
 	

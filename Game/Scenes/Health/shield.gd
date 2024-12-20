@@ -13,12 +13,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_multiplayer_authority(): 
-		if self.visible:
-			self.position = Vector2(
-				(pgbars.health_bar.position.x + (pgbars.health_bar.size.x * (pgbars.health_bar.value / pgbars.health_bar.max_value))) * pgbars.health_bar.scale.x,
-				pgbars.health_bar.position.y * pgbars.health_bar.scale.y
-			)
+	if is_multiplayer_authority() && self.visible:
+		self.position = Vector2(
+			(pgbars.health_bar.position.x + (pgbars.health_bar.size.x * (pgbars.health_bar.value / pgbars.health_bar.max_value))) * pgbars.health_bar.scale.x,
+			pgbars.health_bar.position.y * pgbars.health_bar.scale.y
+		)
 		
 func set_shield(value_shield, time):
 	if is_multiplayer_authority():

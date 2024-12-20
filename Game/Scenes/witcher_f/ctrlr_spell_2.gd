@@ -10,4 +10,11 @@ func _ready():
 
 func active():
 	await super.active()
-	$zone.active()
+	var spell_position = ServiceSpell.distance_range_max(
+		ServiceScenes.championNode.position, get_global_mouse_position(), 300
+	)
+	
+	$anim_zone.active(spell_position)
+	
+	await $zone.active(spell_position)
+	$anim_zone.desactive()

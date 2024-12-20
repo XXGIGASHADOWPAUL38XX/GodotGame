@@ -7,7 +7,7 @@ func _ready():
 	if is_multiplayer_authority():
 		cshape = $CollisionShape2D
 		
-		super._ready()
+		await super._ready()
 
 func _process(_delta):
 	pass

@@ -9,7 +9,9 @@ var map: RID
 var naviguation_region: RID
 var avoid_fpath = false
 
-const POSITION_OFFSET_SPAWN = 100
+@onready var placeholder_spells = get_node("spells_" + self.name) as IPlaceholderSpells
+
+const POSITION_OFFSET_SPAWN = 150
 
 func _ready():
 	await super._ready()
@@ -19,8 +21,6 @@ func _ready():
 		NavigationServer2D.map_set_active(map, true)
 		naviguation_region = ServiceScenes.naviguation_region
 		NavigationServer2D.region_set_map(naviguation_region, map)
-		
-		NavigationServer2D.map_force_update(map)
 	
 	shield = $pgbars/shield
 		
@@ -63,7 +63,7 @@ func take_damage():
 		await get_tree().create_timer(0.15).timeout
 
 func check_if_allies_dead():
-	if ServiceScenes.alliesNode.all(func(ally): return ally.health_bar.value == 0):
+	if ServiceScenes.entities.alliesNode.all(func(ally): return ally.health_bar.value == 0):
 		ServiceRounds.new_round_global(self)
 
 func set_multiplayer_properties():
@@ -116,18 +116,20 @@ func new_round():
 	super.new_round()
 	var heros_number = ServiceScenes.players.map(func(player): return player.node).find(self)
 	
-	var corner = Vector2(
-		(ServiceWindow.scene_size.x * 2) * (heros_number % 2),
-		(ServiceWindow.scene_size.y * 2) * (floor(heros_number / 2))
-	)
+	var spawn_point = [  
+		Vector2(POSITION_OFFSET_SPAWN, ServiceWindow.scene_size.y / 2),
+		Vector2(ServiceWindow.scene_size.x - POSITION_OFFSET_SPAWN, ServiceWindow.scene_size.y / 2),  
+		Vector2(ServiceWindow.scene_size.x / 2, POSITION_OFFSET_SPAWN),  
+		Vector2(ServiceWindow.scene_size.x / 2, ServiceWindow.scene_size.y - POSITION_OFFSET_SPAWN)
+	][heros_number]
 	
-	self.position = Vector2(
-		corner.x + POSITION_OFFSET_SPAWN if corner.x < ServiceWindow.scene_size.x else corner.x - POSITION_OFFSET_SPAWN,
-		corner.y + POSITION_OFFSET_SPAWN if corner.y < ServiceWindow.scene_size.y else corner.y - POSITION_OFFSET_SPAWN,
-	)
+	self.position = spawn_point
 	
 	ServiceScenes.camera.offset = self.position
 
 func spells_placeholder_f(node: Node = self):
 	var optionnal_placeholder = self.get_children().filter(func(child): return child is IPlaceholderSpells)
 	return null if optionnal_placeholder.size() == 0 else optionnal_placeholder[0]
+
+func set_visibility():
+	self.visible = is_multiplayer_authority()

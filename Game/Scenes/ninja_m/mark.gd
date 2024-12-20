@@ -37,5 +37,5 @@ func hide_on_dash():
 	mark_timer.start()
 	
 func post_dp_script(id, nbr_dupl):
-	key_ennemy_marked = duplicator.ennemies_of_current()[id - 1]
+	key_ennemy_marked = duplicator.marked_entities[id - 1]
 

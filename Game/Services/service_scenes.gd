@@ -10,12 +10,6 @@ var ennemies
 var championNode
 var allyNode
 
-#CATEGORIES NODES PLAYERS
-var alliesNode = []
-var ennemiesNode = []
-var allPlayersNode = []
-var allEnnemiesNode = [] # INCLUDE MONSTERS AND OBJECTS
-
 # REFERENCES TO SCENES
 var root_scene
 var loading_game
@@ -30,14 +24,14 @@ var events_scene
 
 var announcer_ui
 var HUD
-var items
+var shop
 var camera
 var SENode
 var rochers
 var naviguation_region
 
 # SPECIALS
-var entites = []
+var entities = Entities.new()
 
 # SPECIALS
 var CONFIG_NB_PLAYERS_GAME = null
@@ -60,16 +54,15 @@ func set_global_players():
 		
 	championNode = champion.node
 	
-	alliesNode += players.filter(func(obj): return obj.is_ally()).map(
+	entities.alliesNode = players.filter(func(obj): return obj.is_ally()).map(
 		func(obj): return obj.node
 	)
 		
-	ennemiesNode = players.filter(func(obj): return !obj.is_ally()).map(
+	entities.ennemiesNode = players.filter(func(obj): return !obj.is_ally()).map(
 		func(obj): return obj.node
 	)
 		
-	allPlayersNode = alliesNode + ennemiesNode
-	allEnnemiesNode += ennemiesNode
+	entities.allPlayersNode = entities.alliesNode + entities.ennemiesNode
 	
 func getPlayerByName(player_name):
 	var player = players.filter(func(obj): return obj.name == player_name)[0]
@@ -99,8 +92,8 @@ func get_property_from_player(player_node, property):
 	)[0].get(property)
 
 func is_on_same_team(champion_1, champion_2):
-	var team_champion_1 = alliesNode if champion_1 in alliesNode else ennemiesNode
+	var team_champion_1 = entities.alliesNode if champion_1 in entities.alliesNode else entities.ennemiesNode
 	return champion_2 in team_champion_1
 	
 func add_as_ennemy(ennemy: Node2D):
-	allEnnemiesNode.append(ennemy)
+	entities.entitiesNode.append(ennemy)

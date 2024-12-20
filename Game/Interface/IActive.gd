@@ -18,11 +18,13 @@ var resource_awaiter = ResourceAwaiter.new()
 @export var champion: IEntity
 
 func _ready():
-	self.process_mode = Node.PROCESS_MODE_DISABLED
-	self.z_index = 1
-	animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+	if is_multiplayer_authority():
+		self.process_mode = Node.PROCESS_MODE_DISABLED
+		self.z_index = 1
+		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
+		
+		spell_controller_f()
 	
-	spell_controller_f()
 	spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
@@ -34,10 +36,10 @@ func _ready():
 	# SUPPRIME PENDANT LA FONCTION SUIVANTE, CE QUI CAUSE UNE ERREUR, ON NE DOIT
 	# PAS DECLENCHER LA FONCTION SUIVANTE DANS CE CAS
 	
-	Servrpc.any(self, 'champion_hitting', [])
+	self.champion_hitting()
 
 	if !ignore_multiconf_debug:
-		Servrpc.any(self, 'set_multiplayer_properties', [])
+		self.set_multiplayer_properties()
 		
 	# IMPORTANT, permet d'attendre que tous les 'set_multiplayer_properties' soient
 	# effectuées pour changer le mode en "onChange"
@@ -45,7 +47,6 @@ func _ready():
 	#multip_sync.replication_config.get_properties().map(func(prop):
 		#multip_sync.replication_config.property_set_replication_mode(prop, SceneReplicationConfig.REPLICATION_MODE_ON_CHANGE)
 	#)
-	
 	
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 

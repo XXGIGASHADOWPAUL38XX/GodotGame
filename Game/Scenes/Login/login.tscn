@@ -2,32 +2,51 @@
 
 [ext_resource type="Texture2D" uid="uid://cmh80ggutwxme" path="res://Game/Ressources/Background/background.png" id="1_7sndh"]
 [ext_resource type="Script" path="res://Game/Scenes/Login/login.gd" id="1_onfxi"]
+[ext_resource type="Texture2D" uid="uid://bwtddkrrqo2xl" path="res://Game/Ressources/UI/Login/bg.png" id="3_pubcp"]
+[ext_resource type="Texture2D" uid="uid://deikvp41h8q2p" path="res://Game/Ressources/UI/Login/logo.png" id="4_8g3oe"]
+[ext_resource type="Theme" uid="uid://c64ex4jajf1aq" path="res://Game/Themes/Themes/theme_login.tres" id="4_xho2e"]
 
-[sub_resource type="Gradient" id="Gradient_36h0a"]
-offsets = PackedFloat32Array(0, 0.813725)
-colors = PackedColorArray(0, 0, 0, 0.705882, 0, 0, 0, 0)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_angoa"]
+texture = ExtResource("3_pubcp")
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_kfcwg"]
-gradient = SubResource("Gradient_36h0a")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb5n0"]
+bg_color = Color(1, 1, 1, 0.184314)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1beg"]
-texture = SubResource("GradientTexture1D_kfcwg")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qw2pc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.286275)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrmkp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl30n"]
+bg_color = Color(1, 1, 1, 0.592157)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5toj"]
+bg_color = Color(0, 0, 0, 0.470588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.611765)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[sub_resource type="Gradient" id="Gradient_ltx1a"]
-offsets = PackedFloat32Array(0.254902, 0.985294)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.705882)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_l36to"]
-gradient = SubResource("Gradient_ltx1a")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4eov4"]
-texture = SubResource("GradientTexture1D_l36to")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pu431"]
 
 [node name="Login" type="Control"]
 layout_mode = 3
@@ -50,159 +69,205 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_7sndh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="PC" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_angoa")
 
-[node name="PanelContainerLeft" type="PanelContainer" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PC"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PC/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_k1beg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lb5n0")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PC/HBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.5
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 20
 
-[node name="Main" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="Main" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 
-[node name="Username" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="TextureRect" type="TextureRect" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
+modulate = Color(1, 1, 1, 0.388235)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+texture = ExtResource("4_8g3oe")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/Username"]
-layout_mode = 2
-text = "Username :"
-horizontal_alignment = 1
-
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/Username"]
+[node name="Username" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Username"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Login"
+
+[node name="LineEdit" type="LineEdit" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Username"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("4_xho2e")
+theme_override_font_sizes/font_size = 15
 text = "trgelectro"
-alignment = 1
 
-[node name="Password" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="Password" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/Password"]
-layout_mode = 2
-text = "Password :"
-horizontal_alignment = 1
-
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/Password"]
+[node name="Label" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Password"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Password"
+
+[node name="LineEdit" type="LineEdit" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Password"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("4_xho2e")
+theme_override_font_sizes/font_size = 15
 text = "Ginetelectro8!"
-alignment = 1
 secret = true
 
-[node name="PasswordConfirm" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="PasswordConfirm" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/Main/PasswordConfirm"]
-layout_mode = 2
-text = "Password confirmation :"
-horizontal_alignment = 1
-
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/MarginContainer/Main/PasswordConfirm"]
+[node name="Label" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/PasswordConfirm"]
 layout_mode = 2
 size_flags_vertical = 3
+text = "Password confirmation :"
+
+[node name="LineEdit" type="LineEdit" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/PasswordConfirm"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme = ExtResource("4_xho2e")
 secret = true
 
-[node name="Constraints_Login" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="ActionsVBox" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 1
+
+[node name="LoginSignupChoice" type="HBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Signup" type="Button" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox/LoginSignupChoice"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_qw2pc")
+text = "Sign up"
+
+[node name="Login" type="Button" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox/LoginSignupChoice"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_yrmkp")
+text = "Login"
+
+[node name="Validate" type="Button" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_m5toj")
+text = "Validate"
+
+[node name="Constraints_Login" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="FieldsRequired" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Login"]
+[node name="FieldsRequired" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Login"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+theme_override_font_sizes/font_size = 11
 text = "All fileds are required"
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/MarginContainer/Main/Constraints_Login"]
+[node name="MarginContainer2" type="MarginContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Login"]
 layout_mode = 2
-theme_override_constants/margin_top = 90
+theme_override_constants/margin_top = 68
 
-[node name="Constraints_Signup" type="VBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="Constraints_Signup" type="VBoxContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="LengthGt7" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+[node name="LengthGt7" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.585062, 0.585062, 0.585062, 1)
-text = "Password's length should be greater or equal to 8 :"
+theme_override_font_sizes/font_size = 11
+text = "Password's length should be greater or equal to 8"
 
-[node name="SpecialCharacter" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+[node name="SpecialCharacter" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+theme_override_font_sizes/font_size = 11
 text = "Password should contain one or several special character"
 
-[node name="Number" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+[node name="Number" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+theme_override_font_sizes/font_size = 11
 text = "Password should contain one or several special number"
 
-[node name="LowerUpper" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+[node name="LowerUpper" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.584314, 0.584314, 0.584314, 1)
+theme_override_font_sizes/font_size = 11
 text = "Password should contain both lowercases and uppercases"
 
-[node name="PasswordsSimilar" type="Label" parent="HBoxContainer/MarginContainer/Main/Constraints_Signup"]
+[node name="PasswordsSimilar" type="Label" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main/Constraints_Signup"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.585062, 0.585062, 0.585062, 1)
+theme_override_font_sizes/font_size = 11
 text = "Both passwords are required and should be similar"
 
-[node name="LoginSignupChoice" type="HBoxContainer" parent="HBoxContainer/MarginContainer/Main"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Login" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_yrmkp")
-text = "Login"
-
-[node name="Signup" type="Button" parent="HBoxContainer/MarginContainer/Main/LoginSignupChoice"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_tl30n")
-text = "Submit"
-
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/Main"]
+[node name="MarginContainer" type="MarginContainer" parent="PC/HBoxContainer/PanelContainer/MarginContainer/Main"]
 layout_mode = 2
 theme_override_constants/margin_top = 20
 
-[node name="Validate" type="Button" parent="HBoxContainer/MarginContainer/Main"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_m5toj")
-text = "Validate"
-
-[node name="PanelContainerRigth" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainerLeft" type="PanelContainer" parent="PC/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_4eov4")
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pu431")
 
-[connection signal="pressed" from="HBoxContainer/MarginContainer/Main/Validate" to="." method="_on_validate_pressed"]
+[connection signal="pressed" from="PC/HBoxContainer/PanelContainer/MarginContainer/Main/ActionsVBox/Validate" to="." method="_on_validate_pressed"]

@@ -1,11 +1,11 @@
-extends PanelContainer
+extends MarginContainer
 
 var friend
 var duplicator
 var resource_awaiter = ResourceAwaiter.new()
 
-@onready var friend_name = $VBoxContainer/friend_name
-@onready var level = $VBoxContainer/HBoxContainer/level
+@onready var friend_name = $HBoxContainer/VBoxContainer/friend_name
+@onready var level = $HBoxContainer/VBoxContainer/level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

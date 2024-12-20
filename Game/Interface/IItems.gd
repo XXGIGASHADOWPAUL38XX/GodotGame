@@ -3,18 +3,11 @@ extends Control
 class_name IItems
 
 var items_container = []
-var item_actif: TextureButton
-var item_class = preload("res://Game/Classes/Item/item.gd").new()
-
 var resource_awaiter = ResourceAwaiter.new()
+@onready var item_actif: TextureButton = $margin/panel/item_actif
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	items_container = get_all_textureRect(self)
-	
-	#!!
-	item_actif.mouse_entered.connect(displayStats.bind(item_class.get(item_actif.name)))
-	items_container.map(func(orb): orb.mouse_entered.connect(displayStats.bind(item_class.get(orb.name))))
 	disable_all_items()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,8 +52,4 @@ func is_not_selected():
 
 func item_selected():
 	item_actif.get_parent().modulate = Color.GOLD
-	ServiceScenes.items.item_bought(self)
-
-func displayStats(item):
-	if !ServiceScenes.items == null:
-		ServiceScenes.items.displayStats(item)
+	ServiceScenes.shop.item_bought(self)

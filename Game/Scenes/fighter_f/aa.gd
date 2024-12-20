@@ -1,13 +1,11 @@
 extends IDamagingSpell
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if is_multiplayer_authority():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 2.5
-		damage_ratio = 0.4
+		damage_ratio = 0.04
 		# ------------------------------------ #
 		
 		await super._ready()

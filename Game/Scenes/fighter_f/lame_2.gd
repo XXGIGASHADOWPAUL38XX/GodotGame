@@ -42,9 +42,7 @@ func active(base_destination):
 		await get_tree().create_timer(0).timeout
 		
 	# SPIN
-	for i in range(20):
-		self.rotate(deg_to_rad(36))
-		await get_tree().create_timer(0).timeout
+	await get_tree().create_timer(0.2).timeout
 		
 		
 	# THROW BACK

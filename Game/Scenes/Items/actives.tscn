@@ -1,0 +1,379 @@
+[gd_scene load_steps=17 format=3 uid="uid://bb57wvogtsht1"]
+
+[ext_resource type="Script" path="res://Game/Scenes/Items/HBoxContainer.gd" id="1_tksmv"]
+[ext_resource type="Script" path="res://Game/Scenes/Items/actives.gd" id="1_yppyb"]
+[ext_resource type="Theme" uid="uid://cya286hi2pqfq" path="res://Game/Themes/Themes/theme_items.tres" id="2_ridkc"]
+[ext_resource type="Texture2D" uid="uid://dsg3ath487qeb" path="res://Game/Ressources/Gems/base_gem.png" id="3_h8agx"]
+[ext_resource type="Texture2D" uid="uid://bay7aa30nxxo5" path="res://Game/Ressources/Gems/health_gem.png" id="4_jwcgh"]
+[ext_resource type="Texture2D" uid="uid://40khe1bdxlwt" path="res://Game/Ressources/Gems/armor_gem.png" id="5_fyw1r"]
+[ext_resource type="Texture2D" uid="uid://b6oado23skq37" path="res://Game/Ressources/Gems/speed_gem.png" id="6_1avnm"]
+[ext_resource type="Texture2D" uid="uid://csv1pwl7kwxb4" path="res://Game/Ressources/Gems/attack_gem.png" id="7_tgxls"]
+[ext_resource type="Script" path="res://Game/Scenes/Items/dp_items.gd" id="8_hsjdc"]
+[ext_resource type="Texture2D" uid="uid://xk3nhan0fjjm" path="res://Game/Ressources/Gems/shockwave_gem.png" id="10_r3eds"]
+[ext_resource type="Script" path="res://Game/Scenes/Items/item_buildpath.gd" id="10_u8sj8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xmba"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.286275)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_deeka"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.286275)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01y52"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0.286275)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0veak"]
+bg_color = Color(0, 0, 0, 0.407843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3d0fl"]
+bg_color = Color(0.6, 0.6, 0.6, 0.356863)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="actives" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yppyb")
+
+[node name="items" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -206.0
+offset_right = 350.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="items"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("1_tksmv")
+
+[node name="Damage" type="Button" parent="items/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xmba")
+toggle_mode = true
+text = "DAMAGE"
+
+[node name="Utility" type="Button" parent="items/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_deeka")
+toggle_mode = true
+text = "UTILITY"
+
+[node name="Durability" type="Button" parent="items/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_01y52")
+toggle_mode = true
+text = "DURABILITY"
+
+[node name="MarginContainer" type="MarginContainer" parent="items"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="Kind" type="PanelContainer" parent="items"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0veak")
+
+[node name="CenterContainer" type="CenterContainer" parent="items/Kind"]
+layout_mode = 2
+
+[node name="margin" type="MarginContainer" parent="items/Kind/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Main" type="VBoxContainer" parent="items/Kind/CenterContainer/margin"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="items/Kind/CenterContainer/margin/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_3d0fl")
+
+[node name="MarginContainer" type="MarginContainer" parent="items/Kind/CenterContainer/margin/Main/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="base_items_grid" type="GridContainer" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 50
+
+[node name="general_item_panel" type="Panel" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/MarginContainer"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="general_item" type="TextureRect" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/MarginContainer/general_item_panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("3_h8agx")
+expand_mode = 1
+
+[node name="number" type="Label" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/MarginContainer/general_item_panel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Panel" type="Panel" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="health_gem" type="TextureButton" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("4_jwcgh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Panel2" type="Panel" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="armor_gem" type="TextureButton" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("5_fyw1r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel2"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Panel3" type="Panel" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="speed_gem" type="TextureButton" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("6_1avnm")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel3"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="Panel4" type="Panel" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="attack_gem" type="TextureButton" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel4"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("7_tgxls")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="number" type="Label" parent="items/Kind/CenterContainer/margin/Main/PanelContainer/MarginContainer/base_items_grid/Panel4"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "1"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="items/Kind/CenterContainer/margin/Main"]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+
+[node name="items" type="VBoxContainer" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="dp_items" type="Node2D" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items"]
+script = ExtResource("8_hsjdc")
+
+[node name="item_buildpath" type="GridContainer" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items"]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 5
+script = ExtResource("10_u8sj8")
+
+[node name="Panel" type="Panel" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="sub_item" type="TextureRect" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath/Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("4_jwcgh")
+expand_mode = 1
+
+[node name="Panel2" type="Panel" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="sub_item" type="TextureRect" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath/Panel2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("7_tgxls")
+expand_mode = 1
+
+[node name="Panel3" type="Panel" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="sub_item" type="TextureRect" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath/Panel3"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("5_fyw1r")
+expand_mode = 1
+
+[node name="margin" type="MarginContainer" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 0
+
+[node name="panel" type="Panel" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath/margin"]
+z_index = 1
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("2_ridkc")
+
+[node name="item_actif" type="TextureButton" parent="items/Kind/CenterContainer/margin/Main/ScrollContainer/items/item_buildpath/margin/panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture_normal = ExtResource("10_r3eds")
+ignore_texture_size = true
+stretch_mode = 0

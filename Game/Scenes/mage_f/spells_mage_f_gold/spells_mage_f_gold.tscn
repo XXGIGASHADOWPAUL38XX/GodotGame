@@ -1,77 +1,49 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtqlhxwa25ddi"]
+[gd_scene load_steps=18 format=3 uid="uid://dtqlhxwa25ddi"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_gold/ctrlr_mage_f_2_gold.gd" id="1_cvqwv"]
+[ext_resource type="Texture2D" uid="uid://dxpwlc71sn6mq" path="res://Game/Ressources/Heros/mage_f/spell2_1_mage.png" id="3_4s0tx"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_gold/ctrlr_mage_f_4_gold.gd" id="4_6q7rn"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_2_gold.gd" id="6_jjcpj"]
-[ext_resource type="Texture2D" uid="uid://dxpwlc71sn6mq" path="res://Game/Ressources/Heros/mage_f/spell2_1_mage.png" id="7_3lwp0"]
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/spells_mage_f_4_gold.gd" id="8_m1ukk"]
 [ext_resource type="Texture2D" uid="uid://cipbr84mvryob" path="res://Game/Ressources/Heros/mage_f/spell4_1_mage.png" id="9_7a5fl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m71et"]
 radius = 20.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0wroj"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(0, 0, 793, 816)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c57t"]
+atlas = ExtResource("3_4s0tx")
+region = Rect2(0, 0, 990, 1041)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_06124"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(793, 0, 793, 816)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mclm7"]
+atlas = ExtResource("3_4s0tx")
+region = Rect2(2970, 0, 990, 1041)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bqxb3"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(1586, 0, 793, 816)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtb2m"]
+atlas = ExtResource("3_4s0tx")
+region = Rect2(990, 0, 990, 1041)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d75id"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(2379, 0, 793, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6k8s"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(0, 816, 793, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ed3k"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(793, 816, 793, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rgy52"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(1586, 816, 793, 816)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lcpab"]
-atlas = ExtResource("7_3lwp0")
-region = Rect2(2379, 816, 793, 816)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a604s"]
+atlas = ExtResource("3_4s0tx")
+region = Rect2(1980, 0, 990, 1041)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m2vcy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0wroj")
+"texture": SubResource("AtlasTexture_2c57t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_06124")
+"texture": SubResource("AtlasTexture_mclm7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bqxb3")
+"texture": SubResource("AtlasTexture_dtb2m")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d75id")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q6k8s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3ed3k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rgy52")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lcpab")
+"texture": SubResource("AtlasTexture_a604s")
 }],
 "loop": false,
-"name": &"spell2_explode",
-"speed": 25.0
+"name": &"default",
+"speed": 15.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ua1ux"]
@@ -112,7 +84,6 @@ shape = SubResource("CircleShape2D_m71et")
 [node name="Spells_mage_explode" type="AnimatedSprite2D" parent="ctrlr_mage_f_2_gold/spell_mage_f_2_gold"]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_m2vcy")
-animation = &"spell2_explode"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_2_gold"]
 replication_config = SubResource("SceneReplicationConfig_ua1ux")

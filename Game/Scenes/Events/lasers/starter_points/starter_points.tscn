@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl40mu02ko54d"]
+[gd_scene load_steps=8 format=3 uid="uid://dl40mu02ko54d"]
 
 [ext_resource type="Script" path="res://Game/Scenes/Events/lasers/starter_points/starter_points.gd" id="1_w777t"]
+[ext_resource type="Script" path="res://Game/Scenes/Events/lasers/starter_points/starter_point.gd" id="2_14bbb"]
 [ext_resource type="Texture2D" uid="uid://c7gh2nmvmqyye" path="res://Game/Ressources/Main_Effects/lasers/starter_point.png" id="2_s16ho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vwn12"]
@@ -24,7 +25,7 @@ radius = 285.714
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_8bfoy"]
 properties/0/path = NodePath("starter_point:visible")
 properties/0/spawn = true
-properties/0/sync = true
+properties/0/replication_mode = 1
 
 [node name="starter_points" type="Node2D"]
 script = ExtResource("1_w777t")
@@ -32,6 +33,7 @@ script = ExtResource("1_w777t")
 [node name="starter_point" type="CharacterBody2D" parent="."]
 visible = false
 scale = Vector2(0.07, 0.07)
+script = ExtResource("2_14bbb")
 
 [node name="anim_starter_point" type="AnimatedSprite2D" parent="starter_point"]
 sprite_frames = SubResource("SpriteFrames_x7v1n")

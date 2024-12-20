@@ -22,7 +22,7 @@ func active(destination_point, main_vector):
 	self.position = champion.position + ServiceSpell.set_in_front_mouse_incl(champion, destination_point, 30, deg_arc * 1.5)
 	self.modulate.a = 1
 	
-	var direction = main_vector.rotated(deg_to_rad(deg_arc))
+	var angle_offset = main_vector.rotated(deg_to_rad(deg_arc))
 	var steps_to_destination = int(ceil(self.position.distance_to(destination_point) / speed))
 	
 	self.scale = Vector2(0.1, 0.1)
@@ -30,9 +30,9 @@ func active(destination_point, main_vector):
 	animation.play("projectile")
 	
 	for i in range(steps_to_destination):
-		direction = direction.rotated(deg_to_rad(deg_arc / steps_to_destination * -2))
-		self.rotation = direction.angle()
-		self.position += (direction.normalized() * speed)
+		angle_offset = angle_offset.rotated(deg_to_rad(float(deg_arc) / steps_to_destination * -2))
+		self.rotation = angle_offset.angle()
+		self.position += (angle_offset.normalized() * speed)
 		await get_tree().create_timer(0).timeout
 		
 	animation.play("aoe")

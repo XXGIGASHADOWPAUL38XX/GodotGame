@@ -28,9 +28,7 @@ func active():
 	self.show()
 	animation.play()
 
-	await get_tree().create_timer(1).timeout
-		
-	animation.stop()
+	await animation.animation_finished
 	self.hide()
 
 func frame_based_anim():

@@ -2,7 +2,7 @@ extends IDamagingCollision
 
 func _ready():
 	if is_multiplayer_authority():
-		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 		
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0

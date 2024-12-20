@@ -9,7 +9,7 @@ func _ready():
 		damage_base = 5.0
 		# ------------------------------------ #
 		
-		CONF_DETECT_WITH = ServiceScenes.allPlayersNode
+		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 	
 		cshape = $CollisionShape2D
 		await super._ready()

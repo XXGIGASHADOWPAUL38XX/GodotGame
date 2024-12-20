@@ -17,7 +17,7 @@ func _ready():
 		
 		base_scale = self.scale
 		
-		super._ready()
+	await super._ready()
 
 func _process(_delta):
 	pass
@@ -32,7 +32,7 @@ func active():
 		self.position = champion.position
 		self.scale *= 1.12
 		self.modulate.a -= 0.075
-		await get_tree().create_timer(0).timeout 
+		await get_tree().create_timer(0.01).timeout 
 		
 	self.hide()
 	self.scale = base_scale

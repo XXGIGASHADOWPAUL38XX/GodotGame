@@ -32,4 +32,7 @@ func active():
 		var current_distance_to_dstn = self.position.distance_to(base_destination)
 		self.position += base_direction.normalized() * speed
 		await get_tree().create_timer(0).timeout
+		
+	self.hide()
+	
 

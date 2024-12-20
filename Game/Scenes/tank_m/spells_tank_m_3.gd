@@ -4,7 +4,7 @@ var passive
 
 func _ready():
 	if is_multiplayer_authority():
-		super._ready()
+		await super._ready()
 		animation.animation_finished.connect(func(obj): collision())
 
 func _process(_delta):

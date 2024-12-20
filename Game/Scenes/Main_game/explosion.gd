@@ -17,7 +17,7 @@ func _process(delta):
 			random_explosion.start()
 	
 func launch_explosion():
-	var heros = ServiceScenes.ennemiesNode.pick_random()
+	var heros = ServiceScenes.entities.ennemiesNode.pick_random()
 	
 	$warning.position = Vector2(
 		heros.position.x + randf_range(-80, 80),

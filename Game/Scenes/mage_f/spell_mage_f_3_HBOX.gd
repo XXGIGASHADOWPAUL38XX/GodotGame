@@ -28,21 +28,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority() && champion != null:
-		self.position = champion.position + Vector2(-14, -10)
-
-func can_active():
-	active()
+		self.position = champion.position - (self.size / 2)
 
 func active():
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 
 		return slot != sorted_slots[sorted_slots.size() - 1]
 	)
+	
+	sorted_slots.append(next_possible_slots.pick_random())
+	sorted_slots.remove_at(0)
 
 	champion.update_orb_kind(sorted_slots[0])
 	animate_texture(spell3_elements[champion.orb_kind])
 	
-	sorted_slots.append(next_possible_slots.pick_random())
-	sorted_slots.remove_at(0)
 	assign_to_solts()
 	
 func assign_to_solts():
@@ -53,7 +51,6 @@ func assign_to_solts():
 func animate_texture(txtrRect: CompressedTexture2D):
 	var animation_txtrRect = TextureRect.new()
 	animation_txtrRect.size = Vector2(25, 25)
-	animation_txtrRect.position = animation_txtrRect.size * -0.5
 	animation_txtrRect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	
 	animation_txtrRect.texture = txtrRect
@@ -63,10 +60,8 @@ func animate_texture(txtrRect: CompressedTexture2D):
 	for i in range(20):
 		animation_txtrRect.modulate.a -= 0.02
 		animation_txtrRect.size *= 1.05
+		animation_txtrRect.position = animation_txtrRect.size * -0.5
 		await get_tree().create_timer(0.03).timeout
 		
 	animation_txtrRect.queue_free()
 
-func await_resource_loaded(c: Callable, retry_timeout: float=0.05):
-	while c.get_object() != null && !c.call():
-		await c.get_object().get_tree().create_timer(retry_timeout).timeout

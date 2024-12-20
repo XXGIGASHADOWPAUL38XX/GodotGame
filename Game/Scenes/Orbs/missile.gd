@@ -17,7 +17,7 @@ func _ready():
 		drone = get_parent().get_node('blue_orb_passive')
 
 func shoot():
-	ennemy_in_range = ServiceScenes.ennemiesNode.filter(
+	ennemy_in_range = ServiceScenes.entities.ennemiesNode.filter(
 		func(ennemy):
 			return self.global_position.distance_to(ennemy.position) < RANGE_MAX
 	)

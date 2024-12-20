@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dan7581x64urs"]
+[gd_scene load_steps=21 format=3 uid="uid://dan7581x64urs"]
 
 [ext_resource type="Script" path="res://Game/Scenes/bomber_f/bomber_f.gd" id="1_kue0w"]
 [ext_resource type="Texture2D" uid="uid://dvell2h2msiu1" path="res://ressource/rpgsprites1/ranger_f.png" id="1_suv3w"]
 [ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="3_e70yg"]
 [ext_resource type="PackedScene" uid="uid://dkeb5sqvgpnma" path="res://Game/Scenes/bomber_f/spells_bomber_f.tscn" id="4_7ts3p"]
+[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_57ih2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie2jl"]
 atlas = ExtResource("1_suv3w")
@@ -131,6 +132,8 @@ shape = SubResource("CapsuleShape2D_m0n7g")
 [node name="pgbars" parent="bomber_f" instance=ExtResource("3_e70yg")]
 
 [node name="spells_bomber_f" parent="bomber_f" instance=ExtResource("4_7ts3p")]
+
+[node name="champion_addons" parent="bomber_f" instance=ExtResource("5_57ih2")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_6vm0k")

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c64ex4jajf1aq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmlpd"]
+bg_color = Color(1, 1, 1, 0.368627)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[resource]
+LineEdit/styles/normal = SubResource("StyleBoxFlat_gmlpd")

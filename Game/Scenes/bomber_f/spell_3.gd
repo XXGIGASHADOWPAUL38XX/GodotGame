@@ -19,8 +19,10 @@ func _ready():
 		
 		animation.animation = "default"
 		animation.animation_changed.connect(func():
-			self.scale = self.scale / 15 if animation.animation == "default" else self.scale * 15
+			self.scale = self.scale * 1.5 if animation.animation == "default" else self.scale / 1.5
+			self.modulate.a = 0.5 if animation.animation == "default" else 1
 		)
+		self.modulate.a = 0.5
 		
 func active():
 	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 300)
