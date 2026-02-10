@@ -8,11 +8,7 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
-		self.hide()
-		
-		animation = $Spells_warrior_anim_1_3 as AnimatedSprite2D
-
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

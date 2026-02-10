@@ -13,6 +13,8 @@ func get_player(username):
 func set_session_id(session_id):
 	var url_function = '/rpc/set_session_id'
 	var method = HTTPClient.METHOD_POST
+	print(Server.current_dbplayer["id"])
+	print(session_id)
 	var data = json.stringify({
 		"player_id": Server.current_dbplayer["id"],
 		"new_session_id": session_id
@@ -48,7 +50,7 @@ func get_friends(player_id):
 	})
 	
 	var value = await database.request_http(url_function, method, data)
-	return value
+	return value if value != null else []
 	
 func login(username, password):
 	var player = await get_player(username)

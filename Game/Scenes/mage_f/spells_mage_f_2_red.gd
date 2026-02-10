@@ -26,7 +26,7 @@ func _ready():
 			self.modulate.a = 1 / (1 + (ratio))
 		)
 		
-		await super._ready()
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority() && orb_kind == champion.orb_kind:

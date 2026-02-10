@@ -13,7 +13,7 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		self.hide()
 		
 		animation = $anim_shoot_1

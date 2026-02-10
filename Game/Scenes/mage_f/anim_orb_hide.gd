@@ -11,6 +11,7 @@ func _process(delta):
 	pass
 
 func active():
+	print("ACTIVEEE")
 	self.position = spell_controller.orb.position
 	self.play()
 	self.show()

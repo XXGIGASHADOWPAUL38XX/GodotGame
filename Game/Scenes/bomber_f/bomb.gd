@@ -14,7 +14,7 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		collision_shape.disabled
 		
-		await super._ready()
+	await super._ready()
 			
 		animation.animation_changed.connect(func():
 			self.scale = self.scale / 2 if animation.animation == "default" else self.scale * 2

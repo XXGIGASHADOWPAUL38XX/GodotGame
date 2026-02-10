@@ -24,9 +24,8 @@ func post_dp_script(id, dp_number):
 
 func display():
 	item_actif.texture_normal = load("res://Game/Ressources/Gems/" + gem.name + ".png")
-	items_container.map(func(sub_gem): 
-		var sub_gem_index = items_container.find(sub_gem)
-		items_container[sub_gem_index].texture = load("res://Game/Ressources/Gems/" +
-			gem.sub_gems[sub_gem_index].name + ".png"
-		)
+	gem.sub_items.map(func(sub_gem): 
+		var sub_gem_index = gem.sub_items.find(sub_gem)
+		subitems_textureRects[sub_gem_index].name = sub_gem.name
+		subitems_textureRects[sub_gem_index].texture = load("res://Game/Ressources/Gems/" + sub_gem.name + ".png")
 	)

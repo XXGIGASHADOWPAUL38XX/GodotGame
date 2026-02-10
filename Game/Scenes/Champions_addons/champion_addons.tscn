@@ -26,6 +26,7 @@ script = ExtResource("3_yc210")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="champion_vision/vision/vision_area"]
 shape = SubResource("CircleShape2D_rokyg")
+disabled = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="champion_vision"]
 replication_config = SubResource("SceneReplicationConfig_yx7mb")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm5hpjrykohv8"]
+[gd_scene load_steps=14 format=3 uid="uid://dm5hpjrykohv8"]
 
 [ext_resource type="Texture2D" uid="uid://d2c4v30f5qh14" path="res://Game/Ressources/Vision/vision_radar_active.png" id="1_qw4yw"]
 [ext_resource type="Script" path="res://Game/Scenes/Vision/vision_radar_phldr.gd" id="1_seg3h"]
+[ext_resource type="Script" path="res://Game/Scenes/Vision/ctrlr_vision_radar.gd" id="2_11omd"]
 [ext_resource type="Script" path="res://Game/Scenes/Vision/vision_radar.gd" id="2_ervat"]
 [ext_resource type="Script" path="res://Game/Scenes/Vision/dp_anim_display_entity.gd" id="3_66qqd"]
 [ext_resource type="Texture2D" uid="uid://qdfabg31r1uf" path="res://Game/Ressources/Vision/display_entity.png" id="4_5m6eo"]
@@ -42,26 +43,32 @@ animations = [{
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4ubkw"]
 
-[node name="vision_radar_phldr" type="Node2D"]
+[node name="vision_radar_phldr" type="Node"]
 script = ExtResource("1_seg3h")
 
-[node name="vision_radar" type="Area2D" parent="."]
+[node name="ctrlr_vision_radar" type="Node2D" parent="."]
+script = ExtResource("2_11omd")
+
+[node name="vision_radar" type="Area2D" parent="ctrlr_vision_radar"]
 visible = false
 script = ExtResource("2_ervat")
 
-[node name="vision_radar_anim" type="AnimatedSprite2D" parent="vision_radar"]
+[node name="vision_radar_anim" type="AnimatedSprite2D" parent="ctrlr_vision_radar/vision_radar"]
 sprite_frames = SubResource("SpriteFrames_jh0mn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="vision_radar"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ctrlr_vision_radar/vision_radar"]
 shape = SubResource("CircleShape2D_o4nel")
 
-[node name="dp_anim_display_entity" type="Node2D" parent="."]
+[node name="dp_anim_display_entity" type="Node2D" parent="ctrlr_vision_radar"]
 script = ExtResource("3_66qqd")
 
-[node name="anim_display_entity" type="AnimatedSprite2D" parent="dp_anim_display_entity"]
+[node name="anim_display_entity" type="AnimatedSprite2D" parent="ctrlr_vision_radar/dp_anim_display_entity"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_p2njo")
 script = ExtResource("5_dfty7")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_vision_radar/dp_anim_display_entity"]
+replication_config = SubResource("SceneReplicationConfig_4ubkw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_vision_radar"]
 replication_config = SubResource("SceneReplicationConfig_4ubkw")

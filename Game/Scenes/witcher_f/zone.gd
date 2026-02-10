@@ -8,15 +8,17 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 4.0
 		damage_ratio = 0.1
+		animation = $anim_zone
+		
+		retrigger = true
+		retrigger_time = ServiceSpell.animation_duration(animation)
 		
 		
 		self.visibility_changed.connect(func(): hit_instance = 0)
 		func_on_collision.append(func(): hit_instance += 1)
 		# ------------------------------------ #
 		
-		await super._ready()
-		retrigger = true
-		retrigger_time = ServiceSpell.animation_duration(animation)
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

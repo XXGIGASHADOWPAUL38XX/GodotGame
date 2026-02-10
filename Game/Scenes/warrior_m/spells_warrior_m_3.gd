@@ -10,10 +10,7 @@ func _ready():
 		damage_ratio = 0.075
 		# ------------------------------------ #
 		
-		await super._ready()
-		self.hide()
-		
-		animation = $Spells_warrior_anim_3
+	await super._ready()
 
 func active():
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 30)

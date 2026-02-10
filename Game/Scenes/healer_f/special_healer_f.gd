@@ -6,7 +6,7 @@ var player # INSTANCIE LORS DE LA DUPLICATION
 func _ready():
 	if is_multiplayer_authority():
 		duplicator = self.get_parent()
-		await super._ready()
+	await super._ready()
 		
 		animation.animation_finished.connect(stop_spell)
 		

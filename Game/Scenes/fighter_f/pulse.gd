@@ -9,10 +9,11 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
 		self.hide()
 		
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
+		
+	await super._ready()	
 
 func active(mouse_position):
 	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, mouse_position, 30)

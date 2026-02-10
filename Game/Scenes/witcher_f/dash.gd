@@ -1,9 +1,7 @@
 extends IActive
 
 func _ready():
-	if is_multiplayer_authority():
-		await super._ready()
-		animation = $anim_dash
+	await super._ready()
 
 func active_first():
 	self.position = champion.position

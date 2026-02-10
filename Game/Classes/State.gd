@@ -1,8 +1,13 @@
 extends Node
 
+enum StateCast {
+	NULL,
+	CAST,
+	CONCENTRATE,
+}
+
 enum StateAction {
 	NULL,
-	CONCENTRATE,
 	STUNNED,
 	SLOWED,
 }

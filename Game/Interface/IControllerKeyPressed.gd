@@ -34,7 +34,7 @@ func can_active():
 
 func active():
 	if cast_time != null:
-		ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.CONCENTRATE, cast_time)
+		ServiceScenes.championNode.add_state(self, 'states_cast', State.StateCast.CONCENTRATE, cast_time)
 		if cast_kind == CastTime.Kind.BeforeActive:
 			cast_timer.start()
 			await cast_timer.timeout
@@ -42,4 +42,4 @@ func active():
 	coltdown.start()
 	
 func is_not_impaired():
-	return ServiceScenes.championNode.curr_state_action.state not in [State.StateAction.STUNNED, State.StateAction.CONCENTRATE]
+	return ServiceScenes.championNode.curr_state_action.state not in [State.StateAction.STUNNED, State.StateCast.CONCENTRATE]

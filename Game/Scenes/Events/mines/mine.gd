@@ -27,8 +27,9 @@ func _ready():
 		
 		body_entered.connect(func(obj): hitted())
 		
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():	
 		animation.animation = 'mine'
 		animation.animation_changed.connect(
 			func(): 

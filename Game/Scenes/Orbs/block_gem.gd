@@ -12,7 +12,7 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		self.area_entered.connect(Callable(self, '_on_area_entered'))
 		
-		await super._ready()
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

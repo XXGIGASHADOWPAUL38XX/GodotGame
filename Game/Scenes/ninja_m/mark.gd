@@ -14,7 +14,7 @@ func _ready():
 		mark_timer = service_time.init_timer(self, cd_mark)
 		mark_timer.timeout.connect(Callable(self, 'show_on_timeout'))
 			
-		await super._ready()
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && key_ennemy_marked != null && self.visible:

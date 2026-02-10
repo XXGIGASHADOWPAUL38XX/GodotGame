@@ -22,7 +22,7 @@ var spells_placeholder
 var animation: AnimatedSprite2D
 
 func _ready():
-	set_visibility()
+	#self.hide()
 	if is_multiplayer_authority():
 		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 		spells_placeholder = spells_placeholder_f()
@@ -50,7 +50,7 @@ func hit(): #FAIRE LES DEGATS
 func set_multiplayer_properties():
 	if animation == null:
 		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
-	multip_sync = self.get_parent().get_node("MultiplayerSynchronizer")
+	multip_sync = self.get_parent().get_node("MultiplayerSynchronizer") as MultiplayerSynchronizer
 	
 	var anim_path = self.name + "/" + animation.name
 	
@@ -58,6 +58,7 @@ func set_multiplayer_properties():
 	multip_sync.replication_config.add_property(self.name + ":rotation")
 	multip_sync.replication_config.add_property(self.name + ":position")
 	multip_sync.replication_config.add_property(self.name + ":scale")
+	multip_sync.replication_config.add_property(self.name + ":visible")
 	
 	multip_sync.replication_config.add_property(anim_path + ":animation")
 	multip_sync.replication_config.add_property(anim_path + ":modulate")
@@ -67,10 +68,7 @@ func spells_placeholder_f(node: Node = self):
 	return null
 
 func new_round():
-	pass
-
-func set_visibility():
-	self.hide()
+	pass	
 
 func _exit_tree():
 	Servrpc.recently_freed_nodepaths.append(self.get_path())

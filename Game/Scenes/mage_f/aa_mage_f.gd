@@ -10,14 +10,14 @@ func _ready():
 		damage_ratio = 0.1
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():
 		pass
 			
 func active():
-	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 30)
+	self.position = champion.position + ServiceSpell.set_in_front_mouse(champion, get_global_mouse_position(), 15)
 	
 	var direction = (get_global_mouse_position() - champion.position).normalized()
 	self.rotation = direction.angle()
@@ -25,7 +25,7 @@ func active():
 	self.show()
 	animation.play()
 	
-	for i in range(13):
+	for i in range(15):
 		self.position += (direction) * speed
 		await get_tree().create_timer(0).timeout
 		

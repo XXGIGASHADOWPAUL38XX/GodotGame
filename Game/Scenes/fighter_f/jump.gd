@@ -13,9 +13,7 @@ func _ready():
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super._ready()
-		
-		animation = $anim_jump as AnimatedSprite2D
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

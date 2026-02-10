@@ -9,14 +9,14 @@ func _ready():
 		# DEFINITION VARIABLES IDAMAGING SPELL #
 		damage_base = 6.0
 		damage_ratio = 0.2
-		
+				
 		state_action = State.StateAction.STUNNED
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		
-			
+	if is_multiplayer_authority():
 		frame_based_anim()
 
 func _process(_delta):

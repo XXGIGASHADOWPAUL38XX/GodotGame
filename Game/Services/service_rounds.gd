@@ -29,9 +29,10 @@ func new_round_local(champion_killed):
 		
 	ServiceScenes.championNode.set_multiplayer_authority(Server.get_client_id())
 	
-	ServiceScenes.entities.entitiesNode.map(func(entity):
-		if entity != null && entity.is_multiplayer_authority():
-			entity.new_round()
+	[ServiceScenes.entities.entitiesNode, ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode] \
+		.reduce(func(a, b): return a + b) \
+		.filter(func(entity): return entity != null && entity.is_multiplayer_authority()) \
+		.map(func(entity): entity.new_round()
 	)
 	
 func last_round_ended(champion): # FONCTION GLOBALE, le champion est celui qui est mort

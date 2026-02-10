@@ -12,7 +12,7 @@ func _ready():
 		
 		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 			
-		await super._ready()
+	await super._ready()
 			
 func _process(_delta):
 	if is_multiplayer_authority() && self.visible:

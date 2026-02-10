@@ -12,8 +12,8 @@ func _ready():
 		immobile_while_active = true
 		# ------------------------------------ #
 		
-		await super._ready()
-		animation = $anim_dash
+	await super._ready()
+	animation = $anim_dash
 
 func _process(_delta):
 	if is_multiplayer_authority():

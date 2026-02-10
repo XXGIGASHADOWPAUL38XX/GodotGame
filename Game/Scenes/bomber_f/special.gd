@@ -5,9 +5,7 @@ var modulate_bool = false
 var healing_base
 
 func _ready():
-	if is_multiplayer_authority():
-			
-		await super._ready()
+	await super._ready()			
 		
 func active():
 	Servrpc.any(self, 'hide_champion', [])

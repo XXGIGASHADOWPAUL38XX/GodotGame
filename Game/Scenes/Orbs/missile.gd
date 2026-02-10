@@ -13,7 +13,7 @@ func _ready():
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		drone = get_parent().get_node('blue_orb_passive')
 
 func shoot():

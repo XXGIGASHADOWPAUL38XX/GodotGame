@@ -5,7 +5,7 @@ const THRESHOLD = 0.15
 
 var mapping_state_color = {
 	State.StateAction.STUNNED: Color.DIM_GRAY,
-	State.StateAction.CONCENTRATE: Color.ORANGE
+	State.StateCast.CONCENTRATE: Color.ORANGE
 }
 
 var current_state_bar: Timer

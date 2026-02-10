@@ -13,11 +13,10 @@ func _ready():
 		damage_base = 8.0
 		damage_ratio = 0.15
 		# ------------------------------------ #
-		
-		await super._ready()
-			
 		duplicator = self.get_parent()
-
+		
+	await super._ready()
+			
 func _process(_delta):
 	if is_multiplayer_authority():
 		pass

@@ -6,7 +6,8 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 6
-		
+		cast_time = 0.1
+			
 		dp_node = $dp_mage_f_2_blue
 		
 		cond_spells.append(Callable(self, 'launch_spell_cond'))

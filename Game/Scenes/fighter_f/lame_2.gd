@@ -11,8 +11,8 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
-		animation = $anim_lame_2
+	await super._ready()
+	animation = $anim_lame_2
 
 func _process(_delta):
 	if is_multiplayer_authority():

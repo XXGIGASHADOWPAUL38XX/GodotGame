@@ -28,7 +28,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority() && champion != null:
-		self.position = champion.position - (self.size / 2)
+		self.position = (champion.position - (self.size / 2)) / self.scale
 
 func active():
 	var next_possible_slots = spell3_elements.keys().filter(func(slot): 

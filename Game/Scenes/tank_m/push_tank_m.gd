@@ -7,8 +7,9 @@ func _ready():
 		damage_ratio = 0.05
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 
 func active():

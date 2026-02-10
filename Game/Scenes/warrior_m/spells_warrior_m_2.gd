@@ -9,10 +9,7 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
-		self.hide()
-		
-		animation = $Spells_warrior_anim_2
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:

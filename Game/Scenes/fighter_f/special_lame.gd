@@ -10,8 +10,8 @@ func _ready():
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super._ready()
-		animation = $anim_special_dash
+	await super._ready()
+	animation = $anim_special_dash
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

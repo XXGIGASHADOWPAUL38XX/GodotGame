@@ -7,6 +7,7 @@ var orb
 func _ready():
 	key = ServiceSettings.keys_values['key_spell_1']
 	coltdown_time = 4
+	cast_time = 0.1
 	
 	anim_orb_hide = $anim_orb_hide
 	spell_orb = $spells_mage_f_1

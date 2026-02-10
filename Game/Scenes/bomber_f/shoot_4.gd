@@ -11,12 +11,9 @@ func _ready():
 		damage_ratio = 0.03
 		# ------------------------------------ #
 		
-		await super._ready()
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
 		
-		self.hide()
-		
-		animation = $anim_shoot_4
+	await super._ready()
 
 func active():
 	var main_mector = (get_global_mouse_position() - champion.position).rotated(deg_to_rad(angle))

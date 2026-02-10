@@ -1,9 +1,7 @@
 extends IActive
 
 func _ready():
-	if is_multiplayer_authority():
-		await super._ready()
-		animation = $anim_dash
+	await super._ready()
 
 func active_first():
 	self.position = ServiceSpell.distance_range_max(champion.position, get_global_mouse_position(), 140)

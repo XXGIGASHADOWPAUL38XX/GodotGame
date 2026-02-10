@@ -12,7 +12,7 @@ func _ready():
 		state_duration = 0.75
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		
 func explode():
 	self.position = spell_controller.rock.position

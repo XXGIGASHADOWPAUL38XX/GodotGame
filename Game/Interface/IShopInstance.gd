@@ -5,8 +5,8 @@ class_name IShopInterface
 var item_active_scene_path = func(item_name): return "res://Game/Scenes/items_passive/" + item_name + ".tscn"
 var number_item_value
 
-var items = []
 var base_items = []
+var dp_itemgrids = []
 var dp_items = []
 var item_dict: Dictionary = {}
 
@@ -24,10 +24,8 @@ func _ready():
 	base_items = items_grid.get_children().filter(func(c): return c is Panel).map(func(panel): 
 		return panel.get_children().filter(func(c): return c is TextureButton)[0]
 	)
-	
-	dp_items = items_container.get_children().filter(func(c): return c is IItems).map(func(iitem): 
-		return iitem.item_actif
-	)
+	dp_itemgrids = items_container.get_children().filter(func(c): return c is IItems)
+	dp_items = dp_itemgrids.map(func(iitem): return iitem.item_actif)
 	
 	var clickable_items = base_items + dp_items
 	var item_objects = dp_items_node.items + dp_items_node.subitems
@@ -37,31 +35,24 @@ func _ready():
 		var panel = unique_item.get_parent()
 		
 		unique_item.mouse_entered.connect(panel_entered.bind(panel))
-		unique_item.mouse_exited.connect(panel_entered.bind(panel))
+		unique_item.mouse_exited.connect(panel_exited.bind(panel))
 		unique_item.mouse_entered.connect(ServiceScenes.shop.displayStats.bind(matching_item_or_subitem)) 
 		
 		if unique_item in base_items:
 			unique_item.pressed.connect(item_gained.bind(matching_item_or_subitem, unique_item.get_node("./../number"))) 
 		elif unique_item in dp_items:
-			unique_item.pressed.connect(item_bought.bind(matching_item_or_subitem)) 
-		
+			unique_item.pressed.connect(dp_item_selected.bind(unique_item, matching_item_or_subitem))
 
 func panel_entered(panel):
+	if panel.modulate == Color.GRAY:
+		return
+	panel.modulate = Color.GRAY
+	
+func panel_exited(panel):
 	if panel.modulate == Color.WHITE:
 		panel.modulate = Color.GRAY
 		return
 	panel.modulate = Color.WHITE
-
-func get_all_textureButton(node: Control):
-	var items = []
-	if node is TextureButton:
-		items.append(node)
-
-	for child in node.get_children():
-		var child_items = get_all_textureButton(child)
-		items += child_items
-
-	return items
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -113,22 +104,24 @@ func item_bought(item):
 	
 	ServiceScenes.HUD.update_items(item_dict)
 	update_status_items(item.name)
-	print(items_container.get_children().map(func(x): return x.get_name().to_lower()))
-	print(item.name.to_lower())
 	var item_texture = items_container.get_children().filter(
 		func(x): return x.get_name().to_lower() == item.name.to_lower())[0]
 		
 	load_active(item_texture)
 	
 func update_status_items(item):
-	items.filter(func(IItem): return IItem.is_not_selected()).map(
-		func(IItem): IItem.status_texture_button(item_dict))
+	dp_itemgrids.filter(func(itemgrid): return itemgrid.is_not_selected()).map(
+		func(itemgrid): itemgrid.status_texture_button(item_dict))
 	ServiceScenes.HUD.display_stats()
 
-	
 func set_number_item_value(number):
 	number_item.text = str(int(number))
 	base_items.map(func(obj): 
 		obj.disabled = int(number_item.text) == 0
 		obj.get_parent().modulate = Color.DARK_GRAY if obj.disabled else Color.WHITE
 	)
+
+func dp_item_selected(dp_item, item_actif_object):
+	dp_item.disabled = true
+	dp_item.get_parent().modulate = Color.GOLD
+	item_bought(item_actif_object)

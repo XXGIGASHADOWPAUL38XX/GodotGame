@@ -13,7 +13,7 @@ func _ready():
 		collision = $CollisionShape2D # UTILISE PAR LES CUBES S4 ! LAISSER
 		duration_timer = service_time.init_timer(self, duration)
 			
-		await super._ready()
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

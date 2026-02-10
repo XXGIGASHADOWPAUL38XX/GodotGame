@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://b2qkqfms18jkm"]
+[gd_scene load_steps=102 format=3 uid="uid://b2qkqfms18jkm"]
 
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m.gd" id="1_6u13a"]
 [ext_resource type="Script" path="res://Game/Scenes/ranger_m/spells_ranger_m_1.gd" id="1_de7xw"]
@@ -126,10 +126,6 @@ region = Rect2(755, 0, 58, 60)
 atlas = ExtResource("4_rdmg2")
 region = Rect2(813, 0, 58, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7pb2"]
-atlas = ExtResource("4_rdmg2")
-region = Rect2(871, 0, 58, 60)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_717vc"]
 animations = [{
 "frames": [{
@@ -174,13 +170,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2244j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x7pb2")
 }],
 "loop": false,
 "name": &"spell2_dash",
-"speed": 25.0
+"speed": 40.0
 }]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cbrtm"]
@@ -607,8 +600,6 @@ shape = SubResource("CircleShape2D_e8xwh")
 [node name="dash_ranger_anim_2" type="AnimatedSprite2D" parent="spells_ranger_m_2/dash_ranger_m_2"]
 sprite_frames = SubResource("SpriteFrames_717vc")
 animation = &"spell2_dash"
-frame = 14
-frame_progress = 1.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="spells_ranger_m_2"]
 replication_config = SubResource("SceneReplicationConfig_cbrtm")

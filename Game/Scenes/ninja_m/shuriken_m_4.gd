@@ -13,7 +13,7 @@ func _ready():
 		damage_ratio = 0.25
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

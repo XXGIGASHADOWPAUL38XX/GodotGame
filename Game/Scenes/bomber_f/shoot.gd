@@ -16,7 +16,7 @@ func _ready():
 		
 		overall_spell = get_parent()
 		
-		await super._ready()
+	await super._ready()
 
 func active():
 	var sphere = overall_spell.sphere

@@ -12,7 +12,7 @@ func _ready():
 		
 		collision_shape = $CollisionShape2D
 		
-		await super._ready()
+	await super._ready()
 		
 		animation.animation = "default"
 		animation.animation_changed.connect(func():

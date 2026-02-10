@@ -24,7 +24,7 @@ func _ready():
 		collision_shape = $CollisionShape2D
 		duplicator = get_parent()
 		
-		await super._ready()
+	await super._ready()
 		
 		COLLISION_ON_SPECIFIC_ANIM = true
 		animation.animation_changed.connect(func():

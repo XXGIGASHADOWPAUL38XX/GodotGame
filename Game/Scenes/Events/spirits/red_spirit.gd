@@ -30,8 +30,9 @@ func _ready():
 		timer_spawn.start()
 		timer_spawn.timeout.connect(spawn)
 		
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():	
 		animation.animation_changed.connect(func(): self.get_node("CollisionShape2D"
 		).disabled = animation.animation != 'special')
 

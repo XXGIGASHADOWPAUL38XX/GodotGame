@@ -12,7 +12,7 @@ func _ready():
 		damage_ratio = 0.3
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		
 		shadow_node = get_parent().get_node('animations').get_node('shadow')
 

@@ -15,11 +15,6 @@ var vision_area: Area2D
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_DISABLED
 	
-	vision_area.collision_shape.disabled = !self.visible
-	self.visibility_changed.connect(func():
-		vision_area.collision_shape.disabled = !self.visible
-	)
-	
 	spells_placeholder_f()
 	
 	# ----------------- RESSOURCE LOADER : ALL SPELLS (INCLUDE DUPLICATED) ----------------- #
@@ -29,6 +24,12 @@ func _ready():
 		
 	if !ignore_multiconf_debug:
 		self.set_multiplayer_properties()
+		
+	if is_multiplayer_authority():
+		vision_area.collision_shape.disabled = !self.visible
+		self.visibility_changed.connect(func():
+			vision_area.collision_shape.disabled = !self.visible
+		)
 		
 	self.process_mode = Node.PROCESS_MODE_INHERIT
 

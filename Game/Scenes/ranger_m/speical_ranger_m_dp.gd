@@ -15,7 +15,7 @@ func _ready():
 	if is_multiplayer_authority():
 		spell = $speical_ranger_anim
 		
-		await super._ready()
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority():

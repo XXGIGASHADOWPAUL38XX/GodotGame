@@ -31,7 +31,7 @@ func _ready():
 		duplicator = self.get_parent()
 		spell = $anim_orbs_mage_f_2 as AnimatedSprite2D
 		
-		await super._ready()
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

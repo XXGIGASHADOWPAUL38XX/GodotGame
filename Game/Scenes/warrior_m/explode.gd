@@ -7,8 +7,9 @@ func _ready():
 		damage_ratio = 0.1
 		# ------------------------------------ #
 		
-		await super._ready()
 		self.scale = Vector2(0.06, 0.06)
+		
+	await super._ready()
 
 func active():
 	self.position = champion.position

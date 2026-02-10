@@ -21,7 +21,7 @@ func _ready():
 		# ------------------------------------ #
 		 
 			
-		await super._ready()
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -816,7 +816,6 @@ script = ExtResource("1_r6idw")
 script = ExtResource("2_uo4ux")
 
 [node name="aa_mage_f" type="Area2D" parent="ctrlr_mage_f_aa"]
-visible = false
 scale = Vector2(0.5, 0.5)
 script = ExtResource("3_15i1u")
 
@@ -839,6 +838,8 @@ visible = false
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_gwt5w")
 animation = &"BLUE"
+frame = 4
+frame_progress = 1.0
 script = ExtResource("7_lto7i")
 
 [node name="spells_mage_f_1" type="Area2D" parent="ctrlr_mage_f_1"]
@@ -866,9 +867,7 @@ shape = SubResource("CircleShape2D_4hous")
 
 [node name="orb_anim" type="AnimatedSprite2D" parent="ctrlr_mage_f_1/orb_mage_f_1"]
 sprite_frames = SubResource("SpriteFrames_4vgby")
-animation = &"GOLD"
-frame = 2
-frame_progress = 0.128042
+animation = &"BLUE"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ctrlr_mage_f_1"]
 replication_config = SubResource("SceneReplicationConfig_kkcun")
@@ -880,14 +879,15 @@ replication_config = SubResource("SceneReplicationConfig_kkcun")
 [node name="spells_mage_f_red" parent="." instance=ExtResource("7_pshf4")]
 
 [node name="ctrlr_mage_f_3" type="Node2D" parent="."]
+position = Vector2(0, -40)
 script = ExtResource("17_4526p")
 
 [node name="spell_mage_f_3" type="Control" parent="ctrlr_mage_f_3"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(0.8, 0.8)
 
 [node name="spell_mage_f_3_HBOX" type="HBoxContainer" parent="ctrlr_mage_f_3/spell_mage_f_3"]
 layout_mode = 1

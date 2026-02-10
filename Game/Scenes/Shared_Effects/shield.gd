@@ -17,7 +17,7 @@ func _process(delta):
 func active():
 	self.show()
 	champion_assigned.add_state(self, 'states_damage', State.StateDamage.IMMUNE)
-	champion_assigned.add_state(self, 'states_action', State.StateAction.CONCENTRATE)
+	champion_assigned.add_state(self, 'states_cast', State.StateCast.CONCENTRATE)
 	
 	await get_tree().create_timer(duration).timeout
 	

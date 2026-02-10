@@ -9,9 +9,9 @@ func _ready():
 		damage_ratio = 0.10
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 
-			
+	if is_multiplayer_authority():
 		self.body_entered.connect(func(obj): if obj.visible && obj in spells_placeholder.rocks:
 			self.hide()
 			spells_placeholder.explode.explode()

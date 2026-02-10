@@ -15,7 +15,7 @@ func _ready():
 		self.hide()
 		mark_overall_node = get_parent()
 		
-		await super._ready()
+	await super._ready()
 		
 		for damaging_spells in spells_placeholder.all_actives.filter(
 			func(s): return s is ICollision && s != mark_overall_node.sphere_regen):

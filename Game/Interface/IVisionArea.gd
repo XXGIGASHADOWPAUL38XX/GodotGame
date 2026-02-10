@@ -22,17 +22,28 @@ func entered_entity(entity):
 		entity in ServiceScenes.championNode.placeholder_spells.all_actives:
 		return
 		
+	if entity.name == "orb_mage_f_1":
+		print("ENTERED")
+		
 	if entity is IEntity:
 		entity.show()
-	elif entity is IActive:
-		entity.show()
+	if entity is IActive:
+		if not entity.multip_sync.synchronized.is_connected(Callable(entity, 'sync_visibility_auth_with_zone')):
+			entity.multip_sync.synchronized.connect(Callable(entity, 'sync_visibility_auth_with_zone'))
 	
 func exited_entity(entity):
 	if ServiceScenes.championNode.placeholder_spells.all_actives == null or \
 		entity in ServiceScenes.championNode.placeholder_spells.all_actives:
 		return
 		
+	if entity.name == "orb_mage_f_1":
+		print("EXITED")
+		
 	if entity is IEntity:
 		entity.hide()
-	elif entity is IActive:
+	if entity is IActive:
+		if entity.multip_sync.synchronized.is_connected(Callable(entity, 'sync_visibility_auth_with_zone')):
+			entity.multip_sync.synchronized.disconnect(Callable(entity, 'sync_visibility_auth_with_zone'))
 		entity.hide()
+
+

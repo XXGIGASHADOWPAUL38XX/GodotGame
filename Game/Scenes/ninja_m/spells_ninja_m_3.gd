@@ -11,10 +11,8 @@ func _ready():
 		damage_ratio = 0.125
 		# ------------------------------------ #
 		
-			
-		await super._ready()
-		
-		self.hide()
+	await super._ready()
+	self.hide()
 
 func _process(_delta):
 	if is_multiplayer_authority():

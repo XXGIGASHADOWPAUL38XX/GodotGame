@@ -6,6 +6,7 @@ func _ready():
 	if is_multiplayer_authority():
 		key = ServiceSettings.keys_values['key_spell_2']
 		coltdown_time = 6
+		cast_time = 0.1
 		
 		spell = $spell_mage_f_2_gold
 		

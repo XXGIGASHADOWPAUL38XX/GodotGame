@@ -6,11 +6,10 @@ var cshape
 func _ready():
 	if is_multiplayer_authority():
 		immobile_while_active = true
-		await super._ready()
-		
 		self.hide()
-		
 		cshape = $CollisionShape2D
+		
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

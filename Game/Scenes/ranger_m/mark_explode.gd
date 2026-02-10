@@ -7,8 +7,7 @@ func _ready():
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super._ready()
-		self.hide()
+	await super._ready()
 
 func active(target_position):
 	if is_multiplayer_authority():

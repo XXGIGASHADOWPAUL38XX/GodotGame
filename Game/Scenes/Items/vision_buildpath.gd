@@ -1,7 +1,6 @@
 extends IItems
 
 var vision: Vision
-var vision_and_subvisions: Array[Vision]
 var duplicator
 
 # Called when the node enters the scene tree for the first time.
@@ -24,9 +23,8 @@ func post_dp_script(id, dp_number):
 
 func display():
 	item_actif.texture_normal = load("res://Game/Ressources/Vision/" + vision.name + ".png")
-	items_container.map(func(sub_vision): 
-		var sub_vision_index = items_container.find(sub_vision)
-		items_container[sub_vision_index].texture = load("res://Game/Ressources/Vision/" +
-			vision.sub_visions[sub_vision_index].name + ".png"
-		)
+	vision.sub_items.map(func(sub_vision): 
+		var sub_vision_index = vision.sub_items.find(sub_vision)
+		subitems_textureRects[sub_vision_index].name = sub_vision.name
+		subitems_textureRects[sub_vision_index].texture = load("res://Game/Ressources/Vision/" + sub_vision.name + ".png")
 	)

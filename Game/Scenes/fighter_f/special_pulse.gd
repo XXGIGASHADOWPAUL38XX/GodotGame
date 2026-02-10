@@ -8,9 +8,9 @@ func _ready():
 		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super._ready()
-		
 		func_on_entity_entered.append(Callable(self, 'push_ennemy'))
+		
+	await super._ready()
 
 func active():
 	self.position = ServiceScenes.championNode.position

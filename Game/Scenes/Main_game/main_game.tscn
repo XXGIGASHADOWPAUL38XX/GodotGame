@@ -30,6 +30,7 @@ script = ExtResource("3_x461s")
 visible = false
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(1140.5, 1282.5)
 scale = Vector2(19.1367, 4579)
 energy = 0.6

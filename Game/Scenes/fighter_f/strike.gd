@@ -14,8 +14,8 @@ func _ready():
 		damage_ratio = 0.125
 		# ------------------------------------ #
 		
-		await super._ready()
-		animation = $anim_strike
+	await super._ready()
+	animation = $anim_strike
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

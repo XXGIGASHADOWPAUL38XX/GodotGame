@@ -18,7 +18,7 @@ func _ready():
 		champion = ServiceScenes.championNode
 		animation = $throw_ranger_anim
 
-		await super._ready()
+	await super._ready()
 		
 func active(main_mector):
 	await get_tree().create_timer(delay).timeout

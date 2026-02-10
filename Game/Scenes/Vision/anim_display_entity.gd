@@ -18,8 +18,9 @@ func active(entity):
 	
 	for i in range(12):
 		self.scale += Vector2(0.02, 0.02)
-		await get_tree().create_timer(0).timeout
-		self.modulate.a += 0.05
+		await get_tree().create_timer(0.03).timeout
+		self.modulate.a += 0.08
 		
+	self.hide()	
 	self.stop()
 	

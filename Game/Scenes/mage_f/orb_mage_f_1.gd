@@ -1,9 +1,8 @@
 extends ICollision
 
 func _ready():
+	await super._ready()
 	if is_multiplayer_authority():
-		await super._ready()
-		
 		self.visibility_changed.connect(func():
 			if self.visible:
 				animation.play()

@@ -15,10 +15,10 @@ func _ready():
 		COLLISION_ON_SPECIFIC_ANIM = true
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
+	
+	if is_multiplayer_authority():
 		animation.animation = 'pre'
-		
-		self.hide()
 
 func active():
 	self.position = get_global_mouse_position()

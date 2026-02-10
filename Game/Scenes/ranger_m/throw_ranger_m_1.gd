@@ -11,15 +11,16 @@ func _ready():
 		damage_ratio = 0.15
 		# ------------------------------------ #
 		
-		await super._ready()
 		self.hide()
 		
 		champion = ServiceScenes.championNode
-		animation = $throw_ranger_anim
+		
+	animation = $throw_ranger_anim	
+	await super._ready()
 
 func active(main_mector):
 	await get_tree().create_timer(delay).timeout
-	ServiceScenes.championNode.add_state(self, 'states_action', State.StateAction.CONCENTRATE, 0.05)
+	ServiceScenes.championNode.add_state(self, 'states_cast', State.StateCast.CONCENTRATE, 0.05)
 	
 	self.position = champion.position + (main_mector.normalized() * 35)
 	self.position.y += randf_range(-10, 10)

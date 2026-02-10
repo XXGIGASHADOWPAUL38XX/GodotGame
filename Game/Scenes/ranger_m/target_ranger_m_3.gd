@@ -13,8 +13,9 @@ func _ready():
 	if is_multiplayer_authority():
 		self.hide()
 			
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():
 		for damaging_spells in spells_placeholder.all_actives.filter(func(s): 
 			return !s.name.begins_with('target') && s is ICollision):
 				damaging_spells.func_on_entity_entered.append(Callable(self, 'marked').bind(damaging_spells)

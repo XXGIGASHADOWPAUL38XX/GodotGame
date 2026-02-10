@@ -25,14 +25,16 @@ func active():
 	animation.play()
 	self.scale = Vector2(0.08, 0.08)
 	self.modulate.a = 1
+	self.position = ServiceScenes.championNode.position
 	self.show()
 	
-	for i in range(140):
+	for i in range(120):
 		self.scale += Vector2(0.02, 0.02)
 		await get_tree().create_timer(0.016).timeout
-		self.modulate.a -= 0.007
+		self.modulate.a -= 0.008
 		
 	animation.stop()
 	
 func display_entity():
-	dp_anim_display_entity.get_available_de_anim(player_hitted)
+	var anim_display_entity = dp_anim_display_entity.get_available_de_anim()
+	anim_display_entity.active(player_hitted)

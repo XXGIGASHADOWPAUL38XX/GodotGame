@@ -9,9 +9,9 @@ func _ready():
 		
 		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode, ServiceScenes.entities.ennemiesNode]
 		
-		await super._ready()
-		self.hide()
-			
+	await super._ready()
+
+	if is_multiplayer_authority():
 		animation.animation_finished.connect(
 			func():
 				self.hide()

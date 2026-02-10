@@ -15,8 +15,9 @@ func _ready():
 		
 		collision_shape = $CollisionShape2D
 
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():
 		animation.animation = "default"
 		animation.animation_changed.connect(func():
 			self.scale = self.scale * 1.5 if animation.animation == "default" else self.scale / 1.5

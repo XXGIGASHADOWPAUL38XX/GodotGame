@@ -4,10 +4,12 @@ var player # INSTANCIE LORS DE LA DUPLICATION
 
 func _ready():
 	if is_multiplayer_authority():
-		await super._ready()
-		
-		animation.animation_finished.connect(stop_spell)
 		CONF_DETECT_WITH = [ServiceScenes.entities.alliesNode]
+		
+	await super._ready()
+	
+	if is_multiplayer_authority():
+		animation.animation_finished.connect(stop_spell)
 			
 func _process(_delta):
 	if self.visible:

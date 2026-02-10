@@ -41,7 +41,7 @@ func portal_entered(node_body, portal_emit, portal_to_send):
 				node_body, animation_portal, portal_to_send))
 		
 		Servrpc.send_to_id(node_body.get_multiplayer_authority(), node_body, 'add_state', 
-		[self, 'states_action', State.StateAction.CONCENTRATE, animation_duration])
+		[self, 'states_cast', State.StateCast.CONCENTRATE, animation_duration])
 		
 		animation_portal.play('default')
 

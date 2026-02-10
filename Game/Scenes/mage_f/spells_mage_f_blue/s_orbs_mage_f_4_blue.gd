@@ -24,7 +24,7 @@ func _ready():
 		damage_ratio = 0.2
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		self.hide()
 		
 		spell1 = $Spells_mage_ult

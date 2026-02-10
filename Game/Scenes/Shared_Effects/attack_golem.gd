@@ -9,7 +9,7 @@ func _ready():
 		damage_ratio = 0.0
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		
 		
 func _process(_delta):

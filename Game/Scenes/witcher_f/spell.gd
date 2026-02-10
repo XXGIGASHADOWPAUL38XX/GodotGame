@@ -17,8 +17,9 @@ func _ready():
 		base_scale = self.scale.x
 		base_size = collision_shape.shape.height
 		
-		await super._ready()
+	await super._ready()
 		
+	if is_multiplayer_authority():
 		animation.animation = 'pre'
 		
 func _process(delta):

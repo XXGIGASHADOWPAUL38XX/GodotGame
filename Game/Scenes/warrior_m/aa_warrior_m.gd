@@ -11,10 +11,7 @@ func _ready():
 		immobile_while_active = true
 		# ------------------------------------ #
 		
-		await super._ready()
-		self.hide()
-		
-		animation = $anim_aa
+	await super._ready()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

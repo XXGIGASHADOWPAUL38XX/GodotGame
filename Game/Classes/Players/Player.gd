@@ -1,7 +1,7 @@
 class_name Player
 
 var id: int
-var db_id: int
+var db_id: String
 var name: String
 var team: Team
 var node: Node2D

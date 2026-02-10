@@ -21,12 +21,13 @@ func _ready():
 		COLLISION_ON_SPECIFIC_ANIM = true
 	
 		starter_points_scene = get_parent().get_parent().get_node('starter_points')
-		await super._ready()
-		
 		cshape = $CollisionShape2D
-		animation.animation = 'pre_laser'
-		base_size_x = cshape.shape.height		
+		base_size_x = cshape.shape.height
 		
+	await super._ready()
+		
+	if is_multiplayer_authority():
+		animation.animation = 'pre_laser'
 		launch_timer()
 		
 

@@ -1,13 +1,61 @@
-[gd_scene load_steps=21 format=3 uid="uid://c84jgd1hrw27x"]
+[gd_scene load_steps=33 format=3 uid="uid://c84jgd1hrw27x"]
 
 [ext_resource type="Script" path="res://Game/Scenes/mage_f/mage_f.gd" id="1_sybsp"]
 [ext_resource type="Texture2D" uid="uid://chqs4sck74hch" path="res://ressource/rpgsprites1/mage_f.png" id="2_2ipmp"]
 [ext_resource type="PackedScene" uid="uid://srarkkpwqkkt" path="res://Game/Scenes/mage_f/spells_mage_f.tscn" id="3_hss6p"]
 [ext_resource type="PackedScene" uid="uid://2uxlklxg4h51" path="res://Game/Scenes/Health/pgbars.tscn" id="4_pmvq1"]
-[ext_resource type="PackedScene" uid="uid://bo74nwafy87te" path="res://Game/Scenes/Champions_addons/champion_addons.tscn" id="5_3ds7w"]
+[ext_resource type="Texture2D" uid="uid://b12wi772heqlr" path="res://Game/Ressources/Heros/mage_f/mage_f_cast.png" id="4_v26rc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cawle"]
 size = Vector2(20, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sn0em"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(0, 74, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpxmj"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(32, 74, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p5lo"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(64, 74, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q2fs"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(64, 111, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg0ld"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(32, 111, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlgq3"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(0, 111, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03v5x"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(0, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ao2t"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(32, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8okcj"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(64, 37, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo5m1"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(0, 0, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2a1q"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(32, 0, 32, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h400x"]
+atlas = ExtResource("4_v26rc")
+region = Rect2(64, 0, 32, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eq6ii"]
 atlas = ExtResource("2_2ipmp")
@@ -59,6 +107,62 @@ region = Rect2(64, 0, 32, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pvuku"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sn0em")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpxmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p5lo")
+}],
+"loop": false,
+"name": &"cast_down",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1q2fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vg0ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlgq3")
+}],
+"loop": false,
+"name": &"cast_left",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03v5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ao2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8okcj")
+}],
+"loop": false,
+"name": &"cast_right",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo5m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2a1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h400x")
+}],
+"loop": false,
+"name": &"cast_up",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eq6ii")
@@ -133,9 +237,7 @@ shape = SubResource("RectangleShape2D_cawle")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mage_f"]
 sprite_frames = SubResource("SpriteFrames_pvuku")
-animation = &"walk_up"
-
-[node name="champion_addons" parent="mage_f" instance=ExtResource("5_3ds7w")]
+animation = &"cast_left"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_uhn6w")

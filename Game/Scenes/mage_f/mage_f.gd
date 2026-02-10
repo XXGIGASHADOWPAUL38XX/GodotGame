@@ -23,7 +23,7 @@ func update_orb_kind(orb_kind_update):
 		await resource_awaiter.await_resource_loaded(func(): return spell_orb != null)
 	
 	ServiceScenes.championNode.add_state(
-		self, 'states_action', State.StateAction.CONCENTRATE, 
+		self, 'states_cast', State.StateCast.CONCENTRATE, 
 		ServiceSpell.animation_duration($spells_mage_f/ctrlr_mage_f_1.anim_orb_hide)
 	)
 	$spells_mage_f/ctrlr_mage_f_1.anim_orb_hide.active()

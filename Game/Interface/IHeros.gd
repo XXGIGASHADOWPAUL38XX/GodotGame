@@ -82,6 +82,8 @@ func move():
 		path.remove_at(0)
 		
 		avoid_fpath = true
+		play_movement_animation(animation)
+		
 		
 	if path.size() > 0:
 		self.direction = (path[0] - self.position).normalized()
@@ -91,14 +93,13 @@ func move():
 	
 	if (self.curr_state_action.state == State.StateAction.SLOWED):
 		self.velocity *= 0.5
-	elif (self.curr_state_action.state == State.StateAction.STUNNED or self.curr_state_action.state == State.StateAction.CONCENTRATE):
+	elif (self.curr_state_action.state == State.StateAction.STUNNED or self.curr_state_cast.state == State.StateCast.CONCENTRATE):
 		self.velocity *= 0
 	
 	self.move_and_collide(self.velocity)
 	if path.size() > 0 && self.position.distance_to(path[0]) < speed_final:
 		path.remove_at(0)
 
-	play_movement_animation(animation)
 	#await get_tree().create_timer(0.05).timeout6
 	
 func play_movement_animation(animation):

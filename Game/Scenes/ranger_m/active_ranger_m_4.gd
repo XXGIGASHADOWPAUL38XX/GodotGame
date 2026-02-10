@@ -19,7 +19,7 @@ func _ready():
 		champion = ServiceScenes.championNode
 		coltdown_spell4 = service_time.init_timer(self, cd_spell4)
 			
-		await super._ready()
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority():

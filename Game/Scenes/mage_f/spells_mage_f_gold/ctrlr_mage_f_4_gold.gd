@@ -10,11 +10,12 @@ func _ready():
 		spell = $spell_mage_f_4_gold
 		
 		await super._ready()
-		cond_spells.append(Callable(self, 'launch_spell_cond'))	
+		cond_spells.append(Callable(self, 'launch_spell_cond'))
 
 func active():
 	await super.active()
 	spell.active()
 
 func launch_spell_cond():
-	return ServiceScenes.championNode.orb_kind == spell.orb_kind
+	return ServiceScenes.championNode.orb_kind == spell.orb_kind && ServiceScenes.championNode.orb.visible
+

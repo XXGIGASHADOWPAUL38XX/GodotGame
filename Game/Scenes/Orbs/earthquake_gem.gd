@@ -16,7 +16,7 @@ func _ready():
 		
 			
 		self.modulate.a = 0.15
-		await super._ready()
+	await super._ready()
 
 func _process(delta):
 	if is_multiplayer_authority() && self.visible:

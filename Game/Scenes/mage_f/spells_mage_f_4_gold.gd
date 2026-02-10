@@ -16,10 +16,9 @@ func _ready():
 		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super._ready()
 		self.hide()
 		
-		animation = $Spells_mage_ult
+	await super._ready()
 
 func _process(_delta):
 	if is_multiplayer_authority() && orb_kind == champion.orb_kind:

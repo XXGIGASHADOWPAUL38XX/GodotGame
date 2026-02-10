@@ -17,6 +17,8 @@ var resource_awaiter = ResourceAwaiter.new()
 
 @export var champion: IEntity
 
+@export var visible_on_main_auth: bool
+			
 func _ready():
 	if is_multiplayer_authority():
 		self.process_mode = Node.PROCESS_MODE_DISABLED
@@ -24,6 +26,10 @@ func _ready():
 		animation = self.get_children().filter(func(c): return c is AnimatedSprite2D)[0]
 		
 		spell_controller_f()
+		
+		self.visibility_changed.connect(func(): 
+			self.visible_on_main_auth = self.visible
+		)
 	
 	spells_placeholder_f()
 	
@@ -52,11 +58,11 @@ func _ready():
 
 func can_active(opt_param1=null, opt_param2=null, opt_param3=null):
 	if immobile_while_active:
-		champion.add_state(self, 'states_action', State.StateAction.CONCENTRATE)
+		champion.add_state(self, 'states_cast', State.StateCast.CONCENTRATE)
 		
 	await self.callv('active', [opt_param1, opt_param2, opt_param3].filter(func(opt_param): return opt_param != null))
 	if immobile_while_active:
-		champion.remove_state(self, 'states_action')
+		champion.remove_state(self, 'states_cast')
 
 func set_multiplayer_properties():
 	if animation == null:
@@ -64,12 +70,8 @@ func set_multiplayer_properties():
 	var anim_path = self.name + "/" + animation.name
 	
 	multip_sync = self.get_node(multip_sync_path) as MultiplayerSynchronizer
-
-	if multip_sync.replication_config.has_property(self.name + ":visible"):
-		multip_sync.replication_config.get_properties().map(func(prop):
-			multip_sync.replication_config.remove_property(prop)
-		)
 	
+	#multip_sync.replication_config.add_property(self.name + ":visible_on_main_auth")
 	multip_sync.replication_config.add_property(self.name + ":visible")
 	multip_sync.replication_config.add_property(self.name + ":modulate")
 	multip_sync.replication_config.add_property(self.name + ":rotation")
@@ -105,6 +107,10 @@ func champion_hitting(node: Node = self):
 		return champion_hitting(node.get_parent())
 		
 	return null
+
+func sync_visibility_auth_with_zone():
+	if !self.is_multiplayer_authority() && self.visible_on_main_auth != self.visible:
+		self.visible = self.visible_on_main_auth
 
 func _exit_tree():
 	Servrpc.recently_freed_nodepaths.append(self.get_path())

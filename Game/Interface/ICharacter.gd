@@ -26,8 +26,11 @@ var speed_bonus_ratio = 1
 ## ------------------- GESTION DES STATES ------------------- ##
 
 var states_action: Dictionary = {}
+var states_cast: Dictionary = {}
 var states_damage: Dictionary = {}
 var states_shielded: Dictionary = {}
+
+var regex = RegEx.new()
 
 var curr_state_action: SingleState = SingleState.new(State.StateAction.NULL, null):
 	get:
@@ -39,6 +42,18 @@ var curr_state_action: SingleState = SingleState.new(State.StateAction.NULL, nul
 		elif curr_state_action.state == State.StateAction.NULL && state_bar.visible:
 			state_bar.hide()
 			state_bar.value = 0
+		
+var curr_state_cast: SingleState = SingleState.new(State.StateCast.NULL, null):
+	get:
+		return curr_state_cast
+	set(value):
+		curr_state_cast = value
+		#print(regex.sub(self.animation.animation))
+		if curr_state_cast.state == State.StateCast.CONCENTRATE and self is IHeros:
+			regex.compile("walk_(.+)")
+			var old_animation = self.animation.animation
+			self.animation.play(regex.sub(self.animation.animation, "cast_$1"))
+			self.animation.animation_finished.connect(func(): self.animation.play(old_animation))
 		
 var curr_state_damage: SingleState = SingleState.new(State.StateDamage.NULL, null)
 var curr_state_shielded: SingleState = SingleState.new(State.StateShielded.NULL, null)
@@ -89,9 +104,10 @@ func _ready():
 		self.new_round()
 		#await_take_damage()
 
-		func_hitted.append(Callable(self, 'take_damage'))
-		
 	await super._ready()
+	
+	if is_multiplayer_authority():
+		func_hitted.append(Callable(self, 'take_damage'))	
 		
 func await_take_damage():
 	self.add_state(self, 'states_damage', State.StateDamage.IMMUNE, 0.5)
@@ -144,6 +160,7 @@ func update_state(state_kind):
 	var states = dict_state_kind.values()
 	
 	var current_state = {
+		'states_cast': 'curr_state_cast',
 		'states_action': 'curr_state_action',
 		'states_damage': 'curr_state_damage',
 		'states_shielded': 'curr_state_shielded'

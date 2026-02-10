@@ -11,7 +11,7 @@ func _ready():
 		COLLISION_ON_BORDER_ONLY = true
 		# ------------------------------------ #
 		
-		await super._ready()
+	await super._ready()
 		coltdown_wave = service_time.init_timer(self, cd_wave)
 
 func active():

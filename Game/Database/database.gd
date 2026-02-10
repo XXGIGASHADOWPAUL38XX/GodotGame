@@ -1,8 +1,8 @@
 class_name Database
 
-const URL_API = "https://bothjybvzeurkxhcbmsk.supabase.co/rest/v1"
-const API_KEY = "apikey:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdGhqeWJ2emV1cmt4aGNibXNrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ4ODAzNTgsImV4cCI6MjA0MDQ1NjM1OH0.fqNwtzE8JPsvLXCCkRxHIINjxBZlgX0oP-QnXLXN4rk" 
-const AUTHORISATION_KEY = "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdGhqeWJ2emV1cmt4aGNibXNrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcyNDg4MDM1OCwiZXhwIjoyMDQwNDU2MzU4fQ.NaUkVWcVrA6GOrCvAsyMlajnFdyYSbH6dx0vaCtmgRw"
+const URL_API = "https://zuyprriovxsmbbeppnyh.supabase.co/rest/v1"
+const API_KEY = "apikey:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1eXBycmlvdnhzbWJiZXBwbnloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA0NzQ3NTQsImV4cCI6MjA4NjA1MDc1NH0.byJ47sTTQnxwXhx0o8mW0KzjmZyeaaqqI6mXPWJi5kg" 
+const AUTHORISATION_KEY = "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1eXBycmlvdnhzbWJiZXBwbnloIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDQ3NDc1NCwiZXhwIjoyMDg2MDUwNzU0fQ.ErYWBd-qwTUkgMalGYZK2sCbKLgxhejJl0nOkWYG4dY"
 
 signal value_emitted
 
@@ -33,6 +33,7 @@ func request_http(url, method, data="", headers=PackedStringArray([API_KEY, AUTH
 	return value["data"] if value.keys().size() != 0 else null
 
 func _http_request_completed(result, response_code, headers, body):
+	#print(headers, "\n", body.get_string_from_utf8(), "\n", response_code)
 	if str(response_code)[0] == str(2):
 		var json_instance = JSON.new()
 		var response_text = body.get_string_from_utf8()
